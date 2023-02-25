@@ -24,7 +24,15 @@
 
 ;;; Code:
 
+(defvar osf/cache-dir
+  (expand-file-name ".cache" user-emacs-directory))
+
+(defvar osf/backup-dir
+  (expand-file-name "backup" osf/cache-dir))
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (when (fboundp #'scroll-bar-mode)
   (scroll-bar-mode -1))
+
+(setq backup-directory-alist `(("." . ,osf/backup-dir)))
