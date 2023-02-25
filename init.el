@@ -30,9 +30,14 @@
 (defvar osf/backup-dir
   (expand-file-name "backup" osf/cache-dir))
 
+(setq custom-file
+      (expand-file-name "custom.el" user-emacs-directory))
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (when (fboundp #'scroll-bar-mode)
   (scroll-bar-mode -1))
 
 (setq backup-directory-alist `(("." . ,osf/backup-dir)))
+
+(load custom-file t t)
