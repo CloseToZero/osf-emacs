@@ -49,4 +49,6 @@
       (file-name-as-directory
        (expand-file-name "org-persist" osf/cache-dir)))
 
+(global-set-key (kbd "C-x f") #'find-file)
+
 (load custom-file t t)
