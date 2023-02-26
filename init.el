@@ -32,6 +32,8 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+(setq inhibit-startup-screen t)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (when (fboundp #'scroll-bar-mode)
