@@ -1,4 +1,5 @@
 *~
+/eln-cache/
 /cache/*
 !/cache/.keep
 /custom.el
