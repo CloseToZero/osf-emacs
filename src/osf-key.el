@@ -24,20 +24,6 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(global-set-key (kbd "C-x f") #'find-file)
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
-
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-ui)
-(require 'osf-key)
-
-(load custom-file t t)
+(provide 'osf-key)

@@ -24,20 +24,16 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(setq backup-directory-alist `(("." . ,osf/backup-dir)))
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
+(setq auto-save-list-file-prefix
+      (expand-file-name
+       "auto-saves-"
+       (expand-file-name
+	"auto-save-list" osf/cache-dir)))
 
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
+(setq org-persist-directory
+      (file-name-as-directory
+       (expand-file-name "org-persist" osf/cache-dir)))
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-ui)
-(require 'osf-key)
-
-(load custom-file t t)
+(provide 'osf-clean-dir)

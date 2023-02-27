@@ -24,20 +24,11 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(setq inhibit-startup-screen t)
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(when (fboundp #'scroll-bar-mode)
+  (scroll-bar-mode -1))
 
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-ui)
-(require 'osf-key)
-
-(load custom-file t t)
+(provide 'osf-ui)
