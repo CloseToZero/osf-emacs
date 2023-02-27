@@ -31,4 +31,6 @@
 (when (fboundp #'scroll-bar-mode)
   (scroll-bar-mode -1))
 
+(setq ring-bell-function #'ignore)
+
 (provide 'osf-ui)
