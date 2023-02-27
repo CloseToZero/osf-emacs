@@ -33,4 +33,6 @@
 
 (setq ring-bell-function #'ignore)
 
+(push '(fullscreen . maximized) default-frame-alist)
+
 (provide 'osf-ui)
