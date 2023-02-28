@@ -27,4 +27,8 @@
 (straight-use-package 'vertico)
 (vertico-mode)
 
+(straight-use-package 'marginalia)
+(marginalia-mode)
+(define-key minibuffer-local-map (kbd "M-A") #'marginalia-cycle)
+
 (provide 'osf-completion)
