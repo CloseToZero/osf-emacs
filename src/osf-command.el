@@ -28,4 +28,19 @@
   (interactive)
   (find-file user-init-file))
 
+(defvar osf/create-src-hist nil)
+(defun osf/create-src (basename)
+  (interactive
+   (list (read-string "Name: " nil 'osf/create-src-hist)))
+  (let* ((feature (concat "osf-" basename))
+	 (filepath (expand-file-name (concat feature ".el") osf/src-dir)))
+    (when (file-exists-p filepath)
+      (user-error "File ~A already exists" filepath))
+    (find-file filepath)
+    (setq-local lexical-binding t)
+    (insert ";;; -*- lexical-binding: t; -*-\n\n")
+    (save-excursion
+      (insert "\n\n(provide '" feature ")"))
+    (save-buffer)))
+
 (provide 'osf-command)
