@@ -2,4 +2,5 @@
 /eln-cache/
 /cache/*
 !/cache/.keep
+/early-custom.el
 /custom.el
