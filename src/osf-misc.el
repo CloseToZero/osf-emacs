@@ -24,25 +24,16 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(defun osf//ad-crm-indicator (args)
+  "Add prompt indicator to `completing-read-multiple'.
+Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
+  (cons (format "[CRM%s] %s"
+                (replace-regexp-in-string
+                 "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                 crm-separator)
+                (car args))
+        (cdr args)))
+(advice-add #'completing-read-multiple
+            :filter-args #'osf//ad-crm-indicator)
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
-
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-package)
-(require 'osf-indent)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-command)
-
-(load custom-file t t)
+(provide 'osf-misc)
