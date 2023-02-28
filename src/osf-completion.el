@@ -24,24 +24,7 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(straight-use-package 'vertico)
+(vertico-mode)
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
-
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-package)
-(require 'osf-indent)
-(require 'osf-completion)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-command)
-
-(load custom-file t t)
+(provide 'osf-completion)
