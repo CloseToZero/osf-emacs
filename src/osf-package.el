@@ -24,23 +24,19 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(setq straight-repository-branch "develop")
+(setq straight-vc-git-default-clone-depth 1)
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
-
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-package)
-(require 'osf-indent)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-command)
-
-(load custom-file t t)
+(provide 'osf-package)
