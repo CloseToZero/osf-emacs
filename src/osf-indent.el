@@ -24,22 +24,6 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(setq-default indent-tabs-mode nil)
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
-
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-indent)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-command)
-
-(load custom-file t t)
+(provide 'osf-indent)
