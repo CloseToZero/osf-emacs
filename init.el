@@ -27,9 +27,6 @@
 (defvar osf/cache-dir
   (expand-file-name ".cache" user-emacs-directory))
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
-
 (defvar osf/src-dir
   (expand-file-name "src" user-emacs-directory))
 

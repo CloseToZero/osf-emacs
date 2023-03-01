@@ -24,7 +24,13 @@
 
 ;;; Code:
 
+(defvar osf/backup-dir
+  (expand-file-name "backup" osf/cache-dir))
 (setq backup-directory-alist `(("." . ,osf/backup-dir)))
+
+(defvar osf/undo-tree-hist-dir
+  (expand-file-name "undo-tree-hist" osf/cache-dir))
+(setq undo-tree-history-directory-alist `(("." . ,osf/undo-tree-hist-dir)))
 
 (setq auto-save-list-file-prefix
       (expand-file-name
