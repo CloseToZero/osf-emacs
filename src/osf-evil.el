@@ -24,26 +24,26 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(straight-use-package 'undo-tree)
+(global-undo-tree-mode)
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
+(straight-use-package 'evil)
+(setq evil-symbol-word-search t
+      evil-mouse-word 'evil-WORD
+      evil-want-Y-yank-to-eol t
+      evil-want-C-u-scroll t
+      evil-want-C-u-delete t
+      evil-want-abbrev-expand-on-insert-exit nil
+      evil-jumps-ignored-file-patterns nil
+      evil--jumps-buffer-targets
+      (rx
+       (or
+        (seq string-start "*"
+             (or "new" "scratch" "eww" "Help")
+             "*" string-end)
+        (seq string-start "*Org Src " (+ anychar) "*"))))
+(require 'evil)
+(customize-set-variable 'evil-undo-system 'undo-tree)
+(evil-mode)
 
-(defvar osf/src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf/src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-package)
-(require 'osf-indent)
-(require 'osf-evil)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-command)
-
-(load custom-file t t)
+(provide 'osf-evil)
