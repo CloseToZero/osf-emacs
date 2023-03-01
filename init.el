@@ -45,6 +45,5 @@
 (require 'osf-misc)
 (require 'osf-ui)
 (require 'osf-key)
-(require 'osf-command)
 
 (load custom-file t t)
