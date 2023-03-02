@@ -26,7 +26,7 @@
 
 (setq enable-recursive-minibuffers t)
 
-(defun osf//ad-crm-indicator (args)
+(defun osf--ad-crm-indicator (args)
   "Add prompt indicator to `completing-read-multiple'.
 Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
   (cons (format "[CRM%s] %s"
@@ -36,6 +36,6 @@ Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
                 (car args))
         (cdr args)))
 (advice-add #'completing-read-multiple
-            :filter-args #'osf//ad-crm-indicator)
+            :filter-args #'osf--ad-crm-indicator)
 
 (provide 'osf-misc)

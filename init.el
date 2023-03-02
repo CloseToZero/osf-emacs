@@ -24,15 +24,15 @@
 
 ;;; Code:
 
-(defvar osf/cache-dir
+(defvar osf-cache-dir
   (expand-file-name ".cache" user-emacs-directory))
 
-(defvar osf/src-dir
+(defvar osf-src-dir
   (expand-file-name "src" user-emacs-directory))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(push osf/src-dir load-path)
+(push osf-src-dir load-path)
 (require 'osf-clean-dir)
 (require 'osf-package)
 (require 'osf-lib)

@@ -26,7 +26,7 @@
 
 (straight-use-package 'undo-tree)
 (require 'undo-tree)
-(osf/inhibit-message #'undo-tree-save-history)
+(osf-inhibit-message #'undo-tree-save-history)
 (global-undo-tree-mode)
 
 (straight-use-package 'evil)

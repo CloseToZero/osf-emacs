@@ -24,23 +24,23 @@
 
 ;;; Code:
 
-(defun osf//ad-inhibit-message (fn &rest args)
+(defun osf--ad-inhibit-message (fn &rest args)
   (let ((inhibit-message (not (called-interactively-p 'interactive))))
     (apply fn args)))
 
-(defun osf/inhibit-message (fn)
-  (advice-add fn :around #'osf//ad-inhibit-message))
+(defun osf-inhibit-message (fn)
+  (advice-add fn :around #'osf--ad-inhibit-message))
 
-(defun osf/edit-config ()
+(defun osf-edit-config ()
   (interactive)
   (find-file user-init-file))
 
-(defvar osf/create-src-hist nil)
-(defun osf/create-src (basename)
+(defvar osf-create-src-hist nil)
+(defun osf-create-src (basename)
   (interactive
-   (list (read-string "Name: " nil 'osf/create-src-hist)))
+   (list (read-string "Name: " nil 'osf-create-src-hist)))
   (let* ((feature (concat "osf-" basename))
-	 (filepath (expand-file-name (concat feature ".el") osf/src-dir)))
+	 (filepath (expand-file-name (concat feature ".el") osf-src-dir)))
     (when (file-exists-p filepath)
       (user-error "File ~A already exists" filepath))
     (find-file filepath)

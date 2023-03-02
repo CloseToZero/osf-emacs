@@ -24,22 +24,22 @@
 
 ;;; Code:
 
-(defvar osf/backup-dir
-  (expand-file-name "backup" osf/cache-dir))
-(setq backup-directory-alist `(("." . ,osf/backup-dir)))
+(defvar osf-backup-dir
+  (expand-file-name "backup" osf-cache-dir))
+(setq backup-directory-alist `(("." . ,osf-backup-dir)))
 
-(defvar osf/undo-tree-hist-dir
-  (expand-file-name "undo-tree-hist" osf/cache-dir))
-(setq undo-tree-history-directory-alist `(("." . ,osf/undo-tree-hist-dir)))
+(defvar osf-undo-tree-hist-dir
+  (expand-file-name "undo-tree-hist" osf-cache-dir))
+(setq undo-tree-history-directory-alist `(("." . ,osf-undo-tree-hist-dir)))
 
 (setq auto-save-list-file-prefix
       (expand-file-name
        "auto-saves-"
        (expand-file-name
-	"auto-save-list" osf/cache-dir)))
+	"auto-save-list" osf-cache-dir)))
 
 (setq org-persist-directory
       (file-name-as-directory
-       (expand-file-name "org-persist" osf/cache-dir)))
+       (expand-file-name "org-persist" osf-cache-dir)))
 
 (provide 'osf-clean-dir)
