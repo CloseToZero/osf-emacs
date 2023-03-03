@@ -1,7 +1,7 @@
 *~
 /eln-cache/
-/cache/*
-!/cache/.keep
+/.cache/*
+!/.cache/.keep
 /early-custom.el
 /custom.el
 /straight/*
