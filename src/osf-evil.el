@@ -48,4 +48,19 @@
 (customize-set-variable 'evil-undo-system 'undo-tree)
 (evil-mode)
 
+(straight-use-package
+ '(double-trigger
+   :type git
+   :repo "git@github.com:CloseToZero/double-trigger.git"))
+
+(double-trigger-mode)
+
+(defun osf-double-trigger-fn ()
+  (when (eq evil-state 'insert)
+    (evil-repeat-stop)
+    (setq this-command #'evil-normal-state
+          this-original-command #'evil-normal-state)))
+
+(setq double-trigger-fn #'osf-double-trigger-fn)
+
 (provide 'osf-evil)

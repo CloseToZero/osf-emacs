@@ -1,4 +1,5 @@
 (("compat" . "d70ed5178b5f88be093fdedb9ec09b684451db54")
+ ("double-trigger" . "f109b8107dc1e847d1aec6ed298618f1a626bcd2")
  ("el-get" . "bc4299031e634b514eceb472b6b02432c2bb86ba")
  ("emacsmirror-mirror" . "3311bb50e14990b1f3a930f4963033a2893725c0")
  ("evil" . "22d76a4080e40381aae194c94f3bc16ba67a330a")
