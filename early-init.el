@@ -27,4 +27,6 @@
 (defvar osf/early-custom-file
   (expand-file-name "early-custom.el" user-emacs-directory))
 
+(setq package-enable-at-startup nil)
+
 (load osf/early-custom-file t t)
