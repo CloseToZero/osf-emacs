@@ -38,6 +38,10 @@
        (expand-file-name
 	"auto-save-list" osf-cache-dir)))
 
+(setq project-list-file
+      (expand-file-name
+       "projects" osf-cache-dir))
+
 (setq org-persist-directory
       (file-name-as-directory
        (expand-file-name "org-persist" osf-cache-dir)))
