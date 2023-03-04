@@ -38,4 +38,6 @@ Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
 (advice-add #'completing-read-multiple
             :filter-args #'osf--ad-crm-indicator)
 
+(setq native-comp-async-report-warnings-errors 'silent)
+
 (provide 'osf-misc)
