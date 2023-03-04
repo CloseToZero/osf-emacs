@@ -42,6 +42,11 @@
       (expand-file-name
        "projects" osf-cache-dir))
 
+(setq server-auth-dir
+      (file-name-as-directory
+       (expand-file-name
+        "server" osf-cache-dir)))
+
 (setq org-persist-directory
       (file-name-as-directory
        (expand-file-name "org-persist" osf-cache-dir)))
