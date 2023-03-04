@@ -9,6 +9,7 @@
  ("marginalia" . "ccf573e2145d9deb9d734432351eefc87fc1bc16")
  ("melpa" . "e5143d239cfc5dfcc2b1a4a8f161c097688b5a04")
  ("nongnu-elpa" . "9e236b82a2da24bb9983e2f63061323354d6ecfe")
+ ("orderless" . "e6784026717a8a6a7dcd0bf31fd3414f148c542e")
  ("queue" . "130c2d656cd5d7376552272fab9e50a7c37d0c4a")
  ("straight.el" . "6e7ba15d5c11338a1e055bc0c7827e80f65d0d2c")
  ("undo-tree" . "16f4121032d09ef44b3d7d02c4d02c3c2f18041f")

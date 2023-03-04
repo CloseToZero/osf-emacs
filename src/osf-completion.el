@@ -31,4 +31,15 @@
 (marginalia-mode)
 (define-key minibuffer-local-map (kbd "M-A") #'marginalia-cycle)
 
+(straight-use-package 'orderless)
+;; The basic style is for commands that rely on dynamic completion
+;; tables like `completion-table-dynamic' and
+;; `completion-table-in-turn'.
+(setq completion-styles '(orderless basic))
+;; Workaround for TRAMP hostname completion to work, no need for
+;; Emacs 30+.
+(when (< emacs-major-version 30)
+  (setq completion-category-overrides
+        '((file (styles basic partial-completion)))))
+
 (provide 'osf-completion)
