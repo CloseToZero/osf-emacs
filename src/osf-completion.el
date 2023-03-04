@@ -35,7 +35,8 @@
 ;; The basic style is for commands that rely on dynamic completion
 ;; tables like `completion-table-dynamic' and
 ;; `completion-table-in-turn'.
-(setq completion-styles '(orderless basic))
+(setq completion-styles '(orderless basic)
+      orderless-matching-styles '(orderless-literal orderless-regexp))
 ;; Workaround for TRAMP hostname completion to work, no need for
 ;; Emacs 30+.
 (when (< emacs-major-version 30)
