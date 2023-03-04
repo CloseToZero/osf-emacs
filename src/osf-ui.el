@@ -35,4 +35,7 @@
 
 (push '(fullscreen . maximized) default-frame-alist)
 
+(setq column-number-indicator-zero-based nil)
+(column-number-mode)
+
 (provide 'osf-ui)
