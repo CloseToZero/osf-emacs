@@ -63,4 +63,7 @@
 
 (setq double-trigger-fn #'osf-double-trigger-fn)
 
+(straight-use-package 'evil-visualstar)
+(global-evil-visualstar-mode)
+
 (provide 'osf-evil)

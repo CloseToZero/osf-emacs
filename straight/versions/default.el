@@ -3,6 +3,7 @@
  ("el-get" . "bc4299031e634b514eceb472b6b02432c2bb86ba")
  ("emacsmirror-mirror" . "3311bb50e14990b1f3a930f4963033a2893725c0")
  ("evil" . "22d76a4080e40381aae194c94f3bc16ba67a330a")
+ ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("gnu-elpa-mirror" . "181c7b5c6180488d4cc6d530c89a211e5b9541ea")
  ("goto-chg" . "278cd3e6d5107693aa2bb33189ca503f22f227d0")
  ("marginalia" . "ccf573e2145d9deb9d734432351eefc87fc1bc16")
