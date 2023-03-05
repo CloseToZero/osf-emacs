@@ -51,4 +51,13 @@
       (file-name-as-directory
        (expand-file-name "org-persist" osf-cache-dir)))
 
+(let ((transient-cache-dir
+       (expand-file-name "transient" osf-cache-dir)))
+  (setq transient-levels-file
+        (expand-file-name "levels.el" transient-cache-dir))
+  (setq transient-values-file
+        (expand-file-name "values.el" transient-cache-dir))
+  (setq transient-history-file
+        (expand-file-name "history.el" transient-cache-dir)))
+
 (provide 'osf-clean-dir)

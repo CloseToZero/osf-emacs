@@ -24,24 +24,6 @@
 
 ;;; Code:
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(straight-use-package 'magit)
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-package)
-(require 'osf-lib)
-(require 'osf-indent)
-(require 'osf-evil)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-vc)
-
-(load custom-file t t)
+(provide 'osf-vc)
