@@ -24,25 +24,11 @@
 
 ;;; Code:
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(set-language-environment "UTF-8")
+(when (boundp 'w32-ansi-code-page)
+  (defvar osf-w32-locale-coding-system (intern (format "cp%d" w32-ansi-code-page)))
+  (prefer-coding-system osf-w32-locale-coding-system)
+  (setq file-name-coding-system osf-w32-locale-coding-system)
+  (prefer-coding-system 'utf-8))
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-coding-system)
-(require 'osf-package)
-(require 'osf-lib)
-(require 'osf-indent)
-(require 'osf-evil)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-vc)
-
-(load custom-file t t)
+(provide 'osf-coding-system)
