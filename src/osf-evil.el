@@ -30,7 +30,8 @@
 (global-undo-tree-mode)
 
 (straight-use-package 'evil)
-(setq evil-symbol-word-search t
+(setq evil-search-module 'evil-search
+      evil-symbol-word-search t
       evil-mouse-word 'evil-WORD
       evil-want-Y-yank-to-eol t
       evil-want-C-u-scroll t
@@ -47,6 +48,16 @@
 (require 'evil)
 (customize-set-variable 'evil-undo-system 'undo-tree)
 (evil-mode)
+
+(evil-define-command osf-evil-force-normal-state ()
+  "Like `evil-force-normal-state', but also clear the search highlightings."
+  :repeat abort
+  :suppress-operator t
+  (evil-normal-state)
+  (evil-ex-nohighlight))
+
+(evil-define-key* 'normal 'global
+  (kbd "<escape>") #'osf-evil-force-normal-state)
 
 (straight-use-package
  '(double-trigger
