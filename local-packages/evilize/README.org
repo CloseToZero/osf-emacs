@@ -1,0 +1,7 @@
+* Evilize key bindings
+
+Like [[https://github.com/emacs-evil/evil-collection][evil-collection]], but adjust for my taste.
+
+* Acknowledgments
+
+- [[https://github.com/emacs-evil/evil-collection][evil-collection]]

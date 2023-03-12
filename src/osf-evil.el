@@ -66,4 +66,12 @@
 (straight-use-package 'evil-visualstar)
 (global-evil-visualstar-mode)
 
+(straight-use-package
+ `(evilize
+   :type nil
+   :local-repo
+   ,(expand-file-name
+     "evilize" osf-local-packages-dir)))
+(require 'evilize)
+
 (provide 'osf-evil)

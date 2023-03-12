@@ -5,7 +5,7 @@
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "28.1"))
+;; Package-Requires: ((emacs "28.1") (evil "1.15.0"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -24,28 +24,7 @@
 
 ;;; Code:
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(with-eval-after-load 'magit
+  (require 'evilize-magit))
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(defvar osf-local-packages-dir
-  (expand-file-name "local-packages" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-coding-system)
-(require 'osf-package)
-(require 'osf-lib)
-(require 'osf-indent)
-(require 'osf-evil)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-vc)
-
-(load custom-file t t)
+(provide 'evilize)
