@@ -4,8 +4,6 @@
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
-;; Version: 0.1.0
-;; Package-Requires: ((emacs "28.1") (evil "1.15.0"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -24,10 +22,18 @@
 
 ;;; Code:
 
-(require 'evilize-minibuffer)
-(with-eval-after-load 'magit
-  (require 'evilize-magit))
-(with-eval-after-load 'vertico
-  (require 'evilize-vertico))
+(require 'evilize-common)
+(defvar vertico-map)
 
-(provide 'evilize)
+(pcase-dolist
+    (`(,state ,key ,cmd)
+     '((normal "]" vertico-next-group)
+       (normal "[" vertico-previous-group)
+       (normal "C-u" vertico-scroll-down)
+       (normal "C-d" vertico-scroll-up)
+       ((normal insert) "C-j" vertico-next)
+       ((normal insert) "C-k" vertico-previous)
+       ))
+  (evil-define-key* state vertico-map (kbd key) cmd))
+
+(provide 'evilize-vertico)
