@@ -36,4 +36,7 @@ otherwise in default state."
 (add-hook 'git-commit-setup-hook
           #'osf-git-commit-start-in-insert-state-if-blank)
 
+(osf-leader-define-key 'global
+  "g g" #'magit-status)
+
 (provide 'osf-vc)

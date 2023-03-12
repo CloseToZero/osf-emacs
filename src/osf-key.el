@@ -24,6 +24,17 @@
 
 ;;; Code:
 
-(global-set-key (kbd "C-x f") #'find-file)
+(osf-leader-define-key 'global
+  "b b" #'switch-to-buffer
+  "b x" #'kill-current-buffer
+  "b X" #'kill-buffer
+
+  "w" evil-window-map
+  "w -" #'evil-window-split
+  "w \\" #'evil-window-vsplit
+
+  "f f" #'find-file
+  "f r" #'revert-buffer
+  "f c" #'osf-edit-config)
 
 (provide 'osf-key)
