@@ -47,4 +47,27 @@
 
 (add-hook 'image-mode-hook #'osf-turn-off-display-line-numbers-mode)
 
+(setq whitespace-style '(face lines-tail empty)
+      whitespace-line-column 80)
+(defun osf--whitespace-mode-enable-predicate ()
+  (and (cond
+        ((eq whitespace-global-modes t) t)
+        ((listp whitespace-global-modes)
+         (if (eq (car-safe whitespace-global-modes) 'not)
+             (not (apply #'derived-mode-p (cdr whitespace-global-modes)))
+           (apply #'derived-mode-p whitespace-global-modes)))
+        (t nil))
+       ;; ...we have a display (not running a batch job)
+       (not noninteractive)
+       ;; ...the buffer is not internal (name starts with a space)
+       (not (eq (aref (buffer-name) 0) ?\ ))
+       (string-prefix-p "maigt-" (symbol-name major-mode))
+       ;; ...the buffer is not special (name starts with *)
+       (or (not (eq (aref (buffer-name) 0) ?*))
+           ;; except the scratch buffer.
+           (string= (buffer-name) "*scratch*"))))
+(setq whitespace-enable-predicate
+      #'osf--whitespace-mode-enable-predicate)
+(global-whitespace-mode)
+
 (provide 'osf-ui)
