@@ -25,6 +25,12 @@
 ;;; Code:
 
 (osf-leader-define-key 'global
+  "SPC" #'execute-extended-command
+
+  "h" help-map
+
+  "p" project-prefix-map
+
   "b b" #'switch-to-buffer
   "b x" #'kill-current-buffer
   "b X" #'kill-buffer
