@@ -24,6 +24,7 @@
 
 ;;; Code:
 
+(require 'evilize-minibuffer)
 (with-eval-after-load 'magit
   (require 'evilize-magit))
 
