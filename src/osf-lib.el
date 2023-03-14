@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(defun osf-ensure-is-list (x)
+  (if (listp x) x (list x)))
+
 (defun osf--ad-inhibit-message (fn &rest args)
   (let ((inhibit-message (not (called-interactively-p 'interactive))))
     (apply fn args)))

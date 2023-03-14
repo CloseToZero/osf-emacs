@@ -24,29 +24,22 @@
 
 ;;; Code:
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(straight-use-package 'blackout)
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(pcase-dolist
+    (`(,feature ,modes)
+     '((autorevert auto-revert-mode)
+       (undo-tree undo-tree-mode)
+       (eldoc eldoc-mode)
+       (double-trigger double-trigger-mode)
+       (simple auto-fill-mode)
+       (with-editor with-editor-mode)
+       ;; (feature (mode1 mode2))
+       ))
+  (with-eval-after-load feature
+    (dolist (mode (osf-ensure-is-list modes))
+      (blackout mode))))
 
-(defvar osf-local-packages-dir
-  (expand-file-name "local-packages" user-emacs-directory))
+(setq mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-coding-system)
-(require 'osf-package)
-(require 'osf-lib)
-(require 'osf-clean-mode-line)
-(require 'osf-indent)
-(require 'osf-evil)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-vc)
-
-(load custom-file t t)
+(provide 'osf-clean-mode-line)
