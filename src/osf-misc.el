@@ -24,7 +24,11 @@
 
 ;;; Code:
 
+(setq native-comp-async-report-warnings-errors 'silent)
+
 (setq enable-recursive-minibuffers t)
+
+(setq save-interprogram-paste-before-kill t)
 
 (defun osf--ad-crm-indicator (args)
   "Add prompt indicator to `completing-read-multiple'.
@@ -37,7 +41,5 @@ Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
         (cdr args)))
 (advice-add #'completing-read-multiple
             :filter-args #'osf--ad-crm-indicator)
-
-(setq native-comp-async-report-warnings-errors 'silent)
 
 (provide 'osf-misc)
