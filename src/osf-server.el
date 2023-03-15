@@ -24,30 +24,14 @@
 
 ;;; Code:
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(require 'server)
+;; Start a server if (server-running-p) does not return t (e.g. if it
+;; returns nil or :other).  NOTE: On Windows, you need to set
+;; the environment variable EMACS_SERVER_FILE to the path of the server
+;; file. Usually, it's a file named 'server' within
+;; the `server-auth-dir'. e.g.
+;; C:\Users\{your_user_name}\.config\emacs\.cache\server\server
+(unless (eq (server-running-p) t)
+  (server-start))
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(defvar osf-local-packages-dir
-  (expand-file-name "local-packages" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-coding-system)
-(require 'osf-package)
-(require 'osf-lib)
-(require 'osf-clean-mode-line)
-(require 'osf-indent)
-(require 'osf-evil)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-key)
-(require 'osf-vc)
-(require 'osf-server)
-
-(load custom-file t t)
+(provide 'osf-server)
