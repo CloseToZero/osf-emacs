@@ -167,9 +167,10 @@ NOTE: this function can be called with empty bindings."
           (list keymaps))))
 
 (osf-release-leader-key 'global)
-(osf-release-leader-key (list magit-mode-map
-                              magit-status-mode-map
-                              magit-diff-mode-map
-                              magit-blame-read-only-mode-map))
+(with-eval-after-load 'magit
+  (osf-release-leader-key (list magit-mode-map
+                                magit-status-mode-map
+                                magit-diff-mode-map
+                                magit-blame-read-only-mode-map)))
 
 (provide 'osf-evil)
