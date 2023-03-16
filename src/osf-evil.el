@@ -160,8 +160,8 @@ NOTE: this function can be called with empty bindings."
           (osf-evil-define-key osf-aux-leader-key-states
             keymap osf-aux-leader-key nil)
           (when (keymapp keymap)
-            (osf-define-key keymap osf-leader-key nil)
-            (osf-define-key keymap osf-aux-leader-key nil)))
+            (define-key keymap (kbd osf-leader-key) nil)
+            (define-key keymap (kbd osf-aux-leader-key) nil)))
         (if (and (listp keymaps) (not (keymapp keymaps)))
             keymaps
           (list keymaps))))
