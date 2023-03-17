@@ -24,31 +24,18 @@
 
 ;;; Code:
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(straight-use-package 'smartparens)
+(setq sp-highlight-pair-overlay nil
+      sp-highlight-wrap-overlay nil
+      sp-highlight-wrap-tag-overlay nil)
+(smartparens-global-mode)
+(dolist (open-pair '("(" "[" "{"))
+  (dolist (mode '(fundamental-mode
+                  text-mode
+                  prog-mode
+                  ))
+    (sp-local-pair mode open-pair nil
+                   :post-handlers
+                   '(:add ("||\n[i]" "RET")))))
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
-
-(defvar osf-local-packages-dir
-  (expand-file-name "local-packages" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-coding-system)
-(require 'osf-package)
-(require 'osf-lib)
-(require 'osf-clean-mode-line)
-(require 'osf-indent)
-(require 'osf-evil)
-(require 'osf-completion)
-(require 'osf-misc)
-(require 'osf-ui)
-(require 'osf-pair)
-(require 'osf-key)
-(require 'osf-vc)
-(require 'osf-server)
-
-(load custom-file t t)
+(provide 'osf-pair)
