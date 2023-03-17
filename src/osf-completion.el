@@ -25,6 +25,9 @@
 ;;; Code:
 
 (straight-use-package 'vertico)
+(setq vertico-multiline
+      (cons #("\\\\n" 0 3 (face vertico-multiline))
+            #("..." 0 3 (face vertico-multiline))))
 (vertico-mode)
 
 (straight-use-package 'marginalia)
