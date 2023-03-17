@@ -37,5 +37,10 @@
     (sp-local-pair mode open-pair nil
                    :post-handlers
                    '(:add ("||\n[i]" "RET")))))
+(sp-with-modes '(emacs-lisp-mode lisp-mode scheme-mode)
+  (sp-local-pair "'" nil :actions nil)
+  (sp-local-pair "`" "'"
+                 :when '(sp-in-string-p sp-in-comment-p))
+  )
 
 (provide 'osf-pair)
