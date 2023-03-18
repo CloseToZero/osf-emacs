@@ -45,6 +45,8 @@
     ("," "Left shrink" sp-backward-barf-sexp :transient t)
     ("r" "Raise" sp-raise-sexp)
     ("s" "Split" sp-split-sexp)
+    ("S" "Split" sp-splice-sexp)
+    ("c" "Clone" sp-clone-sexp :transient t)
     ("\(" "Wrap" sp-wrap-round)
     ("J" "Join" sp-join-sexp)
     ("i" "Indent defun" sp-indent-defun)
