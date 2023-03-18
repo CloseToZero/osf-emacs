@@ -57,6 +57,7 @@
 (require 'osf-pair)
 (require 'osf-key)
 (require 'osf-vc)
+(require 'osf-project)
 (require 'osf-org)
 (require 'osf-server)
 

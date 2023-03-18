@@ -29,6 +29,17 @@
 (defun osf-ensure-is-list (x)
   (if (listp x) x (list x)))
 
+(defun osf-define-key (keymap &rest bindings)
+  "Like `define-key', but can define multiple bindings at once.
+NOTE: each key in a binding will be wrapped inside `kbd'."
+  (declare (indent defun))
+  (cl-loop for (key def) on bindings by #'cddr
+           do (define-key keymap (kbd key) def)))
+
+(defun osf-global-define-key (&rest bindings)
+  "Use `osf-define-key' to define key bindings within `current-global-map'."
+  (apply #'osf-define-key (current-global-map) bindings))
+
 (defun osf--ad-inhibit-message (fn &rest args)
   (let ((inhibit-message (not (called-interactively-p 'interactive))))
     (apply fn args)))
