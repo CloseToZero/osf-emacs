@@ -47,7 +47,7 @@
 
 (add-hook 'image-mode-hook #'osf-turn-off-display-line-numbers-mode)
 
-(setq whitespace-style '(face lines-tail empty)
+(setq whitespace-style '(face empty lines-tail trailing)
       whitespace-line-column 80)
 
 (straight-use-package 'modus-themes)
