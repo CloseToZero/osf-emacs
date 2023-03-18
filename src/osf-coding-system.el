@@ -26,9 +26,43 @@
 
 (set-language-environment "UTF-8")
 (when (boundp 'w32-ansi-code-page)
-  (defvar osf-w32-locale-coding-system (intern (format "cp%d" w32-ansi-code-page)))
+  (defvar osf-w32-locale-coding-system
+    (intern (format "cp%d" w32-ansi-code-page)))
   (prefer-coding-system osf-w32-locale-coding-system)
   (setq file-name-coding-system osf-w32-locale-coding-system)
-  (prefer-coding-system 'utf-8))
+  (prefer-coding-system 'utf-8)
+
+  (defun osf-process-regexp-for-program (program-name)
+    "Return a regexp for PROGRAM-NAME to be used in `process-coding-system-alist'.
+The regexp will match PROGRAM-NAME with optional .exe suffix in both
+name only form or path form.  NOTE: The PROGRAM-NAME is matched in
+case insensitive way.
+Example:
+Assume PROGRAM-NAME is \"rg\", the regexp will match any of the following:
+rg
+rg.exe
+path\\to\\rg
+path\\to\\rg.exe
+path\\to\\Rg.exe
+path\\to\\rG.exe
+path/to/rg
+path/to/rg.exe
+but will not match any of the following:
+rg.e
+path/to/arg.exe
+path\\to\\arg.exe"
+    (rx (| (seq (or "/" "\\")
+                (regexp (osf-regexp-literal-any-case program-name))
+                (? ".exe")
+                string-end)
+           (seq string-start
+                (regexp (osf-regexp-literal-any-case program-name))
+                (? ".exe")
+                string-end))))
+  (dolist (program '("rg" "magick" "dot" "TOTALCMD64" "cmder"))
+    (modify-coding-system-alist
+     'process (osf-process-regexp-for-program program)
+     (cons 'utf-8 osf-w32-locale-coding-system)))
+  )
 
 (provide 'osf-coding-system)

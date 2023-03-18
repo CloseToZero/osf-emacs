@@ -33,10 +33,18 @@
 (defvar osf-local-packages-dir
   (expand-file-name "local-packages" user-emacs-directory))
 
+(defvar osf-system-type
+  (cond ((memq system-type '(cygwin windows-nt ms-dos)) 'windows)
+        ((eq system-type 'darwin) 'mac)
+        ((eq system-type 'gnu/linux) 'linux)
+        ((eq system-type 'berkeley-unix) 'bsd)
+        (t system-type)))
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (push osf-src-dir load-path)
 (require 'osf-clean-dir)
+(require 'osf-core-lib)
 (require 'osf-coding-system)
 (require 'osf-package)
 (require 'osf-lib)
