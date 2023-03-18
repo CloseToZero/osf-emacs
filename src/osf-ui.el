@@ -33,7 +33,7 @@
 
 (setq ring-bell-function #'ignore)
 
-(push '(fullscreen . maximized) default-frame-alist)
+(push '(fullscreen . fullboth) default-frame-alist)
 
 (setq column-number-indicator-zero-based nil)
 (column-number-mode)
