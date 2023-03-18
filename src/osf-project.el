@@ -63,11 +63,29 @@ only searching the top level directories within each directory."
    (if (eq osf-system-type 'windows)
        #'project-shell #'project-eshell)))
 
+;; Adapt from `projectile-save-project-buffers'.
+(defun osf-project-save-buffers ()
+  "Save all project buffers."
+  (interactive)
+  (let ((project (project-current)))
+    (unless project (user-error "Not in a project"))
+    (let ((modified-buffers
+           (cl-remove-if-not
+            #'(lambda (buffer)
+                (and (buffer-file-name buffer)
+                     (buffer-modified-p buffer)))
+            (project-buffers project))))
+      (cond ((null modified-buffers) (message "No buffers need saving"))
+            (t (dolist (buffer modified-buffers)
+                 (with-current-buffer buffer (save-buffer)))
+               (message "Saved %d buffers" (length modified-buffers)))))))
+
 (osf-leader-define-key 'global
   "p" project-prefix-map)
 
 (osf-define-key project-prefix-map
   "R" #'osf-find-projects
-  "s" #'osf-project-shell)
+  "s" #'osf-project-shell
+  "S" #'osf-project-save-buffers)
 
 (provide 'osf-project)
