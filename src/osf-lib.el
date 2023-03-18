@@ -24,8 +24,6 @@
 
 ;;; Code:
 
-(straight-use-package 'transient)
-
 (defun osf-ensure-is-list (x)
   (if (listp x) x (list x)))
 
