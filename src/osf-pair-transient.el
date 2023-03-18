@@ -25,8 +25,8 @@
 ;;; Code:
 
 (transient-define-prefix osf-transient-smartparens ()
-  ["Move"
-   [("m" "Mark" sp-mark-sexp)
+  [["Move"
+    ("m" "Mark" sp-mark-sexp)
     ("j" "Next" sp-beginning-of-next-sexp :transient t)
     ("k" "Previous" sp-beginning-of-previous-sexp :transient t)
     ("C-j" "Next" sp-next-sexp :transient t)
@@ -37,9 +37,9 @@
     ("b" "Backward" sp-backward-sexp :transient t)
     ("^" "Beginning" sp-beginning-of-sexp :transient t)
     ("$" "End" sp-end-of-sexp :transient t)
-    ]]
-  ["Edit"
-   [(">" "Right expand" sp-forward-slurp-sexp :transient t)
+    ]
+   ["Edit"
+    (">" "Right expand" sp-forward-slurp-sexp :transient t)
     ("." "Right shrink" sp-forward-barf-sexp :transient t)
     ("<" "Left expand" sp-backward-slurp-sexp :transient t)
     ("," "Left shrink" sp-backward-barf-sexp :transient t)
@@ -50,8 +50,9 @@
     ("\(" "Wrap" sp-wrap-round)
     ("J" "Join" sp-join-sexp)
     ("i" "Indent defun" sp-indent-defun)
-    ]]
-  [("q" "Quit" transient-quit-all)]
+    ]
+   [("q" "Quit" transient-quit-all)]
+   ]
   )
 
 (provide 'osf-pair-transient)
