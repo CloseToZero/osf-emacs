@@ -65,4 +65,6 @@ Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
 (run-at-time t (* 5 60) #'recentf-save-list)
 (osf-inhibit-message #'recentf-save-list)
 
+(global-so-long-mode)
+
 (provide 'osf-misc)
