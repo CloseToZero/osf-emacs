@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(defvar osf-org-blog-file-name-time-string-format "%Y%m%d%H%M%S")
+
 (setq org-startup-indented t
       org-src-tab-acts-natively t
       org-src-preserve-indentation t
@@ -44,7 +46,34 @@
 (setq org-appear-autolinks t)
 (add-hook 'org-mode-hook #'org-appear-mode)
 
-(with-eval-after-load 'org-capture
+(with-eval-after-load 'org
+  (defun osf-org-refresh-inline-images ()
+    (interactive)
+    (org-display-inline-images nil t))
+
+  (defun osf-org-export-directory-using-ox-hugo
+      (directory &optional include-no-md)
+    ;; include-no-md: don't export files that don't have the
+    ;; corresponding markdown file.
+    (interactive (list default-directory current-prefix-arg))
+    (require 'ox-hugo)
+    (mapc
+     (lambda (file)
+       (let ((opened? (get-file-buffer file)))
+         (with-current-buffer (find-file-noselect file)
+           (let* ((info (org-combine-plists
+                         (org-export--get-export-attributes 'hugo)
+                         (org-export--get-buffer-attributes)
+                         (org-export-get-environment 'hugo)))
+                  (pub-dir (org-hugo--get-pub-dir info))
+                  (outfile (org-export-output-file-name ".md" nil pub-dir)))
+             (when (or include-no-md
+                       (file-exists-p outfile))
+               (org-hugo-export-to-md))))
+         (unless opened?
+           (kill-buffer (get-file-buffer file)))))
+     (directory-files directory t (rx ".org" string-end))))
+
   ;; Adapted from org-roam's `org-roam-node-slug'.
   (defun osf-org-normalize-for-file-name (file-name)
     (let ((trim-chars '(
@@ -92,7 +121,61 @@
           (downcase (seq-reduce #'replace-pair
                                 pairs (strip-nonspacing-marks file-name)))))))
 
-  (defvar osf-org-blog-file-name-time-string-format "%Y%m%d%H%M%S")
+  (defun osf--generate-screenshot-filename (org-filename image-filename)
+    (let ((basename (file-name-base org-filename)))
+      (format (if (string-empty-p image-filename)
+                  "%s-%s-screenshot.png" "%s-%s.png")
+              (substring basename (1+ (or (string-match "-" basename) -1)))
+              (if (string-empty-p image-filename)
+                  (format-time-string osf-org-blog-file-name-time-string-format)
+                (osf-org-normalize-for-file-name image-filename)))))
+
+  (defvar osf-org-paste-screenshot-from-clipboard-hist nil)
+  (defun osf-org-paste-screenshot-from-clipboard (&optional image-filename)
+    (interactive)
+    (unless (derived-mode-p 'org-mode)
+      (user-error "You need to be in a Org buffer"))
+    (unless (buffer-file-name)
+      (user-error "The Org buffer need to have a associated file for the \
+command to generate a screenshot file name"))
+    (cond
+     ((eq osf-system-type 'windows)
+      (let ((tool (executable-find "magick")))
+        (unless tool (error "Cannot find the screenshot tool magick"))
+        (let ((tmp-screenshot-filename (expand-file-name
+                                        (format
+                                         "%s-tmp.png"
+                                         (file-name-base (buffer-file-name)))
+                                        temporary-file-directory)))
+          (call-process tool nil "*osf-org-paste-screenshot-from-clipboard*" nil
+                        "convert" "clipboard:" tmp-screenshot-filename)
+          (unwind-protect
+              (progn
+                (unless (file-exists-p tmp-screenshot-filename)
+                  (error "Create screenshot file failed"))
+                (when (called-interactively-p)
+                  (setq image-filename
+                        (read-string
+                         "Filename of the pasted image \
+(empty for generated name): "
+                         nil 'osf-org-paste-screenshot-from-clipboard-hist)))
+                (let ((frame (selected-frame))
+                      (screenshot-filename (osf--generate-screenshot-filename
+                                            (buffer-file-name) image-filename)))
+                  (when (and (file-exists-p screenshot-filename)
+                             (called-interactively-p)
+                             (yes-or-no-p "File already exists, overwrite? "))
+                    (delete-file screenshot-filename))
+                  (rename-file tmp-screenshot-filename screenshot-filename)
+                  (insert (format "[[file:%s]]" screenshot-filename))
+                  (org-display-inline-images nil t)))
+            (when (file-exists-p tmp-screenshot-filename)
+              (delete-file tmp-screenshot-filename))))))
+     (t (error "Unsupported on the system: %s" osf-system-type))))
+
+  )
+
+(with-eval-after-load 'org-capture
   (defvar osf-org-generate-blog-file-name-hist nil)
   (defun osf-org-generate-blog-file-name ()
     (let ((blog-name (read-string
@@ -144,33 +227,6 @@
   )
 
 (with-eval-after-load 'org
-  (defun osf-org-refresh-inline-images ()
-    (interactive)
-    (org-display-inline-images nil t))
-
-  (defun osf-org-export-directory-using-ox-hugo
-      (directory &optional include-no-md)
-    ;; include-no-md: don't export files that don't have the
-    ;; corresponding markdown file.
-    (interactive (list default-directory current-prefix-arg))
-    (require 'ox-hugo)
-    (mapc
-     (lambda (file)
-       (let ((opened? (get-file-buffer file)))
-         (with-current-buffer (find-file-noselect file)
-           (let* ((info (org-combine-plists
-                         (org-export--get-export-attributes 'hugo)
-                         (org-export--get-buffer-attributes)
-                         (org-export-get-environment 'hugo)))
-                  (pub-dir (org-hugo--get-pub-dir info))
-                  (outfile (org-export-output-file-name ".md" nil pub-dir)))
-             (when (or include-no-md
-                       (file-exists-p outfile))
-               (org-hugo-export-to-md))))
-         (unless opened?
-           (kill-buffer (get-file-buffer file)))))
-     (directory-files directory t (rx ".org" string-end))))
-
   (osf-local-leader-define-key org-mode-map
     "e e" #'org-export-dispatch
     "e H" #'osf-org-export-directory-using-ox-hugo
@@ -178,6 +234,8 @@
 
     "i t" #'org-toggle-inline-images
     "i r" #'osf-org-refresh-inline-images
+
+    "p c" #'osf-org-paste-screenshot-from-clipboard
     )
 
   (osf-local-leader-define-key org-src-mode-map
