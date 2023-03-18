@@ -61,9 +61,9 @@
        (not noninteractive)
        ;; ...the buffer is not internal (name starts with a space)
        (not (eq (aref (buffer-name) 0) ?\ ))
-       (string-prefix-p "maigt-" (symbol-name major-mode))
        ;; ...the buffer is not special (name starts with *)
-       (or (not (eq (aref (buffer-name) 0) ?*))
+       (or (not (or (eq (aref (buffer-name) 0) ?*)
+                    (string-prefix-p "magit-" (symbol-name major-mode))))
            ;; except the scratch buffer.
            (string= (buffer-name) "*scratch*"))))
 (setq whitespace-enable-predicate
