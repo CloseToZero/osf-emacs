@@ -26,6 +26,8 @@
 
 (setq inhibit-startup-screen t)
 
+(setq window-resize-pixelwise t)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (when (fboundp #'scroll-bar-mode)
