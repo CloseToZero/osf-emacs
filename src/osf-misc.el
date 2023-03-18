@@ -42,6 +42,11 @@
 
 (setq vc-follow-symlinks t)
 
+(setq inhibit-compacting-font-caches t
+      redisplay-skip-fontification-on-input t
+      fast-but-imprecise-scrolling t
+      read-process-output-max (* 1024 1024))
+
 (defun osf--ad-crm-indicator (args)
   "Add prompt indicator to `completing-read-multiple'.
 Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
