@@ -50,4 +50,12 @@
 (setq whitespace-style '(face lines-tail empty)
       whitespace-line-column 80)
 
+(straight-use-package 'modus-themes)
+(require 'modus-themes)
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs nil)
+(setq modus-themes-common-palette-overrides
+      modus-themes-preset-overrides-intense)
+(load-theme 'modus-vivendi t)
+
 (provide 'osf-ui)
