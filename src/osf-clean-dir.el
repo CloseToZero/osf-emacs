@@ -60,4 +60,6 @@
   (setq transient-history-file
         (expand-file-name "history.el" transient-cache-dir)))
 
+(setq bookmark-default-file (expand-file-name "bookmarks" osf-cache-dir))
+
 (provide 'osf-clean-dir)
