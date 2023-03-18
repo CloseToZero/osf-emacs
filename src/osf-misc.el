@@ -42,4 +42,10 @@ Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
 (advice-add #'completing-read-multiple
             :filter-args #'osf--ad-crm-indicator)
 
+(setq recentf-max-saved-items 5000
+      recentf-max-menu-items 0)
+(recentf-mode)
+(run-at-time t (* 5 60) #'recentf-save-list)
+(osf-inhibit-message #'recentf-save-list)
+
 (provide 'osf-misc)
