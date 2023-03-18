@@ -38,4 +38,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(dolist (built-in-package '(xref project org eldoc))
+  (straight-use-package `(,built-in-package :type built-in)))
+
 (provide 'osf-package)
