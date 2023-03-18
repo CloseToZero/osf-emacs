@@ -34,6 +34,9 @@
        (double-trigger double-trigger-mode)
        (simple auto-fill-mode)
        (with-editor with-editor-mode)
+       (smartparens smartparens-mode)
+       (whitespace whitespace-mode)
+       (org-indent org-indent-mode)
        ;; (feature (mode1 mode2))
        ))
   (with-eval-after-load feature
