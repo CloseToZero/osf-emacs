@@ -24,6 +24,7 @@
 
 ;;; Code:
 
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil
+              tab-width 4)
 
 (provide 'osf-indent)
