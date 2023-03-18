@@ -32,6 +32,8 @@
 
 (setq history-delete-duplicates t)
 
+(setq system-time-locale "C")
+
 (defun osf--ad-crm-indicator (args)
   "Add prompt indicator to `completing-read-multiple'.
 Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
