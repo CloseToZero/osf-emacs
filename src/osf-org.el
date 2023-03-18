@@ -145,8 +145,32 @@
     (interactive)
     (org-display-inline-images nil t))
 
+  (defun osf-org-export-directory-using-ox-hugo
+      (directory &optional include-no-md)
+    ;; include-no-md: don't export files that don't have the
+    ;; corresponding markdown file.
+    (interactive (list default-directory current-prefix-arg))
+    (require 'ox-hugo)
+    (mapc
+     (lambda (file)
+       (let ((opened? (get-file-buffer file)))
+         (with-current-buffer (find-file-noselect file)
+           (let* ((info (org-combine-plists
+                         (org-export--get-export-attributes 'hugo)
+                         (org-export--get-buffer-attributes)
+                         (org-export-get-environment 'hugo)))
+                  (pub-dir (org-hugo--get-pub-dir info))
+                  (outfile (org-export-output-file-name ".md" nil pub-dir)))
+             (when (or include-no-md
+                       (file-exists-p outfile))
+               (org-hugo-export-to-md))))
+         (unless opened?
+           (kill-buffer (get-file-buffer file)))))
+     (directory-files directory t (rx ".org" string-end))))
+
   (osf-local-leader-define-key org-mode-map
     "e e" #'org-export-dispatch
+    "e H" #'osf-org-export-directory-using-ox-hugo
     "e s" #'org-edit-special
 
     "i t" #'org-toggle-inline-images
