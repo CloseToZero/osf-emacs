@@ -56,10 +56,18 @@ only searching the top level directories within each directory."
           (message "Total: %d project%s were found"
                    count (if (= count 1) "" "s")))))))
 
+(defun osf-project-shell ()
+  "On Windows, run `project-shell', otherwise, run `project-eshell'."
+  (interactive)
+  (call-interactively
+   (if (eq osf-system-type 'windows)
+       #'project-shell #'project-eshell)))
+
 (osf-leader-define-key 'global
   "p" project-prefix-map)
 
 (osf-define-key project-prefix-map
-  "R" #'osf-find-projects)
+  "R" #'osf-find-projects
+  "s" #'osf-project-shell)
 
 (provide 'osf-project)
