@@ -127,7 +127,7 @@
 %(if (org-capture-get :osf-org-math-blog?)
      osf-blog-template-math-blog-local-vars \"\")")
 
-  (defun osf-org-capture-delete-aborted-empty-file ()
+  (defun osf--org-capture-delete-aborted-empty-file ()
     (when org-note-abort
       (when-let* ((buffer (org-capture-get :buffer))
                   (filename (buffer-file-name buffer)))
@@ -140,7 +140,7 @@
           (message "Aborted, delete empty file: %s" filename)))))
 
   (add-hook 'org-capture-after-finalize-hook
-            #'osf-org-capture-delete-aborted-empty-file)
+            #'osf--org-capture-delete-aborted-empty-file)
   )
 
 (with-eval-after-load 'org
