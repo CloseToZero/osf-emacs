@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(setq initial-major-mode 'fundamental-mode
+      initial-scratch-message "")
+
 (setq native-comp-async-report-warnings-errors 'silent)
 
 (setq enable-recursive-minibuffers t)
