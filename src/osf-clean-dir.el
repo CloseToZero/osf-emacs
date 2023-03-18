@@ -47,6 +47,8 @@
        (expand-file-name
         "server" osf-cache-dir)))
 
+(setq org-id-locations-file
+      (expand-file-name ".org-id-locations" osf-cache-dir))
 (setq org-persist-directory
       (file-name-as-directory
        (expand-file-name "org-persist" osf-cache-dir)))
