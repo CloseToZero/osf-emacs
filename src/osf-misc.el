@@ -30,6 +30,8 @@
 
 (setq save-interprogram-paste-before-kill t)
 
+(setq history-delete-duplicates t)
+
 (defun osf--ad-crm-indicator (args)
   "Add prompt indicator to `completing-read-multiple'.
 Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
