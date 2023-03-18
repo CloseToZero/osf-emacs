@@ -50,18 +50,4 @@
                  :when '(sp-in-string-p sp-in-comment-p))
   )
 
-(pcase-dolist
-    (`(,feature ,map)
-     '((elisp-mode emacs-lisp-mode-map)
-       (elisp-mode lisp-interaction-mode-map)
-       (lisp-mode lisp-mode-map)
-       (scheme scheme-mode-map)
-       ))
-  (with-eval-after-load feature
-    (require 'osf-pair-transient)
-    (osf-local-leader-define-key (eval map)
-      "e" #'osf-transient-smartparens)
-    ;; (evil-normalize-keymaps)
-    ))
-
 (provide 'osf-pair)
