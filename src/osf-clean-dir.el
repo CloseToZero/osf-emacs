@@ -64,4 +64,6 @@
 
 (setq bookmark-default-file (expand-file-name "bookmarks" osf-cache-dir))
 
+(setq recentf-save-file (expand-file-name "recent-files" osf-cache-dir))
+
 (provide 'osf-clean-dir)
