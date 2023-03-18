@@ -14,6 +14,7 @@
  ("melpa" . "e5143d239cfc5dfcc2b1a4a8f161c097688b5a04")
  ("nongnu-elpa" . "9e236b82a2da24bb9983e2f63061323354d6ecfe")
  ("orderless" . "e6784026717a8a6a7dcd0bf31fd3414f148c542e")
+ ("org-appear" . "eb9f9db40aa529fe4b977235d86494b115281d17")
  ("ox-hugo" . "706b5f622d168bb8e0cf503e0525d2db9177c83e")
  ("queue" . "130c2d656cd5d7376552272fab9e50a7c37d0c4a")
  ("smartparens" . "1d5cd5e8d46e182b935f8cd3cf29c8c4410aab0a")

@@ -36,10 +36,13 @@
          :unnarrowed t
          :jump-to-captured t)))
 
-
 (straight-use-package 'ox-hugo)
 (with-eval-after-load 'ox
   (require 'ox-hugo))
+
+(straight-use-package 'org-appear)
+(setq org-appear-autolinks t)
+(add-hook 'org-mode-hook #'org-appear-mode)
 
 (with-eval-after-load 'org-capture
   ;; Adapted from org-roam's `org-roam-node-slug'.
