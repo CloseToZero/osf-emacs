@@ -40,7 +40,11 @@
                    :post-handlers
                    '(:add ("||\n[i]" "RET")))))
 
-(sp-with-modes '(emacs-lisp-mode lisp-mode scheme-mode)
+(sp-with-modes '(emacs-lisp-mode
+                 lisp-interaction-mode
+                 lisp-mode
+                 scheme-mode
+                 )
   (sp-local-pair "'" nil :actions nil)
   (sp-local-pair "`" "'"
                  :when '(sp-in-string-p sp-in-comment-p))
@@ -49,11 +53,15 @@
 (pcase-dolist
     (`(,feature ,map)
      '((elisp-mode emacs-lisp-mode-map)
+       (elisp-mode lisp-interaction-mode-map)
        (lisp-mode lisp-mode-map)
-       (scheme scheme-mode-map)))
+       (scheme scheme-mode-map)
+       ))
   (with-eval-after-load feature
     (require 'osf-pair-transient)
     (osf-local-leader-define-key (eval map)
-      "e" #'osf-transient-smartparens)))
+      "e" #'osf-transient-smartparens)
+    ;; (evil-normalize-keymaps)
+    ))
 
 (provide 'osf-pair)
