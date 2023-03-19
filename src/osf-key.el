@@ -39,6 +39,9 @@
 
   "f f" #'find-file
   "f r" #'revert-buffer
-  "f c" #'osf-edit-config)
+  "f c" #'osf-edit-config
+
+  "q q" #'save-buffers-kill-terminal
+  )
 
 (provide 'osf-key)
