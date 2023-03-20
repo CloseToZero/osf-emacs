@@ -40,14 +40,7 @@
 (setq column-number-indicator-zero-based nil)
 (column-number-mode)
 
-(setq display-line-numbers-type 'visual
-      display-line-numbers-grow-only t)
-(global-display-line-numbers-mode)
-
-(defun osf-turn-off-display-line-numbers-mode ()
-  (display-line-numbers-mode -1))
-
-(add-hook 'image-mode-hook #'osf-turn-off-display-line-numbers-mode)
+(setq display-line-numbers-grow-only t)
 
 (setq whitespace-style '(face empty lines-tail trailing)
       whitespace-line-column 80)
