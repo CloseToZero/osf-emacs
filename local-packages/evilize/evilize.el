@@ -29,5 +29,7 @@
   (require 'evilize-magit))
 (with-eval-after-load 'vertico
   (require 'evilize-vertico))
+(with-eval-after-load 'info
+  (require 'evilize-info))
 
 (provide 'evilize)
