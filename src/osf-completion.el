@@ -47,4 +47,8 @@
   (setq completion-category-overrides
         '((file (styles basic partial-completion)))))
 
+(straight-use-package 'corfu)
+(global-corfu-mode)
+(setq tab-always-indent 'complete)
+
 (provide 'osf-completion)
