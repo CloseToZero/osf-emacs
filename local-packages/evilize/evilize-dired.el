@@ -38,6 +38,7 @@
                   ("C-j" dired-next-dirline)
                   ("C-k" dired-prev-dirline)
                   ("g r" revert-buffer)
+                  ("+" dired-create-directory)
                   ("=" dired-diff)
                   ("~" dired-flag-backup-files)
                   ("." dired-clean-directory)
