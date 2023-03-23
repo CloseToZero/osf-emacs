@@ -8,3 +8,5 @@
 !/straight/versions/
 /tree-sitter/
 /.dir-locals-2.el
+/eshell/*
+!/eshell/alias
