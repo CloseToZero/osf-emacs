@@ -56,13 +56,6 @@ only searching the top level directories within each directory."
           (message "Total: %d project%s were found"
                    count (if (= count 1) "" "s")))))))
 
-(defun osf-project-shell ()
-  "On Windows, run `project-shell', otherwise, run `project-eshell'."
-  (interactive)
-  (call-interactively
-   (if (eq osf-system-type 'windows)
-       #'project-shell #'project-eshell)))
-
 ;; Adapt from `projectile-save-project-buffers'.
 (defun osf-project-save-buffers ()
   "Save all project buffers."
@@ -85,7 +78,7 @@ only searching the top level directories within each directory."
 
 (osf-define-key project-prefix-map
   "R" #'osf-find-projects
-  "s" #'osf-project-shell
+  "s" #'project-eshell
   "S" #'osf-project-save-buffers)
 
 (provide 'osf-project)
