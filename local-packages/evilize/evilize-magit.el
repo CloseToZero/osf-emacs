@@ -209,7 +209,7 @@
                    magit-reflog-mode-map
                    magit-process-mode-map
                    ))
-  (evil-make-overriding-map map nil))
+  (evil-make-overriding-map map))
 
 (evil-make-overriding-map magit-blame-read-only-mode-map 'normal)
 
