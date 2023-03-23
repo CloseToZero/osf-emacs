@@ -24,26 +24,13 @@
 
 ;;; Code:
 
-(straight-use-package 'blackout)
+(straight-use-package 'zig-mode)
 
-(pcase-dolist
-    (`(,feature ,modes)
-     '((autorevert auto-revert-mode)
-       (undo-tree undo-tree-mode)
-       (eldoc eldoc-mode)
-       (double-trigger double-trigger-mode)
-       (simple auto-fill-mode)
-       (with-editor with-editor-mode)
-       (smartparens smartparens-mode)
-       (whitespace whitespace-mode)
-       (org-indent org-indent-mode)
-       (zig-mode zig-format-on-save-mode)
-       ;; (feature (mode1 mode2))
-       ))
-  (with-eval-after-load feature
-    (dolist (mode (osf-ensure-is-list modes))
-      (blackout mode))))
+(with-eval-after-load 'zig-mode
+  (osf-local-leader-define-key zig-mode-map
+    "b" #'zig-compile
+    "f" #'zig-format-buffer
+    "r" #'zig-run
+    "t" #'zig-test-buffer))
 
-(setq mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
-
-(provide 'osf-clean-mode-line)
+(provide 'osf-zig)

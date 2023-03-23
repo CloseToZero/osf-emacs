@@ -4,6 +4,7 @@
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
  ("double-trigger" . "f109b8107dc1e847d1aec6ed298618f1a626bcd2")
  ("el-get" . "bc4299031e634b514eceb472b6b02432c2bb86ba")
+ ("emacs-reformatter" . "f454b179ab7d39dc8783b9f2a046cab353b272f5")
  ("emacsmirror-mirror" . "3311bb50e14990b1f3a930f4963033a2893725c0")
  ("evil" . "22d76a4080e40381aae194c94f3bc16ba67a330a")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
@@ -25,5 +26,6 @@
  ("transient" . "75a5076def1e6f5265eb2346a951ba9d97502fc9")
  ("undo-tree" . "16f4121032d09ef44b3d7d02c4d02c3c2f18041f")
  ("vertico" . "288b343ea28ceb140b926623616da1bb0cb780fb")
- ("with-editor" . "59867aebe16454be4d8c0c858f3b00b8a34f3f61"))
+ ("with-editor" . "59867aebe16454be4d8c0c858f3b00b8a34f3f61")
+ ("zig-mode" . "2013d39ee9a62449263939bc8c33a128fe1e90f0"))
 :gamma

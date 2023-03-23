@@ -59,6 +59,7 @@
 (require 'osf-vc)
 (require 'osf-project)
 (require 'osf-org)
+(require 'osf-zig)
 (require 'osf-server)
 
 (load custom-file t t)
