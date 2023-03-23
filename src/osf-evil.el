@@ -175,5 +175,7 @@ NOTE: this function can be called with empty bindings."
                                 magit-blame-read-only-mode-map)))
 (with-eval-after-load 'info
   (osf-release-leader-key Info-mode-map))
+(with-eval-after-load 'dired
+  (osf-release-leader-key dired-mode-map))
 
 (provide 'osf-evil)

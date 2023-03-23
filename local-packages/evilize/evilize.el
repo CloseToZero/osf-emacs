@@ -31,5 +31,7 @@
   (require 'evilize-vertico))
 (with-eval-after-load 'info
   (require 'evilize-info))
+(with-eval-after-load 'dired
+  (require 'evilize-dired))
 
 (provide 'evilize)
