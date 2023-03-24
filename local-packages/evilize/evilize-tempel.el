@@ -33,11 +33,11 @@
 (declare-function tempel--abort "ext:tempel")
 
 (let ((bindings '(
-                 ("M-j" tempel-next)
-                 ("M-k" tempel-previous)
-                 ("M-l" tempel-kill)
-                 ("M-a" tempel-beginning)
-                 ("M-e" tempel-end)
+                 ("C-j" tempel-next)
+                 ("C-k" tempel-previous)
+                 ("C-l" tempel-kill)
+                 ("C-a" tempel-beginning)
+                 ("C-e" tempel-end)
                  ("M-RET" tempel-done)
                  ("C-g" tempel-abort)
                  )))
