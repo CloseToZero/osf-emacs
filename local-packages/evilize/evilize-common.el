@@ -31,4 +31,7 @@
                   (cl-second binding)))
           bindings))
 
+(defun evilize--evil-normalize-keymaps-av (&rest _)
+  (evil-normalize-keymaps))
+
 (provide 'evilize-common)

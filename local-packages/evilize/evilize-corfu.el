@@ -45,7 +45,7 @@
   (apply #'evil-define-key* 'insert corfu-map
          (evilize-normalize-bindings bindings)))
 
-(advice-add #'corfu--setup :after 'evil-normalize-keymaps)
-(advice-add #'corfu--teardown :after 'evil-normalize-keymaps)
+(advice-add #'corfu--setup :after #'evilize--evil-normalize-keymaps-av)
+(advice-add #'corfu--teardown :after #'evilize--evil-normalize-keymaps-av)
 
 (provide 'evilize-corfu)
