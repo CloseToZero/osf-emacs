@@ -43,7 +43,7 @@
                   ("M-SPC" corfu-insert-separator)
                   )))
   (apply #'evil-define-key* 'insert corfu-map
-         (evilize-normalize-bindings bindings)))
+         (evilize--normalize-bindings bindings)))
 
 (advice-add #'corfu--setup :after #'evilize--evil-normalize-keymaps-av)
 (advice-add #'corfu--teardown :after #'evilize--evil-normalize-keymaps-av)

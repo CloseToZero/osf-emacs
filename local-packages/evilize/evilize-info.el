@@ -48,6 +48,6 @@
                   ("g f" Info-follow-reference)
                   )))
   (apply #'evil-define-key* 'normal Info-mode-map
-         (evilize-normalize-bindings bindings)))
+         (evilize--normalize-bindings bindings)))
 
 (provide 'evilize-info)

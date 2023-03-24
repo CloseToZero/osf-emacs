@@ -25,7 +25,7 @@
 (require 'cl-lib)
 (require 'evil)
 
-(defun evilize-normalize-bindings (bindings)
+(defun evilize--normalize-bindings (bindings)
   (mapcan (lambda (binding)
             (list (kbd (cl-first binding))
                   (cl-second binding)))

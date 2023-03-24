@@ -42,7 +42,7 @@
                  ("C-g" tempel-abort)
                  )))
   (apply #'evil-define-key* '(insert normal) tempel-map
-         (evilize-normalize-bindings bindings)))
+         (evilize--normalize-bindings bindings)))
 
 (advice-add #'tempel--insert :after #'evilize--evil-normalize-keymaps-av)
 (advice-add #'tempel--done :after #'evilize--evil-normalize-keymaps-av)

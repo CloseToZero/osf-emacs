@@ -184,7 +184,7 @@
   (pcase-dolist (`(,states ,keymaps ,bindings) specs)
     (dolist (keymap keymaps)
       (apply #'evil-define-key* states keymap
-             (evilize-normalize-bindings bindings)))))
+             (evilize--normalize-bindings bindings)))))
 
 (defvar evilize-magit-popup-keys-remapped nil)
 (unless evilize-magit-popup-keys-remapped
@@ -294,7 +294,7 @@ using `evilize-magit-toggle-text-mode'."
                   ("g r"  magit-list-repositories)
                   )))
   (apply #'evil-define-key* 'normal magit-repolist-mode-map
-         (evilize-normalize-bindings bindings)))
+         (evilize--normalize-bindings bindings)))
 (add-hook 'magit-repolist-mode-hook #'evil-normalize-keymaps)
 
 (evil-set-initial-state 'magit-submodule-list-mode 'normal)
@@ -303,7 +303,7 @@ using `evilize-magit-toggle-text-mode'."
                   ("g r"  'magit-list-submodules)
                   )))
   (apply #'evil-define-key* 'normal magit-submodule-list-mode-map
-         (evilize-normalize-bindings bindings)))
+         (evilize--normalize-bindings bindings)))
 (add-hook 'magit-submodule-list-mode-hook #'evil-normalize-keymaps)
 
 (define-key magit-file-section-map (kbd "C-j")  nil)

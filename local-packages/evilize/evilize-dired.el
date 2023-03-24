@@ -121,6 +121,7 @@
                              ("n" evil-search-next)
                              ("N" evil-search-previous))))
                   )))
-  (apply #'evil-define-key* 'normal dired-mode-map (evilize-normalize-bindings bindings)))
+  (apply #'evil-define-key* 'normal dired-mode-map
+         (evilize--normalize-bindings bindings)))
 
 (provide 'evilize-dired)
