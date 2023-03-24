@@ -24,6 +24,8 @@
 
 (require 'evilize-common)
 
+(defvar corfu-map)
+
 (declare-function corfu--setup "ext:corfu")
 (declare-function corfu--teardown "ext:corfu")
 
