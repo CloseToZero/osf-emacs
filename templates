@@ -1,0 +1,21 @@
+fundamental-mode ;; Available everywhere
+
+(today (format-time-string "%Y-%m-%d"))
+
+emacs-lisp-mode lisp-mode scheme-mode ;; Specify multiple modes
+
+(lam "(lambda (" p ")" n> r> ")")
+
+emacs-lisp-mode
+
+(pro "(provide '"
+     (file-name-base (or (buffer-file-name) (buffer-name))) ")")
+
+org-mode
+
+(src "#+begin_src " q n> r> n "#+end_src")
+
+;; Local Variables:
+;; mode: lisp-data
+;; outline-regexp: "[a-z]"
+;; End:

@@ -5,7 +5,7 @@
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
 ;; Version: 0.1.0
-;; Package-Requires: ((emacs "28.1") (evil "1.15.0"))
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -24,27 +24,21 @@
 
 ;;; Code:
 
-(defgroup evilize nil
-  "Evilize the key bindings of variout modes."
-  :prefix "evilize-"
-  :group 'evil)
+(straight-use-package 'tempel)
 
-(defcustom evilize-want-jk-visual-lines nil
-  "Bind j/k to move by visual lines when appropriate."
-  :type 'boolean)
+(defun osf--tempel-setup-capf ()
+  ;; Add the Tempel Capf to `completion-at-point-functions'.
+  ;; `tempel-expand' only triggers on exact matches. Alternatively use
+  ;; `tempel-complete' if you want to see all matches, but then you
+  ;; should also configure `tempel-trigger-prefix', such that Tempel
+  ;; does not trigger too often when you don't expect it. NOTE: We add
+  ;; `tempel-expand' *before* the main programming mode Capf, such
+  ;; that it will be tried first.
+  (setq-local completion-at-point-functions
+              (cons #'tempel-expand
+                    completion-at-point-functions)))
 
-(require 'evilize-minibuffer)
-(with-eval-after-load 'magit
-  (require 'evilize-magit))
-(with-eval-after-load 'vertico
-  (require 'evilize-vertico))
-(with-eval-after-load 'info
-  (require 'evilize-info))
-(with-eval-after-load 'dired
-  (require 'evilize-dired))
-(with-eval-after-load 'corfu
-  (require 'evilize-corfu))
-(with-eval-after-load 'tempel
-  (require 'evilize-tempel))
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+  (add-hook hook #'osf--tempel-setup-capf))
 
-(provide 'evilize)
+(provide 'osf-template)

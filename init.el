@@ -58,6 +58,7 @@
 (require 'osf-key)
 (require 'osf-vc)
 (require 'osf-project)
+(require 'osf-template)
 (require 'osf-org)
 (require 'osf-zig)
 (require 'osf-server)

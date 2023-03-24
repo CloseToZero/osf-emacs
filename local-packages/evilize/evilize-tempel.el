@@ -24,27 +24,28 @@
 
 ;;; Code:
 
-(defgroup evilize nil
-  "Evilize the key bindings of variout modes."
-  :prefix "evilize-"
-  :group 'evil)
+(require 'evilize-common)
 
-(defcustom evilize-want-jk-visual-lines nil
-  "Bind j/k to move by visual lines when appropriate."
-  :type 'boolean)
+(defvar tempel-map)
 
-(require 'evilize-minibuffer)
-(with-eval-after-load 'magit
-  (require 'evilize-magit))
-(with-eval-after-load 'vertico
-  (require 'evilize-vertico))
-(with-eval-after-load 'info
-  (require 'evilize-info))
-(with-eval-after-load 'dired
-  (require 'evilize-dired))
-(with-eval-after-load 'corfu
-  (require 'evilize-corfu))
-(with-eval-after-load 'tempel
-  (require 'evilize-tempel))
+(declare-function tempel--insert "ext:tempel")
+(declare-function tempel--done "ext:tempel")
+(declare-function tempel--abort "ext:tempel")
 
-(provide 'evilize)
+(let ((bindings '(
+                 ("M-j" tempel-next)
+                 ("M-k" tempel-previous)
+                 ("M-l" tempel-kill)
+                 ("M-a" tempel-beginning)
+                 ("M-e" tempel-end)
+                 ("M-RET" tempel-done)
+                 ("C-g" tempel-abort)
+                 )))
+  (apply #'evil-define-key* '(insert normal) tempel-map
+         (evilize-normalize-bindings bindings)))
+
+(advice-add #'tempel--insert :after #'evilize--evil-normalize-keymaps-av)
+(advice-add #'tempel--done :after #'evilize--evil-normalize-keymaps-av)
+(advice-add #'tempel--abort :after #'evilize--evil-normalize-keymaps-av)
+
+(provide 'evilize-tempel)

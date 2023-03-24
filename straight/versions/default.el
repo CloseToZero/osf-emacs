@@ -22,6 +22,7 @@
  ("queue" . "130c2d656cd5d7376552272fab9e50a7c37d0c4a")
  ("smartparens" . "1d5cd5e8d46e182b935f8cd3cf29c8c4410aab0a")
  ("straight.el" . "6e7ba15d5c11338a1e055bc0c7827e80f65d0d2c")
+ ("tempel" . "4ab5f3af92aab2a1aea1ec66d9086812fe310044")
  ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")
  ("transient" . "75a5076def1e6f5265eb2346a951ba9d97502fc9")
  ("undo-tree" . "16f4121032d09ef44b3d7d02c4d02c3c2f18041f")
