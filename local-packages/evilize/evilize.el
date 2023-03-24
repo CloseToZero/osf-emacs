@@ -24,6 +24,15 @@
 
 ;;; Code:
 
+(defgroup evilize nil
+  "Evilize the key bindings of variout modes."
+  :prefix "evilize-"
+  :group 'evil)
+
+(defcustom evilize-want-jk-visual-lines nil
+  "Bind j/k to move by visual lines when appropriate."
+  :type 'boolean)
+
 (require 'evilize-minibuffer)
 (with-eval-after-load 'magit
   (require 'evilize-magit))

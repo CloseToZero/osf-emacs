@@ -24,6 +24,8 @@
 
 (require 'evilize-common)
 
+(defvar evilize-want-jk-visual-lines)
+
 (defvar magit-mode-map)
 (defvar magit-section-mode-map)
 (defvar magit-blame-mode-map)
@@ -63,8 +65,12 @@
            ("H" magit-dispatch)
            ("L" magit-log)
            ("C-l" magit-log-refresh)
-           ("j" evil-next-line)
-           ("k" evil-previous-line)
+           ,@(cond (evilize-want-jk-visual-lines
+                    '(("j" evil-next-visual-line)
+                      ("k" evil-previous-visual-line)))
+                    (t
+                     '(("j" evil-next-line)
+                       ("k" evil-previous-line))))
            ("g g" evil-goto-first-line)
            ("G" evil-goto-line)
            ("C-d" evil-scroll-down)
@@ -146,8 +152,12 @@
            ("C-k" magit-blob-previous)
            ))
          ((normal) (,magit-blame-read-only-mode-map)
-          (("j" evil-next-line)
-           ("k" evil-previous-line)
+          (,@(cond (evilize-want-jk-visual-lines
+                    '(("j" evil-next-visual-line)
+                      ("k" evil-previous-visual-line)))
+                    (t
+                     '(("j" evil-next-line)
+                       ("k" evil-previous-line))))
            ("C-j" magit-blame-next-chunk)
            ("C-k" magit-blame-previous-chunk)
            ("M-j" magit-blame-next-chunk-same-commit)
@@ -316,8 +326,12 @@ using `evilize-magit-toggle-text-mode'."
       ("u" git-rebase-undo "undo last change")
       (nil with-editor-finish "tell Git to make it happen")
       (nil with-editor-cancel "tell Git that you changed your mind, i.e. abort")
-      ("k" evil-previous-line "move point to previous line")
-      ("j" evil-next-line "move point to next line")
+      ,@(cond (evilize-want-jk-visual-lines
+               '(("j" evil-next-visual-line "move point to next line")
+                 ("k" evil-previous-visual-line "move point to previous line")))
+              (t
+               '(("j" evil-next-line "move point to next line")
+                 ("k" evil-previous-line "move point to previous line"))))
       ("M-k" git-rebase-move-line-up "move the commit at point up")
       ("M-j" git-rebase-move-line-down "move the commit at point down")
       (nil git-rebase-show-commit "show the commit at point in another buffer")

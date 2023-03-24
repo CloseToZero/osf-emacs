@@ -24,6 +24,8 @@
 
 (require 'evilize-common)
 
+(defvar evilize-want-jk-visual-lines)
+
 (defvar dired-mode-map)
 
 (declare-function dired-copy-filename-as-kill "ext:dired")
@@ -33,8 +35,12 @@
   (dired-copy-filename-as-kill 0))
 
 (let ((bindings `(("q" quit-window)
-                  ("j" evil-next-line)
-                  ("k" evil-previous-line)
+                  ,@(cond (evilize-want-jk-visual-lines
+                           '(("j" evil-next-visual-line)
+                             ("k" evil-previous-visual-line)))
+                           (t
+                            '(("j" evil-next-line)
+                              ("k" evil-previous-line))))
                   ("C-j" dired-next-dirline)
                   ("C-k" dired-prev-dirline)
                   ("g r" revert-buffer)

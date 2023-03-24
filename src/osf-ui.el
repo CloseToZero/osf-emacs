@@ -40,7 +40,10 @@
 (setq column-number-indicator-zero-based nil)
 (column-number-mode)
 
-(setq display-line-numbers-grow-only t)
+(setq display-line-numbers-grow-only t
+      display-line-numbers-type 'visual)
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+  (add-hook hook #'display-line-numbers-mode))
 
 (setq whitespace-style '(face empty lines-tail trailing)
       whitespace-line-column 80)

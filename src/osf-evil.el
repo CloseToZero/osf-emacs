@@ -99,7 +99,14 @@ NOTE: this function can be called with empty bindings."
    :local-repo
    ,(expand-file-name
      "evilize" osf-local-packages-dir)))
+(setq evilize-want-jk-visual-lines t)
 (require 'evilize)
+
+(osf-evil-define-key 'motion 'global
+  "j" #'evil-next-visual-line
+  "k" #'evil-previous-visual-line
+  "g j" #'evil-next-line
+  "g k" #'evil-previous-line)
 
 (defvar osf-leader-key "SPC"
   "Leader key (take effect in `osf-leader-key-states').")
