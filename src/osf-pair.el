@@ -43,6 +43,7 @@
 (sp-with-modes '(emacs-lisp-mode
                  lisp-interaction-mode
                  lisp-mode
+                 slime-repl-mode
                  scheme-mode
                  )
   (sp-local-pair "'" nil :actions nil)
