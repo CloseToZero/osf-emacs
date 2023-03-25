@@ -34,7 +34,12 @@
     (setq slime-default-lisp 'sbcl))
   (when (executable-find "ros")
     (push '(roswell ("ros" "run")) slime-lisp-implementations)
-    (setq slime-default-lisp 'roswell)))
+    (setq slime-default-lisp 'roswell))
+
+  (let ((local-hyperspec-dir (expand-file-name "~/HyperSpec/")))
+    (when (file-directory-p local-hyperspec-dir)
+      (setq common-lisp-hyperspec-root
+            (concat "file:///" local-hyperspec-dir)))))
 
 (defun osf--slime-setup-leader-key-bindings (map)
   (osf-local-leader-define-key map
