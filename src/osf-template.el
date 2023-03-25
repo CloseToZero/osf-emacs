@@ -38,7 +38,12 @@
               (cons #'tempel-expand
                     completion-at-point-functions)))
 
-(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+(dolist (hook '(
+                prog-mode-hook
+                text-mode-hook
+                conf-mode-hook
+                slime-mode-hook
+                ))
   (add-hook hook #'osf--tempel-setup-capf))
 
 (provide 'osf-template)
