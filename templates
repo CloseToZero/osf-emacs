@@ -11,6 +11,13 @@ emacs-lisp-mode
 (pro "(provide '"
      (file-name-base (or (buffer-file-name) (buffer-name))) ")")
 
+lisp-mode
+
+(eval-when
+ "(eval-when (:compile-toplevel :load-toplevel :execute)"
+ n> q
+ ")")
+
 org-mode
 
 (src "#+begin_src " q n> r> n "#+end_src")
