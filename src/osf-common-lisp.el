@@ -86,14 +86,14 @@ otherwise, fallback to `osf-slime-repl-return-eval-at-end'."
   (defun osf--slime-completion-at-point ()
     (let ((slime-current-thread :repl-thread)
           (package (slime-current-package)))
-      (pcase-let ((`(,beg . ,end)
-                   (or (bounds-of-thing-at-point 'symbol)
-                       (cons (point) (point)))))
-        (list beg end
-              (car (slime-eval
-                    ;; Or swank:simple-completions
-                    `(swank:fuzzy-completions
-                      ,(thing-at-point 'symbol) ',package)))))))
+      (when-let ((symbol (thing-at-point 'symbol)))
+        (pcase-let ((`(,beg . ,end)
+                     (bounds-of-thing-at-point 'symbol)))
+          (list beg end
+                (car (slime-eval
+                      ;; Or swank:simple-completions
+                      `(swank:fuzzy-completions
+                        ,(substring-no-properties symbol) ',package))))))))
   (advice-add #'slime--completion-at-point
               :override #'osf--slime-completion-at-point))
 
