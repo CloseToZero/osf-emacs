@@ -55,7 +55,8 @@
 (defun osf--slime-repl-setup-leader-key-bindings (map)
   (osf-local-leader-define-key map
     "c b" #'slime-repl-clear-buffer
-    "c o" #'slime-repl-clear-output))
+    "c o" #'slime-repl-clear-output
+    "p s" #'slime-repl-set-package))
 
 (with-eval-after-load 'slime
   (osf--slime-setup-leader-key-bindings slime-mode-map))
