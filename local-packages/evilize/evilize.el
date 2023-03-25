@@ -46,5 +46,7 @@
   (require 'evilize-corfu))
 (with-eval-after-load 'tempel
   (require 'evilize-tempel))
+(with-eval-after-load 'slime
+  (require 'evilize-slime))
 
 (provide 'evilize)

@@ -61,6 +61,8 @@
 (require 'osf-template)
 (require 'osf-org)
 (require 'osf-zig)
+(require 'osf-lisp)
+(require 'osf-common-lisp)
 (require 'osf-server)
 
 (load custom-file t t)

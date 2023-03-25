@@ -24,27 +24,21 @@
 
 ;;; Code:
 
-(straight-use-package 'blackout)
+;; FIXME not flexible
+(defun osf-lisp-gen-repl-return-eval-at-end-fn (eval-fn)
+  `(lambda ()
+     ,(concat
+       (if (symbolp eval-fn)
+           (concat "Like `" (symbol-name eval-fn) "'")
+         "The REPL evalutaion command")
+       ",
+but only eval the form if the current evil state is in normal state or
+the current point is at the end of the repl buffer. Otherwise, just
+`newline-and-indent'.")
+     (interactive)
+     (call-interactively (if (or (eq evil-state 'normal)
+                                 (= (point) (point-max)))
+                             #',eval-fn
+                           #'newline-and-indent))))
 
-(pcase-dolist
-    (`(,feature ,modes)
-     '((autorevert auto-revert-mode)
-       (undo-tree undo-tree-mode)
-       (eldoc eldoc-mode)
-       (double-trigger double-trigger-mode)
-       (simple auto-fill-mode)
-       (with-editor with-editor-mode)
-       (smartparens smartparens-mode)
-       (whitespace whitespace-mode)
-       (org-indent org-indent-mode)
-       (zig-mode zig-format-on-save-mode)
-       (slime-autodoc slime-autodoc-mode)
-       ;; (feature (mode1 mode2))
-       ))
-  (with-eval-after-load feature
-    (dolist (mode (osf-ensure-is-list modes))
-      (blackout mode))))
-
-(setq mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
-
-(provide 'osf-clean-mode-line)
+(provide 'osf-lisp)
