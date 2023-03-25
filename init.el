@@ -60,6 +60,7 @@
 (require 'osf-project)
 (require 'osf-template)
 (require 'osf-org)
+(require 'osf-markdown)
 (require 'osf-zig)
 (require 'osf-lisp)
 (require 'osf-common-lisp)

@@ -14,6 +14,7 @@
  ("magit" . "b926ab0e051e497e8ed43754cfd2012d23dbfc4c")
  ("map" . "a0e501aede34f183a8baa5d3d41610a3ffa1728e")
  ("marginalia" . "ccf573e2145d9deb9d734432351eefc87fc1bc16")
+ ("markdown-mode" . "ece1dd845904b08ab78598dc7e1a2eaf7875d1c4")
  ("melpa" . "e5143d239cfc5dfcc2b1a4a8f161c097688b5a04")
  ("modus-themes" . "df3e2a80de11449250034af1d5a31cdca64c6e8a")
  ("nongnu-elpa" . "9e236b82a2da24bb9983e2f63061323354d6ecfe")
