@@ -24,33 +24,16 @@
 
 ;;; Code:
 
-(defgroup evilize nil
-  "Evilize the key bindings of variout modes."
-  :prefix "evilize-"
-  :group 'evil)
+(require 'evilize-common)
 
-(defcustom evilize-want-jk-visual-lines nil
-  "Bind j/k to move by visual lines when appropriate."
-  :type 'boolean)
+(defvar button-buffer-map)
 
-(require 'evilize-minibuffer)
-(with-eval-after-load 'button
-  (require 'evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'evilize-help))
-(with-eval-after-load 'magit
-  (require 'evilize-magit))
-(with-eval-after-load 'vertico
-  (require 'evilize-vertico))
-(with-eval-after-load 'info
-  (require 'evilize-info))
-(with-eval-after-load 'dired
-  (require 'evilize-dired))
-(with-eval-after-load 'corfu
-  (require 'evilize-corfu))
-(with-eval-after-load 'tempel
-  (require 'evilize-tempel))
-(with-eval-after-load 'slime
-  (require 'evilize-slime))
+(let ((bindings '(
+                  ("TAB" nil)
+                  ("<tab>" forward-button)
+                  ("<backtab>" backward-button)
+                  )))
+  (pcase-dolist (`(,key ,def) bindings)
+    (define-key button-buffer-map (kbd key) def)))
 
-(provide 'evilize)
+(provide 'evilize-button)
