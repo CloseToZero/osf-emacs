@@ -100,7 +100,7 @@
            ("M-k" sldb-details-up)
            ("g g" sldb-beginning-of-backtrace)
            ("G" sldb-end-of-backtrace)
-           ("TAB" sldb-toggle-details)
+           ("<tab>" sldb-toggle-details)
            ("g r" sldb-restart-frame)
            ("I" sldb-invoke-restart-by-name)
            ("R" sldb-return-from-frame)

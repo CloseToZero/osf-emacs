@@ -129,7 +129,7 @@
            ("g d" magit-jump-to-diffstat-or-diff)
            ))
          ((normal visual) (,magit-section-mode-map)
-          (("TAB" magit-section-toggle)
+          (("<tab>" magit-section-toggle)
            ("<backtab>" magit-section-cycle-global)
            ("<C-tab>" magit-section-cycle)
            ("C-j" magit-section-forward)
