@@ -34,6 +34,8 @@
   :type 'boolean)
 
 (require 'evilize-minibuffer)
+(with-eval-after-load 'help-mode
+  (require 'evilize-help))
 (with-eval-after-load 'magit
   (require 'evilize-magit))
 (with-eval-after-load 'vertico
