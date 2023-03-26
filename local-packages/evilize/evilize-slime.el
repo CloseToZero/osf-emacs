@@ -177,6 +177,7 @@
              ("C-k" slime-repl-previous-prompt)
              ("C-p" slime-repl-previous-input)
              ("C-n" slime-repl-next-input)
+             ("g z s" slime-scratch)
              ))
            )))
     (pcase-dolist (`(,states ,keymaps ,bindings) specs)
