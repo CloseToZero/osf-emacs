@@ -77,7 +77,8 @@
           (
            ("K" slime-describe-symbol)
            ("g r" slime-who-references)
-           ("g z" slime-switch-to-output-buffer)
+           ("g z z" slime-switch-to-output-buffer)
+           ("g z s" slime-scratch)
            ))
          ((normal) (,slime-popup-buffer-mode-map)
           (
