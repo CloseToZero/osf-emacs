@@ -29,4 +29,13 @@
 
 (setq package-enable-at-startup nil)
 
+(defvar osf-fundamental-mode-hook nil)
+
+(defun osf--run-fundamental-mode-hook ()
+  (when (eq major-mode 'fundamental-mode)
+    (run-hooks 'osf-fundamental-mode-hook)))
+
+(add-hook 'after-change-major-mode-hook
+          #'osf--run-fundamental-mode-hook)
+
 (load osf-early-custom-file t t)
