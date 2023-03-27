@@ -177,6 +177,9 @@
              ("C-k" slime-repl-previous-prompt)
              ("C-p" slime-repl-previous-input)
              ("C-n" slime-repl-next-input)
+             ))
+           ((normal) (,slime-repl-mode-map)
+            (
              ("g z s" slime-scratch)
              ))
            )))
