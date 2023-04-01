@@ -90,6 +90,12 @@ NOTE: this function can be called with empty bindings."
 
 (setq double-trigger-fn #'osf-double-trigger-fn)
 
+(straight-use-package 'better-jumper)
+(better-jumper-mode)
+(osf-evil-define-key 'motion 'global
+  "C-o" #'better-jumper-jump-backward
+  "C-i" #'better-jumper-jump-forward)
+
 (straight-use-package 'evil-visualstar)
 (global-evil-visualstar-mode)
 

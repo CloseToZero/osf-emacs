@@ -1,4 +1,5 @@
-(("blackout" . "7707211370f03f03a2f74df15f42ac24a1e99300")
+(("better-jumper" . "47622213783ece37d5337dc28d33b530540fc319")
+ ("blackout" . "7707211370f03f03a2f74df15f42ac24a1e99300")
  ("compat" . "d70ed5178b5f88be093fdedb9ec09b684451db54")
  ("corfu" . "e7fac2aa6ca7a386ba36ddf86814e8be12a7bc75")
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
