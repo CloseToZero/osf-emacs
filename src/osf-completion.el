@@ -54,7 +54,18 @@
 (straight-use-package '(corfu :files (:defaults "extensions/*")
                               :includes (corfu-indexed)))
 (global-corfu-mode)
-(osf-indexed-setup-keymap corfu-map)
+(defun osf-corfu-goto-index-and-insert (n)
+  (corfu--goto n)
+  (corfu-insert))
+(dotimes (i 10)
+  (let ((fn (intern
+             (concat "osf-corfu-goto-" (prin1-to-string i) "-and-insert"))))
+    (defalias fn
+      (lambda ()
+        (interactive)
+        (osf-corfu-goto-index-and-insert i)))
+    (osf-define-key corfu-map
+      (concat "M-" (prin1-to-string i)) fn)))
 (corfu-indexed-mode)
 (setq tab-always-indent 'complete)
 
