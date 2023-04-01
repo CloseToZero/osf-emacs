@@ -43,8 +43,7 @@
         (osf-vertico-goto-index-and-exit i)))
     (osf-define-key vertico-map
       (concat "M-" (prin1-to-string i)) fn)))
-(corfu-indexed-mode)
-(vertico-indexed-mode 1)
+(vertico-indexed-mode)
 
 (straight-use-package 'marginalia)
 (marginalia-mode)
