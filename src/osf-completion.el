@@ -24,11 +24,15 @@
 
 ;;; Code:
 
-(straight-use-package 'vertico)
+(straight-use-package '(vertico :files (:defaults "extensions/*")
+                                :includes (vertico-indexed)))
 (setq vertico-multiline
       (cons #("\\\\n" 0 3 (face vertico-multiline))
             #("..." 0 3 (face vertico-multiline))))
 (vertico-mode)
+
+(osf-indexed-setup-keymap vertico-map)
+(vertico-indexed-mode 1)
 
 (straight-use-package 'marginalia)
 (marginalia-mode)
