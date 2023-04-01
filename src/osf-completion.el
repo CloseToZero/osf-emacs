@@ -51,8 +51,11 @@
   (setq completion-category-overrides
         '((file (styles basic partial-completion)))))
 
-(straight-use-package 'corfu)
+(straight-use-package '(corfu :files (:defaults "extensions/*")
+                              :includes (corfu-indexed)))
 (global-corfu-mode)
+(osf-indexed-setup-keymap corfu-map)
+(corfu-indexed-mode)
 (setq tab-always-indent 'complete)
 
 (provide 'osf-completion)
