@@ -39,6 +39,7 @@
        (org-indent org-indent-mode)
        (zig-mode zig-format-on-save-mode)
        (slime-autodoc slime-autodoc-mode)
+       (better-jumper better-jumper-local-mode)
        ;; (feature (mode1 mode2))
        ))
   (with-eval-after-load feature
