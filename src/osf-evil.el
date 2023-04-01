@@ -108,6 +108,15 @@ NOTE: this function can be called with empty bindings."
 (setq evilize-want-jk-visual-lines t)
 (require 'evilize)
 
+(defun osf--evil-move-visual-line-set-jump-ad (&optional count)
+  "Advice for `evil-next-visual-line' and `evil-previous-visual-line'
+to set jump if the COUNT argument is non-nil (invoked by digit
+argument, like 3j), only set jump if called interactively."
+  (when (and (called-interactively-p 'any) count)
+    (evil-set-jump)))
+(dolist (fn '(evil-next-visual-line evil-previous-visual-line))
+  (advice-add fn :before #'osf--evil-move-visual-line-set-jump-ad))
+
 (osf-evil-define-key 'motion 'global
   "j" #'evil-next-visual-line
   "k" #'evil-previous-visual-line
