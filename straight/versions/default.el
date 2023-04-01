@@ -1,6 +1,6 @@
 (("better-jumper" . "47622213783ece37d5337dc28d33b530540fc319")
  ("blackout" . "7707211370f03f03a2f74df15f42ac24a1e99300")
- ("compat" . "d70ed5178b5f88be093fdedb9ec09b684451db54")
+ ("compat" . "a518b1589d24245629a7aaaa00773f1b76156705")
  ("corfu" . "e7fac2aa6ca7a386ba36ddf86814e8be12a7bc75")
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
  ("double-trigger" . "f109b8107dc1e847d1aec6ed298618f1a626bcd2")
@@ -30,7 +30,7 @@
  ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")
  ("transient" . "75a5076def1e6f5265eb2346a951ba9d97502fc9")
  ("undo-tree" . "16f4121032d09ef44b3d7d02c4d02c3c2f18041f")
- ("vertico" . "288b343ea28ceb140b926623616da1bb0cb780fb")
+ ("vertico" . "13b57f31c51229015c71c8ae6a1e542b9cf8e746")
  ("with-editor" . "59867aebe16454be4d8c0c858f3b00b8a34f3f61")
  ("zig-mode" . "2013d39ee9a62449263939bc8c33a128fe1e90f0"))
 :gamma
