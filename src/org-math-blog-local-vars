@@ -1,0 +1,3 @@
+# Local Variables:
+# org-emphasis-alist: ((\"*\" bold) (\"/\" italic) (\"=\" org-verbatim verbatim) (\"~\" org-code verbatim) (\"+\" (:strike-through nil)))
+# End:

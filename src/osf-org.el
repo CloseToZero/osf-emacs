@@ -195,11 +195,10 @@ command to generate a screenshot file name"))
          org-directory))))
 
   (defvar osf-blog-template-math-blog-local-vars
-    "# Local Variables:
-# org-emphasis-alist: ((\"*\" bold) (\"/\" italic) \
-(\"=\" org-verbatim verbatim) (\"~\" org-code verbatim) \
-(\"+\" (:strike-through nil)))
-# End:")
+    (with-temp-buffer
+      (insert-file-contents
+       (expand-file-name "org-math-blog-local-vars" osf-src-dir))
+      (buffer-string)))
   (defun osf-blog-template ()
     "#+title: %(org-capture-get :osf-org-blog-name)\n\
 #+date: %(format-time-string \"%Y-%m-%d %H:%M\" \
