@@ -31,7 +31,19 @@
             #("..." 0 3 (face vertico-multiline))))
 (vertico-mode)
 
-(osf-indexed-setup-keymap vertico-map)
+(defun osf-vertico-goto-index-and-exit (n)
+  (vertico--goto n)
+  (vertico-exit))
+(dotimes (i 10)
+  (let ((fn (intern
+             (concat "osf-vertico-goto-" (prin1-to-string i) "-and-insert"))))
+    (defalias fn
+      (lambda ()
+        (interactive)
+        (osf-vertico-goto-index-and-exit i)))
+    (osf-define-key vertico-map
+      (concat "M-" (prin1-to-string i)) fn)))
+(corfu-indexed-mode)
 (vertico-indexed-mode 1)
 
 (straight-use-package 'marginalia)
