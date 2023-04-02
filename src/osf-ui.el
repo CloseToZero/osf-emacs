@@ -62,6 +62,6 @@
       modus-themes-bold-constructs nil)
 (setq modus-themes-common-palette-overrides
       modus-themes-preset-overrides-intense)
-(load-theme 'modus-vivendi t)
+(load-theme 'modus-operandi t)
 
 (provide 'osf-ui)
