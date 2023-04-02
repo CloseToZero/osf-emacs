@@ -46,4 +46,11 @@
 (advice-add #'evil-quit
             :around #'evilize--wdired-evil-quit-abort-changes-ad)
 
+(defun evilize--wdired-show-key-bindings-ad ()
+  (message "Press %s when finished or %s to abort changes"
+           (propertize ":w RET" 'face 'help-key-binding)
+           (propertize ":q RET" 'face 'help-key-binding)))
+(advice-add 'wdired-change-to-wdired-mode
+            :after #'evilize--wdired-show-key-bindings-ad)
+
 (provide 'evilize-wdired)
