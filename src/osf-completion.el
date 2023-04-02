@@ -65,6 +65,8 @@
 (straight-use-package '(corfu :files (:defaults "extensions/*")
                               :includes (corfu-indexed)))
 (global-corfu-mode)
+(setq tab-always-indent 'complete)
+
 (defun osf-corfu-goto-index-and-insert (n)
   (corfu--goto n)
   (corfu-insert))
@@ -77,8 +79,14 @@
         (osf-corfu-goto-index-and-insert i)))
     (osf-define-key corfu-map
       (concat "M-" (prin1-to-string i)) fn)))
+
 (corfu-indexed-mode)
-(setq tab-always-indent 'complete)
+
+(defun osf--enable-corfu-in-minibuffer ()
+  "Enable Corfu in the minibuffer if `completion-at-point' is bound."
+  (when (where-is-internal #'completion-at-point (list (current-local-map)))
+    (corfu-mode 1)))
+(add-hook 'minibuffer-setup-hook #'osf--enable-corfu-in-minibuffer)
 
 (straight-use-package 'cape)
 (add-to-list 'completion-at-point-functions #'cape-dabbrev)
