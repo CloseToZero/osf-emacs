@@ -31,26 +31,4 @@
 ;; etc to change the file name.
 (evil-set-initial-state 'wdired-mode 'normal)
 
-(defun evilize--wdired-evil-write-finish-edit-ad (fn &rest args)
-  (if (and (eq major-mode 'wdired-mode)
-           (seq-every-p #'null args))
-      (wdired-finish-edit)
-    (apply fn args)))
-(defun evilize--wdired-evil-quit-abort-changes-ad (fn &rest args)
-  (if (and (eq major-mode 'wdired-mode)
-           (seq-every-p #'null args))
-      (wdired-abort-changes)
-    (apply fn args)))
-(advice-add #'evil-write
-            :around #'evilize--wdired-evil-write-finish-edit-ad)
-(advice-add #'evil-quit
-            :around #'evilize--wdired-evil-quit-abort-changes-ad)
-
-(defun evilize--wdired-show-key-bindings-ad ()
-  (message "Press %s when finished or %s to abort changes"
-           (propertize ":w RET" 'face 'help-key-binding)
-           (propertize ":q RET" 'face 'help-key-binding)))
-(advice-add 'wdired-change-to-wdired-mode
-            :after #'evilize--wdired-show-key-bindings-ad)
-
 (provide 'evilize-wdired)
