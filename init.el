@@ -59,6 +59,7 @@
 (require 'osf-vc)
 (require 'osf-project)
 (require 'osf-template)
+(require 'osf-shell)
 (require 'osf-org)
 (require 'osf-markdown)
 (require 'osf-zig)
