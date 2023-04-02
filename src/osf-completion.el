@@ -102,6 +102,19 @@
 (osf-evil-define-key 'insert 'global
   "M-y" #'consult-yank-from-kill-ring)
 
+(with-eval-after-load 'consult
+  (defun consult--buffer-sort-identically-but-current (buffers)
+    "Sort identically but exclude the current buffer.
+Don't put visible buffers in the bottom of the list."
+    (let ((current (current-buffer)))
+      (nconc (delq current buffers) (list current))))
+
+  (plist-put consult--source-buffer :items
+             (lambda ()
+               (consult--buffer-query
+                :sort 'identically-but-current
+                :as #'buffer-name))))
+
 (with-eval-after-load 'comint
   (osf-evil-define-key '(normal insert) comint-mode-map
     "M-r" #'consult-history))
