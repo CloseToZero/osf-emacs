@@ -36,7 +36,7 @@
   (vertico-exit))
 (dotimes (i 10)
   (let ((fn (intern
-             (concat "osf-vertico-goto-" (prin1-to-string i) "-and-insert"))))
+             (concat "osf-vertico-goto-" (prin1-to-string i) "-and-exit"))))
     (defalias fn
       (lambda ()
         (interactive)
