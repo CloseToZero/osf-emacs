@@ -46,6 +46,8 @@
   (require 'evilize-info))
 (with-eval-after-load 'dired
   (require 'evilize-dired))
+(with-eval-after-load 'wdired
+  (require 'evilize-wdired))
 (with-eval-after-load 'corfu
   (require 'evilize-corfu))
 (with-eval-after-load 'tempel

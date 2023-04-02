@@ -120,6 +120,7 @@
                              ("?" evil-search-backward)
                              ("n" evil-search-next)
                              ("N" evil-search-previous))))
+                  ("i" wdired-change-to-wdired-mode)
                   )))
   (apply #'evil-define-key* 'normal dired-mode-map
          (evilize--normalize-bindings bindings)))
