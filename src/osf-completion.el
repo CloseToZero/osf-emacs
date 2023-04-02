@@ -80,4 +80,8 @@
 (corfu-indexed-mode)
 (setq tab-always-indent 'complete)
 
+(straight-use-package 'cape)
+(add-to-list 'completion-at-point-functions #'cape-dabbrev)
+(add-to-list 'completion-at-point-functions #'cape-file)
+
 (provide 'osf-completion)
