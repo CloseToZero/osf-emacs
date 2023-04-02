@@ -29,7 +29,6 @@
 
   "h" help-map
 
-  "b b" #'switch-to-buffer
   "b x" #'kill-current-buffer
   "b X" #'kill-buffer
 

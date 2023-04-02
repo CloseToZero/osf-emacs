@@ -92,4 +92,28 @@
 (add-to-list 'completion-at-point-functions #'cape-dabbrev)
 (add-to-list 'completion-at-point-functions #'cape-file)
 
+(straight-use-package 'consult)
+(setq consult-async-min-input 2)
+
+(osf-leader-define-key 'global
+  "b b" #'consult-buffer
+
+  "/ r" #'consult-ripgrep)
+(osf-evil-define-key 'insert 'global
+  "M-y" #'consult-yank-from-kill-ring)
+
+(with-eval-after-load 'comint
+  (osf-evil-define-key '(normal insert) comint-mode-map
+    "M-r" #'consult-history))
+(defun osf-bind-consult-history ()
+  (osf-evil-define-key '(normal insert) 'local
+    "M-r" #'consult-history))
+(add-hook 'eshell-mode-hook #'osf-bind-consult-history)
+(with-eval-after-load 'consult
+  (push '(elime-repl-mode slime-repl-input-history)
+        consult-mode-histories))
+(with-eval-after-load 'slime-repl
+  (osf-evil-define-key '(normal insert) slime-repl-mode-map
+    "M-r" #'consult-history))
+
 (provide 'osf-completion)

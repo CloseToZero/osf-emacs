@@ -2,6 +2,7 @@
  ("blackout" . "7707211370f03f03a2f74df15f42ac24a1e99300")
  ("cape" . "f953ea80f1a7ee628064a8478d94383f2763c262")
  ("compat" . "a518b1589d24245629a7aaaa00773f1b76156705")
+ ("consult" . "16ec34dd12a734b231bcc0fa03a1ab40a86def93")
  ("corfu" . "e7fac2aa6ca7a386ba36ddf86814e8be12a7bc75")
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
  ("double-trigger" . "f109b8107dc1e847d1aec6ed298618f1a626bcd2")
