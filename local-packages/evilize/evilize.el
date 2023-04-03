@@ -54,5 +54,7 @@
   (require 'evilize-tempel))
 (with-eval-after-load 'slime
   (require 'evilize-slime))
+(with-eval-after-load 'grep
+  (require 'evilize-grep))
 
 (provide 'evilize)
