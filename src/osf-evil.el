@@ -117,6 +117,14 @@ argument, like 3j), only set jump if called interactively."
 (dolist (fn '(evil-next-visual-line evil-previous-visual-line))
   (advice-add fn :before #'osf--evil-move-visual-line-set-jump-ad))
 
+(defun osf-set-jump-ad (&rest args)
+  (evil-set-jump))
+
+(dolist (fn '(xref-find-definitions
+              xref-find-references
+              find-library))
+  (advice-add fn :before #'osf-set-jump-ad))
+
 (osf-evil-define-key 'motion 'global
   "j" #'evil-next-visual-line
   "k" #'evil-previous-visual-line
