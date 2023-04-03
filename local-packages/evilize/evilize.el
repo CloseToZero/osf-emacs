@@ -56,5 +56,7 @@
   (require 'evilize-slime))
 (with-eval-after-load 'grep
   (require 'evilize-grep))
+(with-eval-after-load 'wgrep
+  (require 'evilize-wgrep))
 
 (provide 'evilize)

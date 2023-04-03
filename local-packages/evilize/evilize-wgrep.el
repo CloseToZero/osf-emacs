@@ -24,18 +24,11 @@
 
 (require 'evilize-common)
 
-(defvar grep-mode-map)
+(defvar wgrep-mode-map)
 
-(declare-function wgrep-setup "ext:wgrep")
-(declare-function wgrep-change-to-wgrep-mode "ext:wgrep")
+(declare-function wgrep-finish-edit "ext:wgrep")
+(declare-function wgrep-abort-changes "ext:wgrep")
 
-(evil-set-initial-state 'grep-mode 'normal)
-
-(evil-define-key* 'normal grep-mode-map
-  (kbd "q") #'quit-window
-  (kbd "C-j") #'next-error-no-select
-  (kbd "C-k") #'previous-error-no-select)
-
-(when (fboundp #'wgrep-setup)
-  (evil-define-key* 'normal grep-mode-map
-    (kbd "i") #'wgrep-change-to-wgrep-mode))
+(evil-define-key* 'normal wgrep-mode-map
+  (kbd "ZZ") #'wgrep-finish-edit
+  (kbd "ZQ") #'wgrep-abort-changes)

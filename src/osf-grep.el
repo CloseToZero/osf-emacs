@@ -4,6 +4,8 @@
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -22,20 +24,6 @@
 
 ;;; Code:
 
-(require 'evilize-common)
+(straight-use-package 'wgrep)
 
-(defvar grep-mode-map)
-
-(declare-function wgrep-setup "ext:wgrep")
-(declare-function wgrep-change-to-wgrep-mode "ext:wgrep")
-
-(evil-set-initial-state 'grep-mode 'normal)
-
-(evil-define-key* 'normal grep-mode-map
-  (kbd "q") #'quit-window
-  (kbd "C-j") #'next-error-no-select
-  (kbd "C-k") #'previous-error-no-select)
-
-(when (fboundp #'wgrep-setup)
-  (evil-define-key* 'normal grep-mode-map
-    (kbd "i") #'wgrep-change-to-wgrep-mode))
+(provide 'osf-grep)
