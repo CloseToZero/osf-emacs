@@ -52,6 +52,7 @@
 (require 'osf-indent)
 (require 'osf-evil)
 (require 'osf-completion)
+(require 'osf-embark)
 (require 'osf-misc)
 (require 'osf-ui)
 (require 'osf-pair)
