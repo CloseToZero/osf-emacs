@@ -24,11 +24,17 @@
 
 (require 'evilize-common)
 
+(defvar wdired-mode-map)
+
 (declare-function wdired-finish-edit "ext:wdired")
 (declare-function wdired-abort-changes "ext:wdired")
 
 ;; Keep in normal state after entered wdired-mode, so we can use ciw
 ;; etc to change the file name.
 (evil-set-initial-state 'wdired-mode 'normal)
+
+(evil-define-key* 'normal wdired-mode-map
+  (kbd "ZZ") #'wdired-finish-edit
+  (kbd "ZQ") #'wdired-abort-changes)
 
 (provide 'evilize-wdired)
