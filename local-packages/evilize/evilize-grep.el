@@ -39,3 +39,5 @@
 (when (fboundp #'wgrep-setup)
   (evil-define-key* 'normal grep-mode-map
     (kbd "i") #'wgrep-change-to-wgrep-mode))
+
+(provide 'evilize-grep)

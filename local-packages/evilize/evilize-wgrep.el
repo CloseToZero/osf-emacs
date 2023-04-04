@@ -32,3 +32,5 @@
 (evil-define-key* 'normal wgrep-mode-map
   (kbd "ZZ") #'wgrep-finish-edit
   (kbd "ZQ") #'wgrep-abort-changes)
+
+(provide 'evilize-wgrep)
