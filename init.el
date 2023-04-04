@@ -59,6 +59,7 @@
 (require 'osf-pair)
 (require 'osf-key)
 (require 'osf-vc)
+(require 'osf-comment)
 (require 'osf-project)
 (require 'osf-template)
 (require 'osf-shell)
