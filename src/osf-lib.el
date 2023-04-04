@@ -92,4 +92,9 @@ NOTE: each key in a binding will be wrapped inside `kbd'."
 (provide '" feature ")"))
     (save-buffer)))
 
+(defun osf-ff-find-other-file-ignore-include-line
+    (&optional in-other-window event)
+  (interactive (list current-prefix-arg last-nonmenu-event))
+  (ff-find-other-file in-other-window event))
+
 (provide 'osf-lib)
