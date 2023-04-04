@@ -25,7 +25,8 @@
 ;;; Code:
 
 (straight-use-package '(vertico :files (:defaults "extensions/*")
-                                :includes (vertico-indexed)))
+                                :includes (vertico-indexed
+                                           vertico-multiform)))
 (setq vertico-multiline
       (cons #("\\\\n" 0 3 (face vertico-multiline))
             #("..." 0 3 (face vertico-multiline))))
@@ -44,6 +45,10 @@
     (osf-define-key vertico-map
       (concat "M-" (prin1-to-string i)) fn)))
 (vertico-indexed-mode)
+
+(setq vertico-multiform-categories
+      '((consult-grep buffer)))
+(vertico-multiform-mode 1)
 
 (straight-use-package 'marginalia)
 (marginalia-mode)
