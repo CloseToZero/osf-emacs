@@ -34,4 +34,19 @@
 (defun evilize--evil-normalize-keymaps-av (&rest _)
   (evil-normalize-keymaps))
 
+(defun evilize-define-key (state keymap &rest bindings)
+  "Like `evil-define-key*', but wrap each key in `kbd'.
+NOTE: this function can be called with empty bindings."
+  (declare (indent defun))
+  (when (and (eq keymap 'local)
+             (or (not (boundp 'evil-normal-state-local-map))
+                 (not (keymapp evil-normal-state-local-map))))
+    (evil-normalize-keymaps))
+  (when bindings
+    (setq bindings
+          (cl-loop for (key def) on bindings by #'cddr
+                   collect (kbd key)
+                   collect def))
+    (apply #'evil-define-key* state keymap bindings)))
+
 (provide 'evilize-common)

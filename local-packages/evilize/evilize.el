@@ -58,5 +58,7 @@
   (require 'evilize-grep))
 (with-eval-after-load 'wgrep
   (require 'evilize-wgrep))
+(with-eval-after-load 'org
+  (require 'evilize-org))
 
 (provide 'evilize)
