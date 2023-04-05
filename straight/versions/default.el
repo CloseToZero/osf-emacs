@@ -6,7 +6,7 @@
  ("consult" . "16ec34dd12a734b231bcc0fa03a1ab40a86def93")
  ("corfu" . "e7fac2aa6ca7a386ba36ddf86814e8be12a7bc75")
  ("dash.el" . "3df46d7d9fe74f52a661565888e4d31fd760f0df")
- ("double-trigger" . "f109b8107dc1e847d1aec6ed298618f1a626bcd2")
+ ("double-trigger" . "473512c78c494d625b612e660cce277ffb6f0d39")
  ("el-get" . "bc4299031e634b514eceb472b6b02432c2bb86ba")
  ("emacs-reformatter" . "f454b179ab7d39dc8783b9f2a046cab353b272f5")
  ("emacsmirror-mirror" . "3311bb50e14990b1f3a930f4963033a2893725c0")
