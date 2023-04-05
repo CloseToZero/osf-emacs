@@ -31,6 +31,7 @@
       org-src-preserve-indentation t
       org-confirm-babel-evaluate nil
       org-element-use-cache nil
+      org-cycle-emulate-tab 'exc-hl-bol
       org-capture-templates
       '(("b" "blog" plain
          (file osf-org-generate-blog-file-name)
