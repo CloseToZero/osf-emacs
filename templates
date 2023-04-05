@@ -22,6 +22,16 @@ org-mode
 
 (src "#+begin_src " q n> r> n "#+end_src")
 
+(nat "\\mathbf{N}")
+
+(se "\\subseteq")
+
+(nse "\\nsubseteq")
+
+(sne "\\subsetneq")
+
+(sm "\\setminus")
+
 ;; Local Variables:
 ;; mode: lisp-data
 ;; outline-regexp: "[a-z]"
