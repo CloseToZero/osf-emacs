@@ -35,6 +35,8 @@
       '(("b" "blog" plain
          (file osf-org-generate-blog-file-name)
          (function osf-blog-template)
+         :hook osf-org-capture-hack-local-variables
+         :after-finalize osf-org-capture-hack-local-variables-if-not-aborted
          :unnarrowed t
          :jump-to-captured t)))
 
@@ -208,6 +210,15 @@ command to generate a screenshot file name"))
 #+hugo_draft: true%?\n
 %(if (org-capture-get :osf-org-math-blog?)
      osf-blog-template-math-blog-local-vars \"\")")
+
+  (defun osf-org-capture-hack-local-variables ()
+    (hack-local-variables 'no-mode))
+
+  (defun osf-org-capture-hack-local-variables-if-not-aborted ()
+    (unless org-note-abort
+      (when-let ((buffer (org-capture-get :buffer)))
+        (with-current-buffer buffer
+          (hack-local-variables 'no-mode)))))
 
   (defun osf--org-capture-delete-aborted-empty-file ()
     (when org-note-abort
