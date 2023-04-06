@@ -118,7 +118,19 @@ Don't put visible buffers in the bottom of the list."
              (lambda ()
                (consult--buffer-query
                 :sort 'identically-but-current
-                :as #'buffer-name))))
+                :as #'buffer-name)))
+  (defun osf--fix-consult--async-split-ad (fn &rest args)
+    ;; Fix consult async commands, cannot delete those characters after "#"
+    (let ((async-fn (apply fn args)))
+      (lambda (action)
+        (prog1 (funcall async-fn action)
+          (when (stringp action)
+            (let ((input-len (length action))
+                  (prompt (minibuffer-prompt-end)))
+              (remove-list-of-text-properties
+               prompt (+ prompt input-len) '(field))))))))
+  (advice-add #'consult--async-split
+              :around #'osf--fix-consult--async-split-ad))
 
 (with-eval-after-load 'comint
   (osf-evil-define-key '(normal insert) comint-mode-map
