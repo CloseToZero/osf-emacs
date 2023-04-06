@@ -120,7 +120,7 @@ Don't put visible buffers in the bottom of the list."
                 :sort 'identically-but-current
                 :as #'buffer-name)))
   (defun osf--fix-consult--async-split-ad (fn &rest args)
-    ;; Fix consult async commands, cannot delete those characters after "#"
+    ;; Fix consult async commands, cannot delete those characters after "#".
     (let ((async-fn (apply fn args)))
       (lambda (action)
         (prog1 (funcall async-fn action)
