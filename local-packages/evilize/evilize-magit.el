@@ -116,6 +116,8 @@
                       ("n" evil-search-next)
                       ("N" evil-search-previous))))
            ))
+         ((visual) (,magit-mode-map)
+          (("y" magit-copy-section-value)))
          ((normal visual) (,magit-status-mode-map)
           (("g s" magit-jump-to-staged)
            ("g u" magit-jump-to-unstaged)
