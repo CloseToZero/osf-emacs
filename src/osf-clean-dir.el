@@ -66,4 +66,6 @@
 
 (setq recentf-save-file (expand-file-name "recent-files" osf-cache-dir))
 
+(setq savehist-file (expand-file-name "saved-history" osf-cache-dir))
+
 (provide 'osf-clean-dir)

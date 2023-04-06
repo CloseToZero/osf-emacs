@@ -50,6 +50,7 @@ NOTE: each key in a binding will be wrapped inside `kbd'."
   (find-file user-init-file))
 
 (defvar osf-create-src-hist nil)
+(osf-add-saved-vars 'osf-create-src-hist)
 (defun osf-create-src (basename)
   (interactive
    (list (read-string "Name: " nil 'osf-create-src-hist)))

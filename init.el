@@ -47,6 +47,7 @@
 (require 'osf-core-lib)
 (require 'osf-coding-system)
 (require 'osf-package)
+(require 'osf-savehist)
 (require 'osf-lib)
 (require 'osf-clean-mode-line)
 (require 'osf-indent)

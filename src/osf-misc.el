@@ -70,4 +70,14 @@ Display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
 
 (global-so-long-mode)
 
+(setq kill-ring-max 5000)
+(osf-add-saved-vars 'kill-ring)
+(defun osf--unpropertize-kill-ring-for-savehist ()
+  (setq-local kill-ring
+              (mapcar #'substring-no-properties
+                      (cl-remove-if-not #'stringp kill-ring))))
+(add-hook 'savehist-save-hook #'osf--unpropertize-kill-ring-for-savehist)
+
+(setq comint-input-ring-size 5000)
+
 (provide 'osf-misc)

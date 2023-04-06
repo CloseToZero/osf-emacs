@@ -26,6 +26,12 @@
 
 (defvar osf-org-blog-file-name-time-string-format "%Y%m%d%H%M%S")
 
+(defvar osf-org-paste-screenshot-from-clipboard-hist nil)
+(osf-add-saved-vars 'osf-org-paste-screenshot-from-clipboard-hist)
+
+(defvar osf-org-generate-blog-file-name-hist nil)
+(osf-add-saved-vars 'osf-org-generate-blog-file-name-hist)
+
 (setq org-startup-indented t
       org-src-tab-acts-natively t
       org-src-preserve-indentation t
@@ -133,7 +139,6 @@
                   (format-time-string osf-org-blog-file-name-time-string-format)
                 (osf-org-normalize-for-file-name image-filename)))))
 
-  (defvar osf-org-paste-screenshot-from-clipboard-hist nil)
   (defun osf-org-paste-screenshot-from-clipboard (&optional image-filename)
     (interactive)
     (unless (derived-mode-p 'org-mode)
@@ -179,7 +184,6 @@ command to generate a screenshot file name"))
   )
 
 (with-eval-after-load 'org-capture
-  (defvar osf-org-generate-blog-file-name-hist nil)
   (defun osf-org-generate-blog-file-name ()
     (let ((blog-name (read-string
                       "Blog name: " nil
