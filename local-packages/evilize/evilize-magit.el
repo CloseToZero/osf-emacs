@@ -384,4 +384,30 @@ By default, this is the same except for the \"pick\" command."
   (add-hook 'git-rebase-mode-hook
             'evilize-magit-git-rebase-mode-show-keybindings))
 
+;; Fix: the active region of visual-line-mode contains an extra newline
+;; and the end, cause `magit-diff-scope' return wrong scope and won't
+;; operate on selected files/hunks, only single file/hunk is operated.
+
+(defvar evilize-magit-in-visual-pre-command nil)
+
+(defun evilize--magit-visual-pre-command-ad (fn &rest args)
+  (let ((evilize-magit-in-visual-pre-command t))
+    (apply fn args)))
+
+(defun evilize--magit-visual-expand-region-ad (arglist)
+  ;; pretend that the command has the :exclude-newline property by rewriting the
+  ;; EXCLUDE-NEWLINE arg to this function
+  (cons (and evilize-magit-in-visual-pre-command
+             (null (car arglist))
+             (eq (evil-visual-type) 'line)
+             (derived-mode-p 'magit-mode))
+        ;; shouldn't be necessary, but this will prevent it from failing if an
+        ;; arg is added.
+        (cdr arglist)))
+
+(advice-add #'evil-visual-pre-command
+            :around #'evilize--magit-visual-pre-command-ad)
+(advice-add #'evil-visual-expand-region
+            :filter-args #'evilize--magit-visual-expand-region-ad)
+
 (provide 'evilize-magit)
