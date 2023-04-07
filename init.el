@@ -54,6 +54,7 @@
 (require 'osf-evil)
 (require 'osf-misc)
 (require 'osf-completion)
+(require 'osf-dired)
 (require 'osf-embark)
 (require 'osf-grep)
 (require 'osf-ui)
