@@ -410,4 +410,12 @@ By default, this is the same except for the \"pick\" command."
 (advice-add #'evil-visual-expand-region
             :filter-args #'evilize--magit-visual-expand-region-ad)
 
+;; without this set-mark-command activates visual-state which is just annoying
+;; and introduces possible bugs
+(defun evilize-magit-remove-visual-activate-hook ()
+  (when (derived-mode-p 'magit-mode)
+    (remove-hook 'activate-mark-hook 'evil-visual-activate-hook t)))
+(add-hook 'evil-local-mode-hook
+          #'evilize-magit-remove-visual-activate-hook)
+
 (provide 'evilize-magit)
