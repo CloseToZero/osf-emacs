@@ -70,6 +70,7 @@
 (require 'osf-zig)
 (require 'osf-lisp)
 (require 'osf-common-lisp)
+(require 'osf-c-cpp)
 (require 'osf-server)
 
 (load custom-file t t)
