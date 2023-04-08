@@ -40,8 +40,10 @@
   "M-k" #'org-metaup
   "M-h" #'org-metaleft
   "M-l" #'org-metaright
-  "C-j" #'org-next-visible-heading
-  "C-k" #'org-previous-visible-heading
+  "C-j" #'outline-forward-same-level
+  "C-k" #'outline-backward-same-level
+  "g j" #'org-next-visible-heading
+  "g k" #'org-previous-visible-heading
   "H" #'org-up-element
   "L" #'org-down-element)
 
