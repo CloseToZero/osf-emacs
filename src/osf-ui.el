@@ -29,4 +29,6 @@
 
 (push '(fullscreen . fullboth) default-frame-alist)
 
+(setq ring-bell-function #'ignore)
+
 (provide 'osf-ui)
