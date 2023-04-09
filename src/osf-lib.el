@@ -22,6 +22,10 @@
 
 ;;; Code:
 
+(defun osf-edit-config ()
+  (interactive)
+  (find-file user-init-file))
+
 (defvar osf-create-src-hist nil)
 (osf-add-saved-vars 'osf-create-src-hist)
 (defun osf-create-src (basename)
