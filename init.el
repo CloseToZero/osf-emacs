@@ -26,3 +26,5 @@
 (tool-bar-mode -1)
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
+
+(push '(fullscreen . fullboth) default-frame-alist)
