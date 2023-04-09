@@ -22,9 +22,11 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
 
-(push osf-src-dir load-path)
-(require 'osf-ui)
-(require 'osf-misc)
+(push '(fullscreen . fullboth) default-frame-alist)
+
+(provide 'osf-ui)

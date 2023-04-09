@@ -22,9 +22,7 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(setq-default indent-tabs-mode nil
+              tab-width 4)
 
-(push osf-src-dir load-path)
-(require 'osf-ui)
-(require 'osf-misc)
+(provide 'osf-misc)
