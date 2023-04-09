@@ -28,3 +28,6 @@
   (scroll-bar-mode -1))
 
 (push '(fullscreen . fullboth) default-frame-alist)
+
+(setq-default indent-tabs-mode nil
+              tab-width 4)
