@@ -28,6 +28,13 @@
 (defvar osf-cache-dir
   (expand-file-name ".cache" user-emacs-directory))
 
+(defvar osf-system-type
+  (cond ((memq system-type '(cygwin windows-nt ms-dos)) 'windows)
+        ((eq system-type 'darwin) 'mac)
+        ((eq system-type 'gnu/linux) 'linux)
+        ((eq system-type 'berkeley-unix) 'bsd)
+        (t system-type)))
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (push osf-src-dir load-path)
