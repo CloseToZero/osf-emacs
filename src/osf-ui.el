@@ -31,4 +31,7 @@
 
 (setq ring-bell-function #'ignore)
 
+(column-number-mode)
+(setq column-number-indicator-zero-based nil)
+
 (provide 'osf-ui)
