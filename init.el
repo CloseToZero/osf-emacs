@@ -31,5 +31,6 @@
 (push osf-src-dir load-path)
 (require 'osf-clean-dir)
 (require 'osf-savehist)
+(require 'osf-lib)
 (require 'osf-ui)
 (require 'osf-misc)
