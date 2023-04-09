@@ -4,6 +4,8 @@
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -22,21 +24,18 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(require 'cl-lib)
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(defun osf-regexp-literal-any-case (literal-str)
+  "Returns a regexp that matches LITERAL-STR literally and case insensitively."
+  (rx-to-string
+   `(seq
+     ,@(cl-loop
+        for ch across literal-str
+        collect
+        (if (not (eq (upcase ch) (downcase ch)))
+            `(regexp ,(rx-to-string `(any ,(char-to-string (upcase ch))
+                                          ,(char-to-string (downcase ch)))))
+          `(regexp ,(rx-to-string (char-to-string ch))))))))
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-core-lib)
-(require 'osf-coding-system)
-(require 'osf-clean-dir)
-(require 'osf-savehist)
-(require 'osf-lib)
-(require 'osf-ui)
-(require 'osf-misc)
-
-(load custom-file t t)
+(provide 'osf-core-lib)
