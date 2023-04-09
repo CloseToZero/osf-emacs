@@ -22,19 +22,7 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(defvar osf-early-custom-file
+  (expand-file-name "early-custom.el" user-emacs-directory))
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-savehist)
-(require 'osf-lib)
-(require 'osf-ui)
-(require 'osf-misc)
-
-(load custom-file t t)
+(load osf-early-custom-file t t)
