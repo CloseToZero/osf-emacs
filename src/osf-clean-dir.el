@@ -22,14 +22,6 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(setq savehist-file (expand-file-name "saved-history" osf-cache-dir))
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-savehist)
-(require 'osf-ui)
-(require 'osf-misc)
+(provide 'osf-clean-dir)

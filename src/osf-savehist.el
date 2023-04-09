@@ -22,14 +22,12 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(defvar savehist-additional-variables nil)
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(add-hook 'after-init-hook #'savehist-mode)
 
-(push osf-src-dir load-path)
-(require 'osf-clean-dir)
-(require 'osf-savehist)
-(require 'osf-ui)
-(require 'osf-misc)
+(defun osf-add-saved-vars (&rest variables)
+  (setq savehist-additional-variables
+        (append variables savehist-additional-variables)))
+
+(provide 'osf-savehist)
