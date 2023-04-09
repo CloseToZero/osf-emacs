@@ -45,5 +45,6 @@
 (require 'osf-lib)
 (require 'osf-ui)
 (require 'osf-misc)
+(require 'osf-server)
 
 (load custom-file t t)

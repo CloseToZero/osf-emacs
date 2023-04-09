@@ -4,6 +4,8 @@
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -22,28 +24,14 @@
 
 ;;; Code:
 
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name "backup" osf-cache-dir))))
+(require 'server)
+;; Start a server if (server-running-p) does not return t (e.g. if it
+;; returns nil or :other).  NOTE: On Windows, you need to set
+;; the environment variable EMACS_SERVER_FILE to the path of the server
+;; file. Usually, it's a file named 'server' within
+;; the `server-auth-dir'. e.g.
+;; C:\Users\{your_user_name}\.config\emacs\.cache\server\server
+(unless (eq (server-running-p) t)
+  (server-start))
 
-(setq auto-save-list-file-prefix
-      (expand-file-name
-       "auto-saves-"
-       (expand-file-name
-	    "auto-save-list" osf-cache-dir)))
-
-(setq savehist-file (expand-file-name "saved-history" osf-cache-dir))
-
-(setq org-id-locations-file
-      (expand-file-name ".org-id-locations" osf-cache-dir))
-(setq org-persist-directory
-      (file-name-as-directory
-       (expand-file-name "org-persist" osf-cache-dir)))
-
-(setq project-list-file (expand-file-name "projects" osf-cache-dir))
-
-(setq server-auth-dir
-      (file-name-as-directory
-       (expand-file-name
-        "server" osf-cache-dir)))
-
-(provide 'osf-clean-dir)
+(provide 'osf-server)
