@@ -5,3 +5,5 @@
 !/.cache/.keep
 /early-custom.el
 /custom.el
+/straight/*
+!/straight/versions/

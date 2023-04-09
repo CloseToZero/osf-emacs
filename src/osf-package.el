@@ -4,6 +4,8 @@
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -22,30 +24,21 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(setq straight-repository-branch "develop")
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(dolist (built-in-package '(xref project org eldoc))
+  (straight-use-package `(,built-in-package :type built-in)))
 
-(defvar osf-system-type
-  (cond ((memq system-type '(cygwin windows-nt ms-dos)) 'windows)
-        ((eq system-type 'darwin) 'mac)
-        ((eq system-type 'gnu/linux) 'linux)
-        ((eq system-type 'berkeley-unix) 'bsd)
-        (t system-type)))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-core-lib)
-(require 'osf-coding-system)
-(require 'osf-clean-dir)
-(require 'osf-package)
-(require 'osf-savehist)
-(require 'osf-lib)
-(require 'osf-ui)
-(require 'osf-misc)
-(require 'osf-server)
-
-(load custom-file t t)
+(provide 'osf-package)
