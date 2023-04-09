@@ -22,6 +22,15 @@
 
 ;;; Code:
 
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name "backup" osf-cache-dir))))
+
+(setq auto-save-list-file-prefix
+      (expand-file-name
+       "auto-saves-"
+       (expand-file-name
+	    "auto-save-list" osf-cache-dir)))
+
 (setq savehist-file (expand-file-name "saved-history" osf-cache-dir))
 
 (setq org-id-locations-file
