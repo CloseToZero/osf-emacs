@@ -34,6 +34,8 @@
 (declare-function org-previous-visible-heading "ext:org")
 (declare-function org-up-element "ext:org")
 (declare-function org-down-element "ext:org")
+(declare-function outline-forward-same-level "ext:outline")
+(declare-function outline-backward-same-level "ext:outline")
 
 (evilize-define-key 'normal org-mode-map
   "M-j" #'org-metadown
