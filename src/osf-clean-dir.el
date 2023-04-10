@@ -31,6 +31,10 @@
        (expand-file-name
 	    "auto-save-list" osf-cache-dir)))
 
+(setq bookmark-default-file (expand-file-name "bookmarks" osf-cache-dir))
+
+(setq project-list-file (expand-file-name "projects" osf-cache-dir))
+
 (setq savehist-file (expand-file-name "saved-history" osf-cache-dir))
 
 (setq org-id-locations-file
@@ -38,8 +42,6 @@
 (setq org-persist-directory
       (file-name-as-directory
        (expand-file-name "org-persist" osf-cache-dir)))
-
-(setq project-list-file (expand-file-name "projects" osf-cache-dir))
 
 (setq server-auth-dir
       (file-name-as-directory
