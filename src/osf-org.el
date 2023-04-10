@@ -29,6 +29,9 @@
 (defvar osf-org-generate-blog-file-name-hist nil)
 (osf-add-saved-vars 'osf-org-generate-blog-file-name-hist)
 
+(defvar osf-org-paste-image-from-clipboard-hist nil)
+(osf-add-saved-vars 'osf-org-paste-image-from-clipboard-hist)
+
 (setq org-startup-indented t
       org-src-tab-acts-natively t
       org-src-preserve-indentation t
@@ -89,7 +92,58 @@
                        ("_$" . "") ; remove ending underscore
                        )))
           (downcase (seq-reduce #'replace-pair
-                                pairs (strip-nonspacing-marks file-name))))))))
+                                pairs (strip-nonspacing-marks file-name)))))))
+
+  (defun osf--generate-image-filename (org-filename image-filename)
+    (let ((basename (file-name-base org-filename)))
+      (format (if (string-empty-p image-filename)
+                  "%s-%s-image.png" "%s-%s.png")
+              (substring basename (1+ (or (string-match "-" basename) -1)))
+              (if (string-empty-p image-filename)
+                  (format-time-string osf-org-blog-file-name-time-string-format)
+                (osf-org-normalize-file-name image-filename)))))
+
+  (defun osf-org-paste-image-from-clipboard (&optional image-filename)
+    (interactive)
+    (unless (derived-mode-p 'org-mode)
+      (user-error "You need to be in a Org buffer"))
+    (unless (buffer-file-name)
+      (user-error "The Org buffer need to have an associated file for the \
+command to generate a image file name"))
+    (cond
+     ((eq osf-system-type 'windows)
+      (let ((tool (executable-find "magick")))
+        (unless tool (error "Cannot find the executable magick"))
+        (let ((tmp-image-filename (expand-file-name
+                                   (format
+                                    "%s-tmp.png"
+                                    (file-name-base (buffer-file-name)))
+                                   temporary-file-directory)))
+          (call-process tool nil "*osf-org-paste-image-from-clipboard*" nil
+                        "convert" "clipboard:" tmp-image-filename)
+          (unwind-protect
+              (progn
+                (unless (file-exists-p tmp-image-filename)
+                  (error "Create image file failed"))
+                (when (called-interactively-p)
+                  (setq image-filename
+                        (read-string
+                         "Filename of the pasted image \
+(empty for generated name): "
+                         nil 'osf-org-paste-image-from-clipboard-hist)))
+                (let ((frame (selected-frame))
+                      (image-filename (osf--generate-image-filename
+                                       (buffer-file-name) image-filename)))
+                  (when (and (file-exists-p image-filename)
+                             (called-interactively-p)
+                             (yes-or-no-p "File already exists, overwrite? "))
+                    (delete-file image-filename))
+                  (rename-file tmp-image-filename image-filename)
+                  (insert (format "[[file:%s]]" image-filename))
+                  (org-display-inline-images nil t)))
+            (when (file-exists-p tmp-image-filename)
+              (delete-file tmp-image-filename))))))
+     (t (error "Unsupported on the system: %s" osf-system-type)))))
 
 (with-eval-after-load 'org-capture
   (defun osf-org-generate-blog-file-name ()
