@@ -51,6 +51,29 @@
   (require 'ox-hugo))
 
 (with-eval-after-load 'org
+  (defun osf-org-export-directory-using-ox-hugo
+      (directory &optional include-no-md)
+    ;; include-no-md: don't export files that don't have the
+    ;; corresponding markdown file.
+    (interactive (list default-directory current-prefix-arg))
+    (require 'ox-hugo)
+    (mapc
+     (lambda (file)
+       (let ((opened? (get-file-buffer file)))
+         (with-current-buffer (find-file-noselect file)
+           (let* ((info (org-combine-plists
+                         (org-export--get-export-attributes 'hugo)
+                         (org-export--get-buffer-attributes)
+                         (org-export-get-environment 'hugo)))
+                  (pub-dir (org-hugo--get-pub-dir info))
+                  (outfile (org-export-output-file-name ".md" nil pub-dir)))
+             (when (or include-no-md
+                       (file-exists-p outfile))
+               (org-hugo-export-to-md))))
+         (unless opened?
+           (kill-buffer (get-file-buffer file)))))
+     (directory-files directory t (rx ".org" string-end))))
+
   ;; Adapted from org-roam's `org-roam-node-slug'.
   (defun osf-org-normalize-file-name (file-name)
     (let ((trim-chars '(
