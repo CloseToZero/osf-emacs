@@ -46,6 +46,10 @@
          :unnarrowed t
          :jump-to-captured t)))
 
+(straight-use-package 'ox-hugo)
+(with-eval-after-load 'ox
+  (require 'ox-hugo))
+
 (with-eval-after-load 'org
   ;; Adapted from org-roam's `org-roam-node-slug'.
   (defun osf-org-normalize-file-name (file-name)

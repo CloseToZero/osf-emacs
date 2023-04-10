@@ -4,9 +4,12 @@
  ("emacsmirror-mirror" . "731a414fcd10f69abd2eb095ed5ad59cf6abb8a7")
  ("gnu-elpa-mirror" . "3d084e32698b38a0960c69ecc77c35ee561bee98")
  ("magit" . "beb3d6cae23e10a92797ac3c6d9f581d75e59cc3")
+ ("map" . "a0e501aede34f183a8baa5d3d41610a3ffa1728e")
  ("melpa" . "09d7e2d6874934146e9a8809bea490c5621b7b00")
  ("nongnu-elpa" . "0120f3dfe80cffe0c3016080d9205d12be3b741d")
+ ("ox-hugo" . "706b5f622d168bb8e0cf503e0525d2db9177c83e")
  ("straight.el" . "039e5c9a9b5c00749602afb41341e9e77ba09429")
+ ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")
  ("transient" . "0ae0de43590b5b6984a83f9e044e7c426455ac6e")
  ("with-editor" . "59867aebe16454be4d8c0c858f3b00b8a34f3f61"))
 :gamma
