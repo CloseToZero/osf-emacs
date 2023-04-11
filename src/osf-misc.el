@@ -25,4 +25,6 @@
 (setq-default indent-tabs-mode nil
               tab-width 4)
 
+(setq native-comp-async-report-warnings-errors 'silent)
+
 (provide 'osf-misc)
