@@ -1,4 +1,5 @@
 (("compat" . "2332efe27fe9a353faa924c9e264267a23adc66e")
+ ("ctrlf" . "9b4cf6c79a961f2bfbb949805aa300fcf1eb40a6")
  ("dash.el" . "c30c6bea49b79d966c92ce606fea53dea647b959")
  ("el-get" . "22c83206bab10100fdee03cb2d5b97c8c24eff0e")
  ("emacsmirror-mirror" . "731a414fcd10f69abd2eb095ed5ad59cf6abb8a7")
