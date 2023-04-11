@@ -44,4 +44,8 @@
   "q q" #'save-buffers-kill-terminal
   )
 
+(osf-define-key help-map
+  ;; Unbind `view-hello-file', hang Emacs.
+  "h" nil)
+
 (provide 'osf-key)
