@@ -27,4 +27,7 @@
 (straight-use-package 'ctrlf)
 (ctrlf-mode)
 
+(straight-use-package 'deadgrep)
+(global-set-key (kbd "M-s r") #'deadgrep)
+
 (provide 'osf-search)
