@@ -7,6 +7,7 @@
  ("gnu-elpa-mirror" . "3d084e32698b38a0960c69ecc77c35ee561bee98")
  ("magit" . "beb3d6cae23e10a92797ac3c6d9f581d75e59cc3")
  ("map" . "a0e501aede34f183a8baa5d3d41610a3ffa1728e")
+ ("markdown-mode" . "5d98592fe516748034d8baf92d7c0ba045e1f87a")
  ("melpa" . "09d7e2d6874934146e9a8809bea490c5621b7b00")
  ("nongnu-elpa" . "0120f3dfe80cffe0c3016080d9205d12be3b741d")
  ("ox-hugo" . "706b5f622d168bb8e0cf503e0525d2db9177c83e")
