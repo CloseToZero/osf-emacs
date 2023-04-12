@@ -27,4 +27,6 @@
 
 (setq native-comp-async-report-warnings-errors 'silent)
 
+(setq enable-recursive-minibuffers t)
+
 (provide 'osf-misc)
