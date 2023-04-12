@@ -44,7 +44,8 @@
          :hook osf-org-capture-hack-local-variables
          :after-finalize osf-org-capture-hack-local-variables-if-not-aborted
          :unnarrowed t
-         :jump-to-captured t)))
+         :jump-to-captured t))
+      org-capture-bookmark nil)
 
 (straight-use-package 'ox-hugo)
 (with-eval-after-load 'ox
