@@ -3,6 +3,7 @@
  ("dash.el" . "c30c6bea49b79d966c92ce606fea53dea647b959")
  ("deadgrep" . "67c0fd0afcc6c34a613bbf3298744228f1c3cd59")
  ("el-get" . "22c83206bab10100fdee03cb2d5b97c8c24eff0e")
+ ("emacs-reformatter" . "f454b179ab7d39dc8783b9f2a046cab353b272f5")
  ("emacsmirror-mirror" . "731a414fcd10f69abd2eb095ed5ad59cf6abb8a7")
  ("gnu-elpa-mirror" . "3d084e32698b38a0960c69ecc77c35ee561bee98")
  ("magit" . "beb3d6cae23e10a92797ac3c6d9f581d75e59cc3")
@@ -16,5 +17,6 @@
  ("straight.el" . "039e5c9a9b5c00749602afb41341e9e77ba09429")
  ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")
  ("transient" . "0ae0de43590b5b6984a83f9e044e7c426455ac6e")
- ("with-editor" . "59867aebe16454be4d8c0c858f3b00b8a34f3f61"))
+ ("with-editor" . "59867aebe16454be4d8c0c858f3b00b8a34f3f61")
+ ("zig-mode" . "2013d39ee9a62449263939bc8c33a128fe1e90f0"))
 :gamma
