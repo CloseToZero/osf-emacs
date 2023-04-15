@@ -8,3 +8,4 @@
 /straight/*
 !/straight/versions/
 /eshell/history
+/eshell/lastdir
