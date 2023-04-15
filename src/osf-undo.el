@@ -4,6 +4,8 @@
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -22,37 +24,9 @@
 
 ;;; Code:
 
-(defvar osf-src-dir
-  (expand-file-name "src" user-emacs-directory))
+(straight-use-package 'vundo)
 
-(defvar osf-cache-dir
-  (expand-file-name ".cache" user-emacs-directory))
+(global-set-key (kbd "C-/") #'undo-only)
+(global-set-key (kbd "C-?") #'undo-redo)
 
-(defvar osf-system-type
-  (cond ((memq system-type '(cygwin windows-nt ms-dos)) 'windows)
-        ((eq system-type 'darwin) 'mac)
-        ((eq system-type 'gnu/linux) 'linux)
-        ((eq system-type 'berkeley-unix) 'bsd)
-        (t system-type)))
-
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
-(push osf-src-dir load-path)
-(require 'osf-core-lib)
-(require 'osf-coding-system)
-(require 'osf-clean-dir)
-(require 'osf-package)
-(require 'osf-savehist)
-(require 'osf-lib)
-(require 'osf-ui)
-(require 'osf-misc)
-(require 'osf-server)
-(require 'osf-undo)
-(require 'osf-search)
-(require 'osf-vc)
-(require 'osf-org)
-(require 'osf-markdown)
-(require' osf-zig)
-(require 'osf-bind-keys)
-
-(load custom-file t t)
+(provide 'osf-undo)

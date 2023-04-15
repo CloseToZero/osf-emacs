@@ -17,6 +17,7 @@
  ("straight.el" . "039e5c9a9b5c00749602afb41341e9e77ba09429")
  ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")
  ("transient" . "0ae0de43590b5b6984a83f9e044e7c426455ac6e")
+ ("vundo" . "76bcd0f608d1db025349b23543481fcdf5a40026")
  ("with-editor" . "59867aebe16454be4d8c0c858f3b00b8a34f3f61")
  ("zig-mode" . "2013d39ee9a62449263939bc8c33a128fe1e90f0"))
 :gamma
