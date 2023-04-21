@@ -24,8 +24,8 @@
 
 ;;; Code:
 
-(straight-use-package 'ctrlf)
-(ctrlf-mode)
+;; Don't terminate the search if we just pressed a control character.
+(setq search-exit-option 'edit)
 
 (straight-use-package 'deadgrep)
 (global-set-key (kbd "M-s r") #'deadgrep)
