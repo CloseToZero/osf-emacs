@@ -25,6 +25,6 @@
 ;;; Code:
 
 ;; Unbind `view-hello-file', it hangs Emacs.
-(define-key help-map (kbd "h") nil)
+(keymap-set help-map "h" nil)
 
 (provide 'osf-bind-keys)

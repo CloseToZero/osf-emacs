@@ -22,6 +22,8 @@
 
 ;;; Code:
 
+(straight-use-package 'compat)
+
 (defun osf-edit-config ()
   (interactive)
   (find-file user-init-file))

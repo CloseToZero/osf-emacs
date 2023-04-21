@@ -28,6 +28,6 @@
 (setq search-exit-option 'edit)
 
 (straight-use-package 'deadgrep)
-(global-set-key (kbd "M-s r") #'deadgrep)
+(keymap-global-set "M-s r" #'deadgrep)
 
 (provide 'osf-search)
