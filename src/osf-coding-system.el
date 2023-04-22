@@ -62,6 +62,9 @@ path\\to\\arg.exe"
   (dolist (program '("rg" "magick" "dot" "TOTALCMD64" "cmder"))
     (modify-coding-system-alist
      'process (osf-process-regexp-for-program program)
-     (cons 'utf-8 osf-w32-locale-coding-system))))
+     (cons 'utf-8 osf-w32-locale-coding-system)))
+  (modify-coding-system-alist
+   'process (osf-process-regexp-for-program "cmdproxy")
+   (cons osf-w32-locale-coding-system osf-w32-locale-coding-system)))
 
 (provide 'osf-coding-system)
