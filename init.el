@@ -50,6 +50,7 @@
 (require 'osf-undo)
 (require 'osf-search)
 (require 'osf-vc)
+(require 'osf-shell)
 (require 'osf-org)
 (require 'osf-markdown)
 (require' osf-zig)
