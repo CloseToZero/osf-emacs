@@ -53,6 +53,7 @@
 (require 'osf-shell)
 (require 'osf-org)
 (require 'osf-markdown)
+(require 'osf-common-lisp)
 (require' osf-zig)
 (require 'osf-bind-keys)
 
