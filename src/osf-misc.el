@@ -29,4 +29,7 @@
 
 (setq enable-recursive-minibuffers t)
 
+(setq initial-major-mode #'fundamental-mode
+      initial-scratch-message "")
+
 (provide 'osf-misc)
