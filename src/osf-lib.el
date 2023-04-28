@@ -72,6 +72,13 @@
 (provide '" feature ")"))
     (save-buffer)))
 
+(defun osf--ad-inhibit-message (fn &rest args)
+  (let ((inhibit-message (not (called-interactively-p 'interactive))))
+    (apply fn args)))
+
+(defun osf-inhibit-message (fn)
+  (advice-add fn :around #'osf--ad-inhibit-message))
+
 (defun osf-ff-find-other-file-ignore-include-line
     (&optional in-other-window event)
   (interactive (list current-prefix-arg last-nonmenu-event))
