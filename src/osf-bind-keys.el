@@ -29,4 +29,6 @@
 
 (keymap-global-set "M-g o" #'osf-ff-find-other-file-ignore-include-line)
 
+(keymap-global-set "C-x C-b" #'ibuffer)
+
 (provide 'osf-bind-keys)
