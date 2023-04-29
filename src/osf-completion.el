@@ -29,7 +29,8 @@
 (with-eval-after-load 'minibuffer
   ;; Unbind "SPC" from `minibuffer-complete-word',
   ;; Bind `minibuffer-complete-word' to M-SPC instead.
-  (keymap-set minibuffer-local-completion-map "SPC" nil)
-  (keymap-set minibuffer-local-completion-map "M-SPC" #'minibuffer-complete-word))
+  (osf-keymap-set minibuffer-local-completion-map
+    "SPC" nil
+    "M-SPC" #'minibuffer-complete-word))
 
 (provide 'osf-completion)

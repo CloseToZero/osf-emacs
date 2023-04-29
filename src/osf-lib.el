@@ -79,6 +79,26 @@
 (defun osf-inhibit-message (fn)
   (advice-add fn :around #'osf--ad-inhibit-message))
 
+(defun osf-keymap-set (keymap &rest bindings)
+  "Like `keymap-set', but allow define multiple bindings together.
+Example:
+(osf-keymap-set keymap1
+  \"a\" #'command1
+  \"b\" #'command2)"
+  (declare (indent defun))
+  (cl-loop for (key def) on bindings by #'cddr
+           do (keymap-set keymap key def)))
+
+(defun osf-keymap-global-set (&rest bindings)
+  "Like `keymap-global-set', but allow define multiple bindings together.
+Example:
+(osf-keymap-global-set
+  \"a\" #'command1
+  \"b\" #'command2)"
+  (declare (indent defun))
+  (cl-loop for (key def) on bindings by #'cddr
+           do (keymap-global-set key def)))
+
 (defun osf-ff-find-other-file-ignore-include-line
     (&optional in-other-window event)
   (interactive (list current-prefix-arg last-nonmenu-event))

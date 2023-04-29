@@ -26,7 +26,8 @@
 
 (straight-use-package 'vundo)
 
-(keymap-global-set "C-/" #'undo-only)
-(keymap-global-set "C-?" #'undo-redo)
+(osf-keymap-global-set
+  "C-/" #'undo-only
+  "C-?" #'undo-redo)
 
 (provide 'osf-undo)

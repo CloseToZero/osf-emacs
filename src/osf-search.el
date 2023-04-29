@@ -29,8 +29,9 @@
 
 ;; Swap the bindings of DEL and C-M-w, so that DEL always delete a
 ;; character rather than undo the previous search action.
-(keymap-set isearch-mode-map "DEL" #'isearch-del-char)
-(keymap-set isearch-mode-map "C-M-w" #'isearch-delete-char)
+(osf-keymap-set isearch-mode-map
+  "DEL" #'isearch-del-char
+  "C-M-w" #'isearch-delete-char)
 
 (straight-use-package 'deadgrep)
 (keymap-global-set "M-s r" #'deadgrep)

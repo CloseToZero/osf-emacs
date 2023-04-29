@@ -25,10 +25,10 @@
 ;;; Code:
 
 ;; Unbind `view-hello-file', it hangs Emacs.
-(keymap-set help-map "h" nil)
+(osf-keymap-set help-map "h" nil)
 
-(keymap-global-set "M-g o" #'osf-ff-find-other-file-ignore-include-line)
-
-(keymap-global-set "C-x C-b" #'ibuffer)
+(osf-keymap-global-set
+  "M-g o" #'osf-ff-find-other-file-ignore-include-line
+  "C-x C-b" #'ibuffer)
 
 (provide 'osf-bind-keys)
