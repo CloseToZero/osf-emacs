@@ -51,6 +51,7 @@
 (require 'osf-completion)
 (require 'osf-recent-files)
 (require 'osf-search)
+(require 'osf-dired)
 (require 'osf-vc)
 (require 'osf-shell)
 (require 'osf-org)

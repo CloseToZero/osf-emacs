@@ -99,6 +99,15 @@ Example:
   (cl-loop for (key def) on bindings by #'cddr
            do (keymap-global-set key def)))
 
+(defun osf-open-by-system-default-application (file)
+  (interactive "fOpen: ")
+  (if (eq osf-system-type 'windows)
+      (w32-shell-execute "open" (expand-file-name file))
+    (call-process (pcase osf-system-type
+                    ('mac "open")
+                    ((or 'linux 'bsd) "xdg-open"))
+                  nil 0 nil (expand-file-name file))))
+
 (defun osf-ff-find-other-file-ignore-include-line
     (&optional in-other-window event)
   (interactive (list current-prefix-arg last-nonmenu-event))
