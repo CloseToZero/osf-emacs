@@ -22,15 +22,15 @@
 
 ;;; Code:
 
+(setq native-comp-async-report-warnings-errors 'silent)
+
 (setq-default indent-tabs-mode nil
               tab-width 4)
 
-(setq native-comp-async-report-warnings-errors 'silent)
+(setq initial-major-mode #'fundamental-mode
+      initial-scratch-message "")
 
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
-
-(setq initial-major-mode #'fundamental-mode
-      initial-scratch-message "")
 
 (provide 'osf-misc)
