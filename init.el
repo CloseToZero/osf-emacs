@@ -58,6 +58,8 @@
 (require 'osf-markdown)
 (require 'osf-common-lisp)
 (require' osf-zig)
+(when (eq osf-system-type 'windows)
+  (require 'osf-total-commander))
 (require 'osf-bind-keys)
 
 (load custom-file t t)
