@@ -99,7 +99,7 @@ Example:
   (cl-loop for (key def) on bindings by #'cddr
            do (keymap-global-set key def)))
 
-(defun osf-open-by-system-default-application (file)
+(defun osf-open-by-system-default-app (file)
   (interactive "fOpen: ")
   (if (eq osf-system-type 'windows)
       (w32-shell-execute "open" (expand-file-name file))

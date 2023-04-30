@@ -25,14 +25,14 @@
 ;;; Code:
 
 (with-eval-after-load 'dired
-  (defun osf-dired-open-by-system-default-application ()
+  (defun osf-dired-open-by-system-default-app ()
     (interactive)
     (let ((cur-file-name (dired-get-filename t t)))
       (unless cur-file-name
         (user-error "No file on this line"))
-      (osf-open-by-system-default-application cur-file-name)))
+      (osf-open-by-system-default-app cur-file-name)))
 
   (osf-keymap-set dired-mode-map
-    "M-RET" #'osf-dired-open-by-system-default-application))
+    "M-RET" #'osf-dired-open-by-system-default-app))
 
 (provide 'osf-dired)
