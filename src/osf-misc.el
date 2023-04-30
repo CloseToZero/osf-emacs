@@ -33,4 +33,6 @@
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode)
 
+(setq help-window-select t)
+
 (provide 'osf-misc)
