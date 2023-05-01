@@ -118,12 +118,15 @@ Example:
          (i (% (abs (random)) (length alphanum))))
     (elt alphanum i)))
 
-(defun osf-insert-random-text (n)
-  "Insert n characters random text."
-  (interactive "nN: ")
+(defun osf-random-text (n)
   (cl-loop with text = (make-string n 0)
            for i from 0 below n
            do (aset text i (osf-random-alphanum))
-           finally (insert text)))
+           finally (return text)))
+
+(defun osf-insert-random-text (n)
+  "Insert n characters random text."
+  (interactive "nN: ")
+  (insert (osf-random-text n)))
 
 (provide 'osf-lib)
