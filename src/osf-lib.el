@@ -113,4 +113,17 @@ Example:
   (interactive (list current-prefix-arg last-nonmenu-event))
   (ff-find-other-file in-other-window event))
 
+(defun osf-random-alphanum ()
+  (let* ((alphanum "abcdefghijklmnopqrstuvwxyz0123456789")
+         (i (% (abs (random)) (length alphanum))))
+    (elt alphanum i)))
+
+(defun osf-insert-random-text (n)
+  "Insert n characters random text."
+  (interactive "nN: ")
+  (cl-loop with text = (make-string n 0)
+           for i from 0 below n
+           do (aset text i (osf-random-alphanum))
+           finally (insert text)))
+
 (provide 'osf-lib)
