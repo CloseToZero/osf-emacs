@@ -52,6 +52,7 @@
 (require 'osf-recent-files)
 (require 'osf-search)
 (require 'osf-dired)
+(require 'osf-scratch)
 (require 'osf-vc)
 (require 'osf-shell)
 (require 'osf-org)
