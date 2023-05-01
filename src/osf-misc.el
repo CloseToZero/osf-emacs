@@ -35,4 +35,6 @@
 
 (setq help-window-select t)
 
+(setq sentence-end-double-space nil)
+
 (provide 'osf-misc)
