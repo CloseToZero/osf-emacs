@@ -24,6 +24,19 @@
 
 (straight-use-package 'compat)
 
+(straight-use-package 'pinyinlib)
+(require 'pinyinlib)
+
+(defun osf--pinyinlib-avoid-regexp-too-big (orig-fun str &rest args)
+  "Avoid (invalid-regexp \"Regular expression too big\").
+Once the length of the regexp exceeded 5000, fallback to `regexp-quote'."
+  (let ((regexp (apply orig-fun str args)))
+    (if (> (length regexp) 5000)
+        (regexp-quote str)
+      regexp)))
+(advice-add #'pinyinlib-build-regexp-string
+            :around #'osf--pinyinlib-avoid-regexp-too-big)
+
 (defun osf-edit-config ()
   (interactive)
   (find-file user-init-file))

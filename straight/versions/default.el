@@ -12,6 +12,7 @@
  ("melpa" . "86ca8d06599c8d7d9067ce92ae5dde3b122f6796")
  ("nongnu-elpa" . "0120f3dfe80cffe0c3016080d9205d12be3b741d")
  ("ox-hugo" . "9544656589cf4878f5cf501744e36e9ee256c5f7")
+ ("pinyinlib.el" . "1772c79b6f319b26b6a394a8dda065be3ea4498d")
  ("s.el" . "dda84d38fffdaf0c9b12837b504b402af910d01d")
  ("slime" . "da5c14434db241bb82d340e5d9ca13acd125a83d")
  ("spinner" . "634529bb3173e09b37499f636de70abf29d9fa8a")
