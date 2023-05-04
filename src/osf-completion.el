@@ -33,4 +33,10 @@
     "SPC" nil
     "M-SPC" #'minibuffer-complete-word))
 
+(straight-use-package 'orderless)
+
+(setq completion-styles '(orderless basic)
+      orderless-matching-styles '(pinyinlib-build-regexp-string)
+      orderless-style-dispatchers nil)
+
 (provide 'osf-completion)
