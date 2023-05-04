@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(setq dired-dwim-target t)
+
 (with-eval-after-load 'dired
   (defun osf-dired-open-by-system-default-app ()
     (interactive)
