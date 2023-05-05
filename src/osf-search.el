@@ -32,8 +32,8 @@
 (defun osf-isearch-pinyin-regexp (string &optional lax)
   (let ((regexp (pinyinlib-build-regexp-string string)))
     (if lax
-        regexp
-      (rx word-start (regexp regexp) word-end))))
+        (rx word-start (regexp regexp) word-end)
+        regexp)))
 
 (defun osf-isearch-forward-pinyin (&optional _unused no-recursive-edit)
   (interactive "P\np")
