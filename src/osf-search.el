@@ -33,7 +33,7 @@
   (let ((regexp (pinyinlib-build-regexp-string string)))
     (if lax
         (rx word-start (regexp regexp) word-end)
-        regexp)))
+      regexp)))
 
 (defun osf-isearch-forward-pinyin (&optional _unused no-recursive-edit)
   (interactive "P\np")
@@ -43,9 +43,9 @@
   (interactive "P\np")
   (isearch-mode nil nil nil (not no-recursive-edit) #'osf-isearch-pinyin-regexp))
 
-(osf-keymap-global-set
-  "C-s" #'osf-isearch-forward-pinyin
-  "C-r" #'osf-isearch-backward-pinyin)
+;; (osf-keymap-global-set
+;;   "C-s" #'osf-isearch-forward-pinyin
+;;   "C-r" #'osf-isearch-backward-pinyin)
 
 ;; Swap the bindings of DEL and C-M-w, so that DEL always delete a
 ;; character rather than undo the previous search action.
