@@ -42,4 +42,9 @@
 
 (setq save-interprogram-paste-before-kill t)
 
+(setq inhibit-compacting-font-caches t
+      redisplay-skip-fontification-on-input t
+      fast-but-imprecise-scrolling t
+      read-process-output-max (* 1024 1024))
+
 (provide 'osf-misc)
