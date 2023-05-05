@@ -40,4 +40,6 @@
 (when (boundp 'word-wrap-by-category)
   (customize-set-variable 'word-wrap-by-category t))
 
+(setq save-interprogram-paste-before-kill t)
+
 (provide 'osf-misc)
