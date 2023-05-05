@@ -47,4 +47,8 @@
       fast-but-imprecise-scrolling t
       read-process-output-max (* 1024 1024))
 
+(when (eq osf-system-type 'windows)
+  (setq w32-pipe-read-delay 0
+        w32-pipe-buffer-size (* 1024 1024)))
+
 (provide 'osf-misc)
