@@ -59,4 +59,8 @@
   (setq transient-history-file
         (expand-file-name "history.el" transient-cache-dir)))
 
+(setq url-configuration-directory
+      (file-name-as-directory
+       (expand-file-name "url" osf-cache-dir)))
+
 (provide 'osf-clean-dir)
