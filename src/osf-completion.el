@@ -37,6 +37,9 @@
 
 (setq completion-styles '(orderless basic)
       orderless-matching-styles '(orderless-literal)
-      orderless-style-dispatchers '(orderless-affix-dispatch))
+      orderless-style-dispatchers '(orderless-affix-dispatch)
+      orderless-affix-dispatch-alist
+      `((?# . ,#'orderless-regexp)
+        (?! . ,#'orderless-without-literal)))
 
 (provide 'osf-completion)
