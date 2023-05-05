@@ -36,7 +36,7 @@
 (straight-use-package 'orderless)
 
 (setq completion-styles '(orderless basic)
-      orderless-matching-styles '(pinyinlib-build-regexp-string)
-      orderless-style-dispatchers nil)
+      orderless-matching-styles '(orderless-literal)
+      orderless-style-dispatchers '(orderless-affix-dispatch))
 
 (provide 'osf-completion)

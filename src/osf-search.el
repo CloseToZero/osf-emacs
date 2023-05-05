@@ -27,26 +27,6 @@
 ;; Don't terminate the search if we just pressed a control character.
 (setq search-exit-option 'edit)
 
-;; Add and bind pinyin isearch commands.
-
-(defun osf-isearch-pinyin-regexp (string &optional lax)
-  (let ((regexp (pinyinlib-build-regexp-string string)))
-    (if lax
-        (rx word-start (regexp regexp) word-end)
-      regexp)))
-
-(defun osf-isearch-forward-pinyin (&optional _unused no-recursive-edit)
-  (interactive "P\np")
-  (isearch-mode t nil nil (not no-recursive-edit) #'osf-isearch-pinyin-regexp))
-
-(defun osf-isearch-backward-pinyin (&optional _unused no-recursive-edit)
-  (interactive "P\np")
-  (isearch-mode nil nil nil (not no-recursive-edit) #'osf-isearch-pinyin-regexp))
-
-;; (osf-keymap-global-set
-;;   "C-s" #'osf-isearch-forward-pinyin
-;;   "C-r" #'osf-isearch-backward-pinyin)
-
 ;; Swap the bindings of DEL and C-M-w, so that DEL always delete a
 ;; character rather than undo the previous search action.
 (osf-keymap-set isearch-mode-map
