@@ -37,4 +37,7 @@
 
 (setq sentence-end-double-space nil)
 
+(when (boundp 'word-wrap-by-category)
+  (customize-set-variable 'word-wrap-by-category t))
+
 (provide 'osf-misc)
