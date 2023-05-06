@@ -30,4 +30,20 @@
   "C-/" #'undo-only
   "C-?" #'undo-redo)
 
+(with-eval-after-load 'vundo
+  (defun osf-vundo-quit ()
+    (interactive)
+    (when (y-or-n-p
+           (substitute-command-keys
+            "Quit vundo will roll back the changes,\
+ use \\[vundo-confirm] to confirm the changes.\
+ Quit? "))
+      (let ((vundo-roll-back-on-quit t))
+        (vundo-quit)))
+    ;; Clear minibuffer message.
+    (message nil))
+
+  (osf-keymap-set vundo-mode-map
+    "q" #'osf-vundo-quit))
+
 (provide 'osf-undo)
