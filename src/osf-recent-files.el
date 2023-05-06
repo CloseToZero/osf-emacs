@@ -29,6 +29,9 @@
 (osf-inhibit-message #'recentf-save-list)
 (recentf-mode)
 (run-at-time t (* 5 60) #'recentf-save-list)
-(osf-keymap-global-set "C-x C-r" #'recentf-open-files)
+(osf-keymap-global-set "C-x C-r"
+  (if (fboundp #'recentf-open)
+      #'recentf-open
+    #'recentf-open-files))
 
 (provide 'osf-recent-files)
