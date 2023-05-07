@@ -36,4 +36,14 @@
 (column-number-mode)
 (setq column-number-indicator-zero-based nil)
 
+(straight-use-package 'modus-themes)
+(setq modus-themes-mixed-fonts t
+      modus-themes-variable-pitch-ui nil
+      modus-themes-italic-constructs t
+      modus-themes-bold-constructs nil
+      modus-themes-org-blocks nil
+      modus-themes-completions '((t . (extrabold)))
+      modus-themes-prompts nil)
+(load-theme 'modus-operandi t)
+
 (provide 'osf-ui)
