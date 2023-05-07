@@ -63,4 +63,8 @@
       (file-name-as-directory
        (expand-file-name "url" osf-cache-dir)))
 
+(setq image-dired-dir
+      (file-name-as-directory
+       (expand-file-name "image-dired" osf-cache-dir)))
+
 (provide 'osf-clean-dir)
