@@ -37,4 +37,11 @@
   (osf-keymap-set dired-mode-map
     "M-RET" #'osf-dired-open-by-system-default-app))
 
+(with-eval-after-load 'image-dired-external
+  (when (executable-find "magick")
+    (setq image-dired-cmd-create-thumbnail-program "magick")
+    (unless (member "convert" image-dired-cmd-create-thumbnail-options)
+      (setq image-dired-cmd-create-thumbnail-options
+            (cons "convert" image-dired-cmd-create-thumbnail-options)))))
+
 (provide 'osf-dired)
