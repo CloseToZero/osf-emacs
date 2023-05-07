@@ -57,6 +57,7 @@
 (require 'osf-shell)
 (require 'osf-org)
 (require 'osf-markdown)
+(require 'osf-emacs-lisp)
 (require 'osf-common-lisp)
 (require' osf-zig)
 (when (eq osf-system-type 'windows)
