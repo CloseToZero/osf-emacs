@@ -35,7 +35,8 @@
       (osf-open-by-system-default-app cur-file-name)))
 
   (osf-keymap-set dired-mode-map
-    "M-RET" #'osf-dired-open-by-system-default-app))
+    "M-RET" #'osf-dired-open-by-system-default-app
+    "C-t A" #'image-dired-show-all-from-dir))
 
 (with-eval-after-load 'image-dired-external
   (when (executable-find "magick")
