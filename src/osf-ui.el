@@ -37,6 +37,7 @@
 (setq column-number-indicator-zero-based nil)
 
 (straight-use-package 'modus-themes)
+
 (setq modus-themes-mixed-fonts t
       modus-themes-variable-pitch-ui nil
       modus-themes-italic-constructs t
@@ -44,6 +45,22 @@
       modus-themes-org-blocks nil
       modus-themes-completions '((t . (extrabold)))
       modus-themes-prompts nil)
-(load-theme 'modus-operandi t)
+
+(defun osf-make-invisible-window-dividers ()
+  "Make window dividers invisible."
+  (modify-all-frames-parameters
+   '((right-divider-width . 20)
+     (internal-border-width . 20)))
+  (let ((bg (face-background 'default)))
+    (custom-set-faces
+     `(fringe ((t :background ,bg :foreground ,bg)))
+     `(window-divider ((t :background ,bg :foreground ,bg)))
+     `(window-divider-first-pixel ((t :background ,bg :foreground ,bg)))
+     `(window-divider-last-pixel ((t :background ,bg :foreground ,bg))))))
+
+(add-hook 'modus-themes-after-load-theme-hook #'osf-make-invisible-window-dividers)
+
+(require 'modus-themes)
+(modus-themes-load-theme 'modus-operandi)
 
 (provide 'osf-ui)
