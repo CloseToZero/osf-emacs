@@ -67,7 +67,9 @@ argument by \\[universal-argument] or \\[negative-argument] for
 asking a major mode to start with.")
 
 (defvar osf-scratch-insert-header-comment t
-  "Whether insert header comment like \"Scratch buffer for emacs-lisp-mode\".")
+  "Whether insert header comment like \"Scratch buffer for emacs-lisp-mode\".
+NOTE: when the major mode does not have comment syntax, not
+header comment is inserted.")
 
 (defvar-local osf-scratch-buffer? nil
   "Whether the current buffer is a scratch buffer.")
@@ -131,16 +133,17 @@ MODE is the major mode."
     (with-current-buffer buffer
       (funcall mode)
       (when (and new-buffer? osf-scratch-insert-header-comment)
-        (let ((temp-content "a"))
-          (insert temp-content) ; temp content for restoring the current position.
-          (save-excursion
-            (beginning-of-buffer)
-            (comment-region
-             (point)
-             (progn
-               (insert "Scratch buffer for " (symbol-name mode) "\n\n")
-               (point))))
-          (delete-backward-char (length temp-content))))
+        (when comment-start
+          (let ((temp-content "a"))
+            (insert temp-content) ; temp content for restoring the current position.
+            (save-excursion
+              (beginning-of-buffer)
+              (comment-region
+               (point)
+               (progn
+                 (insert "Scratch buffer for " (symbol-name mode) "\n\n")
+                 (point))))
+            (delete-backward-char (length temp-content)))))
       (setq osf-scratch-buffer? t)
       (run-hooks osf-scratch-create-buffer-hook))
     (pop-to-buffer buffer)))
