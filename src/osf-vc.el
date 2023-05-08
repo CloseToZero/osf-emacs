@@ -26,4 +26,9 @@
 
 (straight-use-package 'magit)
 
+(with-eval-after-load 'project
+  (when (boundp 'project-prefix-map)
+    (keymap-set project-prefix-map "m" #'magit-project-status)
+    (add-to-list 'project-switch-commands '(magit-project-status "Magit") t)))
+
 (provide 'osf-vc)
