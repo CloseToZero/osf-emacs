@@ -119,9 +119,9 @@ MODE is the major mode."
                  nil t nil 'osf-scratch-major-mode-history
                  (funcall osf-scratch-major-mode-display-name-fn major-mode))))
           (seq-find
-           (lambda (major-mode)
+           (lambda (major-mode-v) ; avoid warning about shadowing the variable `major-mode'.
              (string=
-              (funcall osf-scratch-major-mode-display-name-fn major-mode)
+              (funcall osf-scratch-major-mode-display-name-fn major-mode-v)
               selected-major-mode-display-name))
            major-modes))
       major-mode)))
