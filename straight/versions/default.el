@@ -10,6 +10,7 @@
  ("map" . "a0e501aede34f183a8baa5d3d41610a3ffa1728e")
  ("markdown-mode" . "5d98592fe516748034d8baf92d7c0ba045e1f87a")
  ("melpa" . "86ca8d06599c8d7d9067ce92ae5dde3b122f6796")
+ ("modus-themes" . "df7749bbedd2fcbc4f7119df3eb61c84f124f128")
  ("nongnu-elpa" . "0120f3dfe80cffe0c3016080d9205d12be3b741d")
  ("orderless" . "e6784026717a8a6a7dcd0bf31fd3414f148c542e")
  ("ox-hugo" . "9544656589cf4878f5cf501744e36e9ee256c5f7")
