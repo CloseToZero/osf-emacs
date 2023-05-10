@@ -29,4 +29,4 @@
 (osf-keymap-global-set
   "C-:" #'avy-goto-char-timer)
 
-(provide 'osf-navigation)
+(provide 'osf-avy)
