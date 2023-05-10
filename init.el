@@ -49,6 +49,7 @@
 (require 'osf-server)
 (require 'osf-undo)
 (require 'osf-completion)
+(require 'osf-navigation)
 (require 'osf-recent-files)
 (require 'osf-search)
 (require 'osf-dired)
