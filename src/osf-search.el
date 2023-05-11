@@ -25,7 +25,8 @@
 ;;; Code:
 
 ;; Don't terminate the search if we just pressed a control character.
-(setq search-exit-option 'edit)
+(setq search-exit-option 'edit
+      isearch-wrap-pause 'no)
 
 ;; Swap the bindings of DEL and C-M-w, so that DEL always delete a
 ;; character rather than undo the previous search action.
