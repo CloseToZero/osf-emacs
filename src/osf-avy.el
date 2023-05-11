@@ -27,6 +27,8 @@
 (straight-use-package 'avy)
 (setq avy-timeout-seconds nil)
 (osf-keymap-global-set
-  "C-:" #'avy-goto-char-timer)
+  "C-:" #'avy-goto-char-timer
+  "M-g l" #'avy-goto-line-below
+  "M-g L" #'avy-goto-line-above)
 
 (provide 'osf-avy)
