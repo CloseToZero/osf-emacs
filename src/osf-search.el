@@ -36,4 +36,14 @@
 (straight-use-package 'deadgrep)
 (keymap-global-set "M-s r" #'deadgrep)
 
+(when (executable-find "rg")
+  (with-eval-after-load 'project
+    (when (boundp 'project-prefix-map)
+      (keymap-set project-prefix-map "g" #'deadgrep)
+      (setq project-switch-commands
+            (cl-delete-if (lambda (e)
+                            (eq (car e) 'project-find-regexp))
+                          project-switch-commands))
+      (add-to-list 'project-switch-commands '(deadgrep "Deadgrep") t))))
+
 (provide 'osf-search)
