@@ -24,7 +24,8 @@
 
 ;;; Code:
 
-(setq read-buffer-completion-ignore-case t)
+(setq read-buffer-completion-ignore-case t
+      read-file-name-completion-ignore-case t)
 
 (with-eval-after-load 'minibuffer
   ;; Unbind "SPC" from `minibuffer-complete-word',
