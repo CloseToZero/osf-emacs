@@ -55,7 +55,6 @@
 (require 'osf-scratch)
 (require 'osf-vc)
 (require 'osf-avy)
-(require 'osf-expand-region)
 (require 'osf-shell)
 (require 'osf-org)
 (require 'osf-markdown)
