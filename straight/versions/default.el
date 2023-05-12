@@ -5,6 +5,7 @@
  ("el-get" . "22c83206bab10100fdee03cb2d5b97c8c24eff0e")
  ("emacs-reformatter" . "f454b179ab7d39dc8783b9f2a046cab353b272f5")
  ("emacsmirror-mirror" . "606c3dcfc57ee47a9969b4d9f3d87408f14ebffb")
+ ("expand-region.el" . "b70feaa644310dc2d599dc277cd20a1f2b6446ac")
  ("gnu-elpa-mirror" . "eda4c968f0400750e17a013bb80832088dab12d1")
  ("macrostep" . "cdaa3a5e8235b6edd2e862eb272710471a82039d")
  ("magit" . "6067f92c0195616707b25e23c2d4c0dd81928fd8")
