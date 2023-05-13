@@ -145,7 +145,8 @@
 
 (defvar-keymap osf-window-map
   "a" #'osf-act-on-window
-  "M-o" #'osf-select-mru-window)
+  "TAB" #'osf-select-mru-window
+  "M-o" #'other-window)
 (fset #'osf-window-map osf-window-map)
 
 (osf-keymap-global-set
