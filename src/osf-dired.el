@@ -36,7 +36,8 @@
 
   (osf-keymap-set dired-mode-map
     "M-RET" #'osf-dired-open-by-system-default-app
-    "C-t A" #'image-dired-show-all-from-dir))
+    "C-t A" #'image-dired-show-all-from-dir
+    "C-c w" #'wdired-change-to-wdired-mode))
 
 (with-eval-after-load 'image-dired-external
   (when (executable-find "magick")
