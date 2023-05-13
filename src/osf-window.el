@@ -144,7 +144,7 @@
   (select-window (split-window-below nil target-window)))
 
 (defvar-keymap osf-window-map
-  "s" #'osf-act-on-window
+  "a" #'osf-act-on-window
   "M-o" #'osf-select-mru-window)
 (fset #'osf-window-map osf-window-map)
 
