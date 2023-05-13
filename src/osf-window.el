@@ -29,20 +29,20 @@
   (when-let ((mru-window (get-mru-window nil t t nil)))
     (select-window mru-window)))
 
-(defvar osf-select-window-posframes nil)
-(defvar osf-select-window-posframes-limit 10)
-(defvar osf-select-window-actions
+(defvar osf-act-on-window-posframes nil)
+(defvar osf-act-on-window-posframes-limit 10)
+(defvar osf-act-on-window-actions
   `(
-    ("Select window" ,#'osf-select-window-action-select)
-    ("Delete window" ,#'osf-select-window-action-delete)
-    ("Swap window" ,#'osf-select-window-action-swap)
+    ("Select window" ,#'osf-act-on-window-action-select)
+    ("Delete window" ,#'osf-act-on-window-action-delete)
+    ("Swap window" ,#'osf-act-on-window-action-swap)
     ))
 
-(defface osf-select-window-tag-face
+(defface osf-act-on-window-tag-face
   '((t (:foreground "red" :underline nil :height 2.0)))
-  "Tag face for the posframes of `osf-select-window'.")
+  "Tag face for the posframes of `osf-act-on-window'.")
 
-(defun osf-select-window ()
+(defun osf-act-on-window ()
   (interactive)
   (let* ((windows
           (sort (sort (cl-remove (selected-window) (window-list))
@@ -66,19 +66,19 @@
                    for window = (plist-get window-with-tag :window)
                    for tag = (plist-get window-with-tag :tag)
                    do
-                   (let ((buffer (format " *osf-select-window-%d*" i)))
-                     (unless (> (length osf-select-window-posframes) i)
-                       (setq osf-select-window-posframes
-                             (nconc osf-select-window-posframes
+                   (let ((buffer (format " *osf-act-on-window-%d*" i)))
+                     (unless (> (length osf-act-on-window-posframes) i)
+                       (setq osf-act-on-window-posframes
+                             (nconc osf-act-on-window-posframes
                                     (list (get-buffer-create buffer)))))
                      (with-selected-window window
                        (posframe-show
                         buffer
                         :string tag
                         :poshandler #'posframe-poshandler-window-center
-                        :font (face-font 'osf-select-window-tag-face)
-                        :background-color (face-background 'osf-select-window-tag-face nil t)
-                        :foreground-color (face-foreground 'osf-select-window-tag-face nil t)))))
+                        :font (face-font 'osf-act-on-window-tag-face)
+                        :background-color (face-background 'osf-act-on-window-tag-face nil t)
+                        :foreground-color (face-foreground 'osf-act-on-window-tag-face nil t)))))
           (let* ((selected-tag
                   (completing-read "Window: "
                                    (mapcar (lambda (window-with-tag)
@@ -93,35 +93,35 @@
                                windows-with-tag)
                    :window))
                  (selected-action
-                  (let* ((action-names (mapcar #'cl-first osf-select-window-actions))
+                  (let* ((action-names (mapcar #'cl-first osf-act-on-window-actions))
                          (selected-action-name
                           (completing-read "Action: "
                                            action-names nil t nil t action-names)))
-                    (cl-second (assoc selected-action-name osf-select-window-actions)))))
+                    (cl-second (assoc selected-action-name osf-act-on-window-actions)))))
             (funcall selected-action selected-window current-window))
           (osf--cleanup-posframes))
       (osf--cleanup-posframes))))
 
 (defun osf--cleanup-posframes ()
   (cl-loop for i from 0
-           for buffer in osf-select-window-posframes
+           for buffer in osf-act-on-window-posframes
            do
            (condition-case nil
-               (if (>= i osf-select-window-posframes-limit)
+               (if (>= i osf-act-on-window-posframes-limit)
                    (posframe-delete buffer)
                  (posframe-hide buffer))
              (error nil)))
-  (setq osf-select-window-posframes
-        (osf-truncate-list! osf-select-window-posframes
-                            osf-select-window-posframes-limit)))
+  (setq osf-act-on-window-posframes
+        (osf-truncate-list! osf-act-on-window-posframes
+                            osf-act-on-window-posframes-limit)))
 
-(defun osf-select-window-action-select (target-window current-window)
+(defun osf-act-on-window-action-select (target-window current-window)
   (select-window target-window))
 
-(defun osf-select-window-action-delete (target-window current-window)
+(defun osf-act-on-window-action-delete (target-window current-window)
   (delete-window target-window))
 
-(defun osf-select-window-action-swap (target-window current-window)
+(defun osf-act-on-window-action-swap (target-window current-window)
   (let ((target-buffer (window-buffer target-window))
         (current-buffer (window-buffer current-window)))
     (when (window-dedicated-p target-window)
@@ -136,7 +136,7 @@
     (set-window-buffer current-window target-buffer)))
 
 (defvar-keymap osf-window-map
-  "s" #'osf-select-window
+  "s" #'osf-act-on-window
   "M-o" #'osf-select-mru-window)
 (fset #'osf-window-map osf-window-map)
 
