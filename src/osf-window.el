@@ -31,6 +31,12 @@
 
 (defvar osf-select-window-posframes nil)
 (defvar osf-select-window-posframes-limit 10)
+(defvar osf-select-window-actions
+  `(
+    ("Select window" ,#'osf-select-window-action-select)
+    ("Delete window" ,#'osf-select-window-action-delete)
+    ("Swap window" ,#'osf-select-window-action-swap)
+    ))
 
 (defface osf-select-window-tag-face
   '((t (:foreground "red" :underline nil :height 2.0)))
@@ -74,19 +80,25 @@
                         :background-color (face-background 'osf-select-window-tag-face nil t)
                         :foreground-color (face-foreground 'osf-select-window-tag-face nil t)))))
           (let* ((selected-tag
-                  (completing-read "window: "
+                  (completing-read "Window: "
                                    (mapcar (lambda (window-with-tag)
                                              (plist-get window-with-tag :tag))
                                            windows-with-tag)
                                    nil t nil t))
+                 (current-window (selected-window))
                  (selected-window
                   (plist-get
                    (cl-find-if (lambda (window-with-tag)
                                  (string= (plist-get window-with-tag :tag) selected-tag))
                                windows-with-tag)
-                   :window)))
-            (when selected-window
-              (select-window selected-window)))
+                   :window))
+                 (selected-action
+                  (let* ((action-names (mapcar #'cl-first osf-select-window-actions))
+                         (selected-action-name
+                          (completing-read "Action: "
+                                           action-names nil t nil t action-names)))
+                    (cl-second (assoc selected-action-name osf-select-window-actions)))))
+            (funcall selected-action selected-window current-window))
           (osf--cleanup-posframes))
       (osf--cleanup-posframes))))
 
@@ -102,6 +114,26 @@
   (setq osf-select-window-posframes
         (osf-truncate-list! osf-select-window-posframes
                             osf-select-window-posframes-limit)))
+
+(defun osf-select-window-action-select (target-window current-window)
+  (select-window target-window))
+
+(defun osf-select-window-action-delete (target-window current-window)
+  (delete-window target-window))
+
+(defun osf-select-window-action-swap (target-window current-window)
+  (let ((target-buffer (window-buffer target-window))
+        (current-buffer (window-buffer current-window)))
+    (when (window-dedicated-p target-window)
+      (user-error
+       "Cannot swap the target window %S, it's a dedicated window"
+       target-window))
+    (when (window-dedicated-p current-window)
+      (user-error
+       "Cannot swap the current window %S, it's a dedicated window"
+       current-window))
+    (set-window-buffer target-window current-buffer)
+    (set-window-buffer current-window target-buffer)))
 
 (defvar-keymap osf-window-map
   "s" #'osf-select-window
