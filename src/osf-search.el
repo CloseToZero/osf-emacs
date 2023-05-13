@@ -47,4 +47,45 @@
                           project-switch-commands))
       (add-to-list 'project-switch-commands '(deadgrep "Deadgrep") t))))
 
+(with-eval-after-load 'deadgrep
+  (defun osf-deadgrep-edit ()
+    (interactive)
+    (deadgrep-edit-mode)
+    (message
+     "%s"
+     (substitute-command-keys
+      "\\[osf-deadgrep-edit-abort] to abort the changes, \
+\\[osf-deadgrep-edit-exit] to exit the edit")))
+
+  (defun osf-deadgrep-edit-exit ()
+    (interactive)
+    (when (yes-or-no-p "Exit the edit? (the changes won't be rolled back) ")
+      (deadgrep-mode)))
+
+  (defvar osf--fake-undo-entry '(apply osf--fake-undo-command))
+  (defun osf--fake-undo-command ()
+    (push osf--fake-undo-entry buffer-undo-list))
+  (defun osf---deadgrep-edit-mark-undo-point ()
+    (osf--fake-undo-command))
+  (add-hook 'deadgrep-edit-mode-hook #'osf---deadgrep-edit-mark-undo-point)
+
+  (defun osf-deadgrep-edit-abort ()
+    (interactive)
+    (unless (eq major-mode 'deadgrep-edit-mode)
+      (user-error "Current major-mode is not `deadgrep-edit-mode'"))
+    (when (yes-or-no-p "Roll back changes? ")
+      (unless (equal (car buffer-undo-list) osf--fake-undo-entry)
+        (undo-start)
+        (while (and (listp pending-undo-list)
+                    (not (equal (car buffer-undo-list) osf--fake-undo-entry)))
+          (undo-more 1)))
+      (deadgrep-mode)))
+
+  (osf-keymap-set deadgrep-edit-mode-map
+    "C-c C-k" #'osf-deadgrep-edit-abort
+    "C-c C-c" #'osf-deadgrep-edit-exit)
+
+  (osf-keymap-set deadgrep-mode-map
+    "C-c w" #'osf-deadgrep-edit))
+
 (provide 'osf-search)
