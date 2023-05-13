@@ -36,6 +36,8 @@
     ("Select window" ,#'osf-act-on-window-action-select)
     ("Delete window" ,#'osf-act-on-window-action-delete)
     ("Swap window" ,#'osf-act-on-window-action-swap)
+    ("Split window right" ,#'osf-act-on-window-action-split-right)
+    ("Split window below" ,#'osf-act-on-window-action-split-below)
     ))
 
 (defface osf-act-on-window-tag-face
@@ -134,6 +136,12 @@
        current-window))
     (set-window-buffer target-window current-buffer)
     (set-window-buffer current-window target-buffer)))
+
+(defun osf-act-on-window-action-split-right (target-window current-winow)
+  (select-window (split-window-right nil target-window)))
+
+(defun osf-act-on-window-action-split-below (target-window current-winow)
+  (select-window (split-window-below nil target-window)))
 
 (defvar-keymap osf-window-map
   "s" #'osf-act-on-window
