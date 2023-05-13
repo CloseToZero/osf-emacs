@@ -38,7 +38,16 @@
 
 (defun osf-select-window ()
   (interactive)
-  (let* ((windows (cl-remove (selected-window) (window-list)))
+  (let* ((windows
+          (sort (sort (cl-remove (selected-window) (window-list))
+                      (lambda (window1 window2)
+                        (<= (window-pixel-top window1)
+                            (window-pixel-top window2))))
+                (lambda (window1 window2)
+                  (and (<= (window-pixel-top window1)
+                           (window-pixel-top window2))
+                       (<= (window-pixel-left window1)
+                           (window-pixel-left window2))))))
          (windows-with-tag
           (cl-loop for window in windows
                    for tag from 1
