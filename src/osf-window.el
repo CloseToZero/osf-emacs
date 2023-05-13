@@ -41,7 +41,7 @@
     ))
 
 (defface osf-act-on-window-tag-face
-  '((t (:foreground "red" :underline nil :height 2.0)))
+  '((t (:foreground "#d00000" :underline nil :height 2.0)))
   "Tag face for the posframes of `osf-act-on-window'.")
 
 (defun osf-act-on-window ()
