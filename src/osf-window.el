@@ -146,7 +146,15 @@
 (defvar-keymap osf-window-map
   "a" #'osf-act-on-window
   "TAB" #'osf-select-mru-window
-  "M-o" #'other-window)
+  "m" #'delete-other-windows
+  "r" #'split-window-right
+  "b" #'split-window-below
+  "M-o" #'other-window
+  "i" #'windmove-up
+  "k" #'windmove-down
+  "j" #'windmove-left
+  "l" #'windmove-right
+  )
 (fset #'osf-window-map osf-window-map)
 
 (osf-keymap-global-set
