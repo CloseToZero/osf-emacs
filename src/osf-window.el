@@ -45,7 +45,7 @@
 (defun osf-act-on-window ()
   (interactive)
   (let* ((windows
-          (sort (sort (cl-remove (selected-window) (window-list))
+          (sort (sort (window-list)
                       (lambda (window1 window2)
                         (<= (window-pixel-top window1)
                             (window-pixel-top window2))))
