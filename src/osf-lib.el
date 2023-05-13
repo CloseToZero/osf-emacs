@@ -24,6 +24,26 @@
 
 (straight-use-package 'compat)
 
+(straight-use-package 'posframe)
+
+(defun osf-nthcdr (list n)
+  (when (>= n 0)
+    (cl-loop repeat n
+             for cons on list by #'cdr
+             finally (return cons))))
+
+(defun osf-truncate-list! (list n)
+  "Truncate the LIST to the max length of N, return the truncated list.
+
+Example:
+(osf-truncate-list! '(1 2 3) 4) => '(1 2 3)
+(osf-truncate-list! '(1 2 3 4) 4) => '(1 2 3 4)
+(osf-truncate-list! '(1 2 3 4 5) 4) => '(1 2 3 4)"
+  (cond ((zerop n) nil)
+        (t (when-let ((cons (osf-nthcdr list (- n 1))))
+             (setcdr cons nil))
+           list)))
+
 (defun osf-edit-config ()
   (interactive)
   (find-file user-init-file))

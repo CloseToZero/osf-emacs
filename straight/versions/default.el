@@ -15,6 +15,7 @@
  ("nongnu-elpa" . "0120f3dfe80cffe0c3016080d9205d12be3b741d")
  ("orderless" . "e6784026717a8a6a7dcd0bf31fd3414f148c542e")
  ("ox-hugo" . "9544656589cf4878f5cf501744e36e9ee256c5f7")
+ ("posframe" . "3b97dc180b03498103cfcc7f44e64150df440bf0")
  ("s.el" . "dda84d38fffdaf0c9b12837b504b402af910d01d")
  ("slime" . "da5c14434db241bb82d340e5d9ca13acd125a83d")
  ("spinner" . "634529bb3173e09b37499f636de70abf29d9fa8a")
