@@ -24,6 +24,11 @@
 
 ;;; Code:
 
+(defun osf-select-mru-window ()
+  (interactive)
+  (when-let ((mru-window (get-mru-window nil t t nil)))
+    (select-window mru-window)))
+
 (defvar osf-select-window-posframes nil)
 (defvar osf-select-window-posframes-limit 10)
 
@@ -89,10 +94,10 @@
         (osf-truncate-list! osf-select-window-posframes
                             osf-select-window-posframes-limit)))
 
-(progn
-  (defvar-keymap osf-window-map
-    "s" #'osf-select-window)
-  (fset #'osf-window-map osf-window-map))
+(defvar-keymap osf-window-map
+  "s" #'osf-select-window
+  "M-o" #'osf-select-mru-window)
+(fset #'osf-window-map osf-window-map)
 
 (osf-keymap-global-set
   "M-o" 'osf-window-map)
