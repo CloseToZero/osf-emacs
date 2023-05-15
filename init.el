@@ -53,6 +53,7 @@
 (require 'osf-search)
 (require' osf-window)
 (require 'osf-dired)
+(require 'osf-project)
 (require 'osf-scratch)
 (require 'osf-vc)
 (require 'osf-avy)
