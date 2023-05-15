@@ -149,6 +149,7 @@
   "m" #'delete-other-windows
   "r" #'split-window-right
   "b" #'split-window-below
+  "=" #'balance-windows
   "M-o" #'other-window
   "i" #'windmove-up
   "k" #'windmove-down
