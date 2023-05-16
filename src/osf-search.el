@@ -81,11 +81,19 @@
           (undo-more 1)))
       (deadgrep-mode)))
 
+  (defun osf-deadgrep-visit-result-other-window ()
+    "Like `deadgrep-visit-result-other-window', but stay at the same window."
+    (interactive)
+    (let ((old-window (selected-window)))
+      (deadgrep-visit-result-other-window)
+      (select-window old-window)))
+
   (osf-keymap-set deadgrep-edit-mode-map
     "C-c C-k" #'osf-deadgrep-edit-abort
     "C-c C-c" #'osf-deadgrep-edit-exit)
 
   (osf-keymap-set deadgrep-mode-map
-    "C-c w" #'osf-deadgrep-edit))
+    "C-c w" #'osf-deadgrep-edit
+    "O" #'osf-deadgrep-visit-result-other-window))
 
 (provide 'osf-search)
