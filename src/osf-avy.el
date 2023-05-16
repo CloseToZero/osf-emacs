@@ -25,7 +25,8 @@
 ;;; Code:
 
 (straight-use-package 'avy)
-(setq avy-timeout-seconds nil)
+(setq avy-timeout-seconds nil
+      avy-single-candidate-jump nil)
 (osf-keymap-global-set
   "C-:" #'avy-goto-char-timer
   "M-g l" #'avy-goto-line-below
