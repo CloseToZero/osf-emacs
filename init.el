@@ -65,6 +65,7 @@
 (require' osf-zig)
 (when (eq osf-system-type 'windows)
   (require 'osf-total-commander))
+(require 'osf-enable-disabled-commands)
 (require 'osf-bind-keys)
 
 (load custom-file t t)
