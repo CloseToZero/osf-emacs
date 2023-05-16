@@ -50,6 +50,7 @@
 (require 'osf-undo)
 (require 'osf-completion)
 (require 'osf-recent-files)
+(require 'osf-pair)
 (require 'osf-search)
 (require' osf-window)
 (require 'osf-dired)
