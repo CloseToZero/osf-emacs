@@ -59,7 +59,7 @@ path\\to\\arg.exe"
                 (regexp (osf-regexp-literal-any-case program-name))
                 (? ".exe")
                 string-end))))
-  (dolist (program '("rg" "magick" "dot" "TOTALCMD64" "cmder"))
+  (dolist (program '("rg" "magick" "dot" "TOTALCMD64" "cmder" "git"))
     (modify-coding-system-alist
      'process (osf-process-regexp-for-program program)
      (cons 'utf-8 osf-w32-locale-coding-system)))
