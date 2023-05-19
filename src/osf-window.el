@@ -60,33 +60,41 @@
           (cl-loop for window in windows
                    for tag from 1
                    collect (list :window window
-                                 :tag (number-to-string tag)))))
+                                 :tag (number-to-string tag))))
+         (show-tags-action
+          (lambda ()
+            (cl-loop for window-with-tag in windows-with-tag
+                     for i from 0
+                     for window = (plist-get window-with-tag :window)
+                     for tag = (plist-get window-with-tag :tag)
+                     do
+                     (let ((buffer (format " *osf-act-on-window-%d*" i)))
+                       (unless (> (length osf-act-on-window-posframes) i)
+                         (setq osf-act-on-window-posframes
+                               (nconc osf-act-on-window-posframes
+                                      (list (get-buffer-create buffer)))))
+                       (with-selected-window window
+                         (posframe-show
+                          buffer
+                          :string tag
+                          :poshandler #'posframe-poshandler-window-center
+                          :font (face-font 'osf-act-on-window-tag-face)
+                          :background-color (face-background 'osf-act-on-window-tag-face nil t)
+                          :foreground-color (face-foreground 'osf-act-on-window-tag-face nil t)))))))
+         (reposition-timer nil))
     (unwind-protect
         (progn
-          (cl-loop for window-with-tag in windows-with-tag
-                   for i from 0
-                   for window = (plist-get window-with-tag :window)
-                   for tag = (plist-get window-with-tag :tag)
-                   do
-                   (let ((buffer (format " *osf-act-on-window-%d*" i)))
-                     (unless (> (length osf-act-on-window-posframes) i)
-                       (setq osf-act-on-window-posframes
-                             (nconc osf-act-on-window-posframes
-                                    (list (get-buffer-create buffer)))))
-                     (with-selected-window window
-                       (posframe-show
-                        buffer
-                        :string tag
-                        :poshandler #'posframe-poshandler-window-center
-                        :font (face-font 'osf-act-on-window-tag-face)
-                        :background-color (face-background 'osf-act-on-window-tag-face nil t)
-                        :foreground-color (face-foreground 'osf-act-on-window-tag-face nil t)))))
+          ;; Constantly adjust posframe's height for dynamic minibuffer resizing.
+          (setq reposition-timer (run-with-timer nil 0.25 show-tags-action))
           (let* ((selected-tag
-                  (completing-read "Window: "
-                                   (mapcar (lambda (window-with-tag)
-                                             (plist-get window-with-tag :tag))
-                                           windows-with-tag)
-                                   nil t nil t))
+                  (progn
+                    ;; Show tags after `completing-read' to count for minibuffer's height.
+                    (run-with-timer 0 nil show-tags-action)
+                    (completing-read "Window: "
+                                     (mapcar (lambda (window-with-tag)
+                                               (plist-get window-with-tag :tag))
+                                             windows-with-tag)
+                                     nil t nil t)))
                  (current-window (selected-window))
                  (selected-window
                   (plist-get
@@ -97,11 +105,15 @@
                  (selected-action
                   (let* ((action-names (mapcar #'cl-first osf-act-on-window-actions))
                          (selected-action-name
-                          (completing-read "Action: "
-                                           action-names nil t nil t action-names)))
+                          (progn
+                            (run-with-timer 0 nil show-tags-action)
+                            (completing-read "Action: "
+                                             action-names nil t nil t action-names))))
                     (cl-second (assoc selected-action-name osf-act-on-window-actions)))))
             (funcall selected-action selected-window current-window))
+          (when reposition-timer (cancel-timer reposition-timer))
           (osf--cleanup-posframes))
+      (when reposition-timer (cancel-timer reposition-timer))
       (osf--cleanup-posframes))))
 
 (defun osf--cleanup-posframes ()
