@@ -43,4 +43,14 @@
       `((?# . ,#'orderless-regexp)
         (?! . ,#'orderless-without-literal)))
 
+(defun osf-switch-to-completions-or-scroll-down (&optional arg)
+  (interactive "^P")
+  (cond (arg (scroll-down-command arg))
+        (t (if-let ((window (get-buffer-window "*Completions*" 0)))
+               (switch-to-completions)
+             (scroll-down-command)))))
+
+(osf-keymap-global-set
+  "M-v" #'osf-switch-to-completions-or-scroll-down)
+
 (provide 'osf-completion)
