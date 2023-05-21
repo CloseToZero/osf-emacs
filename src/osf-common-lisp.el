@@ -35,6 +35,19 @@
 
   (when (executable-find "ros")
     (add-to-list 'slime-lisp-implementations '(roswell ("ros" "run")))
-    (setq slime-default-lisp 'roswell)))
+    (setq slime-default-lisp 'roswell))
+
+  (defun osf--slime-auto-select-popup-buffer ()
+    (add-hook
+     'window-buffer-change-functions
+     #'osf--slime-auto-select-popup-buffer-change-function nil t))
+  (add-hook 'slime-popup-buffer-mode-hook #'osf--slime-auto-select-popup-buffer)
+
+  (defun osf--slime-auto-select-popup-buffer-change-function (window)
+    (unless (eq (selected-window) window)
+      (select-window window))
+    (remove-hook
+     'window-buffer-change-functions
+     #'osf--slime-auto-select-popup-buffer-change-function t)))
 
 (provide 'osf-common-lisp)
