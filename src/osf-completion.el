@@ -50,7 +50,9 @@
   (interactive "^P")
   (cond (arg (scroll-down-command arg))
         (t (if-let ((window (get-buffer-window "*Completions*" 0)))
-               (switch-to-completions)
+               (if (eq (selected-window) window)
+                   (scroll-down-command)
+                 (switch-to-completions))
              (scroll-down-command)))))
 
 (osf-keymap-global-set
