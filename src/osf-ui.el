@@ -36,4 +36,7 @@
 (column-number-mode)
 (setq column-number-indicator-zero-based nil)
 
+(straight-use-package 'beacon)
+(beacon-mode)
+
 (provide 'osf-ui)
