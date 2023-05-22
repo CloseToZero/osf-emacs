@@ -45,16 +45,23 @@
 (fset #'osf-puni-lisp-sexp-edit-map osf-puni-lisp-sexp-edit-map)
 
 (defun osf-puni-setup-lisp-sexp-edit-map-locally ()
+  (unless (bound-and-true-p puni-mode)
+    (error "`puni-mode' not enabled"))
   (let ((map (make-sparse-keymap)))
     (set-keymap-parent map (current-local-map))
     (osf-keymap-set map
       "M-e" 'osf-puni-lisp-sexp-edit-map)
     (use-local-map map)))
-(dolist (hook '(emacs-lisp-mode-hook
-                lisp-mode-hook
-                lisp-data-mode-hook
-                scheme-mode-hook))
-  (add-hook hook #'osf-puni-setup-lisp-sexp-edit-map-locally))
+
+(defun osf--puni-setup-lisp-sexp-edit-map-locally-check-modes ()
+  (when (memq major-mode '(emacs-lisp-mode
+                           lisp-mode
+                           lisp-data-mode
+                           scheme-mode))
+    (osf-puni-setup-lisp-sexp-edit-map-locally)))
+
+(add-hook 'puni-mode-hook
+          #'osf--puni-setup-lisp-sexp-edit-map-locally-check-modes)
 (add-hook 'eval-expression-minibuffer-setup-hook
           #'osf-puni-setup-lisp-sexp-edit-map-locally)
 
