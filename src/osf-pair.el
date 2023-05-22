@@ -37,8 +37,8 @@
   "r" #'puni-raise
   "s" #'puni-split
   "S" #'puni-splice
-  "\)" #'puni-slurp-forward
-  "\(" #'puni-barf-forward
+  "." #'puni-slurp-forward
+  "," #'puni-barf-forward
   "\<" #'puni-slurp-backward
   "\>" #'puni-barf-backward
   )
