@@ -27,6 +27,10 @@
 (electric-pair-mode)
 
 (straight-use-package 'puni)
+(require 'puni)
+(osf-keymap-set puni-mode-map
+  "DEL" nil
+  "C-d" nil)
 (puni-global-mode)
 
 (defvar-keymap osf-puni-lisp-sexp-edit-map
