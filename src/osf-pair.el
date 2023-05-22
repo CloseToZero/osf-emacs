@@ -29,7 +29,7 @@
 (straight-use-package 'puni)
 (puni-global-mode)
 
-(defvar-keymap puni-lisp-sexp-edit-map
+(defvar-keymap osf-puni-lisp-sexp-edit-map
   "r" #'puni-raise
   "s" #'puni-split
   "S" #'puni-splice
@@ -38,13 +38,13 @@
   "\<" #'puni-slurp-backward
   "\>" #'puni-barf-backward
   )
-(fset #'puni-lisp-sexp-edit-map puni-lisp-sexp-edit-map)
+(fset #'osf-puni-lisp-sexp-edit-map osf-puni-lisp-sexp-edit-map)
 
 (defun osf-puni-setup-lisp-sexp-edit-map-locally ()
   (let ((map (make-sparse-keymap)))
     (set-keymap-parent map (current-local-map))
     (osf-keymap-set map
-      "M-e" 'puni-lisp-sexp-edit-map)
+      "M-e" 'osf-puni-lisp-sexp-edit-map)
     (use-local-map map)))
 (dolist (hook '(emacs-lisp-mode-hook
                 lisp-mode-hook
