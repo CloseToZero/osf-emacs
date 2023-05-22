@@ -27,6 +27,9 @@
 (setq read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t)
 
+(setq dabbrev-case-replace nil
+      dabbrev-case-fold-search t)
+
 (with-eval-after-load 'minibuffer
   ;; Unbind "SPC" from `minibuffer-complete-word',
   ;; Bind `minibuffer-complete-word' to M-SPC instead.
