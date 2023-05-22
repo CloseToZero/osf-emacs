@@ -26,4 +26,7 @@
 
 (electric-pair-mode)
 
+(straight-use-package 'puni)
+(puni-global-mode)
+
 (provide 'osf-pair)
