@@ -51,5 +51,7 @@
                 lisp-data-mode-hook
                 scheme-mode-hook))
   (add-hook hook #'osf-puni-setup-lisp-sexp-edit-map-locally))
+(add-hook 'eval-expression-minibuffer-setup-hook
+          #'osf-puni-setup-lisp-sexp-edit-map-locally)
 
 (provide 'osf-pair)
