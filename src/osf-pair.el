@@ -28,9 +28,33 @@
 
 (straight-use-package 'puni)
 (require 'puni)
+
+(defun osf-puni-kill-line (&optional n)
+  "Like `puni-kill-line', but won't try to delete whitespace."
+  (interactive "P")
+  (let* ((from (point))
+         to)
+    (if (and n (< n 0))
+        (puni-backward-kill-line (- n))
+      (setq to (save-excursion (forward-line (or n 1))
+                               (point)))
+      (unless (or kill-whole-line
+                  ;; This is default behavior of Emacs: When the prefix
+                  ;; argument is specified, always kill whole line.
+                  n
+                  ;; This means we started from the end of a line, and the
+                  ;; following newline char should be killed.
+                  (eq to (1+ from))
+                  (save-excursion (goto-char to)
+                                  (and (eobp) (eolp))))
+        (setq to (1- to)))
+      (puni-soft-delete from to 'strict-sexp 'beyond 'kill))))
+
 (osf-keymap-set puni-mode-map
   "DEL" nil
-  "C-d" nil)
+  "C-d" nil
+  "C-k" #'osf-puni-kill-line)
+
 (puni-global-mode)
 
 (defvar-keymap osf-puni-lisp-sexp-edit-map
