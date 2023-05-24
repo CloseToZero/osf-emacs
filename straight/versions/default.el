@@ -7,6 +7,7 @@
  ("emacs-reformatter" . "f454b179ab7d39dc8783b9f2a046cab353b272f5")
  ("emacsmirror-mirror" . "606c3dcfc57ee47a9969b4d9f3d87408f14ebffb")
  ("gnu-elpa-mirror" . "eda4c968f0400750e17a013bb80832088dab12d1")
+ ("imenu-list" . "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
  ("macrostep" . "cdaa3a5e8235b6edd2e862eb272710471a82039d")
  ("magit" . "6067f92c0195616707b25e23c2d4c0dd81928fd8")
  ("map" . "a0e501aede34f183a8baa5d3d41610a3ffa1728e")

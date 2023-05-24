@@ -55,6 +55,7 @@
 (require 'osf-search)
 (require' osf-window)
 (require 'osf-dired)
+(require 'osf-imenu)
 (require 'osf-project)
 (require 'osf-scratch)
 (require 'osf-vc)
