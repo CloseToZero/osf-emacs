@@ -45,7 +45,8 @@
          :after-finalize osf-org-capture-hack-local-variables-if-not-aborted
          :unnarrowed t
          :jump-to-captured t))
-      org-capture-bookmark nil)
+      org-capture-bookmark nil
+      org-imenu-depth 3)
 
 (straight-use-package 'ox-hugo)
 (with-eval-after-load 'ox
