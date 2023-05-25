@@ -25,6 +25,7 @@
 ;;; Code:
 
 (setq js-indent-level 2
-      js-switch-indent-offset js-indent-level)
+      js-switch-indent-offset js-indent-level
+      js-jsx-regexps (list "\\_<\\(?:var\\|let\\|const\\|import\\)\\_>.*?[rR]eact"))
 
 (provide 'osf-js)
