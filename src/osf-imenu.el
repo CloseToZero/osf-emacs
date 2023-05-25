@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(setq imenu-max-item-length 75)
+
 (straight-use-package 'imenu-list)
 (setq imenu-list-focus-after-activation t)
 (osf-keymap-global-set
