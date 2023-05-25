@@ -66,6 +66,7 @@
 (require 'osf-emacs-lisp)
 (require 'osf-common-lisp)
 (require 'osf-zig)
+(require 'osf-js)
 (when (eq osf-system-type 'windows)
   (require 'osf-total-commander))
 (require 'osf-enable-disabled-commands)
