@@ -28,4 +28,9 @@
       js-switch-indent-offset js-indent-level
       js-jsx-regexps (list "\\_<\\(?:var\\|let\\|const\\|import\\)\\_>.*?[rR]eact"))
 
+;; Enable javascript-mode for ".mjs" files.
+(let ((js-regexp-mode (rassoc 'javascript-mode auto-mode-alist)))
+  (setcar js-regexp-mode (rx (or (seq ".mjs" string-end)
+                                 (regexp (car js-regexp-mode))))))
+
 (provide 'osf-js)
