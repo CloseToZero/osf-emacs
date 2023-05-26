@@ -24,7 +24,7 @@
 
 ;;; Code:
 
-(setq recentf-max-saved-items 5000
+(setq recentf-max-saved-items 500
       recentf-max-menu-items 0)
 (osf-inhibit-message #'recentf-save-list)
 (recentf-mode)
