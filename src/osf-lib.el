@@ -23,6 +23,7 @@
 ;;; Code:
 
 (straight-use-package 'compat)
+(require 'compat)
 
 (straight-use-package 'posframe)
 
