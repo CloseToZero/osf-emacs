@@ -29,16 +29,6 @@
 
 (setq history-delete-duplicates t)
 
-(pcase osf-system-type
-  ('mac
-   (setq mac-command-modifier 'meta
-         ns-command-modifier 'meta
-         mac-option-modifier 'super
-         ns-option-modifier 'super))
-  ('windows
-   (setq w32-lwindow-modifier 'super
-         w32-rwindow-modifier 'super)))
-
 (setq initial-major-mode #'fundamental-mode
       initial-scratch-message "")
 
