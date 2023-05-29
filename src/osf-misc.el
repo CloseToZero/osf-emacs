@@ -29,6 +29,10 @@
 
 (setq history-delete-duplicates t)
 
+(when (eq osf-system-type 'windows)
+  (setq w32-lwindow-modifier 'super
+        w32-rwindow-modifier 'super))
+
 (setq initial-major-mode #'fundamental-mode
       initial-scratch-message "")
 
