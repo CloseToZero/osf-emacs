@@ -27,6 +27,8 @@
 (setq-default indent-tabs-mode nil
               tab-width 4)
 
+(setq history-delete-duplicates t)
+
 (setq initial-major-mode #'fundamental-mode
       initial-scratch-message "")
 
