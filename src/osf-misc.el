@@ -29,13 +29,31 @@
 
 (setq history-delete-duplicates t)
 
+(when (eq osf-system-type 'mac)
+  (defun osf-switch-to-builtin-keyboard-modifiers ()
+    (interactive)
+    (setq mac-command-modifier 'meta
+          ns-command-modifier 'meta
+          mac-right-command-modifier 'left
+          mac-option-modifier 'super
+          ns-option-modifier 'super
+          mac-right-option-modifier 'control))
+  (defun osf-switch-to-external-keyboard-modifiers ()
+    (interactive)
+    (setq mac-command-modifier 'super
+          ns-command-modifier 'super
+          mac-right-command-modifier 'left
+          mac-option-modifier 'meta
+          ns-option-modifier 'meta
+          mac-right-option-modifier 'left))
+  (defun osf-toggle-external-keyboard-modifiers ()
+    (if (eq mac-right-command-modifier 'left)
+        (osf-switch-to-builtin-keyboard-modifiers)
+      (osf-switch-to-external-keyboard-modifiers))))
+
 (pcase osf-system-type
   ('mac
-   ;; Make sure external QWERTY keyboards work as expected on Mac.
-   (setq mac-command-modifier 'super
-         ns-command-modifier 'super
-         mac-option-modifier 'meta
-         ns-option-modifier 'meta))
+   (osf-switch-to-builtin-keyboard-modifiers))
   ('windows
    (setq w32-lwindow-modifier 'super
          w32-rwindow-modifier 'super)))
