@@ -29,9 +29,16 @@
 
 (setq history-delete-duplicates t)
 
-(when (eq osf-system-type 'windows)
-  (setq w32-lwindow-modifier 'super
-        w32-rwindow-modifier 'super))
+(pcase osf-system-type
+  ('mac
+   ;; Make sure external QWERTY keyboards work as expected on Mac.
+   (setq mac-command-modifier 'super
+         ns-command-modifier 'super
+         mac-option-modifier 'meta
+         ns-option-modifier 'meta))
+  ('windows
+   (setq w32-lwindow-modifier 'super
+         w32-rwindow-modifier 'super)))
 
 (setq initial-major-mode #'fundamental-mode
       initial-scratch-message "")
