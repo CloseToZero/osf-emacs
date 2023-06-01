@@ -53,7 +53,6 @@
 (require 'osf-helm)
 (require 'osf-recent-files)
 (require 'osf-pair)
-(require 'osf-buffer)
 (require 'osf-search)
 (require' osf-window)
 (require 'osf-dired)
