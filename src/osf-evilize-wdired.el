@@ -30,6 +30,7 @@
 
 (osf-evil-define-key 'normal wdired-mode-map
   "ZZ" #'wdired-finish-edit
-  "ZQ" #'wdired-abort-changes)
+  "ZQ" #'wdired-abort-changes
+  )
 
 (provide 'osf-evilize-wdired)
