@@ -81,6 +81,7 @@ NOTE: only clear search highlights when the `evil-search-module' is 'evil-search
   "g k" #'evil-previous-line)
 
 (require 'osf-evil-leader-key)
+(require 'osf-evilize)
 
 (evil-mode)
 
