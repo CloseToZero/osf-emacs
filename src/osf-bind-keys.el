@@ -38,10 +38,6 @@
 
   "b m" #'ibuffer
 
-  "w" evil-window-map
-  "w -" #'evil-window-split
-  "w \\" #'evil-window-vsplit
-
   "f f" #'find-file
   "f r" #'revert-buffer
   "f c" #'osf-edit-config

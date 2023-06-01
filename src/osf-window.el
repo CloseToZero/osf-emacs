@@ -155,42 +155,11 @@
 (defun osf-act-on-window-action-split-below (target-window current-winow)
   (select-window (split-window-below nil target-window)))
 
-(defun osf-split-window-right (&optional dont-select window)
-  "Split WINDOW right with same width and select the new window.
-WINDOW defaults to the selected window if omitted or nil. Don't
-select the new window if DONT-SELECT is non-nil or a
-prefix argument is given."
-  (interactive (list current-prefix-arg (selected-window)))
-  (let ((new-window (split-window-right nil window)))
-    (unless dont-select
-      (select-window new-window))))
-
-(defun osf-split-window-below (&optional dont-select window)
-  "Split WINDOW below with same width and select the new window.
-WINDOW defaults to the selected window if omitted or nil. Don't
-select the new window if DONT-SELECT is non-nil or a
-prefix argument is given."
-  (interactive (list current-prefix-arg (selected-window)))
-  (let ((new-window (split-window-below nil window)))
-    (unless dont-select
-      (select-window new-window))))
-
-(defvar-keymap osf-window-map
-  "a" #'osf-act-on-window
-  "TAB" #'osf-select-mru-window
-  "m" #'delete-other-windows
-  "r" #'osf-split-window-right
-  "b" #'osf-split-window-below
-  "=" #'balance-windows
-  "M-o" #'other-window
-  "i" #'windmove-up
-  "k" #'windmove-down
-  "j" #'windmove-left
-  "l" #'windmove-right
-  )
-(fset #'osf-window-map osf-window-map)
-
-(osf-keymap-global-set
-  "M-o" 'osf-window-map)
+(osf-leader-define-key 'global
+  "w" evil-window-map
+  "w -" #'evil-window-split
+  "w \\" #'evil-window-vsplit
+  "w a" #'osf-act-on-window
+  "w p" #'osf-select-mru-window)
                    
 (provide 'osf-window)
