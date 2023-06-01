@@ -27,9 +27,7 @@
 (straight-use-package 'avy)
 (setq avy-timeout-seconds nil
       avy-single-candidate-jump nil)
-(osf-keymap-global-set
-  "C-:" #'avy-goto-char-timer
-  "M-g l" #'avy-goto-line-below
-  "M-g L" #'avy-goto-line-above)
+(osf-evil-define-key 'normal 'global
+  "g '" #'avy-goto-char-timer)
 
 (provide 'osf-avy)
