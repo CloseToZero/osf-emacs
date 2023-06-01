@@ -24,21 +24,18 @@
 
 ;;; Code:
 
-(with-eval-after-load 'button
-  (require 'osf-evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'osf-evilize-help))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'wdired
-  (require 'osf-evilize-wdired))
-(with-eval-after-load 'magit
-  (require 'osf-evilize-magit))
-(with-eval-after-load 'info
-  (require 'osf-evilize-info))
-(with-eval-after-load 'org
-  (require 'osf-evilize-org))
+(osf-evil-define-key 'normal org-mode-map
+  "M-j" #'org-metadown
+  "M-k" #'org-metaup
+  "M-h" #'org-metaleft
+  "M-l" #'org-metaright
+  "C-j" #'outline-forward-same-level
+  "C-k" #'outline-backward-same-level
+  "g j" #'org-next-visible-heading
+  "g k" #'org-previous-visible-heading
+  "H" #'org-up-element
+  "L" #'org-down-element)
 
-(provide 'osf-evilize)
+(evil-set-initial-state 'org-mode 'normal)
+
+(provide 'osf-evilize-org)
