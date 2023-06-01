@@ -28,6 +28,7 @@
  ("puni" . "a39a4ecac7279bed1a150a895bbc80baa7272888")
  ("s.el" . "dda84d38fffdaf0c9b12837b504b402af910d01d")
  ("slime" . "da5c14434db241bb82d340e5d9ca13acd125a83d")
+ ("slime-company" . "f20ecc4104d4c35052696e7e760109fb02060e72")
  ("spinner" . "634529bb3173e09b37499f636de70abf29d9fa8a")
  ("straight.el" . "039e5c9a9b5c00749602afb41341e9e77ba09429")
  ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")

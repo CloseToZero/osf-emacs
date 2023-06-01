@@ -26,7 +26,8 @@
 
 (straight-use-package 'slime)
 
-(setq slime-net-coding-system 'utf-8-unix)
+(setq slime-net-coding-system 'utf-8-unix
+      slime-contribs '(slime-fancy))
 
 (with-eval-after-load 'slime
   (when (executable-find "sbcl")
@@ -49,5 +50,9 @@
     (remove-hook
      'window-buffer-change-functions
      #'osf--slime-auto-select-popup-buffer-change-function t)))
+
+(straight-use-package 'slime-company)
+(setq slime-company-completion 'fuzzy)
+(add-to-list 'slime-contribs 'slime-company)
 
 (provide 'osf-common-lisp)
