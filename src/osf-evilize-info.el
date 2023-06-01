@@ -24,19 +24,27 @@
 
 ;;; Code:
 
-(with-eval-after-load 'button
-  (require 'osf-evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'osf-evilize-help))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'wdired
-  (require 'osf-evilize-wdired))
-(with-eval-after-load 'magit
-  (require 'osf-evilize-magit))
-(with-eval-after-load 'info
-  (require 'osf-evilize-info))
+(osf-evil-define-key 'normal Info-mode-map
+  "<tab>" #'Info-next-reference
+  "S-<tab>" #'Info-prev-reference
+  "RET" #'Info-follow-nearest-node
+  "d" #'Info-directory
+  "i" #'Info-index
+  "I" #'Info-virtual-index
+  "a" #'info-apropos
+  "C-o" #'Info-history-back
+  "C-i" #'Info-history-forward
+  "C-j" #'Info-forward-node
+  "C-k" #'Info-backward-node
+  "g j" #'Info-next
+  "g k" #'Info-prev
+  "g m" #'Info-menu
+  "g t" #'Info-top-node
+  "g T" #'Info-toc
+  "g u" #'Info-up
+  "g f" #'Info-follow-reference
+  )
 
-(provide 'osf-evilize)
+(evil-set-initial-state 'Info-mode 'normal)
+
+(provide 'osf-evilize-info)
