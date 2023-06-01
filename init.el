@@ -44,6 +44,7 @@
 (require 'osf-package)
 (require 'osf-savehist)
 (require 'osf-lib)
+(require 'osf-evil)
 (require 'osf-ui)
 (require 'osf-misc)
 (require 'osf-server)
