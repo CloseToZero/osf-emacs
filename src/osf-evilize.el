@@ -34,5 +34,7 @@
   (require 'osf-evilize-dired))
 (with-eval-after-load 'wdired
   (require 'osf-evilize-wdired))
+(with-eval-after-load 'magit
+  (require 'osf-evilize-magit))
 
 (provide 'osf-evilize)
