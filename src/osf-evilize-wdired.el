@@ -24,15 +24,12 @@
 
 ;;; Code:
 
-(with-eval-after-load 'button
-  (require 'osf-evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'osf-evilize-help))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'wdired
-  (require 'osf-evilize-wdired))
+;; Keep in normal state after entered wdired-mode, so we can use ciw
+;; etc to change the file name.
+(evil-set-initial-state 'wdired-mode 'normal)
 
-(provide 'osf-evilize)
+(osf-evil-define-key 'normal wdired-mode-map
+  "ZZ" #'wdired-finish-edit
+  "ZQ" #'wdired-abort-changes)
+
+(provide 'osf-evilize-wdired)

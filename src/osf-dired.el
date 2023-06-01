@@ -27,6 +27,10 @@
 (setq dired-dwim-target t)
 
 (with-eval-after-load 'dired
+  (defun osf-dired-copy-path ()
+    (interactive)
+    (dired-copy-filename-as-kill 0))
+
   (defun osf-dired-open-by-system-default-app ()
     (interactive)
     (let ((cur-file-name (dired-get-filename t t)))
@@ -34,6 +38,9 @@
         (user-error "No file on this line"))
       (osf-open-by-system-default-app cur-file-name)))
 
+  (osf-evil-define-key 'normal dired-mode-map
+    "y p" #'osf-dired-copy-path
+    "M-S-<return>" #'osf-dired-open-by-system-default-app)
   (osf-keymap-set dired-mode-map
     "M-RET" #'osf-dired-open-by-system-default-app
     "C-t A" #'image-dired-show-all-from-dir
