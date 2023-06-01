@@ -39,7 +39,7 @@
 
 (straight-use-package 'orderless)
 
-(setq completion-styles '(orderless basic)
+(setq completion-styles '(orderless basic partial-completion)
       orderless-matching-styles '(orderless-literal)
       orderless-style-dispatchers '(orderless-affix-dispatch)
       orderless-affix-dispatch-alist
