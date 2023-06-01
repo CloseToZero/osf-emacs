@@ -86,7 +86,8 @@
         (progn
           ;; Constantly adjust posframe's height for dynamic minibuffer resizing.
           (setq reposition-timer (run-with-timer nil 0.25 show-tags-action))
-          (let* ((selected-tag
+          (let* ((helm-split-window-inside-p t)
+                 (selected-tag
                   (progn
                     ;; Show tags after `completing-read' to count for minibuffer's height.
                     (run-with-timer 0 nil show-tags-action)
