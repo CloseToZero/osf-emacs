@@ -36,6 +36,19 @@
 (column-number-mode)
 (setq column-number-indicator-zero-based nil)
 
+(setq display-line-numbers-grow-only t
+      display-line-numbers-type 'visual)
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+  (add-hook hook #'display-line-numbers-mode))
+(defun osf--show-line-numbers-in-scratch-buffer ()
+  (let ((target-buffer-name "*scratch*"))
+    (when (string= (buffer-name) target-buffer-name)
+      (with-current-buffer target-buffer-name
+        (display-line-numbers-mode)))))
+;; We assume `initial-major-mode' is fundamental-mode.
+(add-hook 'osf-fundamental-mode-hook
+          #'osf--show-line-numbers-in-scratch-buffer)
+
 (straight-use-package 'beacon)
 (beacon-mode)
 
