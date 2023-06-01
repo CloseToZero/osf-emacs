@@ -33,6 +33,23 @@
   (interactive "<R><x>")
   (evil-yank beg end type register))
 
+(dolist (mode '(git-rebase-mode
+                magit-mode
+                magit-status-mode
+                magit-stash-mode
+                magit-stashes-mode
+                magit-diff-mode
+                magit-cherry-mode
+                magit-log-mode
+                magit-log-select-mode
+                magit-process-mode
+                magit-refs-mode
+                magit-reflog-mode
+                magit-revision-mode
+                magit-repolist-mode
+                ))
+  (evil-set-initial-state mode 'normal))
+
 (apply
  #'osf-evil-define-key '(normal visual) magit-mode-map
  `(
@@ -203,23 +220,6 @@
   (evil-make-overriding-map map))
 
 (evil-make-overriding-map magit-blame-read-only-mode-map 'normal)
-
-(dolist (mode '(git-rebase-mode
-                magit-mode
-                magit-status-mode
-                magit-stash-mode
-                magit-stashes-mode
-                magit-diff-mode
-                magit-cherry-mode
-                magit-log-mode
-                magit-log-select-mode
-                magit-process-mode
-                magit-refs-mode
-                magit-reflog-mode
-                magit-revision-mode
-                magit-repolist-mode
-                ))
-  (evil-set-initial-state mode 'normal))
 
 (dolist (cmd '(magit-section-forward-sibling
                magit-section-forward

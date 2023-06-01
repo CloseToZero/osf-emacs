@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(evil-set-initial-state 'org-mode 'normal)
+
 (osf-evil-define-key 'normal org-mode-map
   "M-j" #'org-metadown
   "M-k" #'org-metaup
@@ -35,7 +37,5 @@
   "g k" #'org-previous-visible-heading
   "H" #'org-up-element
   "L" #'org-down-element)
-
-(evil-set-initial-state 'org-mode 'normal)
 
 (provide 'osf-evilize-org)

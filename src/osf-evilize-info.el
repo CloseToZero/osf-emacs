@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(evil-set-initial-state 'Info-mode 'normal)
+
 (osf-evil-define-key 'normal Info-mode-map
   "<tab>" #'Info-next-reference
   "S-<tab>" #'Info-prev-reference
@@ -44,7 +46,5 @@
   "g u" #'Info-up
   "g f" #'Info-follow-reference
   )
-
-(evil-set-initial-state 'Info-mode 'normal)
 
 (provide 'osf-evilize-info)

@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(evil-set-initial-state 'help-mode 'normal)
+
 (apply
  #'osf-evil-define-key 'normal help-mode-map
  `(
@@ -41,7 +43,5 @@
          "i" help-goto-info
          "c" help-customize
          ))))
-
-(evil-set-initial-state 'help-mode 'normal)
 
 (provide 'osf-evilize-help)
