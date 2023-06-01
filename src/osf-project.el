@@ -44,4 +44,7 @@
 (osf-keymap-set project-prefix-map
   "S" #'osf-project-save-buffers)
 
+(osf-leader-define-key 'global
+  "p" project-prefix-map)
+
 (provide 'osf-project)

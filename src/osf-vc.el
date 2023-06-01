@@ -31,4 +31,7 @@
     (keymap-set project-prefix-map "m" #'magit-project-status)
     (add-to-list 'project-switch-commands '(magit-project-status "Magit") t)))
 
+(osf-leader-define-key 'global
+  "g g" #'magit-status)
+
 (provide 'osf-vc)

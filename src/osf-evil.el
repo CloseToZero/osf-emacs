@@ -80,6 +80,8 @@ NOTE: only clear search highlights when the `evil-search-module' is 'evil-search
   "g j" #'evil-next-line
   "g k" #'evil-previous-line)
 
+(require 'osf-evil-leader-key)
+
 (evil-mode)
 
 (straight-use-package

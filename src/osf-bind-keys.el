@@ -27,8 +27,27 @@
 ;; Unbind `view-hello-file', it hangs Emacs.
 (osf-keymap-set help-map "h" nil)
 
-(osf-keymap-global-set
-  "M-g o" #'osf-ff-find-other-file-ignore-include-line
-  "C-x C-b" #'ibuffer)
+(osf-leader-define-key 'global
+  "SPC" #'execute-extended-command
+
+  "h" help-map
+
+  "b b" #'osf-switch-to-buffer
+  "b x" #'kill-current-buffer
+  "b X" #'kill-buffer
+
+  "b m" #'ibuffer
+
+  "w" evil-window-map
+  "w -" #'evil-window-split
+  "w \\" #'evil-window-vsplit
+
+  "f f" #'find-file
+  "f r" #'revert-buffer
+  "f c" #'osf-edit-config
+  "f o" #'osf-ff-find-other-file-ignore-include-line
+
+  "q q" #'save-buffers-kill-terminal
+  )
 
 (provide 'osf-bind-keys)
