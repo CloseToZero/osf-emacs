@@ -102,4 +102,7 @@ NOTE: only clear search highlights when the `evil-search-module' is 'evil-search
 
 (double-trigger-mode)
 
+(straight-use-package 'evil-visualstar)
+(global-evil-visualstar-mode)
+
 (provide 'osf-evil)

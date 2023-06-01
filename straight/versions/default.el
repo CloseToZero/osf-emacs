@@ -9,6 +9,7 @@
  ("emacs-reformatter" . "f454b179ab7d39dc8783b9f2a046cab353b272f5")
  ("emacsmirror-mirror" . "606c3dcfc57ee47a9969b4d9f3d87408f14ebffb")
  ("evil" . "be736b8dbc468d53e6cb3e76db66c1141330b030")
+ ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("gnu-elpa-mirror" . "eda4c968f0400750e17a013bb80832088dab12d1")
  ("goto-chg" . "278cd3e6d5107693aa2bb33189ca503f22f227d0")
  ("imenu-list" . "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
