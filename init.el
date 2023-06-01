@@ -61,6 +61,7 @@
 (require 'osf-scratch)
 (require 'osf-vc)
 (require 'osf-avy)
+(require 'osf-comment)
 (require 'osf-shell)
 (require 'osf-org)
 (require 'osf-markdown)
