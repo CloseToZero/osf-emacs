@@ -74,6 +74,12 @@ NOTE: only clear search highlights when the `evil-search-module' is 'evil-search
 (osf-evil-define-key 'normal 'global
   "<escape>" #'osf-evil-force-normal-state)
 
+(osf-evil-define-key 'motion 'global
+  "j" #'evil-next-visual-line
+  "k" #'evil-previous-visual-line
+  "g j" #'evil-next-line
+  "g k" #'evil-previous-line)
+
 (evil-mode)
 
 (straight-use-package
