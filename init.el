@@ -50,6 +50,7 @@
 (require 'osf-server)
 (require 'osf-undo)
 (require 'osf-completion)
+(require 'osf-helm)
 (require 'osf-recent-files)
 (require 'osf-pair)
 (require 'osf-buffer)

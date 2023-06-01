@@ -24,23 +24,14 @@
 
 ;;; Code:
 
-;; Unbind `view-hello-file', it hangs Emacs.
-(osf-keymap-set help-map "h" nil)
+(straight-use-package 'helm)
+
+(setq helm-buffer-details-flag nil)
+
+(helm-mode)
 
 (osf-leader-define-key 'global
-  "h" help-map
+  "SPC" #'helm-M-x
+  "b b" #'helm-mini)
 
-  "b x" #'kill-current-buffer
-  "b X" #'kill-buffer
-
-  "b m" #'ibuffer
-
-  "f f" #'find-file
-  "f R" #'revert-buffer
-  "f c" #'osf-edit-config
-  "f o" #'osf-ff-find-other-file-ignore-include-line
-
-  "q q" #'save-buffers-kill-terminal
-  )
-
-(provide 'osf-bind-keys)
+(provide 'osf-helm)
