@@ -40,5 +40,7 @@
   (require 'osf-evilize-info))
 (with-eval-after-load 'org
   (require 'osf-evilize-org))
+(with-eval-after-load 'slime
+  (require 'osf-evilize-slime))
 
 (provide 'osf-evilize)
