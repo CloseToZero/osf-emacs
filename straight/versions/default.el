@@ -3,6 +3,7 @@
  ("compat" . "cd28402790821ce95ea4c3ea0de5c2d9dcfce31f")
  ("dash.el" . "b6eef1a24dfbe57ba72d5eb1613fc05ff92e8e92")
  ("deadgrep" . "0313e17a4df7bc8a344b2bc23a319c45d14f9689")
+ ("double-trigger" . "473512c78c494d625b612e660cce277ffb6f0d39")
  ("el-get" . "22c83206bab10100fdee03cb2d5b97c8c24eff0e")
  ("emacs-reformatter" . "f454b179ab7d39dc8783b9f2a046cab353b272f5")
  ("emacsmirror-mirror" . "606c3dcfc57ee47a9969b4d9f3d87408f14ebffb")
