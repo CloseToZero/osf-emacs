@@ -28,7 +28,7 @@
 
 (straight-use-package 'imenu-list)
 (setq imenu-list-focus-after-activation t)
-(osf-keymap-global-set
-  "M-g i" #'imenu-list-smart-toggle)
+(osf-leader-define-key 'global
+  "t i" #'imenu-list-smart-toggle)
 
 (provide 'osf-imenu)
