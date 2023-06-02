@@ -37,26 +37,7 @@
 
 (straight-use-package 'deadgrep)
 
-(defun osf-deadgrep (search-term &optional directory)
-  "Just like `deadgrep', but handle prefix argument in a different way.
-When a positive prefix argument is given, create the results buffer but
-don’t actually start the search.
-When a negative prefix argument is given, start search at `default-directory'
-instead of the directory determined by `deadgrep-project-root-function'.
-When a prefix argument with numeric value zero is given, the effect is the
-combination of positive and negative prefix arguments."
-  (interactive
-   (list (deadgrep--read-search-term)
-         (if (and current-prefix-arg
-                  (<= (prefix-numeric-value current-prefix-arg) 0))
-             default-directory
-           (funcall deadgrep-project-root-function))))
-  (if (and current-prefix-arg
-           (>= (prefix-numeric-value current-prefix-arg) 0))
-      ;; Keep `current-prefix-arg' for `deadgrep'.
-      (deadgrep search-term directory)
-    (let ((current-prefix-arg nil))
-      (deadgrep search-term directory))))
+(autoload #'osf-deadgrep "deadgrep" nil t)
 
 (osf-leader-define-key 'global
   "/ r" #'osf-deadgrep)
@@ -72,6 +53,27 @@ combination of positive and negative prefix arguments."
       (add-to-list 'project-switch-commands '(deadgrep "Deadgrep") t))))
 
 (with-eval-after-load 'deadgrep
+  (defun osf-deadgrep (search-term &optional directory)
+    "Just like `deadgrep', but handle prefix argument in a different way.
+When a positive prefix argument is given, create the results buffer but
+don’t actually start the search.
+When a negative prefix argument is given, start search at `default-directory'
+instead of the directory determined by `deadgrep-project-root-function'.
+When a prefix argument with numeric value zero is given, the effect is the
+combination of positive and negative prefix arguments."
+    (interactive
+     (list (deadgrep--read-search-term)
+           (if (and current-prefix-arg
+                    (<= (prefix-numeric-value current-prefix-arg) 0))
+               default-directory
+             (funcall deadgrep-project-root-function))))
+    (if (and current-prefix-arg
+             (>= (prefix-numeric-value current-prefix-arg) 0))
+        ;; Keep `current-prefix-arg' for `deadgrep'.
+        (deadgrep search-term directory)
+      (let ((current-prefix-arg nil))
+        (deadgrep search-term directory))))
+
   (defun osf--deadgrep--write-postponed-ad ()
     (let ((inhibit-read-only t))
       (save-excursion
