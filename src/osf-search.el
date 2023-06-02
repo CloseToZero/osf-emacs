@@ -72,6 +72,15 @@ combination of positive and negative prefix arguments."
       (add-to-list 'project-switch-commands '(deadgrep "Deadgrep") t))))
 
 (with-eval-after-load 'deadgrep
+  (defun osf--deadgrep--write-postponed-ad ()
+    (let ((inhibit-read-only t))
+      (save-excursion
+        (goto-char (point-max))
+        (insert
+         (substitute-command-keys
+          "Press \\[deadgrep-restart] to start the search.")))))
+  (advice-add #'deadgrep--write-postponed :override #'osf--deadgrep--write-postponed-ad)
+
   (defun osf-deadgrep-edit ()
     (interactive)
     (deadgrep-edit-mode)
