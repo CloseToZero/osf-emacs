@@ -108,7 +108,10 @@ Example:
   \"b\" #'command2)"
   (declare (indent defun))
   (cl-loop for (key def) on bindings by #'cddr
-           do (keymap-set keymap key def)))
+           do
+           (if (eq def :remove)
+               (keymap-unset keymap key t)
+             (keymap-set keymap key def))))
 
 (defun osf-keymap-global-set (&rest bindings)
   "Like `keymap-global-set', but allow define multiple bindings together.
