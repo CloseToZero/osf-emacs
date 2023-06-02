@@ -49,5 +49,7 @@
   (require 'osf-evilize-deadgrep))
 (with-eval-after-load 'vertico
   (require 'osf-evilize-vertico))
+(with-eval-after-load 'helm
+  (require 'osf-evilize-helm))
 
 (provide 'osf-evilize)
