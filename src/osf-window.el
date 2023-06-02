@@ -156,11 +156,15 @@
 (defun osf-act-on-window-action-split-below (target-window current-winow)
   (select-window (split-window-below nil target-window)))
 
+(winner-mode)
+
 (osf-leader-define-key 'global
   "w" evil-window-map
   "w -" #'evil-window-split
   "w \\" #'evil-window-vsplit
   "w a" #'osf-act-on-window
-  "w p" #'osf-select-mru-window)
+  "w p" #'osf-select-mru-window
+  "w u" #'winner-undo
+  "w C-r" #'winner-redo)
                    
 (provide 'osf-window)
