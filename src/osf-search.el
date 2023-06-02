@@ -36,7 +36,8 @@
   "C-M-w" #'isearch-delete-char)
 
 (straight-use-package 'deadgrep)
-(keymap-global-set "M-s r" #'deadgrep)
+(osf-leader-define-key 'global
+  "/ r" #'deadgrep)
 
 (when (executable-find "rg")
   (with-eval-after-load 'project
