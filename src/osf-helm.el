@@ -28,12 +28,11 @@
 
 (setq helm-buffer-details-flag nil)
 
-(helm-mode)
-
-(defun osf-helm-buffer-list ()
-  "Override `helm-buffer-list', don't prefer visible buffers."
-  (mapcar #'buffer-name (cdr (buffer-list))))
-(advice-add #'helm-buffer-list :override #'osf-helm-buffer-list)
+(with-eval-after-load 'helm
+  (defun osf-helm-buffer-list ()
+    "Override `helm-buffer-list', don't prefer visible buffers."
+    (mapcar #'buffer-name (cdr (buffer-list))))
+  (advice-add #'helm-buffer-list :override #'osf-helm-buffer-list))
 
 (osf-leader-define-key 'global
   "SPC" #'helm-M-x

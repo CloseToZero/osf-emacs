@@ -150,4 +150,8 @@ Example:
   (interactive "nN: ")
   (insert (osf-random-text n)))
 
+(defun osf-message-without-logging (format-string &rest args)
+  (let ((message-log-max nil))
+    (funcall #'message format-string args)))
+
 (provide 'osf-lib)

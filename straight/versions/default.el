@@ -33,6 +33,7 @@
  ("straight.el" . "039e5c9a9b5c00749602afb41341e9e77ba09429")
  ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")
  ("transient" . "af7fe42bd46e24ca7852e73bd1691015c5bd2151")
+ ("vertico" . "17d7cf79888114c1cbea89cd8e58a3bba986f369")
  ("vundo" . "743d685d85b6fa8548c2fab6fb5b15b9dcc5ff56")
  ("with-editor" . "df74385b455cd7687232ad189acfea16cb44dd04")
  ("zig-mode" . "2013d39ee9a62449263939bc8c33a128fe1e90f0"))
