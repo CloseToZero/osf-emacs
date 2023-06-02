@@ -35,7 +35,6 @@
 
   "b m" #'ibuffer
 
-  "f f" #'find-file
   "f R" #'revert-buffer
   "f c" #'osf-edit-config
   "f o" #'osf-ff-find-other-file-ignore-include-line
