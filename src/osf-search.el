@@ -36,8 +36,30 @@
   "C-M-w" #'isearch-delete-char)
 
 (straight-use-package 'deadgrep)
+
+(defun osf-deadgrep (search-term &optional directory)
+  "Just like `deadgrep', but handle prefix argument in a different way.
+When a positive prefix argument is given, create the results buffer but
+don’t actually start the search.
+When a negative prefix argument is given, start search at `default-directory'
+instead of the directory determined by `deadgrep-project-root-function'.
+When a prefix argument with numeric value zero is given, the effect is the
+combination of positive and negative prefix arguments."
+  (interactive
+   (list (deadgrep--read-search-term)
+         (if (and current-prefix-arg
+                  (<= (prefix-numeric-value current-prefix-arg) 0))
+             default-directory
+           (funcall deadgrep-project-root-function))))
+  (if (and current-prefix-arg
+           (>= (prefix-numeric-value current-prefix-arg) 0))
+      ;; Keep `current-prefix-arg' for `deadgrep'.
+      (deadgrep search-term directory)
+    (let ((current-prefix-arg nil))
+      (deadgrep search-term directory))))
+
 (osf-leader-define-key 'global
-  "/ r" #'deadgrep)
+  "/ r" #'osf-deadgrep)
 
 (when (executable-find "rg")
   (with-eval-after-load 'project
