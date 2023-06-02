@@ -74,6 +74,19 @@ NOTE: only clear search highlights when the `evil-search-module' is 'evil-search
 (osf-evil-define-key 'normal 'global
   "<escape>" #'osf-evil-force-normal-state)
 
+(defun osf--evil-move-line-set-jump-ad (&optional count)
+  "Advice for `evil-next-visual-line', `evil-previous-visual-line',
+`evil-next-line' and `evil-previous-line' to set jump if the COUNT
+argument is non-nil (invoked by digit argument, like 3j), only set
+jump if called interactively."
+  (when (and (called-interactively-p 'any) count)
+    (evil-set-jump)))
+(dolist (fn '(evil-next-visual-line
+              evil-previous-visual-line
+              evil-next-line
+              evil-previous-line))
+  (advice-add fn :before #'osf--evil-move-line-set-jump-ad))
+
 (osf-evil-define-key 'motion 'global
   "j" #'evil-next-visual-line
   "k" #'evil-previous-visual-line
