@@ -24,27 +24,32 @@
 
 ;;; Code:
 
-(with-eval-after-load 'button
-  (require 'osf-evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'osf-evilize-help))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'wdired
-  (require 'osf-evilize-wdired))
-(with-eval-after-load 'magit
-  (require 'osf-evilize-magit))
-(with-eval-after-load 'info
-  (require 'osf-evilize-info))
-(with-eval-after-load 'org
-  (require 'osf-evilize-org))
-(with-eval-after-load 'slime
-  (require 'osf-evilize-slime))
-(with-eval-after-load 'imenu-list
-  (require 'osf-evilize-imenu-list))
-(with-eval-after-load 'deadgrep
-  (require 'osf-evilize-deadgrep))
+(evil-set-initial-state 'deadgrep-mode 'normal)
+(evil-set-initial-state 'deadgrep-edit-mode 'normal)
 
-(provide 'osf-evilize)
+(osf-evil-define-key 'normal deadgrep-mode-map
+  "q" #'quit-window
+  "RET" #'deadgrep-visit-result
+  "S-<return>" #'deadgrep-visit-result-other-window
+  "s" #'deadgrep-search-term
+  "t" #'deadgrep-cycle-search-type
+  "f" #'deadgrep-cycle-files
+  "d" #'deadgrep-directory
+  "^" #'deadgrep-parent-directory
+  "g r" #'deadgrep-restart
+  "S" #'deadgrep-incremental
+  "<tab>" #'deadgrep-toggle-file-results
+  "` k" #'deadgrep-kill-process
+  "j" #'evil-next-visual-line
+  "k" #'evil-previous-visual-line
+  "C-j" #'deadgrep-forward-match
+  "C-k" #'deadgrep-backward-match
+  "M-j" #'deadgrep-forward-filename
+  "M-k" #'deadgrep-backward-filename
+  )
+
+(osf-evil-define-key 'normal deadgrep-edit-mode-map
+  "RET" #'deadgrep-visit-result
+  )
+
+(provide 'osf-evilize-deadgrep)
