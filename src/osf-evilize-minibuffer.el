@@ -24,28 +24,27 @@
 
 ;;; Code:
 
-(require 'osf-evilize-minibuffer)
-(with-eval-after-load 'button
-  (require 'osf-evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'osf-evilize-help))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'wdired
-  (require 'osf-evilize-wdired))
-(with-eval-after-load 'magit
-  (require 'osf-evilize-magit))
-(with-eval-after-load 'info
-  (require 'osf-evilize-info))
-(with-eval-after-load 'org
-  (require 'osf-evilize-org))
-(with-eval-after-load 'slime
-  (require 'osf-evilize-slime))
-(with-eval-after-load 'imenu-list
-  (require 'osf-evilize-imenu-list))
-(with-eval-after-load 'deadgrep
-  (require 'osf-evilize-deadgrep))
+(defun osf--evilize-minibuffer-setup ()
+  (set (make-local-variable 'evil-echo-state) nil)
+  (evil-insert 1))
+(add-hook 'minibuffer-setup-hook #'osf--evilize-minibuffer-setup)
 
-(provide 'osf-evilize)
+(dolist (map (list minibuffer-local-map
+                   minibuffer-local-ns-map
+                   minibuffer-local-completion-map
+                   minibuffer-local-must-match-map
+                   minibuffer-local-isearch-map
+                   evil-ex-completion-map))
+  (osf-evil-define-key 'normal map
+    "<escape>" #'abort-recursive-edit
+    "RET" #'exit-minibuffer
+    "C-n" #'next-history-element
+    "C-p" #'previous-history-element
+    )
+  (osf-evil-define-key 'insert map
+    "C-n" #'next-complete-history-element
+    "C-p" #'previous-complete-history-element
+    )
+  )
+
+(provide 'osf-evilize-minibuffer)
