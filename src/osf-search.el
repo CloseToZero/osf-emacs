@@ -90,12 +90,13 @@
       (deadgrep-visit-result-other-window)
       (select-window old-window)))
 
-  (osf-keymap-set deadgrep-edit-mode-map
-    "C-c C-k" #'osf-deadgrep-edit-abort
-    "C-c C-c" #'osf-deadgrep-edit-exit)
+  (osf-evil-define-key 'normal deadgrep-edit-mode-map
+    "Z Z" #'osf-deadgrep-edit-exit
+    "Z Q" #'osf-deadgrep-edit-abort)
 
-  (osf-keymap-set deadgrep-mode-map
-    "C-c w" #'osf-deadgrep-edit
-    "O" #'osf-deadgrep-visit-result-other-window))
+  (osf-evil-define-key 'normal deadgrep-mode-map
+    "i" #'osf-deadgrep-edit
+    "M-<return>" #'osf-deadgrep-visit-result-other-window)
+  )
 
 (provide 'osf-search)
