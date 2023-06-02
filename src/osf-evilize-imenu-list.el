@@ -24,25 +24,16 @@
 
 ;;; Code:
 
-(with-eval-after-load 'button
-  (require 'osf-evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'osf-evilize-help))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'wdired
-  (require 'osf-evilize-wdired))
-(with-eval-after-load 'magit
-  (require 'osf-evilize-magit))
-(with-eval-after-load 'info
-  (require 'osf-evilize-info))
-(with-eval-after-load 'org
-  (require 'osf-evilize-org))
-(with-eval-after-load 'slime
-  (require 'osf-evilize-slime))
-(with-eval-after-load 'imenu-list
-  (require 'osf-evilize-imenu-list))
+(evil-set-initial-state 'imenu-list-major-mode 'normal)
 
-(provide 'osf-evilize)
+(osf-evil-define-key 'normal imenu-list-major-mode-map
+  "RET" #'imenu-list-ret-dwim
+  "M-<return>" #'imenu-list-display-dwim
+  "j" #'evil-next-visual-line
+  "k" #'evil-previous-visual-line
+  "<tab>" #'hs-toggle-hiding
+  "f" #'hs-toggle-hiding
+  "g r" #'imenu-list-refresh
+  "q" #'imenu-list-quit-window)
+
+(provide 'osf-evilize-imenu-list)
