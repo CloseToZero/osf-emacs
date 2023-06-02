@@ -24,30 +24,29 @@
 
 ;;; Code:
 
-(require 'osf-evilize-minibuffer)
-(with-eval-after-load 'button
-  (require 'osf-evilize-button))
-(with-eval-after-load 'help-mode
-  (require 'osf-evilize-help))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
-(with-eval-after-load 'wdired
-  (require 'osf-evilize-wdired))
-(with-eval-after-load 'magit
-  (require 'osf-evilize-magit))
-(with-eval-after-load 'info
-  (require 'osf-evilize-info))
-(with-eval-after-load 'org
-  (require 'osf-evilize-org))
-(with-eval-after-load 'slime
-  (require 'osf-evilize-slime))
-(with-eval-after-load 'imenu-list
-  (require 'osf-evilize-imenu-list))
-(with-eval-after-load 'deadgrep
-  (require 'osf-evilize-deadgrep))
-(with-eval-after-load 'vertico
-  (require 'osf-evilize-vertico))
+(osf-evil-define-key 'normal vertico-map
+  "]" #'vertico-next-group
+  "[" #'vertico-previous-group
+  "C-u" #'vertico-scroll-down
+  "C-d" #'vertico-scroll-up
+  "j" #'vertico-next
+  "k" #'vertico-previous
+  "g g" #'vertico-first
+  "G" #'vertico-last
+  "y y" #'vertico-save
+  )
 
-(provide 'osf-evilize)
+(osf-evil-define-key 'insert vertico-map
+  "C-j" #'vertico-next
+  "C-k" #'vertico-previous
+  "M-<" #'vertico-first
+  "M->" #'vertico-last
+  "M-w" #'vertico-save
+  )
+
+(osf-evil-define-key '(normal insert) vertico-map
+  "RET" #'vertico-exit
+  "M-<return>" #'vertico-exit-input
+  )
+
+(provide 'osf-evilize-vertico)
