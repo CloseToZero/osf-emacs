@@ -49,7 +49,4 @@
 (add-hook 'osf-fundamental-mode-hook
           #'osf--show-line-numbers-in-scratch-buffer)
 
-(straight-use-package 'beacon)
-(beacon-mode)
-
 (provide 'osf-ui)
