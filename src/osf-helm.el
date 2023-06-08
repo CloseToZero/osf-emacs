@@ -36,7 +36,6 @@
 
 (osf-leader-define-key 'global
   "SPC" #'helm-M-x
-  "b b" #'helm-mini
-  "f f" #'helm-find-files)
+  "b b" #'helm-mini)
 
 (provide 'osf-helm)
