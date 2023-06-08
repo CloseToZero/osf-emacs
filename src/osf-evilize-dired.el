@@ -95,6 +95,7 @@
    "M-$" dired-hide-all
    "g g" evil-goto-first-line
    "G" evil-goto-line
+   "v" evil-visual-char
    "y f" dired-copy-filename-as-kill
    "y p" osf-dired-copy-path
    "Y" evil-yank-line
