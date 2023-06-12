@@ -49,6 +49,8 @@
   (require 'osf-evilize-imenu-list))
 (with-eval-after-load 'deadgrep
   (require 'osf-evilize-deadgrep))
+(with-eval-after-load 'company
+  (require 'osf-evilize-company))
 (with-eval-after-load 'vertico
   (require 'osf-evilize-vertico))
 (with-eval-after-load 'helm
