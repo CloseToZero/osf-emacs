@@ -27,7 +27,6 @@
 
 (with-eval-after-load 'cc-mode
   (defun osf-cpp-definition-for-declaration (&optional point)
-    (interactive)
     (let* ((point (or point (point)))
            (field-id-node (treesit-node-at point 'cpp))
            (field-id-node?
@@ -78,14 +77,19 @@
                           (substring field-decl-with-class-name 0 -1)
                         field-decl-with-class-name)
                       "\n{\n}")))
-        (if (fboundp #'evil-yank-lines)
-            (with-temp-buffer
-              (insert field-definition)
-              (evil-yank-lines (point-min) (point-max)))
-          (kill-new field-definition)))))
+        field-definition)))
+
+  (defun osf-copy-cpp-definition-for-declaration (&optional point)
+    (interactive)
+    (let ((definition (osf-cpp-definition-for-declaration point)))
+      (if (fboundp #'evil-yank-lines)
+          (with-temp-buffer
+            (insert definition)
+            (evil-yank-lines (point-min) (point-max)))
+        (kill-new definition))))
 
   (osf-local-leader-define-key c++-mode-map
-    "a d" #'osf-cpp-definition-for-declaration)
+    "a d" #'osf-copy-cpp-definition-for-declaration)
   )
 
 (provide 'osf-c-cpp)
