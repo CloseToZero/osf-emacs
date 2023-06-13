@@ -24,73 +24,74 @@
 
 ;;; Code:
 
+(when (and (treesit-available-p)
+           (treesit-language-available-p 'cpp))
+  (with-eval-after-load 'cc-mode
+    (defun osf-cpp-definition-for-declaration (&optional point)
+      (require 'treesit)
+      (let* ((point (or point (point)))
+             (field-id-node (treesit-node-at point 'cpp))
+             (field-id-node?
+              (and field-id-node
+                   (string= (treesit-node-type field-id-node)
+                            "field_identifier")))
+             (field-decl-node
+              (and field-id-node?
+                   (treesit-parent-until
+                    field-id-node
+                    (lambda (node)
+                      (string= (treesit-node-type node)
+                               "field_declaration")))))
+             (class-specifier-node
+              (and field-decl-node
+                   (treesit-parent-until
+                    field-decl-node
+                    (lambda (node)
+                      (string= (treesit-node-type node)
+                               "class_specifier")))))
+             (class-name-node
+              (and class-specifier-node
+                   (treesit-node-child-by-field-name
+                    class-specifier-node "name")))
+             (class-name
+              (and class-name-node
+                   (treesit-node-text class-name-node))))
+        (unless field-id-node?
+          (error "Not at a field_identifier node"))
+        (unless field-decl-node
+          (error "Cannot find field_declaration node in ancestors"))
+        (unless class-specifier-node
+          (error "Cannot find a class_specifier node in ancestors"))
+        (unless class-name
+          (error "Cannot find class name"))
+        (let* ((field-name-pos-within-field-decl
+                (- (treesit-node-start field-id-node)
+                   (treesit-node-start field-decl-node)))
+               (field-decl-with-class-name
+                (concat (substring (treesit-node-text field-decl-node)
+                                   0 field-name-pos-within-field-decl)
+                        class-name
+                        "::"
+                        (substring (treesit-node-text field-decl-node)
+                                   field-name-pos-within-field-decl)))
+               (field-definition
+                (concat (if (string-suffix-p ";" field-decl-with-class-name)
+                            (substring field-decl-with-class-name 0 -1)
+                          field-decl-with-class-name)
+                        "\n{\n}")))
+          field-definition)))
 
-(with-eval-after-load 'cc-mode
-  (defun osf-cpp-definition-for-declaration (&optional point)
-    (require 'treesit)
-    (let* ((point (or point (point)))
-           (field-id-node (treesit-node-at point 'cpp))
-           (field-id-node?
-            (and field-id-node
-                 (string= (treesit-node-type field-id-node)
-                          "field_identifier")))
-           (field-decl-node
-            (and field-id-node?
-                 (treesit-parent-until
-                  field-id-node
-                  (lambda (node)
-                    (string= (treesit-node-type node)
-                             "field_declaration")))))
-           (class-specifier-node
-            (and field-decl-node
-                 (treesit-parent-until
-                  field-decl-node
-                  (lambda (node)
-                    (string= (treesit-node-type node)
-                             "class_specifier")))))
-           (class-name-node
-            (and class-specifier-node
-                 (treesit-node-child-by-field-name
-                  class-specifier-node "name")))
-           (class-name
-            (and class-name-node
-                 (treesit-node-text class-name-node))))
-      (unless field-id-node?
-        (error "Not at a field_identifier node"))
-      (unless field-decl-node
-        (error "Cannot find field_declaration node in ancestors"))
-      (unless class-specifier-node
-        (error "Cannot find a class_specifier node in ancestors"))
-      (unless class-name
-        (error "Cannot find class name"))
-      (let* ((field-name-pos-within-field-decl
-              (- (treesit-node-start field-id-node)
-                 (treesit-node-start field-decl-node)))
-             (field-decl-with-class-name
-              (concat (substring (treesit-node-text field-decl-node)
-                                 0 field-name-pos-within-field-decl)
-                      class-name
-                      "::"
-                      (substring (treesit-node-text field-decl-node)
-                                 field-name-pos-within-field-decl)))
-             (field-definition
-              (concat (if (string-suffix-p ";" field-decl-with-class-name)
-                          (substring field-decl-with-class-name 0 -1)
-                        field-decl-with-class-name)
-                      "\n{\n}")))
-        field-definition)))
+    (defun osf-copy-cpp-definition-for-declaration (&optional point)
+      (interactive)
+      (let ((definition (osf-cpp-definition-for-declaration point)))
+        (if (fboundp #'evil-yank-lines)
+            (with-temp-buffer
+              (insert definition)
+              (evil-yank-lines (point-min) (point-max)))
+          (kill-new definition))))
 
-  (defun osf-copy-cpp-definition-for-declaration (&optional point)
-    (interactive)
-    (let ((definition (osf-cpp-definition-for-declaration point)))
-      (if (fboundp #'evil-yank-lines)
-          (with-temp-buffer
-            (insert definition)
-            (evil-yank-lines (point-min) (point-max)))
-        (kill-new definition))))
-
-  (osf-local-leader-define-key c++-mode-map
-    "a d" #'osf-copy-cpp-definition-for-declaration)
-  )
+    (osf-local-leader-define-key c++-mode-map
+      "a d" #'osf-copy-cpp-definition-for-declaration)
+    ))
 
 (provide 'osf-c-cpp)
