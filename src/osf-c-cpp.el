@@ -27,6 +27,7 @@
 
 (with-eval-after-load 'cc-mode
   (defun osf-cpp-definition-for-declaration (&optional point)
+    (require 'treesit)
     (let* ((point (or point (point)))
            (field-id-node (treesit-node-at point 'cpp))
            (field-id-node?
