@@ -40,6 +40,7 @@
         (seq string-start "*"
              (or "new" "scratch" "eww" "Help")
              "*" string-end)
+        (seq string-start "*scratch:")
         (seq string-start "*Org Src " (+ anychar) "*"))))
 
 (require 'evil)
