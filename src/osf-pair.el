@@ -79,6 +79,7 @@
 
 (defun osf--puni-setup-lisp-sexp-edit-map-locally-check-modes ()
   (when (memq major-mode '(emacs-lisp-mode
+                           lisp-interaction-mode
                            lisp-mode
                            lisp-data-mode
                            scheme-mode))
