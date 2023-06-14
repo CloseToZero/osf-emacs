@@ -26,6 +26,9 @@
 
 (when (and (treesit-available-p)
            (treesit-language-available-p 'cpp))
+  ;; TODO Reimplementing osf-cpp-definition-for-declaration using
+  ;; tree-sitter pattern matching feature and support generate
+  ;; all definition for all declarations within the actived region.
   (with-eval-after-load 'cc-mode
     (defun osf-cpp-definition-for-declaration (&optional point)
       (require 'treesit)
