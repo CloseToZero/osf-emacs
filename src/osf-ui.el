@@ -29,7 +29,7 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
 
-(push '(fullscreen . fullboth) default-frame-alist)
+(push '(fullscreen . maximized) default-frame-alist)
 
 (setq ring-bell-function #'ignore)
 
