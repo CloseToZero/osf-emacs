@@ -30,14 +30,14 @@
   "<tab>" #'Info-next-reference
   "S-<tab>" #'Info-prev-reference
   "RET" #'Info-follow-nearest-node
-  "d" #'Info-directory
-  "i" #'Info-index
-  "I" #'Info-virtual-index
   "a" #'info-apropos
   "C-o" #'Info-history-back
   "C-i" #'Info-history-forward
   "C-j" #'Info-forward-node
   "C-k" #'Info-backward-node
+  "g d" #'Info-directory
+  "g i" #'Info-index
+  "g I" #'Info-virtual-index
   "g j" #'Info-next
   "g k" #'Info-prev
   "g m" #'Info-menu
