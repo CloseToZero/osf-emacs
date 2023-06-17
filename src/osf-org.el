@@ -172,7 +172,13 @@ command to generate a image file name"))
                   (org-display-inline-images nil t)))
             (when (file-exists-p tmp-image-filename)
               (delete-file tmp-image-filename))))))
-     (t (error "Unsupported on the system: %s" osf-system-type)))))
+     (t (error "Unsupported on the system: %s" osf-system-type))))
+
+  (osf-local-leader-define-key org-mode-map
+    "e e" #'org-export-dispatch
+    "e H" #'osf-org-export-directory-using-ox-hugo
+    "i p" #'osf-org-paste-image-from-clipboard)
+  )
 
 (with-eval-after-load 'org-capture
   (defun osf-org-generate-blog-file-name ()
