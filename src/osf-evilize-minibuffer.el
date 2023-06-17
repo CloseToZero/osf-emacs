@@ -40,6 +40,14 @@
     "RET" #'exit-minibuffer
     "C-n" #'next-history-element
     "C-p" #'previous-history-element
+
+    ;; Use isearch search module in minibuffer so that we can search
+    ;; minibuffer. The evil-ex search module will bring recursive
+    ;; minibuffer thus we can't search the original minibuffer.
+    "/" #'evil-search-forward
+    "?" #'evil-search-backward
+    "n" #'evil-search-next
+    "N" #'evil-search-previous
     )
   (osf-evil-define-key 'insert map
     "C-n" #'next-complete-history-element
