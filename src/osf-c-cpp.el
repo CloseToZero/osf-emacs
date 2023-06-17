@@ -26,75 +26,75 @@
 
 (when (and (treesit-available-p)
            (treesit-language-available-p 'cpp))
-  ;; TODO Reimplementing osf-cpp-definition-for-declaration using
-  ;; tree-sitter pattern matching feature and support generate
-  ;; all definition for all declarations within the actived region.
   (with-eval-after-load 'cc-mode
-    (defun osf-cpp-definition-for-declaration (&optional point)
+    (defun osf-cpp-definitions-for-declarations (beg end)
       (require 'treesit)
-      (let* ((point (or point (point)))
-             (field-id-node (treesit-node-at point 'cpp))
-             (field-id-node?
-              (and field-id-node
-                   (string= (treesit-node-type field-id-node)
-                            "field_identifier")))
-             (field-decl-node
-              (and field-id-node?
-                   (treesit-parent-until
-                    field-id-node
-                    (lambda (node)
-                      (string= (treesit-node-type node)
-                               "field_declaration")))))
-             (class-specifier-node
-              (and field-decl-node
-                   (treesit-parent-until
-                    field-decl-node
-                    (lambda (node)
-                      (string= (treesit-node-type node)
-                               "class_specifier")))))
+      (let* ((field-decl-nodes
+              (treesit-query-capture
+               'cpp
+               '((field_declaration
+                  (function_declarator
+                   (field_identifier) @field-id))
+                 @field-decl)
+               beg end t))
+             (list-of-field-decl-id
+              ;; A list of pairs of the form (field-decl-node field-id-node)
+              (seq-partition field-decl-nodes 2))
+             (class-spec-node
+              (and
+               field-decl-nodes
+               (treesit-parent-until
+                (car field-decl-nodes)
+                (lambda (node)
+                  (string= (treesit-node-type node) "class_specifier")))))
              (class-name-node
-              (and class-specifier-node
-                   (treesit-node-child-by-field-name
-                    class-specifier-node "name")))
+              (and
+               class-spec-node
+               (car
+                (treesit-query-capture
+                 class-spec-node
+                 '((class_specifier (type_identifier) @class-name)) nil nil t))))
              (class-name
-              (and class-name-node
-                   (treesit-node-text class-name-node))))
-        (unless field-id-node?
-          (error "Not at a field_identifier node"))
-        (unless field-decl-node
-          (error "Cannot find field_declaration node in ancestors"))
-        (unless class-specifier-node
-          (error "Cannot find a class_specifier node in ancestors"))
+              (and class-name-node (treesit-node-text class-name-node t))))
+        (unless list-of-field-decl-id
+          (error "Cannot find function declarations"))
         (unless class-name
           (error "Cannot find class name"))
-        (let* ((field-name-pos-within-field-decl
-                (- (treesit-node-start field-id-node)
-                   (treesit-node-start field-decl-node)))
-               (field-decl-with-class-name
-                (concat (substring (treesit-node-text field-decl-node)
-                                   0 field-name-pos-within-field-decl)
-                        class-name
-                        "::"
-                        (substring (treesit-node-text field-decl-node)
-                                   field-name-pos-within-field-decl)))
-               (field-definition
-                (concat (if (string-suffix-p ";" field-decl-with-class-name)
-                            (substring field-decl-with-class-name 0 -1)
-                          field-decl-with-class-name)
-                        "\n{\n}")))
-          field-definition)))
+        (cl-loop for (field-decl-node field-id-node) in list-of-field-decl-id
+                 for field-name-pos-within-field-decl =
+                 (- (treesit-node-start field-id-node)
+                    (treesit-node-start field-decl-node))
+                 for field-decl-with-class-name =
+                 (concat (substring (treesit-node-text field-decl-node t)
+                                    0 field-name-pos-within-field-decl)
+                         class-name
+                         "::"
+                         (substring (treesit-node-text field-decl-node t)
+                                    field-name-pos-within-field-decl))
+                 collect
+                 (concat (if (string-suffix-p ";" field-decl-with-class-name)
+                             (substring field-decl-with-class-name 0 -1)
+                           field-decl-with-class-name)
+                         "\n{\n}"))))
 
-    (defun osf-copy-cpp-definition-for-declaration (&optional point)
+    (defun osf-cpp-copy-definitions-for-declarations ()
       (interactive)
-      (let ((definition (osf-cpp-definition-for-declaration point)))
+      (let* ((beg (if (use-region-p) (region-beginning) (point)))
+             (end (if (use-region-p) (region-end) (point)))
+             (definitions
+              (string-join (osf-cpp-definitions-for-declarations beg end) "\n\n")))
         (if (fboundp #'evil-yank-lines)
             (with-temp-buffer
-              (insert definition)
+              (insert definitions)
               (evil-yank-lines (point-min) (point-max)))
-          (kill-new definition))))
+          (kill-new definitions))
+        (cond ((and (bound-and-true-p evil-mode) (evil-visual-state-p))
+               (evil-force-normal-state))
+              ((region-active-p) (deactivate-mark)))
+        (message "Definitions copied")))
 
     (osf-local-leader-define-key c++-mode-map
-      "a d" #'osf-copy-cpp-definition-for-declaration)
+      "a d" #'osf-cpp-copy-definitions-for-declarations)
     ))
 
 (provide 'osf-c-cpp)
