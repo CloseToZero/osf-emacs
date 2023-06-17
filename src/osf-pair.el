@@ -24,6 +24,17 @@
 
 ;;; Code:
 
+(osf-annotate-within-function query-replace-read-args)
+(osf-annotate-within-function evil-ex-start-search)
+
+(defun osf-electric-pair-inhibit (open-char)
+  (or osf-within-query-replace-read-args?
+      osf-within-evil-ex-start-search?
+      (bound-and-true-p isearch-mode)
+      (electric-pair-default-inhibit open-char)))
+
+(setq electric-pair-inhibit-predicate #'osf-electric-pair-inhibit)
+
 (electric-pair-mode)
 
 (straight-use-package 'puni)

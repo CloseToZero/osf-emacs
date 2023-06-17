@@ -157,4 +157,23 @@ Example:
   (let ((message-log-max nil))
     (funcall #'message format-string args)))
 
+(defmacro osf-annotate-within-function (fn &optional var-sym)
+  "Advice the function FN to tell others we are within the function FN
+by the variable SYM.
+This function will define the variable VAR-SYM
+by `defvar' and use it to inform others let we are within the function
+FN.
+By default, VAR-SYM will named osf-within-FN? (NOTE: the FN need to
+be a symbol.)"
+  (let ((var-sym
+         (or var-sym (intern (format "osf-within-%s?" (symbol-name fn)))))
+        (advice-sym
+         (intern (format "osf--annotate-within-function-%s" (symbol-name fn)))))
+    `(progn
+       (defvar ,var-sym nil)
+       (defun ,advice-sym (fn &rest args)
+         (let ((,var-sym t))
+           (apply fn args)))
+       (advice-add ',fn :around ',advice-sym))))
+
 (provide 'osf-lib)
