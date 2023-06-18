@@ -27,6 +27,8 @@
 (evil-set-initial-state 'org-mode 'normal)
 
 (osf-evil-define-key 'normal org-mode-map
+  "<tab>" #'org-cycle
+  "<backtab>" #'org-shifttab
   "M-j" #'org-metadown
   "M-k" #'org-metaup
   "M-h" #'org-metaleft
