@@ -24,19 +24,32 @@
 
 ;;; Code:
 
-(osf-annotate-within-function query-replace-read-args)
-(osf-annotate-within-function evil-ex-start-search)
+(straight-use-package 'smartparens)
 
-(defun osf-electric-pair-inhibit (open-char)
-  (or osf-within-query-replace-read-args?
-      osf-within-evil-ex-start-search?
-      (bound-and-true-p isearch-mode)
-      (eq (char-before (1- (point))) ?\\)
-      (electric-pair-default-inhibit open-char)))
+(setq sp-highlight-pair-overlay nil
+      sp-highlight-wrap-overlay nil
+      sp-highlight-wrap-tag-overlay nil)
 
-(setq electric-pair-inhibit-predicate #'osf-electric-pair-inhibit)
+(require 'smartparens-config)
 
-(electric-pair-mode)
+(sp-with-modes '(
+                 js-mode
+                 css-mode
+                 zig-mode
+                 java-mode
+                 )
+  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
+
+(with-eval-after-load 'smartparens-org
+  (defun osf-sp-point-after-right-pair (id action _context)
+    (when (memq action '(insert escape))
+      (sp--looking-back-p (rx (or ")" "}" "]") (literal id)))))
+  (sp-with-modes 'org-mode
+    (sp-local-pair
+     "_" "_"
+     :unless '(sp-point-after-word-p osf-sp-point-after-right-pair))))
+
+(smartparens-global-mode)
 
 (straight-use-package 'puni)
 (require 'puni)
