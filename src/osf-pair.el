@@ -31,6 +31,7 @@
   (or osf-within-query-replace-read-args?
       osf-within-evil-ex-start-search?
       (bound-and-true-p isearch-mode)
+      (eq (char-before (1- (point))) ?\\)
       (electric-pair-default-inhibit open-char)))
 
 (setq electric-pair-inhibit-predicate #'osf-electric-pair-inhibit)
