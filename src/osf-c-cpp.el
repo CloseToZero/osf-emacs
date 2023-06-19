@@ -24,7 +24,8 @@
 
 ;;; Code:
 
-(when (and (treesit-available-p)
+(when (and (fboundp #'treesit-available-p)
+           (treesit-available-p)
            (treesit-language-available-p 'cpp))
   (with-eval-after-load 'cc-mode
     (defun osf-cpp-definitions-for-declarations (beg end)
