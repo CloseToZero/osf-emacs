@@ -67,7 +67,6 @@
 (require 'osf-markdown)
 (require 'osf-emacs-lisp)
 (require 'osf-common-lisp)
-(require 'osf-c-cpp)
 (require 'osf-zig)
 (require 'osf-js)
 (when (eq osf-system-type 'windows)
