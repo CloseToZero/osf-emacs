@@ -39,12 +39,7 @@
       (osf-open-by-system-default-app cur-file-name)))
 
   (osf-evil-define-key 'normal dired-mode-map
-    "y p" #'osf-dired-copy-path
-    "M-S-<return>" #'osf-dired-open-by-system-default-app)
-  (osf-keymap-set dired-mode-map
-    "M-RET" #'osf-dired-open-by-system-default-app
-    "C-t A" #'image-dired-show-all-from-dir
-    "C-c w" #'wdired-change-to-wdired-mode))
+    "M-S-<return>" #'osf-dired-open-by-system-default-app))
 
 (with-eval-after-load 'image-dired-external
   (when (executable-find "magick")
