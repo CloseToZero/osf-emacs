@@ -75,44 +75,45 @@
         (setq to (1- to)))
       (puni-soft-delete from to 'strict-sexp 'beyond 'kill))))
 
-(osf-keymap-set puni-mode-map
-  "DEL" nil
-  "C-d" nil
-  "C-k" #'osf-puni-kill-line)
+(defun osf-puni-evil-mark-sexp-at-point ()
+  "Like `puni-mark-sexp-at-point', but fix the issue that
+the command marks an extra character at the end of the region
+in evil visual state."
+  (interactive)
+  (puni-mark-sexp-at-point)
+  (when (and (bound-and-true-p evil-local-mode)
+             (use-region-p))
+    (puni--mark-region (region-beginning) (1- (region-end)))))
 
-(puni-global-mode)
+(defun osf-puni-evil-puni-backward-sexp (&optional n)
+  "Like `puni-backward-sexp', but fix the movement for non-insert states."
+  (interactive "^p")
+  (when (and (bound-and-true-p evil-local-mode)
+             (not evil-move-beyond-eol)
+             (not (evil-insert-state-p)))
+    (forward-char))
+  (puni-backward-sexp n))
 
-(defvar-keymap osf-puni-lisp-sexp-edit-map
+(defvar-keymap osf-puni-map
   "r" #'puni-raise
   "s" #'puni-split
   "S" #'puni-splice
   "." #'puni-slurp-forward
   "," #'puni-barf-forward
-  "\<" #'puni-slurp-backward
-  "\>" #'puni-barf-backward
+  "<" #'puni-slurp-backward
+  ">" #'puni-barf-backward
+  "[" #'osf-puni-evil-puni-backward-sexp
+  "]" #'puni-forward-sexp
+  "m" #'osf-puni-evil-mark-sexp-at-point
+  "k" #'puni-kill-line
   )
-(fset #'osf-puni-lisp-sexp-edit-map osf-puni-lisp-sexp-edit-map)
+(fset #'osf-puni-map osf-puni-map)
 
-(defun osf-puni-setup-lisp-sexp-edit-map-locally ()
-  (unless (bound-and-true-p puni-mode)
-    (error "`puni-mode' not enabled"))
-  (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map (current-local-map))
-    (osf-keymap-set map
-      "M-e" 'osf-puni-lisp-sexp-edit-map)
-    (use-local-map map)))
+(osf-keymap-set puni-mode-map
+  "DEL" nil
+  "C-d" nil
+  "M-e" 'osf-puni-map)
 
-(defun osf--puni-setup-lisp-sexp-edit-map-locally-check-modes ()
-  (when (memq major-mode '(emacs-lisp-mode
-                           lisp-interaction-mode
-                           lisp-mode
-                           lisp-data-mode
-                           scheme-mode))
-    (osf-puni-setup-lisp-sexp-edit-map-locally)))
-
-(add-hook 'puni-mode-hook
-          #'osf--puni-setup-lisp-sexp-edit-map-locally-check-modes)
-(add-hook 'eval-expression-minibuffer-setup-hook
-          #'osf-puni-setup-lisp-sexp-edit-map-locally)
+(puni-global-mode)
 
 (provide 'osf-pair)
