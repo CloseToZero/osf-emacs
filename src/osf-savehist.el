@@ -30,4 +30,11 @@
   (setq savehist-additional-variables
         (append variables savehist-additional-variables)))
 
+(defun osf--remove-kill-ring-text-properties-for-savehist ()
+  (setq-local kill-ring
+              (mapcar #'substring-no-properties
+                      (cl-remove-if-not #'stringp kill-ring))))
+(add-hook 'savehist-save-hook #'osf--remove-kill-ring-text-properties-for-savehist)
+(osf-add-saved-vars 'kill-ring)
+
 (provide 'osf-savehist)
