@@ -83,4 +83,6 @@
         w32-pipe-read-delay 0
         w32-pipe-buffer-size (* 1024 1024)))
 
+(setq kill-ring-max 5000)
+
 (provide 'osf-misc)
