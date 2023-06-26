@@ -26,4 +26,14 @@
 
 (straight-use-package '(cmake-mode :source emacsmirror-mirror))
 
+(with-eval-after-load 'cmake-mode
+  (osf-local-leader-define-key cmake-mode-map
+    "h h" #'cmake-help
+    "h c" #'cmake-help-command
+    "h v" #'cmake-help-variable
+    "h p" #'cmake-help-property
+    "h m" #'cmake-help-module
+    "h l" #'cmake-help-list-commands
+    ))
+
 (provide 'osf-c-cpp)
