@@ -152,6 +152,10 @@
   "C-k" #'magit-blob-previous
   )
 
+(osf-keymap-set magit-blob-mode-map
+  "n" nil
+  )
+
 (osf-evil-define-key 'normal magit-blame-read-only-mode-map
   "j" #'evil-next-visual-line
   "k" #'evil-previous-visual-line
