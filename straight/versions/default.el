@@ -1,4 +1,5 @@
 (("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
+ ("cmake-mode" . "dd3630832e77ae20058e0f5054d68cfdc465649b")
  ("company-mode" . "8a78f320019574bc35b5727f95b052b27918da20")
  ("compat" . "cd28402790821ce95ea4c3ea0de5c2d9dcfce31f")
  ("dash.el" . "b6eef1a24dfbe57ba72d5eb1613fc05ff92e8e92")
