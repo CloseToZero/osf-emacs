@@ -12,6 +12,7 @@
  ("evil" . "be736b8dbc468d53e6cb3e76db66c1141330b030")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("gnu-elpa-mirror" . "eda4c968f0400750e17a013bb80832088dab12d1")
+ ("google-c-style" . "6855bd1579b7fc45078894a45adab6903eecdee5")
  ("goto-chg" . "278cd3e6d5107693aa2bb33189ca503f22f227d0")
  ("helm" . "e56d0a82a4037ab11e75a89999796a809f51901c")
  ("imenu-list" . "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
