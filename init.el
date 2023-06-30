@@ -59,6 +59,7 @@
 (require 'osf-project)
 (require 'osf-scratch)
 (require 'osf-vc)
+(require 'osf-embark)
 (require 'osf-avy)
 (require 'osf-comment)
 (require 'osf-shell)
