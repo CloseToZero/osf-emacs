@@ -134,7 +134,7 @@
 
 (setq company-idle-delay 0.1
       company-minimum-prefix-length 1
-      company-show-numbers t
+      company-show-quick-access t
       company-dabbrev-ignore-case t
       company-dabbrev-downcase nil
       company-dabbrev-ignore-buffers (rx (or (regexp "\\`[ *]")
