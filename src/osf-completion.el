@@ -154,6 +154,8 @@
 
 (require 'company)
 
+(evil-declare-change-repeat #'company-complete-quick-access)
+
 (defun osf--ensure-company-keymaps-not-been-overridden ()
   ;; Note:
   ;; Check if `company-emulation-alist' is in
