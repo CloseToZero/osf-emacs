@@ -111,6 +111,7 @@ in evil visual state."
 
 (osf-keymap-set puni-mode-map
   "DEL" nil
+  "M-DEL" nil
   "C-d" nil
   "M-e" 'osf-puni-map)
 

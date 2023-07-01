@@ -57,7 +57,8 @@
       (apply orig-fun args)))
   (advice-add #'company--perform :around #'osf--disable-orderless-in-company))
 
-(straight-use-package 'vertico)
+(straight-use-package '(vertico :files (:defaults "extensions/*")
+                                :includes (vertico-indexed)))
 
 (setq vertico-multiline
       (cons #("\\\\n" 0 3 (face vertico-multiline))
@@ -85,7 +86,13 @@
 
 (add-hook 'vertico-mode-hook #'osf--setup-vertico-for-completion-in-region)
 
+(require 'vertico)
+
+(osf-indexed-setup-keymap vertico-map)
+
 (vertico-mode)
+
+(vertico-indexed-mode)
 
 (straight-use-package 'company)
 
