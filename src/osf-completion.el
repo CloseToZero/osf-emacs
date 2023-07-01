@@ -85,6 +85,9 @@
   "SPC" #'execute-extended-command
   "b b" #'consult-buffer)
 
+(osf-evil-define-key 'insert 'global
+  "M-y" #'consult-yank-pop)
+
 (defun osf-completion-in-region-function (&rest args)
   (apply (if vertico-mode
              #'consult-completion-in-region
