@@ -64,6 +64,14 @@
       (cons #("\\\\n" 0 3 (face vertico-multiline))
             #("..." 0 3 (face vertico-multiline))))
 
+(require 'vertico)
+
+(osf-indexed-setup-keymap vertico-map)
+
+(vertico-mode)
+
+(vertico-indexed-mode)
+
 (straight-use-package 'marginalia)
 
 (marginalia-mode)
@@ -77,22 +85,12 @@
   "SPC" #'execute-extended-command
   "b b" #'consult-buffer)
 
-(defvar osf--ori-completion-in-region-function completion-in-region-function)
-(defun osf--setup-vertico-for-completion-in-region ()
-  (cond (vertico-mode
-         (setq osf--ori-completion-in-region-function completion-in-region-function)
-         (setq completion-in-region-function #'consult-completion-in-region))
-        (t (setq completion-in-region-function osf--ori-completion-in-region-function))))
-
-(add-hook 'vertico-mode-hook #'osf--setup-vertico-for-completion-in-region)
-
-(require 'vertico)
-
-(osf-indexed-setup-keymap vertico-map)
-
-(vertico-mode)
-
-(vertico-indexed-mode)
+(defun osf-completion-in-region-function (&rest args)
+  (apply (if vertico-mode
+             #'consult-completion-in-region
+           #'completion--in-region)
+         args))
+(setq completion-in-region-function #'osf-completion-in-region-function)
 
 (straight-use-package 'company)
 
