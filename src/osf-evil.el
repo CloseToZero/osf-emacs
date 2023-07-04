@@ -35,13 +35,7 @@
       evil-want-abbrev-expand-on-insert-exit nil
       evil-jumps-ignored-file-patterns nil
       evil--jumps-buffer-targets
-      (rx
-       (or
-        (seq string-start "*"
-             (or "new" "scratch" "eww" "Help")
-             "*" string-end)
-        (seq string-start "*scratch:")
-        (seq string-start "*Org Src " (+ anychar) "*"))))
+      (rx (* anychar)))
 
 (require 'evil)
 
