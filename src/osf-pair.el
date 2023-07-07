@@ -37,6 +37,7 @@
                  css-mode
                  zig-mode
                  java-mode
+                 glsl-mode
                  )
   (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
 
