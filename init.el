@@ -70,6 +70,7 @@
 (require 'osf-c-cpp)
 (require 'osf-zig)
 (require 'osf-js)
+(require 'osf-opengl)
 (when (eq osf-system-type 'windows)
   (require 'osf-total-commander))
 (require 'osf-enable-disabled-commands)

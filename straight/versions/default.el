@@ -12,6 +12,7 @@
  ("embark" . "f2dcfe4d797a3ab66bb603d5cf441ae1172a672d")
  ("evil" . "be736b8dbc468d53e6cb3e76db66c1141330b030")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
+ ("glsl-mode" . "9b2e5f28e489a1f73c4aed734105618ac0dc0c43")
  ("gnu-elpa-mirror" . "eda4c968f0400750e17a013bb80832088dab12d1")
  ("google-c-style" . "6855bd1579b7fc45078894a45adab6903eecdee5")
  ("goto-chg" . "278cd3e6d5107693aa2bb33189ca503f22f227d0")
