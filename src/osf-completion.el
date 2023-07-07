@@ -81,6 +81,29 @@
 
 (straight-use-package 'consult)
 
+(with-eval-after-load 'consult
+  (defun consult--buffer-sort-identically-but-current (buffers)
+    "Sort identically but exclude the current buffer.
+Most importantly, don't put visible buffers in the bottom of the list."
+    ;; Rationale: split the current window into windows A and B, both
+    ;; windows now display the same buffer B.
+    ;; In window A, Invoke `consult-buffer' then press RET immediately
+    ;; to switch to the most recent buffer R, view some content, then
+    ;; use `consult-buffer' RET again to switch to the previous buffer
+    ;; B. Without looking at the window B (focusing on window A), I
+    ;; would expect that I would be switched to the buffer B, but
+    ;; since the buffer B is visible right now in window B, I would
+    ;; actucally go into a unexpected buffer.
+    (let ((current (current-buffer)))
+      (nconc (delq current buffers) (list current))))
+
+  (plist-put consult--source-buffer :items
+             (lambda ()
+               (consult--buffer-query
+                :sort 'identically-but-current
+                :as #'buffer-name)))
+  )
+
 (osf-leader-define-key 'global
   "SPC" #'execute-extended-command
   "b b" #'consult-buffer)
