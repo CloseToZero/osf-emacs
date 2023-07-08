@@ -26,4 +26,14 @@
 
 (setq comint-prompt-read-only t)
 
+;; Add the following command to deal with the case that the eshell
+;; buffer has fired the error 'Text is read-only', so I can't use the
+;; 'clear' eshell command to clear the buffer and simply can't do
+;; anything to fix the eshell buffer.
+(defun osf-eshell-clear ()
+  "Clear the eshell buffer."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
+
 (provide 'osf-shell)
