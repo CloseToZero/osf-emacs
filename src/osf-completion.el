@@ -109,7 +109,7 @@ Most importantly, don't put visible buffers in the bottom of the list."
   "b b" #'consult-buffer)
 
 (osf-evil-define-key 'insert 'global
-  "M-y" #'consult-yank-pop)
+  "M-y" #'consult-yank-from-kill-ring)
 
 (defun osf-completion-in-region-function (&rest args)
   (apply (if vertico-mode
