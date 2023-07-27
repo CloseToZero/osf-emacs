@@ -11,6 +11,7 @@
  ("emacsmirror-mirror" . "606c3dcfc57ee47a9969b4d9f3d87408f14ebffb")
  ("embark" . "f2dcfe4d797a3ab66bb603d5cf441ae1172a672d")
  ("evil" . "be736b8dbc468d53e6cb3e76db66c1141330b030")
+ ("evil-exchange" . "5f0a2d41434c17c6fb02e4f744043775de1c63a2")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("glsl-mode" . "9b2e5f28e489a1f73c4aed734105618ac0dc0c43")
  ("gnu-elpa-mirror" . "eda4c968f0400750e17a013bb80832088dab12d1")

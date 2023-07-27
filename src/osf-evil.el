@@ -114,4 +114,7 @@ jump if called interactively."
 (straight-use-package 'evil-visualstar)
 (global-evil-visualstar-mode)
 
+(straight-use-package 'evil-exchange)
+(evil-exchange-install)
+
 (provide 'osf-evil)
