@@ -32,8 +32,10 @@
 
   "b x" #'kill-current-buffer
   "b X" #'kill-buffer
-
   "b m" #'ibuffer
+
+  "B s" #'bookmark-set
+  "B j" #'bookmark-jump
 
   "f f" #'find-file
   "f R" #'revert-buffer
