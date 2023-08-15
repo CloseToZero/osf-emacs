@@ -24,23 +24,22 @@
 
 ;;; Code:
 
-(straight-use-package 'vundo)
+(evil-set-initial-state 'vundo-mode 'normal)
+(osf-evil-define-key 'normal vundo-mode-map
+  "C-g" #'osf-vundo-quit
+  "q" #'osf-vundo-quit
+  "l" #'vundo-forward
+  "h" #'vundo-backward
+  "j" #'vundo-next
+  "k" #'vundo-previous
+  "RET" #'vundo-confirm
+  "?" #'describe-mode
+  "H" #'vundo-stem-root
+  "L" #'vundo-stem-end
+  "g r" #'revert-buffer
+  "d" #'vundo--debug
+  "i" #'vundo--inspect
+  "g s" #'vundo-goto-last-saved
+  )
 
-(osf-keymap-global-set
-  "C-/" #'undo-only
-  "C-?" #'undo-redo)
-
-(with-eval-after-load 'vundo
-  (defun osf-vundo-quit ()
-    (interactive)
-    (when (y-or-n-p
-           (substitute-command-keys
-            "Quit vundo will roll back the changes,\
- use \\[vundo-confirm] to confirm the changes.\
- Quit? "))
-      (let ((vundo-roll-back-on-quit t))
-        (vundo-quit)))
-    ;; Clear minibuffer message.
-    (message nil)))
-
-(provide 'osf-undo)
+(provide 'osf-evilize-vundo)

@@ -53,5 +53,7 @@
   (require 'osf-evilize-company))
 (with-eval-after-load 'vertico
   (require 'osf-evilize-vertico))
+(with-eval-after-load 'vundo
+  (require 'osf-evilize-vundo))
 
 (provide 'osf-evilize)
