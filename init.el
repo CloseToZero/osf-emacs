@@ -65,6 +65,7 @@
 (require 'osf-shell)
 (require 'osf-org)
 (require 'osf-markdown)
+(require 'osf-lisp)
 (require 'osf-emacs-lisp)
 (require 'osf-common-lisp)
 (require 'osf-c-cpp)
