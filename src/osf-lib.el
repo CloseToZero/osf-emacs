@@ -49,6 +49,16 @@ Example:
   (interactive)
   (find-file user-init-file))
 
+(cl-defun osf-copy-current-path (&key copy-empty-string (show-message t))
+  (interactive)
+  (let ((path (expand-file-name default-directory)))
+    (when (or (not (string-empty-p path)) copy-empty-string)
+      (if (eq last-command 'kill-region)
+          (kill-append path nil)
+        (kill-new path))
+      (when show-message
+        (message "%s" path)))))
+
 (defvar osf-create-src-hist nil)
 (osf-add-saved-vars 'osf-create-src-hist)
 (defun osf-create-src (basename)

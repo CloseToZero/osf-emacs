@@ -97,6 +97,8 @@
    "G" evil-goto-line
    "v" evil-visual-char
    "y f" dired-copy-filename-as-kill
+   "y p" osf-dired-copy-path
+   "y c" osf-copy-current-path
    "Y" evil-yank-line
    "?" evil-ex-search-forward
    ,@(cond ((eq evil-search-module 'evil-search)
