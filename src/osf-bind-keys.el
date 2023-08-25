@@ -44,6 +44,8 @@
 
   "q q" #'save-buffers-kill-terminal
 
+  "% %" #'query-replace
+  "% r" #'query-replace-regexp
   "% s" #'osf-query-swap-literal
   )
 
