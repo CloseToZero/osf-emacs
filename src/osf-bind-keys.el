@@ -43,6 +43,8 @@
   "f o" #'osf-ff-find-other-file-ignore-include-line
 
   "q q" #'save-buffers-kill-terminal
+
+  "% s" #'osf-query-swap-literal
   )
 
 (provide 'osf-bind-keys)

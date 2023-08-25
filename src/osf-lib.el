@@ -240,4 +240,44 @@ be a symbol.)"
     "M-0" #'osf-indexed-digit-argument
     "M--" #'osf-indexed-negative-argument))
 
+(defvar osf-query-swap-literal-hist-replace nil)
+(defvar osf-query-swap-literal-hist-with nil)
+(osf-add-saved-vars
+ 'osf-query-swap-literal-hist-replace
+ 'osf-query-swap-literal-hist-with)
+(defun osf-query-swap-literal (str1 str2 start end region-noncontiguous-p)
+  "Replace STR1 with STR2, repalce STR2 with STR1."
+  (interactive
+   (list (read-string
+          (format "Replace%s%s: "
+                  (if (use-region-p) " (in region)" "")
+                  (if osf-query-swap-literal-hist-replace
+                      (format " (default %s)"
+                              (car osf-query-swap-literal-hist-replace))
+                    ""))
+          nil 'osf-query-swap-literal-hist-replace
+          osf-query-swap-literal-hist-replace)
+         (read-string
+          (format "With%s: "
+                  (if osf-query-swap-literal-hist-with
+                      (format " (default %s)"
+                              (car osf-query-swap-literal-hist-with))
+                    nil))
+          nil
+          'osf-query-swap-literal-hist-with
+          osf-query-swap-literal-hist-with)
+         (use-region-beginning)
+         (use-region-end)
+         (use-region-noncontiguous-p)))
+  (perform-replace
+   (rx (group (or (literal str1) (literal str2))))
+   (cons
+    (lambda (arg count)
+      (if (string= (match-string 1) str1)
+          str2
+        str1))
+    nil)
+   t t nil nil nil
+   start end nil region-noncontiguous-p))
+
 (provide 'osf-lib)
