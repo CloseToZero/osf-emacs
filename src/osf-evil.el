@@ -95,6 +95,7 @@ jump if called interactively."
 
 (straight-use-package
  '(double-trigger
+   :inherit nil
    :type git
    :repo "git@github.com:CloseToZero/double-trigger.git"))
 
@@ -116,5 +117,45 @@ jump if called interactively."
 
 (straight-use-package 'evil-exchange)
 (evil-exchange-install)
+
+(straight-use-package
+ '(evil-snipe
+   :inherit nil
+   :type git
+   :repo "git@github.com:CloseToZero/evil-snipe.git"))
+
+(setq evil-snipe-aliases
+      (append
+       '((?\" "[\"“”]")
+         (?\\ "[\\、]")
+         (?, "[,，]")
+         (?\( "[(（]")
+         (?\) "[)）]")
+         (?: "[:：]")
+         (?. "[.。◦]")
+         (?a "[aAα]")
+         (?x "[xX×]")
+         (?u "[uU∪]")
+         (?n "[nN∩]")
+         (?c "[cC∈ε]")
+         (?> "[>≥]")
+         (?< "[>≤]")
+         (?- "[-−→]"))
+       (mapcar (lambda (ch)
+                 `(,ch ,(concat "["
+                                (string ch)
+                                (string (upcase ch))
+                                "]")))
+               (number-sequence ?a ?z)))
+      evil-snipe-aliases
+      (mapcan (lambda (item)
+                (let ((ch (car item)))
+                  (if (= (downcase ch) (upcase ch))
+                      (list item)
+                    (list item (cons (upcase ch) (cdr item))))))
+              evil-snipe-aliases))
+
+(evil-snipe-mode)
+(evil-snipe-override-mode)
 
 (provide 'osf-evil)

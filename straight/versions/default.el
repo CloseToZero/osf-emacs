@@ -13,6 +13,7 @@
  ("embark" . "087bad28245a105d084740cd7981ca711f4c5637")
  ("evil" . "60ba716bf500ca21cdf5a8f83101449a1cbe3413")
  ("evil-exchange" . "5f0a2d41434c17c6fb02e4f744043775de1c63a2")
+ ("evil-snipe" . "b59159fdb5af7d2a7defaf9a48fdbc6b08aa2d7b")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("glsl-mode" . "9b2e5f28e489a1f73c4aed734105618ac0dc0c43")
  ("gnu-elpa-mirror" . "b97c2f4f9fd0f451f2e32f3d14ebada0715dabf4")
