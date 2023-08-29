@@ -3,3 +3,8 @@
 ** Evilize key bindings
 
 Part of code of osf-evilize-xx.el are adapted from [[https://github.com/emacs-evil/evil-collection][evil-collection]].
+
+** company-coq
+
+In order for prettification to work properly, you'll need a font with
+proper symbol support: [[https://fonts2u.com/symbola.font][Symbola]] (up to version 10.23).
