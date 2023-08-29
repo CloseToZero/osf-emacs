@@ -71,6 +71,7 @@
 (require 'osf-c-cpp)
 (require 'osf-zig)
 (require 'osf-js)
+(require 'osf-proof)
 (require 'osf-opengl)
 (when (eq osf-system-type 'windows)
   (require 'osf-total-commander))
