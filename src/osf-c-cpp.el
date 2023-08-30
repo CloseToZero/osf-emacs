@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+
 (straight-use-package '(google-c-style :source emacsmirror-mirror))
 
 (with-eval-after-load 'cc-mode
