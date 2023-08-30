@@ -33,4 +33,9 @@
   (setcar js-regexp-mode (rx (or (seq ".mjs" string-end)
                                  (regexp (car js-regexp-mode))))))
 
-(provide 'osf-js)
+(when (treesit-available-p)
+  (require 'treesit)
+  (when (treesit-ready-p 'typescript)
+    (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))))
+
+(provide 'osf-js-ts)

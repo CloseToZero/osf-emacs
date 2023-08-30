@@ -70,7 +70,7 @@
 (require 'osf-common-lisp)
 (require 'osf-c-cpp)
 (require 'osf-zig)
-(require 'osf-js)
+(require 'osf-js-ts)
 (require 'osf-proof)
 (require 'osf-opengl)
 (when (eq osf-system-type 'windows)
