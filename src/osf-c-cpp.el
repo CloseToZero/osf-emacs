@@ -45,4 +45,6 @@
     "h l" #'cmake-help-list-commands
     ))
 
+(straight-use-package 'cmake-font-lock)
+
 (provide 'osf-c-cpp)
