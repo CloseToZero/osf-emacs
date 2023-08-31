@@ -58,6 +58,7 @@
     "L" #'proof-goto-command-end
     "i" #'prog-indent-sexp
     "I" #'prog-fill-reindent-defun
+    "w l" #'proof-layout-windows
     )
   (osf-evil-define-key 'normal coq-mode-map
     "u" #'osf-coq-undo
