@@ -25,11 +25,23 @@
 ;;; Code:
 
 (defvar osf-tc-executable
-  "TOTALCMD64.EXE"
+  nil
   "The executable of Total Commander.")
+
+(defun osf-tc-executable ()
+  (unless osf-tc-executable
+    (setq osf-tc-executable
+          (or (executable-find "TOTALCMD64")
+              (when-let ((path (getenv "COMMANDER_PATH")))
+                (expand-file-name "TOTALCMD64.exe" path))))
+    (unless (file-executable-p osf-tc-executable)
+      (setq osf-tc-executable nil))
+    (unless osf-tc-executable
+      (error "Cannot find the executable of Total Commander")))
+  osf-tc-executable)
 
 (defun osf-tc-open-dir (dir)
   (interactive "DDir: ")
-  (call-process osf-tc-executable nil 0 nil "/O" "/T" (expand-file-name dir)))
+  (call-process (osf-tc-executable) nil 0 nil "/O" "/T" (expand-file-name dir)))
 
 (provide 'osf-total-commander)
