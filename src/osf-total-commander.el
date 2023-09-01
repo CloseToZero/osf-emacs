@@ -42,6 +42,6 @@
 
 (defun osf-tc-open-dir (dir)
   (interactive "DDir: ")
-  (call-process (osf-tc-executable) nil 0 nil "/O" "/T" (expand-file-name dir)))
+  (call-process (osf-tc-executable) nil 0 nil "/S" "/O" "/T" (expand-file-name dir)))
 
 (provide 'osf-total-commander)
