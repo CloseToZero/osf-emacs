@@ -139,7 +139,7 @@ jump if called interactively."
          (?n "[nN∩]")
          (?c "[cC∈ε]")
          (?> "[>≥]")
-         (?< "[>≤]")
+         (?< "[<≤]")
          (?- "[-−→]"))
        (mapcar (lambda (ch)
                  `(,ch ,(concat "["
