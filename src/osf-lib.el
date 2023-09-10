@@ -45,6 +45,10 @@ Example:
              (setcdr cons nil))
            list)))
 
+(defun osf-font-exists? (font)
+  (when (fboundp #'x-list-fonts)
+    (not (null (x-list-fonts font)))))
+
 (defun osf-edit-config ()
   (interactive)
   (find-file user-init-file))

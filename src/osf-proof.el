@@ -67,6 +67,12 @@
   )
 
 (straight-use-package 'company-coq)
+
 (add-hook 'coq-mode-hook #'company-coq-mode)
+
+(with-eval-after-load 'company-coq
+  (unless (osf-font-exists? "Symbola")
+    (add-to-list 'company-coq-disabled-features 'prettify-symbols)
+    (add-to-list 'company-coq-disabled-features 'smart-subscripts)))
 
 (provide 'osf-proof)
