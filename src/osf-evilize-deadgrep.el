@@ -31,13 +31,13 @@
   "q" #'quit-window
   "RET" #'deadgrep-visit-result
   "S-<return>" #'deadgrep-visit-result-other-window
-  "s" #'deadgrep-search-term
+  "c s" #'deadgrep-search-term
   "t" #'deadgrep-cycle-search-type
   "f" #'deadgrep-cycle-files
   "d" #'deadgrep-directory
   "^" #'deadgrep-parent-directory
   "g r" #'deadgrep-restart
-  "S" #'deadgrep-incremental
+  "c S" #'deadgrep-incremental
   "<tab>" #'deadgrep-toggle-file-results
   "` k" #'deadgrep-kill-process
   "j" #'evil-next-visual-line
