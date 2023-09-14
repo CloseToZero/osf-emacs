@@ -4,6 +4,8 @@
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "28.1"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -22,24 +24,6 @@
 
 ;;; Code:
 
-(setq inhibit-startup-screen t)
+(add-hook 'image-mode-hook #'osf-hide-cursor)
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-
-(push '(fullscreen . maximized) default-frame-alist)
-
-(setq ring-bell-function #'ignore)
-
-(column-number-mode)
-(setq column-number-indicator-zero-based nil)
-
-(setq display-line-numbers-grow-only t
-      display-line-numbers-type 'visual)
-(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
-  (add-hook hook #'display-line-numbers-mode))
-(add-hook 'osf-fundamental-mode-hook #'display-line-numbers-mode)
-
-(provide 'osf-ui)
+(provide 'osf-image)
