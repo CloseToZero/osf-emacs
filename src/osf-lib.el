@@ -284,4 +284,15 @@ be a symbol.)"
    t t nil nil nil
    start end nil region-noncontiguous-p))
 
+(defun osf-hide-cursor ()
+  (setq-local cursor-type nil
+              evil-emacs-state-cursor '(nil)
+              evil-motion-state-cursor '(nil)
+              evil-normal-state-cursor '(nil)
+              evil-visual-state-cursor '(nil)
+              evil-insert-state-cursor '(nil)))
+
+(defun osf-isearch-failed? ()
+  (or (not isearch-success) isearch-error))
+
 (provide 'osf-lib)

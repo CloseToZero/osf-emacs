@@ -55,5 +55,7 @@
   (require 'osf-evilize-vertico))
 (with-eval-after-load 'vundo
   (require 'osf-evilize-vundo))
+(with-eval-after-load 'pdf-tools
+  (require 'osf-evilize-pdf-tools))
 
 (provide 'osf-evilize)

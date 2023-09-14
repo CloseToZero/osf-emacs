@@ -73,6 +73,7 @@
 (require 'osf-js-ts)
 (require 'osf-proof)
 (require 'osf-opengl)
+(require 'osf-pdf)
 (when (eq osf-system-type 'windows)
   (require 'osf-total-commander))
 (require 'osf-enable-disabled-commands)
