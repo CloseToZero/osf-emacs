@@ -166,6 +166,11 @@
   "o" #'pdf-outline
   )
 
+
+(osf-evil-define-key 'visual pdf-view-mode-map
+  "y" #'pdf-view-kill-ring-save
+  )
+
 (with-eval-after-load 'pdf-outline
   (evil-set-initial-state 'pdf-outline-buffer-mode 'normal)
   (osf-evil-define-key 'normal pdf-outline-buffer-mode-map
