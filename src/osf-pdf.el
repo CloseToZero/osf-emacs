@@ -30,4 +30,14 @@
 
 (pdf-loader-install)
 
+(defun osf-pdf-view-kill-outline-buffer (&optional pdf-buffer)
+  "Kill the outline buffer of PDF-BUFFER (defaulted to the current buffer)."
+  (when-let ((buffer-name (pdf-outline-buffer-name pdf-buffer))
+             (buffer (get-buffer buffer-name)))
+    (kill-buffer buffer)))
+
+(defun osf--pdf-view-setup-kill-outline-buffer-hook ()
+    (add-hook 'kill-buffer-hook #'osf-pdf-view-kill-outline-buffer nil t))
+(add-hook 'pdf-view-mode-hook #'osf--pdf-view-setup-kill-outline-buffer-hook)
+
 (provide 'osf-pdf)
