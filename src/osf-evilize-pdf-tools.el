@@ -146,9 +146,9 @@
   "f" #'pdf-links-isearch-link
   "F" #'pdf-links-action-perform
 
-  "H" 'pdf-view-fit-height-to-window
-  "P" 'pdf-view-fit-page-to-window
-  "W" 'pdf-view-fit-width-to-window
+  "H" #'pdf-view-fit-height-to-window
+  "P" #'pdf-view-fit-page-to-window
+  "W" #'pdf-view-fit-width-to-window
 
   "g r" #'revert-buffer
 
