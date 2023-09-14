@@ -67,4 +67,6 @@
       (file-name-as-directory
        (expand-file-name "image-dired" osf-cache-dir)))
 
+(setq save-place-file (expand-file-name "places" osf-cache-dir))
+
 (provide 'osf-clean-dir)

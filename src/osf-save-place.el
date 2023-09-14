@@ -24,26 +24,6 @@
 
 ;;; Code:
 
-(straight-use-package 'pdf-tools)
+(save-place-mode)
 
-(add-hook 'pdf-view-mode-hook #'osf-hide-cursor)
-
-(pdf-loader-install)
-
-(defun osf-pdf-view-kill-outline-buffer (&optional pdf-buffer)
-  "Kill the outline buffer of PDF-BUFFER (defaulted to the current buffer)."
-  (when-let ((buffer-name (pdf-outline-buffer-name pdf-buffer))
-             (buffer (get-buffer buffer-name)))
-    (kill-buffer buffer)))
-
-(defun osf--pdf-view-setup-kill-outline-buffer-hook ()
-    (add-hook 'kill-buffer-hook #'osf-pdf-view-kill-outline-buffer nil t))
-(add-hook 'pdf-view-mode-hook #'osf--pdf-view-setup-kill-outline-buffer-hook)
-
-(straight-use-package 'saveplace-pdf-view)
-;; Need enable save-place-mode in the other place.
-(with-eval-after-load 'saveplace
-  (with-eval-after-load 'pdf-tools
-    (require 'saveplace-pdf-view)))
-
-(provide 'osf-pdf)
+(provide 'osf-save-place)

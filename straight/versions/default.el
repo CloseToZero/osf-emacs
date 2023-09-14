@@ -42,6 +42,7 @@
  ("pdf-tools" . "c69e7656a4678fe25afbd29f3503dd19ee7f9896")
  ("posframe" . "017deece88360c7297265680d78a0bb316470716")
  ("s.el" . "dda84d38fffdaf0c9b12837b504b402af910d01d")
+ ("saveplace-pdf-view" . "abfb5e1f463cffc18218a0f7f2fa141a271b1813")
  ("slime" . "1e4b7417a1ade842ba4938f66445af68a93176b9")
  ("slime-company" . "f20ecc4104d4c35052696e7e760109fb02060e72")
  ("smartparens" . "79a338db115f441cd47bb91e6f75816c5e78a772")

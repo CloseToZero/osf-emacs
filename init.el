@@ -56,6 +56,7 @@
 (require 'osf-window)
 (require 'osf-dired)
 (require 'osf-imenu)
+(require 'osf-save-place)
 (require 'osf-project)
 (require 'osf-scratch)
 (require 'osf-vc)
