@@ -104,12 +104,14 @@
     (image-bob)
     (image-set-window-hscroll hscroll)))
 
-(defun osf-evilize-pdf-view-goto-end ()
-  (interactive)
-  (let ((hscroll (window-hscroll)))
-    (pdf-view-last-page)
-    (image-eob)
-    (image-set-window-hscroll hscroll)))
+(defun osf-evilize-pdf-view-goto-page-or-end (&optional page)
+  (interactive "P")
+  (if page
+      (pdf-view-goto-page page)
+    (let ((hscroll (window-hscroll)))
+      (pdf-view-last-page)
+      (image-eob)
+      (image-set-window-hscroll hscroll))))
 
 (osf-evil-define-key 'normal pdf-view-mode-map
   "<remap> <evil-visual-char>" #'ignore
@@ -127,7 +129,7 @@
   "C-d" #'pdf-view-scroll-up-or-next-page
   "C-u" #'pdf-view-scroll-down-or-previous-page
   "g g" #'osf-evilize-pdf-view-goto-beginning
-  "G" #'osf-evilize-pdf-view-goto-end
+  "G" #'osf-evilize-pdf-view-goto-page-or-end
 
   "C-o" #'pdf-history-backward
   "C-i" #'pdf-history-forward
