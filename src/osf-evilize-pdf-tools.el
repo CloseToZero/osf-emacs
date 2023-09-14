@@ -158,6 +158,9 @@
 
   "g l" #'pdf-view-goto-label
 
+  "'" #'pdf-view-jump-to-register
+  "m" #'pdf-view-position-to-register
+
   "o" #'pdf-outline
   )
 
