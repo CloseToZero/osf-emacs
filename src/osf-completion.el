@@ -126,7 +126,7 @@ Most importantly, don't put visible buffers in the bottom of the list."
       company-dabbrev-ignore-case t
       company-dabbrev-downcase nil
       company-dabbrev-ignore-buffers (rx (or (regexp "\\`[ *]")
-                                             (seq ".pdf" string-end)))
+                                             (seq "." (regexp "[pP][dD][fF]") string-end)))
       company-tooltip-align-annotations t
       company-require-match 'never
       company-global-modes
