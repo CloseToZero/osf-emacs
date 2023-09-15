@@ -102,7 +102,14 @@ Most importantly, don't put visible buffers in the bottom of the list."
                (consult--buffer-query
                 :sort 'identically-but-current
                 :as #'buffer-name)))
-  )
+
+  (osf-annotate-within-function consult--find-file-temporarily-1)
+  (with-eval-after-load 'saveplace
+    (defun osf--consult-inhibit-save-place-to-alist-in-preview (fn &rest args)
+      (unless osf-within-consult--find-file-temporarily-1?
+        (apply fn args)))
+    (advice-add #'save-place-to-alist
+                :around #'osf--consult-inhibit-save-place-to-alist-in-preview)))
 
 (osf-leader-define-key 'global
   "SPC" #'execute-extended-command
