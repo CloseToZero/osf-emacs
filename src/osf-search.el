@@ -123,13 +123,16 @@ combination of positive and negative prefix arguments."
       (deadgrep-visit-result-other-window)
       (select-window old-window)))
 
+  (osf-evil-define-key nil deadgrep-edit-mode-map
+    "<remap> <evil-write>" #'osf-deadgrep-edit-exit
+    "<remap> <evil-quit>" #'osf-deadgrep-edit-abort)
+
   (osf-evil-define-key 'normal deadgrep-edit-mode-map
     "Z Z" #'osf-deadgrep-edit-exit
     "Z Q" #'osf-deadgrep-edit-abort)
 
   (osf-evil-define-key 'normal deadgrep-mode-map
     "i" #'osf-deadgrep-edit
-    "M-<return>" #'osf-deadgrep-visit-result-other-window)
-  )
+    "M-<return>" #'osf-deadgrep-visit-result-other-window))
 
 (provide 'osf-search)
