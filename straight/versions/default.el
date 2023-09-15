@@ -2,6 +2,7 @@
  ("ace-window" . "77115afc1b0b9f633084cf7479c767988106c196")
  ("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
  ("better-jumper" . "47622213783ece37d5337dc28d33b530540fc319")
+ ("blackout" . "7707211370f03f03a2f74df15f42ac24a1e99300")
  ("cmake-font-lock" . "a6038e916bcca807ae695f7d7e5c300c3f38f415")
  ("cmake-mode" . "f9c7a21254a82a8d44b623bdfded6d21b4ea33ef")
  ("company-coq" . "5affe7a96a25df9101f9e44bac8a828d8292c2fa")

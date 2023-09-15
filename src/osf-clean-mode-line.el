@@ -24,21 +24,31 @@
 
 ;;; Code:
 
-(require 'cl-lib)
+(straight-use-package 'blackout)
 
-(defun osf-regexp-literal-any-case (literal-str)
-  "Returns a regexp that matches LITERAL-STR literally and case insensitively."
-  (rx-to-string
-   `(seq
-     ,@(cl-loop
-        for ch across literal-str
-        collect
-        (if (not (eq (upcase ch) (downcase ch)))
-            `(regexp ,(rx-to-string `(any ,(char-to-string (upcase ch))
-                                          ,(char-to-string (downcase ch)))))
-          `(regexp ,(rx-to-string (char-to-string ch))))))))
+(pcase-dolist
+    (`(,feature ,modes)
+     '((autorevert auto-revert-mode)
+       (eldoc eldoc-mode)
+       (double-trigger double-trigger-mode)
+       (company company-mode)
+       (simple auto-fill-mode)
+       (with-editor with-editor-mode)
+       (smartparens smartparens-mode)
+       (whitespace whitespace-mode)
+       (org-indent org-indent-mode)
+       (zig-mode zig-format-on-save-mode)
+       (slime-autodoc slime-autodoc-mode)
+       (better-jumper better-jumper-local-mode)
+       (lispy lispy-mode)
+       (lispyville lispyville-mode)
+       (evil-snipe evil-snipe-local-mode)
+       ;; (feature (mode1 mode2))
+       ))
+  (with-eval-after-load feature
+    (dolist (mode (osf-ensure-is-list modes))
+      (blackout mode))))
 
-(defun osf-ensure-is-list (x)
-  (if (listp x) x (list x)))
+(setq mode-line-format (delete '(vc-mode vc-mode) mode-line-format))
 
-(provide 'osf-core-lib)
+(provide 'osf-clean-mode-line)
