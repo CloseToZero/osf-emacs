@@ -117,6 +117,7 @@
   "<remap> <evil-visual-char>" #'ignore
   "<remap> <evil-visual-block>" #'ignore
   "<remap> <evil-visual-line>" #'ignore
+  "<remap> <evil-insert>" #'ignore
 
   "j" #'pdf-view-next-line-or-next-page
   "k" #'pdf-view-previous-line-or-previous-page
