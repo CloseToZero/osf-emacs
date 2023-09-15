@@ -112,6 +112,12 @@ jump if called interactively."
 
 (double-trigger-mode)
 
+(straight-use-package 'better-jumper)
+(better-jumper-mode)
+(osf-evil-define-key 'motion 'global
+  "C-o" #'better-jumper-jump-backward
+  "C-i" #'better-jumper-jump-forward)
+
 (straight-use-package 'evil-visualstar)
 (global-evil-visualstar-mode)
 
