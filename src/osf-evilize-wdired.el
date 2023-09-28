@@ -32,8 +32,4 @@
   "<remap> <evil-write>" #'wdired-finish-edit
   "<remap> <evil-quit>" #'wdired-abort-changes)
 
-(osf-evil-define-key 'normal wdired-mode-map
-  "Z Z" #'wdired-finish-edit
-  "Z Q" #'wdired-abort-changes)
-
 (provide 'osf-evilize-wdired)
