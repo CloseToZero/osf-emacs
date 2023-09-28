@@ -1,4 +1,5 @@
-(("PG" . "e7aad1df36375284c65b496a44d346b047c01773")
+(("Emacs-wgrep" . "3132abd3750b8c87cbcf6942db952acfab5edccd")
+ ("PG" . "e7aad1df36375284c65b496a44d346b047c01773")
  ("ace-window" . "77115afc1b0b9f633084cf7479c767988106c196")
  ("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
  ("better-jumper" . "47622213783ece37d5337dc28d33b530540fc319")

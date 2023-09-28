@@ -83,39 +83,6 @@ combination of positive and negative prefix arguments."
           "Press \\[deadgrep-restart] to start the search.")))))
   (advice-add #'deadgrep--write-postponed :override #'osf--deadgrep--write-postponed-ad)
 
-  (defun osf-deadgrep-edit ()
-    (interactive)
-    (deadgrep-edit-mode)
-    (message
-     "%s"
-     (substitute-command-keys
-      "\\[osf-deadgrep-edit-abort] to abort the changes, \
-\\[osf-deadgrep-edit-exit] to exit the edit")))
-
-  (defun osf-deadgrep-edit-exit ()
-    (interactive)
-    (when (yes-or-no-p "Exit the edit? (the changes won't be rolled back) ")
-      (deadgrep-mode)))
-
-  (defvar osf--fake-undo-entry '(apply osf--fake-undo-command))
-  (defun osf--fake-undo-command ()
-    (push osf--fake-undo-entry buffer-undo-list))
-  (defun osf---deadgrep-edit-mark-undo-point ()
-    (osf--fake-undo-command))
-  (add-hook 'deadgrep-edit-mode-hook #'osf---deadgrep-edit-mark-undo-point)
-
-  (defun osf-deadgrep-edit-abort ()
-    (interactive)
-    (unless (eq major-mode 'deadgrep-edit-mode)
-      (user-error "Current major-mode is not `deadgrep-edit-mode'"))
-    (when (yes-or-no-p "Roll back changes? ")
-      (unless (equal (car buffer-undo-list) osf--fake-undo-entry)
-        (undo-start)
-        (while (and (listp pending-undo-list)
-                    (not (equal (car buffer-undo-list) osf--fake-undo-entry)))
-          (undo-more 1)))
-      (deadgrep-mode)))
-
   (defun osf-deadgrep-visit-result-other-window ()
     "Like `deadgrep-visit-result-other-window', but stay at the same window."
     (interactive)
@@ -123,16 +90,15 @@ combination of positive and negative prefix arguments."
       (deadgrep-visit-result-other-window)
       (select-window old-window)))
 
-  (osf-evil-define-key nil deadgrep-edit-mode-map
-    "<remap> <evil-write>" #'osf-deadgrep-edit-exit
-    "<remap> <evil-quit>" #'osf-deadgrep-edit-abort)
-
-  (osf-evil-define-key 'normal deadgrep-edit-mode-map
-    "Z Z" #'osf-deadgrep-edit-exit
-    "Z Q" #'osf-deadgrep-edit-abort)
-
   (osf-evil-define-key 'normal deadgrep-mode-map
-    "i" #'osf-deadgrep-edit
     "M-<return>" #'osf-deadgrep-visit-result-other-window))
 
-(provide 'osf-search)
+(straight-use-package 'wgrep)
+(straight-use-package 'wgrep-deadgrep)
+(setq wgrep-auto-save-buffer t)
+
+(with-eval-after-load 'deadgrep
+  (osf-evil-define-key 'normal deadgrep-mode-map
+    "i" #'wgrep-change-to-wgrep-mode))
+
+(provide 'osf-search-and-replace)

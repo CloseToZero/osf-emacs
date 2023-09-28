@@ -35,6 +35,8 @@
   (require 'osf-evilize-dired))
 (with-eval-after-load 'wdired
   (require 'osf-evilize-wdired))
+(with-eval-after-load 'wgrep
+  (require 'osf-evilize-wgrep))
 (with-eval-after-load 'transient
   (require 'osf-evilize-transient))
 (with-eval-after-load 'magit

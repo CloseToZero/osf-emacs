@@ -53,7 +53,7 @@
 (require 'osf-completion)
 (require 'osf-recent-files)
 (require 'osf-pair)
-(require 'osf-search)
+(require 'osf-search-and-replace)
 (require 'osf-window)
 (require 'osf-dired)
 (require 'osf-imenu)
