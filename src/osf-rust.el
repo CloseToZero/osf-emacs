@@ -24,33 +24,6 @@
 
 ;;; Code:
 
-(straight-use-package 'smartparens)
+(straight-use-package 'rust-mode)
 
-(setq sp-highlight-pair-overlay nil
-      sp-highlight-wrap-overlay nil
-      sp-highlight-wrap-tag-overlay nil)
-
-(require 'smartparens-config)
-
-(sp-with-modes '(
-                 js-mode
-                 css-mode
-                 rust-mode
-                 java-mode
-                 glsl-mode
-                 zig-mode
-                 )
-  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
-
-(with-eval-after-load 'smartparens-org
-  (defun osf-sp-point-after-right-pair (id action _context)
-    (when (memq action '(insert escape))
-      (sp--looking-back-p (rx (or ")" "}" "]") (literal id)))))
-  (sp-with-modes 'org-mode
-    (sp-local-pair
-     "_" "_"
-     :unless '(sp-point-after-word-p osf-sp-point-after-right-pair))))
-
-(smartparens-global-mode)
-
-(provide 'osf-pair)
+(provide 'osf-rust)
