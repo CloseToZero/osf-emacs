@@ -113,6 +113,8 @@ jump if called interactively."
 (double-trigger-mode)
 
 (straight-use-package 'better-jumper)
+(setq better-jumper-ignored-file-patterns evil-jumps-ignored-file-patterns
+      better-jumper--buffer-targets evil--jumps-buffer-targets)
 (better-jumper-mode)
 (osf-evil-define-key 'motion 'global
   "C-o" #'better-jumper-jump-backward
