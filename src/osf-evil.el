@@ -33,9 +33,7 @@
       evil-want-C-u-scroll t
       evil-want-C-u-delete t
       evil-want-abbrev-expand-on-insert-exit nil
-      evil-jumps-ignored-file-patterns nil
-      evil--jumps-buffer-targets
-      (rx (* anychar)))
+      evil-jumps-ignored-file-patterns nil)
 
 (require 'evil)
 
