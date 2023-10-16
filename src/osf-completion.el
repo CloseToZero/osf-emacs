@@ -36,12 +36,47 @@
 
 (straight-use-package 'orderless)
 
+(defun osf--orderless-consult-suffix-for-dollar ()
+  "Regexp which matches the end of string with Consult tofu support
+for the regexp dollar operator."
+  (if (and (boundp 'consult--tofu-char) (boundp 'consult--tofu-range))
+      (format "[%c-%c]*$"
+              consult--tofu-char
+              (+ consult--tofu-char consult--tofu-range -1))
+    "$"))
+
+(defvar osf-orderless-affix-dispatch-alist
+  `((?# . ,#'orderless-regexp)
+    (?! . ,#'orderless-without-literal)))
+
+(defun osf-orderless-affix-dispatch (component _index _total)
+  (cond
+   ;; Ignore single without-literal dispatcher
+   ((and (= (length component) 1)
+         (equal (aref component 0)
+                (car (rassq #'orderless-without-literal
+                            osf-orderless-affix-dispatch-alist))))
+    '(orderless-literal . ""))
+   ;; Prefix
+   ((when-let ((style (alist-get (aref component 0)
+                                 osf-orderless-affix-dispatch-alist)))
+      (if (string-suffix-p "$" component)
+          (cons style
+                (concat (substring component 1 -1)
+                        (osf--orderless-consult-suffix-for-dollar)))
+        (cons style (substring component 1)))))
+   ;; Suffix
+   ((when-let ((style (alist-get (aref component (1- (length component)))
+                                 osf-orderless-affix-dispatch-alist)))
+      (if (and (>= (length component) 2)
+               (eq ?$ (aref component (- (length component) 2))))
+          (cons style (concat (substring component 0 -2)
+                              (osf--orderless-consult-suffix-for-dollar)))
+        (cons style (substring component 0 -1)))))))
+
 (setq completion-styles '(orderless basic partial-completion)
       orderless-matching-styles '(orderless-literal)
-      orderless-style-dispatchers '(orderless-affix-dispatch)
-      orderless-affix-dispatch-alist
-      `((?# . ,#'orderless-regexp)
-        (?! . ,#'orderless-without-literal)))
+      orderless-style-dispatchers '(osf-orderless-affix-dispatch))
 
 (defvar osf-default-completion-styles
   (let ((sv (get 'completion-styles 'standard-value)))
