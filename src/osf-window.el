@@ -164,6 +164,7 @@
   "w a" #'osf-act-on-window
   "w p" #'osf-select-mru-window
   "w u" #'winner-undo
+  "w x" #'evil-window-delete
   "w C-r" #'winner-redo)
                    
 (provide 'osf-window)
