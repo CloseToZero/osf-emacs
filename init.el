@@ -55,6 +55,7 @@
 (require 'osf-pair)
 (require 'osf-search-and-replace)
 (require 'osf-window)
+(require 'osf-frame)
 (require 'osf-dired)
 (require 'osf-imenu)
 (require 'osf-save-place)
