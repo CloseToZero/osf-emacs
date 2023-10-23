@@ -29,7 +29,9 @@
    (let ((default (cdr (assq 'name (frame-parameters)))))
      (list (read-string (format-prompt "Frame name" default) nil nil
                         default))))
-  (make-frame `((name . ,name))))
+  (let ((frame (make-frame `((name . ,name)))))
+    (unless (display-graphic-p)
+      (select-frame frame))))
 
 ;; Adapted from
 ;; https://emacs.stackexchange.com/questions/21365/how-can-i-switch-to-the-most-recent-frame-with-other-frame
