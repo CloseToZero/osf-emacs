@@ -33,16 +33,27 @@
     (unless (display-graphic-p)
       (select-frame frame))))
 
-;; Adapted from
-;; https://emacs.stackexchange.com/questions/21365/how-can-i-switch-to-the-most-recent-frame-with-other-frame
 (defvar osf-recent-frames nil)
 
-(defun osf--frame-record-selected ()
-  "Record the currently selected frame. Add this to the `focus-in-hook'."
-  (let ((f (selected-frame)))
-    (setq osf-recent-frames (cons f (remove f osf-recent-frames)))))
+(defun osf--frame-record-recent (frame)
+  (setq osf-recent-frames (cons frame (remove frame osf-recent-frames))))
 
-(add-hook 'focus-in-hook #'osf--frame-record-selected)
+(defun osf--frame-record-selected ()
+  ;; Within `after-focus-change-function', the selected frame may just
+  ;; get lost focus, and its `frame-focus-state' may be nil.
+  (when (frame-focus-state (selected-frame))
+    (osf--frame-record-recent (selected-frame))))
+
+(add-function :after after-focus-change-function #'osf--frame-record-selected)
+
+(defun osf--frame-record-selected-after-make-frame (new-frame)
+  ;; New created frame seems not trigger `after-focus-change-function'
+  ;; and `focus-in-hook' in GUI Emacs.
+  (when (display-graphic-p)
+    (osf--frame-record-recent new-frame)))
+
+(add-hook 'after-make-frame-functions
+          #'osf--frame-record-selected-after-make-frame)
 
 (defun osf-mru-frame ()
   (car (cdr osf-recent-frames)))
