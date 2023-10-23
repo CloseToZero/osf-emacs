@@ -37,7 +37,8 @@
     "c j" #'citre-jump
     "c J" #'citre-jump-back
     "c p" #'citre-ace-peek
-    "c u" #'citre-update-this-tags-file)
+    "c u" #'citre-update-this-tags-file
+    "c r" #'citre-peek-restore)
   (add-hook 'citre-mode-hook #'evil-normalize-keymaps)
 
   (osf-evil-define-key 'normal citre-peek-keymap
