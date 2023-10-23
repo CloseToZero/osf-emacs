@@ -67,7 +67,7 @@
     "<remap> <keyboard-quit>" #'citre-peek-abort)
   (add-hook 'citre-peek--mode-hook #'evil-normalize-keymaps)
 
-  (dolist (cmd '(citre-jump citre-jump-back))
+  (dolist (cmd '(citre-jump citre-jump-back citre-peek-jump))
     (evil-set-command-property cmd :jump t)))
 
 (provide 'osf-ctags)
