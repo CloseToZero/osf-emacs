@@ -69,7 +69,4 @@
 
 (setq save-place-file (expand-file-name "places" osf-cache-dir))
 
-(setq citre-tags-file-global-cache-dir
-      (file-name-as-directory (expand-file-name "tags" osf-cache-dir)))
-
 (provide 'osf-clean-dir)

@@ -79,7 +79,6 @@
 (require 'osf-opengl)
 (require 'osf-image)
 (require 'osf-pdf)
-(require 'osf-ctags)
 (when (eq osf-system-type 'windows)
   (require 'osf-total-commander))
 (require 'osf-enable-disabled-commands)
