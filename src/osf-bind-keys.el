@@ -38,7 +38,7 @@
   "B j" #'bookmark-jump
 
   "f f" #'find-file
-  "f R" #'revert-buffer
+  "f r" #'revert-buffer
   "f c" #'osf-edit-config
   "f o" #'osf-ff-find-other-file-ignore-include-line
 
