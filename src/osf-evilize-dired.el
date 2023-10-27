@@ -28,6 +28,8 @@
  #'osf-evil-define-key 'normal dired-mode-map
  `(
    "q" quit-window
+   "e" evil-forward-word-end
+   "B" evil-backward-WORD-begin
    "j" evil-next-visual-line
    "k" evil-previous-visual-line
    "C-j" dired-next-dirline
