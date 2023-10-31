@@ -39,6 +39,7 @@
 (with-eval-after-load 'esh-mode
   (osf-evil-define-key '(normal insert) eshell-mode-map
     "C-j" #'eshell-next-prompt
-    "C-k" #'eshell-previous-prompt))
+    "C-k" #'eshell-previous-prompt
+    "RET" #'eshell-send-input))
 
 (provide 'osf-shell)
