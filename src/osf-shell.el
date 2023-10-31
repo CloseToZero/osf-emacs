@@ -36,4 +36,9 @@
   (let ((inhibit-read-only t))
     (erase-buffer)))
 
+(with-eval-after-load 'esh-mode
+  (osf-evil-define-key '(normal insert) eshell-mode-map
+    "C-j" #'eshell-next-prompt
+    "C-k" #'eshell-previous-prompt))
+
 (provide 'osf-shell)
