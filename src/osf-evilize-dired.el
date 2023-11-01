@@ -93,8 +93,9 @@
    "g k" dired-prev-subdir
    "g u" dired-tree-up
    "g d" dired-tree-down
-   "$" dired-hide-subdir
-   "M-$" dired-hide-all
+   "$" evil-end-of-line
+   "TAB" dired-hide-subdir
+   "<backtab>" dired-hide-all
    "g g" evil-goto-first-line
    "G" evil-goto-line
    "v" evil-visual-char
