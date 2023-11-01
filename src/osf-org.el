@@ -237,4 +237,8 @@ command to generate a image file name"))
   (add-hook 'org-capture-after-finalize-hook
             #'osf--org-capture-delete-aborted-empty-file))
 
+(straight-use-package 'org-appear)
+(setq org-appear-autolinks t)
+(add-hook 'org-mode-hook #'org-appear-mode)
+
 (provide 'osf-org)

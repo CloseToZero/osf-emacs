@@ -41,6 +41,7 @@
  ("melpa" . "87cfa36223e01439618538fb1f2b970b5978a776")
  ("nongnu-elpa" . "14e9631cd2b81f66ed551b14d31811a75cc53a4b")
  ("orderless" . "6936fe46ef07df168a423f04efeda130b4e69753")
+ ("org-appear" . "eb9f9db40aa529fe4b977235d86494b115281d17")
  ("ox-hugo" . "cb1b6cfd7b080e889352150416c1725f11ba937a")
  ("pdf-tools" . "c69e7656a4678fe25afbd29f3503dd19ee7f9896")
  ("posframe" . "017deece88360c7297265680d78a0bb316470716")
