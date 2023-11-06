@@ -18,7 +18,7 @@
  ("emacs-reformatter" . "bfe3f1c6ece952d39921db16f601123bdd1748ab")
  ("emacsmirror-mirror" . "d9b49c4648877dafab3efded1d19a0447ea82dbd")
  ("embark" . "087bad28245a105d084740cd7981ca711f4c5637")
- ("evil" . "60ba716bf500ca21cdf5a8f83101449a1cbe3413")
+ ("evil" . "ad80a0a185ba1b28d19813e55acabb9d38419657")
  ("evil-exchange" . "5f0a2d41434c17c6fb02e4f744043775de1c63a2")
  ("evil-snipe" . "b59159fdb5af7d2a7defaf9a48fdbc6b08aa2d7b")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
