@@ -55,4 +55,36 @@
 (setq slime-company-completion 'fuzzy)
 (add-to-list 'slime-contribs 'slime-company)
 
+(defun osf--slime-setup-leader-key-bindings (map)
+  (osf-local-leader-define-key map
+    "e e" #'osf-slime-eval-last-expression-in-repl
+    "e d" #'osf-slime-eval-defun-in-repl
+
+    "h f" #'slime-describe-function
+    "h s" #'slime-describe-symbol
+    "h h" #'slime-documentation-lookup
+    "h H" #'slime-hyperspec-lookup
+    "h ~" #'common-lisp-hyperspec-format
+    "h g" #'common-lisp-hyperspec-glossary-term
+    "h #" #'common-lisp-hyperspec-lookup-reader-macro
+    "h a a" #'slime-apropos
+    "h a A" #'slime-apropos-all
+    "h a p" #'slime-apropos-package
+
+    "q q" #'slime-quit-lisp
+    "q r" #'slime-restart-inferior-lisp))
+
+(defun osf--slime-repl-setup-leader-key-bindings (map)
+  (osf-local-leader-define-key map
+    "c b" #'slime-repl-clear-buffer
+    "c o" #'slime-repl-clear-output
+    "p s" #'slime-repl-set-package))
+
+(with-eval-after-load 'slime
+  (osf--slime-setup-leader-key-bindings slime-mode-map))
+
+(with-eval-after-load 'slime-repl
+  (osf--slime-setup-leader-key-bindings slime-repl-mode-map)
+  (osf--slime-repl-setup-leader-key-bindings slime-repl-mode-map))
+
 (provide 'osf-common-lisp)
