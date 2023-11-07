@@ -59,7 +59,7 @@
 
   (defvar osf-lispy-repl-eval
     '((minibufferp . read--expression-try-read)
-      ((mode . slime-repl-mode) . slime-repl-return)
+      ((mode . slime-repl-mode) . osf-slime-smart-repl-return)
       ((mode . sly-mrepl-mode) . osf-sly-mrepl-return)
       ((mode . inferior-emacs-lisp-mode) . ielm-return))
     "A alist to determine whether a buffer is a REPL buffer \
@@ -129,6 +129,16 @@ Whether a buffer is a REPL buffer is controlled in `osf-lispy-repl-eval'."
   ;; osf--lispy-bind-return-in-repl will be remained and we need to
   ;; clear the bindings explicitly.
   (add-hook 'minibuffer-exit-hook #'osf--lispy-cleanup-lispy-bindings-in-repl)
+
+  (with-eval-after-load 'slime-repl
+    (defun osf-slime-smart-repl-return ()
+      "If around a presentation, inspect the presentation,
+otherwise, fallback to `slime-repl-return'."
+      (interactive)
+      (call-interactively
+       (if (slime-presentation-around-or-before-point-p)
+           #'slime-inspect-presentation-at-point
+         #'slime-repl-return))))
 
   (with-eval-after-load 'sly-mrepl
     (defun osf-sly-mrepl-return (&optional end-of-input)
