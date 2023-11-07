@@ -30,6 +30,8 @@
   "C-d" #'company-next-page
   "C-u" #'company-previous-page
   "M-<" #'company-select-first
-  "M->" #'company-select-last)
+  "M->" #'company-select-last
+  "C-w" nil
+  "M-." #'company-show-location)
 
 (provide 'osf-evilize-company)
