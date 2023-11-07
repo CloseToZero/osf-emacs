@@ -87,4 +87,21 @@
   (osf--slime-setup-leader-key-bindings slime-repl-mode-map)
   (osf--slime-repl-setup-leader-key-bindings slime-repl-mode-map))
 
+(defun osf--common-lisp-hyperspec-read-symbol-name (&optional symbol-at-point)
+  "Like `common-lisp-hyperspec-read-symbol-name',
+but:
+1. Always ask for completion rather than go directly to the HyperSpec.
+2. Use the DEF argument of `completing-read' instead of the INITIAL-INPUT."
+  (let* ((symbol-at-point (or symbol-at-point (thing-at-point 'symbol)))
+	     (stripped-symbol (and symbol-at-point
+			                   (common-lisp-hyperspec--strip-cl-package
+				                (downcase symbol-at-point)))))
+    (completing-read "Look up symbol in Common Lisp HyperSpec: "
+                     common-lisp-hyperspec--symbols nil t
+                     nil
+                     'common-lisp-hyperspec-history stripped-symbol)))
+
+(advice-add #'common-lisp-hyperspec-read-symbol-name
+            :override #'osf--common-lisp-hyperspec-read-symbol-name)
+
 (provide 'osf-common-lisp)
