@@ -34,7 +34,8 @@
                    minibuffer-local-completion-map
                    minibuffer-local-must-match-map
                    minibuffer-local-isearch-map
-                   evil-ex-completion-map))
+                   evil-ex-completion-map
+                   evil-ex-search-keymap))
   (osf-evil-define-key 'normal map
     "<escape>" #'abort-recursive-edit
     "RET" #'exit-minibuffer
