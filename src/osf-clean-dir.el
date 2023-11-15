@@ -31,8 +31,11 @@
        (expand-file-name
 	    "auto-save-list" osf-cache-dir)))
 
-(setq auto-save-file-name-transforms
-      `((".*" ,(file-name-as-directory (expand-file-name "auto-save" osf-cache-dir)) t)))
+(defvar osf-auto-save-dir
+  (file-name-as-directory (expand-file-name "auto-save" osf-cache-dir)))
+(unless (file-directory-p osf-auto-save-dir)
+  (make-directory osf-auto-save-dir))
+(setq auto-save-file-name-transforms `((".*" ,osf-auto-save-dir t)))
 
 (setq bookmark-default-file (expand-file-name "bookmarks" osf-cache-dir))
 
