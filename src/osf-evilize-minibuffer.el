@@ -39,8 +39,6 @@
   (osf-evil-define-key 'normal map
     "<escape>" #'abort-recursive-edit
     "RET" #'exit-minibuffer
-    "C-n" #'next-history-element
-    "C-p" #'previous-history-element
 
     ;; Use isearch search module in minibuffer so that we can search
     ;; minibuffer. The evil-ex search module will bring recursive
@@ -50,9 +48,11 @@
     "n" #'evil-search-next
     "N" #'evil-search-previous
     )
-  (osf-evil-define-key 'insert map
+  (osf-evil-define-key '(normal insert) map
     "C-n" #'next-complete-history-element
     "C-p" #'previous-complete-history-element
+    "M-n" #'next-history-element
+    "M-p" #'previous-history-element
     )
   )
 
