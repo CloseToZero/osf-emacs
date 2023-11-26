@@ -144,7 +144,21 @@ Most importantly, don't put visible buffers in the bottom of the list."
       (unless osf-within-consult--find-file-temporarily-1?
         (apply fn args)))
     (advice-add #'save-place-to-alist
-                :around #'osf--consult-inhibit-save-place-to-alist-in-preview)))
+                :around #'osf--consult-inhibit-save-place-to-alist-in-preview))
+
+  (with-eval-after-load 'slime-repl
+    (setf (alist-get 'slime-repl-mode consult-mode-histories)
+          '(slime-repl-input-history))
+    (osf-evil-define-key 'insert slime-repl-mode-map
+      "M-Y" #'consult-history))
+
+  (with-eval-after-load 'esh-mode
+    (osf-evil-define-key 'insert eshell-mode-map
+      "M-Y" #'consult-history))
+
+  (with-eval-after-load 'comint
+    (osf-evil-define-key 'insert comint-mode-map
+      "M-Y" #'consult-history)))
 
 (osf-leader-define-key 'global
   "SPC" #'execute-extended-command
