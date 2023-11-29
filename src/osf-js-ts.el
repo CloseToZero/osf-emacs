@@ -33,8 +33,8 @@
   (setcar js-regexp-mode (rx (or (seq ".mjs" string-end)
                                  (regexp (car js-regexp-mode))))))
 
-(when (and (fboundp #'treesit-available-p)
-           (treesit-available-p))
+(when (and (fboundp #'treesit-language-available-p)
+           (treesit-language-available-p 'typescript))
   (require 'treesit)
   (when (treesit-ready-p 'typescript)
     (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))))
