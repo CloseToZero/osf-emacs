@@ -40,6 +40,28 @@
   (osf-evil-define-key '(normal insert) eshell-mode-map
     "C-j" #'eshell-next-prompt
     "C-k" #'eshell-previous-prompt
-    "RET" #'eshell-send-input))
+    "RET" #'eshell-send-input)
+
+  ;; Taken from Doom Emacs
+  (evil-define-operator osf-eshell-evil-delete (beg end type register yank-handler)
+    "Like `evil-delete' but will not delete/copy the prompt."
+    (interactive "<R><x><y>")
+    (save-restriction
+      (narrow-to-region eshell-last-output-end (point-max))
+      (evil-delete (if beg (max beg (point-min)) (point-min))
+                   (if (eq type 'line) (point-max) (min (or end (point-max)) (point-max)))
+                   type register yank-handler)))
+
+  ;; Taken from Doom Emacs
+  (evil-define-operator osf-eshell-evil-delete-line (beg end type register yank-handler)
+    "Change to end of line."
+    :motion nil
+    :keep-visual t
+    (interactive "<R><x>")
+    (osf-eshell-evil-delete (point) end type register yank-handler))
+
+  (osf-evil-define-key 'normal eshell-mode-map
+    "d" #'osf-eshell-evil-delete
+    "D" #'osf-eshell-evil-delete-line))
 
 (provide 'osf-shell)
