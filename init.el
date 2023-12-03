@@ -71,6 +71,7 @@
 (require 'osf-lisp)
 (require 'osf-emacs-lisp)
 (require 'osf-common-lisp)
+(require 'osf-ml)
 (require 'osf-c-cpp)
 (require 'osf-rust)
 (require 'osf-zig)
