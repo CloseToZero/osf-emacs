@@ -51,6 +51,8 @@
 (straight-use-package 'ox-hugo)
 (with-eval-after-load 'ox
   (require 'ox-hugo))
+(with-eval-after-load 'ox-hugo
+  (push "zip" org-hugo-external-file-extensions-allowed-for-copying))
 
 (with-eval-after-load 'org
   (defun osf-org-export-directory-using-ox-hugo
