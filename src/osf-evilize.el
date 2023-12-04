@@ -25,6 +25,7 @@
 ;;; Code:
 
 (require 'osf-evilize-minibuffer)
+(require 'osf-evilize-special)
 (with-eval-after-load 'button
   (require 'osf-evilize-button))
 (with-eval-after-load 'help-mode
