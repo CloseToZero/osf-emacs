@@ -158,7 +158,13 @@ eval the expression."
       (backward-char)))
 
   (advice-add #'lispy-mark-symbol
-              :after #'osf--lispy-mark-symbol-dont-include-tail-char))
+              :after #'osf--lispy-mark-symbol-dont-include-tail-char)
+
+  (defun osf--lispy-ensure-message-buffer-in-normal-state ()
+    (when (string= (buffer-name) "*lispy-message*")
+      (evil-normal-state)))
+
+  (add-hook 'special-mode-hook #'osf--lispy-ensure-message-buffer-in-normal-state))
 
 (straight-use-package 'lispyville)
 
