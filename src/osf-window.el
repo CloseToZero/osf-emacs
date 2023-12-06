@@ -157,6 +157,81 @@
 
 (winner-mode)
 
+(straight-use-package 'hydra)
+
+(defvar osf-default-resize-window-step 4)
+
+(straight-use-package 'buffer-move)
+
+(require 'windmove)
+
+(defun osf-resize-window-step (prefix)
+  (if prefix
+      (prefix-numeric-value prefix)
+    osf-default-resize-window-step))
+
+(defun osf-move-splitter-left (arg)
+  "Move the window splitter left."
+  (interactive "P")
+  (let ((resize-step (osf-resize-window-step arg)))
+    (if (let ((windmove-wrap-around nil))
+          (windmove-find-other-window 'right))
+        (shrink-window-horizontally resize-step)
+      (enlarge-window-horizontally resize-step))))
+
+(defun osf-move-splitter-right (arg)
+  "Move the window splitter right."
+  (interactive "P")
+  (let ((resize-step (osf-resize-window-step arg)))
+    (if (let ((windmove-wrap-around nil))
+          (windmove-find-other-window 'right))
+        (enlarge-window-horizontally resize-step)
+      (shrink-window-horizontally resize-step))))
+
+(defun osf-move-splitter-up (arg)
+  "Move the window splitter up."
+  (interactive "P")
+  (let ((resize-step (osf-resize-window-step arg)))
+    (if (let ((windmove-wrap-around nil))
+          (windmove-find-other-window 'up))
+        (enlarge-window resize-step)
+      (shrink-window resize-step))))
+
+(defun osf-move-splitter-down (arg)
+  "Move the window splitter down."
+  (interactive "P")
+  (let ((resize-step (osf-resize-window-step arg)))
+    (if (let ((windmove-wrap-around nil))
+          (windmove-find-other-window 'up))
+        (shrink-window resize-step)
+      (enlarge-window resize-step))))
+
+(defhydra osf-manage-window (:color red :hint nil)
+  "
+Window Move: _h_ left  _l_ right  _j_ down  _k_ up
+Buffer Move: _C-h_ left  _C-l_ right  _C-j_ down  _C-k_ up
+     Resize: _H_ left  _L_ right  _J_ down  _K_ up
+Resize Step: _1_ _2_ _3_ _4_ _5_  current step: %`osf-default-resize-window-step
+       Quit: _q_ quit"
+  ("h" #'windmove-left)
+  ("l" #'windmove-right)
+  ("j" #'windmove-down)
+  ("k" #'windmove-up)
+  ("C-h" #'buf-move-left)
+  ("C-l" #'buf-move-right)
+  ("C-j" #'buf-move-down)
+  ("C-k" #'buf-move-up)
+  ("H" osf-move-splitter-left)
+  ("L" osf-move-splitter-right)
+  ("J" osf-move-splitter-down)
+  ("K" osf-move-splitter-up)
+  ("1" (lambda () (interactive) (setq osf-default-resize-window-step 1)))
+  ("2" (lambda () (interactive) (setq osf-default-resize-window-step 2)))
+  ("3" (lambda () (interactive) (setq osf-default-resize-window-step 3)))
+  ("4" (lambda () (interactive) (setq osf-default-resize-window-step 4)))
+  ("5" (lambda () (interactive) (setq osf-default-resize-window-step 5)))
+  ("q" nil))
+
 (osf-leader-define-key 'global
   "w" evil-window-map
   "w -" #'evil-window-split
@@ -165,6 +240,7 @@
   "w p" #'osf-select-mru-window
   "w u" #'winner-undo
   "w x" #'evil-window-delete
-  "w C-r" #'winner-redo)
+  "w C-r" #'winner-redo
+  "w M" #'osf-manage-window/body)
                    
 (provide 'osf-window)
