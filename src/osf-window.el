@@ -232,10 +232,35 @@ Resize Step: _1_ _2_ _3_ _4_ _5_  current step: %`osf-default-resize-window-step
   ("5" (lambda () (interactive) (setq osf-default-resize-window-step 5)))
   ("q" nil))
 
+(defun osf-evil-window-split (&optional arg)
+  (interactive "P")
+  (cond (arg
+         (select-window
+          (split-window (frame-root-window) nil
+                        (if evil-split-window-below 'below 'above)))
+         (when evil-auto-balance-windows (balance-windows (window-parent))))
+        (t (evil-window-split))))
+
+(defun osf-evil-window-split-below-if-root (&optional arg)
+  (interactive "P")
+  (cond (arg
+         (split-window (frame-root-window) nil 'below)
+         (when evil-auto-balance-windows (balance-windows (window-parent))))
+        (t (evil-window-split))))
+
+(defun osf-evil-window-vsplit (&optional arg)
+  (interactive "P")
+  (cond (arg
+         (select-window
+          (split-window (frame-root-window) nil
+                        (if evil-split-window-right 'right 'left)))
+         (when evil-auto-balance-windows (balance-windows (window-parent))))
+        (t (evil-window-vsplit))))
+
 (osf-leader-define-key 'global
   "w" evil-window-map
-  "w -" #'evil-window-split
-  "w \\" #'evil-window-vsplit
+  "w -" #'osf-evil-window-split-below-if-root
+  "w \\" #'osf-evil-window-vsplit
   "w a" #'osf-act-on-window
   "w p" #'osf-select-mru-window
   "w u" #'winner-undo
