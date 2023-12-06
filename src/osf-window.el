@@ -213,14 +213,14 @@ Buffer Move: _C-h_ left  _C-l_ right  _C-j_ down  _C-k_ up
      Resize: _H_ left  _L_ right  _J_ down  _K_ up
 Resize Step: _1_ _2_ _3_ _4_ _5_  current step: %`osf-default-resize-window-step
        Quit: _q_ quit"
-  ("h" #'windmove-left)
-  ("l" #'windmove-right)
-  ("j" #'windmove-down)
-  ("k" #'windmove-up)
-  ("C-h" #'buf-move-left)
-  ("C-l" #'buf-move-right)
-  ("C-j" #'buf-move-down)
-  ("C-k" #'buf-move-up)
+  ("h" windmove-left)
+  ("l" windmove-right)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("C-h" buf-move-left)
+  ("C-l" buf-move-right)
+  ("C-j" buf-move-down)
+  ("C-k" buf-move-up)
   ("H" osf-move-splitter-left)
   ("L" osf-move-splitter-right)
   ("J" osf-move-splitter-down)
