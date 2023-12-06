@@ -32,8 +32,6 @@
   (require 'osf-evilize-help))
 (with-eval-after-load 'dired
   (require 'osf-evilize-dired))
-(with-eval-after-load 'dired
-  (require 'osf-evilize-dired))
 (with-eval-after-load 'wdired
   (require 'osf-evilize-wdired))
 (with-eval-after-load 'wgrep
