@@ -35,7 +35,20 @@
 
 (with-eval-after-load 'consult
   (consult-customize consult--source-buffer :hidden t :default nil)
-  (add-to-list 'consult-buffer-sources persp-consult-source))
+  (defvar osf--persp-consult-source
+    (list :name "Perspective"
+          :narrow ?s
+          :category 'buffer
+          :state #'consult--buffer-state
+          :history 'buffer-name-history
+          :default t
+          :items
+          (lambda ()
+            (consult--buffer-query
+             :sort 'identically-but-current
+             :predicate '(lambda (buf) (persp-is-current-buffer buf t))
+             :as #'buffer-name))))
+  (add-to-list 'consult-buffer-sources 'osf--persp-consult-source))
 
 (osf-leader-define-key 'global
   "b X" #'persp-kill-buffer*
