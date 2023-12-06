@@ -31,7 +31,6 @@
   "h" help-map
 
   "b x" #'kill-current-buffer
-  "b X" #'kill-buffer
   "b m" #'ibuffer
 
   "B s" #'bookmark-set

@@ -46,6 +46,7 @@
  ("org-appear" . "eb9f9db40aa529fe4b977235d86494b115281d17")
  ("ox-hugo" . "cb1b6cfd7b080e889352150416c1725f11ba937a")
  ("pdf-tools" . "c69e7656a4678fe25afbd29f3503dd19ee7f9896")
+ ("perspective-el" . "17a4a1a6d34cef96c49c92ad3087e1a3bfc4ed7a")
  ("posframe" . "017deece88360c7297265680d78a0bb316470716")
  ("rust-mode" . "9c26dc1195ec05309ee15c014631fb9abd6cf5d2")
  ("s.el" . "dda84d38fffdaf0c9b12837b504b402af910d01d")
