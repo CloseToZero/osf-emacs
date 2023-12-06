@@ -168,7 +168,11 @@
 
 
 (osf-evil-define-key 'visual pdf-view-mode-map
-  "y" #'pdf-view-kill-ring-save)
+  "y" #'pdf-view-kill-ring-save
+
+  "<C-down-mouse-1>" #'pdf-view-mouse-extend-region
+  "<M-down-mouse-1>" #'pdf-view-mouse-set-region-rectangle
+  "<down-mouse-1>" #'pdf-view-mouse-set-region)
 
 (with-eval-after-load 'pdf-outline
   (evil-set-initial-state 'pdf-outline-buffer-mode 'normal)
