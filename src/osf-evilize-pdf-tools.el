@@ -121,6 +121,8 @@
 
   "j" #'pdf-view-next-line-or-next-page
   "k" #'pdf-view-previous-line-or-previous-page
+  "J" #'pdf-view-next-page
+  "K" #'pdf-view-previous-page
   "h" #'image-backward-hscroll
   "l" #'image-forward-hscroll
   "^" #'image-bol
