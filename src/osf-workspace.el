@@ -31,7 +31,11 @@
 
 (persp-mode)
 
-(add-hook 'kill-emacs-hook #'persp-state-save)
+(defun osf-query-persp-state-save ()
+  (when (yes-or-no-p "Save perspective? ")
+    (persp-state-save)))
+
+(add-hook 'kill-emacs-hook #'osf-query-persp-state-save)
 
 (with-eval-after-load 'consult
   (consult-customize consult--source-buffer :hidden t :default nil)
