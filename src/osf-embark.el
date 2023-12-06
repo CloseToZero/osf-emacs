@@ -47,8 +47,7 @@
     "RET" #'osf-embark-browser-git-repo-ssh-url)
 
   (add-to-list 'embark-keymap-alist
-               '(git-repo-ssh-url osf-embark-git-repo-ssh-url-map))
-  )
+               '(git-repo-ssh-url osf-embark-git-repo-ssh-url-map)))
 
 (osf-keymap-global-set
   "M-^" #'embark-act)

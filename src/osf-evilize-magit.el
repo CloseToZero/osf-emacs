@@ -46,14 +46,12 @@
                 magit-refs-mode
                 magit-reflog-mode
                 magit-revision-mode
-                magit-repolist-mode
-                ))
+                magit-repolist-mode))
   (evil-set-initial-state mode 'normal))
 
 (apply
  #'osf-evil-define-key '(normal visual) magit-mode-map
- `(
-   "g" nil
+ `("g" nil
    "h" evil-backward-char
    "l" evil-forward-char
    "H" magit-dispatch
@@ -96,23 +94,18 @@
    ,@(when evil-want-C-u-scroll
        '("C-u" evil-scroll-up))
    ,@(cond ((eq evil-search-module 'evil-search)
-            '(
-              "/" evil-ex-search-forward
+            '("/" evil-ex-search-forward
               "?" evil-ex-search-backward
               "n" evil-ex-search-next
-              "N" evil-ex-search-previous
-              ))
+              "N" evil-ex-search-previous))
            (t
-            '(
-              "/" evil-search-forward
+            '("/" evil-search-forward
               "?" evil-search-backward
               "n" evil-search-next
-              "N" evil-search-previous
-             )))
-   ))
+              "N" evil-search-previous)))))
 
 (osf-evil-define-key 'visual magit-mode-map
- "y" #'magit-copy-section-value)
+  "y" #'magit-copy-section-value)
 
 (osf-evil-define-key '(normal visual) magit-status-mode-map
  "g s" #'magit-jump-to-staged
@@ -124,8 +117,7 @@
  "g f p" #'magit-jump-to-unpulled-from-pushremote
  "g p u" #'magit-jump-to-unpushed-to-pushremote
  "g p p" #'magit-jump-to-unpushed-to-pushremote
- "g d" #'magit-jump-to-diffstat-or-diff
- )
+ "g d" #'magit-jump-to-diffstat-or-diff)
 
 (osf-evil-define-key '(normal visual) magit-section-mode-map
   "<tab>" #'magit-section-toggle
@@ -144,17 +136,14 @@
   "z c" #'magit-section-hide
   "z C" #'magit-section-hide-children
   "z o" #'magit-section-show
-  "z O" #'magit-section-show-children
-  )
+  "z O" #'magit-section-show-children)
 
 (osf-evil-define-key '(normal visual) magit-blob-mode-map
   "C-j" #'magit-blob-next
-  "C-k" #'magit-blob-previous
-  )
+  "C-k" #'magit-blob-previous)
 
 (osf-keymap-set magit-blob-mode-map
-  "n" nil
-  )
+  "n" nil)
 
 (osf-evil-define-key 'normal magit-blame-read-only-mode-map
   "j" #'evil-next-visual-line
@@ -162,27 +151,20 @@
   "C-j" #'magit-blame-next-chunk
   "C-k" #'magit-blame-previous-chunk
   "M-j" #'magit-blame-next-chunk-same-commit
-  "M-k" #'magit-blame-previous-chunk-same-commit
-  )
+  "M-k" #'magit-blame-previous-chunk-same-commit)
 
 (apply
  #'osf-evil-define-key '(normal visual) magit-blame-read-only-mode-map
- `(
-   ,@(cond ((eq evil-search-module 'evil-search)
-            '(
-              "/" evil-ex-search-forward
+ `(,@(cond ((eq evil-search-module 'evil-search)
+            '("/" evil-ex-search-forward
               "?" evil-ex-search-backward
               "n" evil-ex-search-next
-              "N" evil-ex-search-previous
-              ))
+              "N" evil-ex-search-previous))
            (t
-            '(
-              "/" evil-search-forward
+            '("/" evil-search-forward
               "?" evil-search-backward
               "n" evil-search-next
-              "N" evil-search-previous
-              )))
-   ))
+              "N" evil-search-previous)))))
 
 (dolist (map (list magit-blame-mode-map magit-blame-read-only-mode-map))
   (osf-evil-define-key 'normal map
@@ -219,8 +201,7 @@
                    magit-log-read-revs-map
                    magit-refs-mode-map
                    magit-reflog-mode-map
-                   magit-process-mode-map
-                   ))
+                   magit-process-mode-map))
   (evil-make-overriding-map map))
 
 (evil-make-overriding-map magit-blame-read-only-mode-map 'normal)
@@ -277,16 +258,14 @@ using `osf-evilize-magit-toggle-text-mode'."
   "u" #'magit-repolist-unmark
   "f" #'magit-repolist-fetch
   "RET" #'magit-repolist-status
-  "g r" #'magit-list-repositories
-  )
+  "g r" #'magit-list-repositories)
 (add-hook 'magit-repolist-mode-hook #'evil-normalize-keymaps)
 
 (evil-set-initial-state 'magit-submodule-list-mode 'normal)
 (osf-evil-define-key 'normal magit-submodule-list-mode-map
   "q" #'quit-window
   "RET" #''magit-repolist-status
-  "g r"  #''magit-list-submodules
-  )
+  "g r"  #''magit-list-submodules)
 (add-hook 'magit-submodule-list-mode-hook #'evil-normalize-keymaps)
 
 (osf-keymap-set magit-file-section-map "C-j" nil)
@@ -298,8 +277,7 @@ using `osf-evilize-magit-toggle-text-mode'."
   (defvar git-rebase-comment-re)
 
   (defvar osf-evilize-magit-git-rebase-mode-key-binding-specs
-    '(
-      ("p" git-rebase-pick "pick = use commit")
+    '(("p" git-rebase-pick "pick = use commit")
       ("r" git-rebase-reword "reword = use commit, but edit the commit message")
       ("e" git-rebase-edit "edit = use commit, but stop for amending")
       ("s" git-rebase-squash "squash = use commit, but meld into previous commit")
@@ -313,8 +291,7 @@ using `osf-evilize-magit-toggle-text-mode'."
       ("k" evil-previous-visual-line "move point to previous line")
       ("M-k" git-rebase-move-line-up "move the commit at point up")
       ("M-j" git-rebase-move-line-down "move the commit at point down")
-      (nil git-rebase-show-commit "show the commit at point in another buffer")
-      ))
+      (nil git-rebase-show-commit "show the commit at point in another buffer")))
 
   (pcase-dolist
       (`(,key ,cmd, _) osf-evilize-magit-git-rebase-mode-key-binding-specs)

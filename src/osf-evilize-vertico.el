@@ -33,20 +33,17 @@
   "k" #'vertico-previous
   "g g" #'vertico-first
   "G" #'vertico-last
-  "y y" #'vertico-save
-  )
+  "y y" #'vertico-save)
 
 (osf-evil-define-key 'insert vertico-map
   "C-j" #'vertico-next
   "C-k" #'vertico-previous
   "M-<" #'vertico-first
   "M->" #'vertico-last
-  "M-w" #'vertico-save
-  )
+  "M-w" #'vertico-save)
 
 (osf-evil-define-key '(normal insert) vertico-map
   "RET" #'vertico-exit
-  "M-<return>" #'vertico-exit-input
-  )
+  "M-<return>" #'vertico-exit-input)
 
 (provide 'osf-evilize-vertico)

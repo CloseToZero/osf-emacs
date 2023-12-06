@@ -42,8 +42,7 @@
     "h v" #'cmake-help-variable
     "h p" #'cmake-help-property
     "h m" #'cmake-help-module
-    "h l" #'cmake-help-list-commands
-    ))
+    "h l" #'cmake-help-list-commands))
 
 (straight-use-package 'cmake-font-lock)
 

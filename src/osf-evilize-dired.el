@@ -26,8 +26,7 @@
 
 (apply
  #'osf-evil-define-key 'normal dired-mode-map
- `(
-   "q" quit-window
+ `("q" quit-window
    "e" evil-forward-word-end
    "B" evil-backward-WORD-begin
    "j" evil-next-visual-line
@@ -105,23 +104,18 @@
    "Y" evil-yank-line
    "?" evil-ex-search-forward
    ,@(cond ((eq evil-search-module 'evil-search)
-            '(
-              "/" evil-ex-search-forward
+            '("/" evil-ex-search-forward
               "?" evil-ex-search-backward
               "n" evil-ex-search-next
-              "N" evil-ex-search-previous
-              ))
+              "N" evil-ex-search-previous))
            (t
-            '(
-              "/" evil-search-forward
+            '("/" evil-search-forward
               "?" evil-search-backward
               "n" evil-search-next
-              "N" evil-search-previous
-              )))
+              "N" evil-search-previous)))
    "i" wdired-change-to-wdired-mode
    ,@(when (fboundp #'image-dired-show-all-from-dir)
-       '(
-         "M ." image-dired-display-thumb
+       '("M ." image-dired-display-thumb
          "M A" image-dired-show-all-from-dir
          "M a" image-dired-display-thumbs-append
          "M c" image-dired-dired-comment-files
@@ -132,9 +126,7 @@
          "M j" image-dired-jump-thumbnail-buffer
          "M r" image-dired-delete-tag
          "M t" image-dired-tag-files
-         "M x" image-dired-dired-display-external
-         ))
-   ))
+         "M x" image-dired-dired-display-external))))
 
 (evil-set-initial-state 'dired-mode 'normal)
 

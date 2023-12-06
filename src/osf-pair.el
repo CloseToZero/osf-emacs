@@ -32,14 +32,12 @@
 
 (require 'smartparens-config)
 
-(sp-with-modes '(
-                 js-mode
+(sp-with-modes '(js-mode
                  css-mode
                  rust-mode
                  java-mode
                  glsl-mode
-                 zig-mode
-                 )
+                 zig-mode)
   (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
 
 (with-eval-after-load 'smartparens-org

@@ -28,8 +28,7 @@
 
 (apply
  #'osf-evil-define-key 'normal help-mode-map
- `(
-   "q" quit-window
+ `("q" quit-window
    "g r" revert-buffer
    "<tab>" forward-button
    "<backtab>" backward-button
@@ -38,10 +37,8 @@
    "C-i" help-go-forward
    "K" help-follow-symbol
    ,@(when (>= emacs-major-version 28)
-       '(
-         "s" help-view-source
+       '("s" help-view-source
          "i" help-goto-info
-         "c" help-customize
-         ))))
+         "c" help-customize))))
 
 (provide 'osf-evilize-help)

@@ -46,14 +46,12 @@
     "/" #'evil-search-forward
     "?" #'evil-search-backward
     "n" #'evil-search-next
-    "N" #'evil-search-previous
-    )
+    "N" #'evil-search-previous)
+
   (osf-evil-define-key '(normal insert) map
     "C-n" #'next-complete-history-element
     "C-p" #'previous-complete-history-element
     "M-n" #'next-history-element
-    "M-p" #'previous-history-element
-    )
-  )
+    "M-p" #'previous-history-element))
 
 (provide 'osf-evilize-minibuffer)

@@ -45,7 +45,6 @@
 
   "% %" #'query-replace
   "% r" #'query-replace-regexp
-  "% s" #'osf-query-swap-literal
-  )
+  "% s" #'osf-query-swap-literal)
 
 (provide 'osf-bind-keys)

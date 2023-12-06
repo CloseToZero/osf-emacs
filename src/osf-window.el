@@ -32,13 +32,11 @@
 (defvar osf-act-on-window-posframes nil)
 (defvar osf-act-on-window-posframes-limit 10)
 (defvar osf-act-on-window-actions
-  `(
-    ("Select window" ,#'osf-act-on-window-action-select)
+  `(("Select window" ,#'osf-act-on-window-action-select)
     ("Delete window" ,#'osf-act-on-window-action-delete)
     ("Swap window" ,#'osf-act-on-window-action-swap)
     ("Split window right" ,#'osf-act-on-window-action-split-right)
-    ("Split window below" ,#'osf-act-on-window-action-split-below)
-    ))
+    ("Split window below" ,#'osf-act-on-window-action-split-below)))
 
 (defface osf-act-on-window-tag-face
   '((t (:foreground "#d00000" :underline nil :height 2.0)))

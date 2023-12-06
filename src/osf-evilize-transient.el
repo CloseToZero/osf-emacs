@@ -53,13 +53,12 @@
 
 (osf-keymap-set transient-predicate-map
   "<osf--transient-search-forward>" #'transient--do-move
-  "<osf--transient-search-backward>" #'transient--do-move
-  )
+  "<osf--transient-search-backward>" #'transient--do-move)
 
 (defvar-keymap osf--evilize-transient-search-mode-map
   "C-g" #'osf--evilize-ori-transient-search-exit
-  "C-q" #'osf--evilize-ori-transient-search-exit
-  )
+  "C-q" #'osf--evilize-ori-transient-search-exit)
+
 (define-minor-mode osf--evilize-transient-search-mode
   "The mode enabled after our evil transient search start,
 Bind C-g and C-q to exit the search.")
@@ -79,7 +78,6 @@ Bind C-g and C-q to exit the search.")
 
 (osf-keymap-set transient-popup-navigation-map
   "/" #'osf--transient-search-forward
-  "?" #'osf--transient-search-backward
-  )
+  "?" #'osf--transient-search-backward)
 
 (provide 'osf-evilize-transient)

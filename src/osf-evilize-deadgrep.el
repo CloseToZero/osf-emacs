@@ -45,11 +45,9 @@
   "C-j" #'deadgrep-forward-match
   "C-k" #'deadgrep-backward-match
   "M-j" #'deadgrep-forward-filename
-  "M-k" #'deadgrep-backward-filename
-  )
+  "M-k" #'deadgrep-backward-filename)
 
 (osf-evil-define-key 'normal deadgrep-edit-mode-map
-  "RET" #'deadgrep-visit-result
-  )
+  "RET" #'deadgrep-visit-result)
 
 (provide 'osf-evilize-deadgrep)

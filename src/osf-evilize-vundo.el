@@ -39,7 +39,6 @@
   "g r" #'revert-buffer
   "d" #'vundo--debug
   "i" #'vundo--inspect
-  "g s" #'vundo-goto-last-saved
-  )
+  "g s" #'vundo-goto-last-saved)
 
 (provide 'osf-evilize-vundo)

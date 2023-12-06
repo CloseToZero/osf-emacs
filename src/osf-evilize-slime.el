@@ -52,19 +52,16 @@
 
 (osf-evil-define-key 'normal slime-parent-map
   "g d" #'slime-edit-definition
-  "C-t" #'slime-pop-find-definition-stack
-  )
+  "C-t" #'slime-pop-find-definition-stack)
 
 (osf-evil-define-key 'normal slime-mode-map
   "K" #'slime-describe-symbol
   "g r" #'slime-who-references
   "g z z" #'slime-switch-to-output-buffer
-  "g z s" #'slime-scratch
-  )
+  "g z s" #'slime-scratch)
 
 (osf-evil-define-key 'normal slime-popup-buffer-mode-map
-  "q" #'quit-window
-  )
+  "q" #'quit-window)
 
 (osf-evil-define-key 'normal sldb-mode-map
   "RET" #'sldb-default-action
@@ -106,8 +103,7 @@
   "6" #'sldb-invoke-restart-6
   "7" #'sldb-invoke-restart-7
   "8" #'sldb-invoke-restart-8
-  "9" #'sldb-invoke-restart-9
-  )
+  "9" #'sldb-invoke-restart-9)
 
 (osf-evil-define-key 'normal slime-inspector-mode-map
   "q" #'slime-inspector-quit
@@ -123,8 +119,7 @@
   "<tab>" #'slime-inspector-next-inspectable-object
   "<backtab>" #''slime-inspector-previous-inspectable-object
   "g d" #'slime-inspector-show-source
-  "g R" #'slime-inspector-fetch-all
-  )
+  "g R" #'slime-inspector-fetch-all)
 
 (osf-evil-define-key 'normal slime-xref-mode-map
   "RET" #'slime-goto-xref
@@ -134,30 +129,25 @@
   "C-j" #'slime-xref-next-line
   "C-k" #'slime-xref-prev-line
   "g c" #'slime-recompile-xref
-  "g C" #'slime-recompile-all-xrefs
-  )
+  "g C" #'slime-recompile-all-xrefs)
 
 (osf-evil-define-key 'normal slime-thread-control-mode-map
   "a" #'slime-thread-attach
   "d" #'slime-thread-debug
   "x" #'slime-thread-kill
-  "g r" #'slime-update-threads-buffer
-  )
+  "g r" #'slime-update-threads-buffer)
 
 (with-eval-after-load 'slime-repl
   (osf-evil-define-key '(normal insert) slime-repl-mode-map
     "C-j" #'slime-repl-next-prompt
     "C-k" #'slime-repl-previous-prompt
     "C-p" #'slime-repl-previous-input
-    "C-n" #'slime-repl-next-input
-    )
+    "C-n" #'slime-repl-next-input)
 
   (osf-evil-define-key 'normal slime-repl-mode-map
-    "g z s" #'slime-scratch
-    )
+    "g z s" #'slime-scratch)
   
-  (define-key slime-repl-mode-map (kbd "<return>") nil)
-  )
+  (define-key slime-repl-mode-map (kbd "<return>") nil))
 
 (add-hook 'slime-popup-buffer-mode-hook #'evil-normalize-keymaps)
 

@@ -44,7 +44,6 @@
   "g t" #'Info-top-node
   "g T" #'Info-toc
   "g u" #'Info-up
-  "g f" #'Info-follow-reference
-  )
+  "g f" #'Info-follow-reference)
 
 (provide 'osf-evilize-info)

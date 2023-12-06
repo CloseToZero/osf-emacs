@@ -38,7 +38,6 @@
   "g j" #'org-next-visible-heading
   "g k" #'org-previous-visible-heading
   "H" #'org-up-element
-  "L" #'org-down-element
-  )
+  "L" #'org-down-element)
 
 (provide 'osf-evilize-org)

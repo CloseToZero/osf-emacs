@@ -179,8 +179,7 @@ command to generate a image file name"))
   (osf-local-leader-define-key org-mode-map
     "e e" #'org-export-dispatch
     "e H" #'osf-org-export-directory-using-ox-hugo
-    "i p" #'osf-org-paste-image-from-clipboard)
-  )
+    "i p" #'osf-org-paste-image-from-clipboard))
 
 (with-eval-after-load 'org-capture
   (defun osf-org-generate-blog-file-name ()
