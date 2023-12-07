@@ -76,7 +76,9 @@ for the regexp dollar operator."
 
 (setq completion-styles '(orderless basic partial-completion)
       orderless-matching-styles '(orderless-literal)
-      orderless-style-dispatchers '(osf-orderless-affix-dispatch))
+      orderless-style-dispatchers '(osf-orderless-affix-dispatch)
+      completion-category-defaults nil
+      completion-category-overrides nil)
 
 (defvar osf-default-completion-styles
   (let ((sv (get 'completion-styles 'standard-value)))
