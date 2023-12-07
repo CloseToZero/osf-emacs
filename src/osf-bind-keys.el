@@ -35,6 +35,7 @@
 
   "B s" #'bookmark-set
   "B j" #'bookmark-jump
+  "B r" #'bookmark-rename
 
   "f f" #'find-file
   "f r" #'revert-buffer
