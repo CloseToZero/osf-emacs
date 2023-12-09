@@ -24,6 +24,17 @@
 
 ;;; Code:
 
+(straight-use-package
+ '(query-replace-parallel
+   :type git
+   :host github :repo "hokomo/query-replace-parallel"))
+(autoload #'query-replace-parallel "query-replace-parallel")
+(autoload #'query-replace-parallel-regexp "query-replace-parallel")
+
+(osf-leader-define-key 'global
+  "% p l" #'query-replace-parallel
+  "% p r" #'query-replace-parallel-regexp)
+
 ;; Don't terminate the search if we just pressed a control character.
 (setq search-exit-option 'edit
       isearch-wrap-pause 'no

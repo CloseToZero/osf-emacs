@@ -44,8 +44,7 @@
 
   "q q" #'save-buffers-kill-terminal
 
-  "% %" #'query-replace
-  "% r" #'query-replace-regexp
-  "% s" #'osf-query-swap-literal)
+  "% l" #'query-replace
+  "% r" #'query-replace-regexp)
 
 (provide 'osf-bind-keys)
