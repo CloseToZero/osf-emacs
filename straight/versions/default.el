@@ -22,6 +22,7 @@
  ("embark" . "087bad28245a105d084740cd7981ca711f4c5637")
  ("evil" . "ad80a0a185ba1b28d19813e55acabb9d38419657")
  ("evil-exchange" . "5f0a2d41434c17c6fb02e4f744043775de1c63a2")
+ ("evil-numbers" . "7a1b62afc12da2b582bf84d722e7b10ca8b97065")
  ("evil-snipe" . "b59159fdb5af7d2a7defaf9a48fdbc6b08aa2d7b")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("glsl-mode" . "9b2e5f28e489a1f73c4aed734105618ac0dc0c43")

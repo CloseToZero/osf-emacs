@@ -211,4 +211,12 @@ buffer or a file, don't jump."
 (evil-snipe-mode)
 (evil-snipe-override-mode)
 
+(straight-use-package 'evil-numbers)
+
+(osf-leader-define-key 'global
+  "n +" #'evil-numbers/inc-at-pt
+  "n -" #'evil-numbers/dec-at-pt
+  "N +" #'evil-numbers/inc-at-pt-incremental
+  "N -" #'evil-numbers/dec-at-pt-incremental)
+
 (provide 'osf-evil)
