@@ -169,6 +169,10 @@ Most importantly, don't put visible buffers in the bottom of the list."
 (osf-evil-define-key 'insert 'global
   "M-y" #'consult-yank-from-kill-ring)
 
+(with-eval-after-load 'org
+  (osf-local-leader-define-key org-mode-map
+    "/ h" #'consult-org-heading))
+
 (defun osf-completion-in-region-function (&rest args)
   (apply (if vertico-mode
              #'consult-completion-in-region
