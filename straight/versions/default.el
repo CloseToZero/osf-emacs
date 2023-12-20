@@ -20,6 +20,7 @@
  ("emacs-reformatter" . "bfe3f1c6ece952d39921db16f601123bdd1748ab")
  ("emacsmirror-mirror" . "d9b49c4648877dafab3efded1d19a0447ea82dbd")
  ("embark" . "087bad28245a105d084740cd7981ca711f4c5637")
+ ("eshell-z" . "337cb241e17bd472bd3677ff166a0800f684213c")
  ("evil" . "ad80a0a185ba1b28d19813e55acabb9d38419657")
  ("evil-exchange" . "5f0a2d41434c17c6fb02e4f744043775de1c63a2")
  ("evil-numbers" . "7a1b62afc12da2b582bf84d722e7b10ca8b97065")

@@ -75,4 +75,6 @@
 
 (setq save-place-file (expand-file-name "places" osf-cache-dir))
 
+(setq eshell-z-freq-dir-hash-table-file-name (expand-file-name "eshell-z" osf-cache-dir))
+
 (provide 'osf-clean-dir)

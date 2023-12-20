@@ -64,4 +64,9 @@
     "d" #'osf-eshell-evil-delete
     "D" #'osf-eshell-evil-delete-line))
 
+(straight-use-package 'eshell-z)
+
+(with-eval-after-load 'eshell
+  (require 'eshell-z))
+
 (provide 'osf-shell)
