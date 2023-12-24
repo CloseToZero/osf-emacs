@@ -162,6 +162,12 @@ Most importantly, don't put visible buffers in the bottom of the list."
   (osf-evil-define-key 'insert comint-mode-map
     "M-Y" #'consult-history))
 
+(osf-evil-define-key 'insert minibuffer-local-map
+  "M-Y" #'consult-history)
+
+(osf-evil-define-key 'insert evil-ex-search-keymap
+  "M-Y" #'consult-history)
+
 (osf-leader-define-key 'global
   "SPC" #'execute-extended-command
   "b b" #'consult-buffer)
