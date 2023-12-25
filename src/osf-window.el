@@ -44,25 +44,30 @@
     ""))
 
 (defvar-local osf-mru-window-mode-line "")
-(put 'osf-mru-window-mode-line 'risky-local-variable t)
+(defun osf-mru-window-mode-line ()
+  (if (eq (window-parameter (selected-window) 'osf-mru-window) (get-buffer-window))
+      (propertize " MRU " 'face 'osf-mru-window-mode-line-face)
+    ""))
 
 (defun osf-add-mru-window-mode-line ()
-  (let ((mru-window-mode-line 'osf-mru-window-mode-line))
+  (let ((mru-window-mode-line (list :eval '(osf-mru-window-mode-line))))
     (setq global-mode-string (or global-mode-string '("")))
     (setq global-mode-string (delete mru-window-mode-line global-mode-string))
     (setq global-mode-string
           (cons (car global-mode-string)
                 (cons mru-window-mode-line (cdr global-mode-string))))))
 
-(defun osf-update-mru-window-mode-line (buffer mru-window)
-  (with-current-buffer buffer
-    (setq osf-mru-window-mode-line (osf-mru-window-mode-line-string mru-window))
+(defun osf-update-mru-window-mode-line (window mru-window)
+  (with-selected-window window
+    (set-window-parameter window 'osf-mru-window mru-window)
     (force-mode-line-update)))
 
 (defun osf-update-mru-window-mode-line-all-windows (&rest args)
   (let ((mru-window (osf-mru-window)))
-    (dolist (buffer (mapcar #'window-buffer (window-list)))
-      (osf-update-mru-window-mode-line buffer mru-window))))
+    (dolist (window (window-list))
+      (with-selected-window window
+        (set-window-parameter window 'osf-mru-window mru-window)))
+    (force-mode-line-update t)))
 
 (osf-add-mru-window-mode-line)
 (add-hook 'window-selection-change-functions #'osf-update-mru-window-mode-line-all-windows)
