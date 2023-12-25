@@ -24,10 +24,48 @@
 
 ;;; Code:
 
+(defun osf-mru-window ()
+  (get-mru-window nil t t nil))
+
 (defun osf-select-mru-window ()
   (interactive)
-  (when-let ((mru-window (get-mru-window nil t t nil)))
+  (when-let ((mru-window (osf-mru-window)))
     (select-window mru-window)))
+
+(defface osf-mru-window-mode-line-face
+  '((t (:foreground "#8A2BE2")))
+  "Face for the mru window indicator shown in the mode-line.")
+
+(defun osf-mru-window-mode-line-string (mru-window)
+  ;; Emacs will switch window to refresh mode-lines and mru-window
+  ;; will changed, so we need the caller to pass recorded mru-window.
+  (if (eq mru-window (get-buffer-window))
+      (propertize " MRU " 'face 'osf-mru-window-mode-line-face)
+    ""))
+
+(defvar-local osf-mru-window-mode-line "")
+(put 'osf-mru-window-mode-line 'risky-local-variable t)
+
+(defun osf-add-mru-window-mode-line ()
+  (let ((mru-window-mode-line 'osf-mru-window-mode-line))
+    (setq global-mode-string (or global-mode-string '("")))
+    (setq global-mode-string (delete mru-window-mode-line global-mode-string))
+    (setq global-mode-string
+          (cons (car global-mode-string)
+                (cons mru-window-mode-line (cdr global-mode-string))))))
+
+(defun osf-update-mru-window-mode-line (buffer mru-window)
+  (with-current-buffer buffer
+    (setq osf-mru-window-mode-line (osf-mru-window-mode-line-string mru-window))
+    (force-mode-line-update)))
+
+(defun osf-update-mru-window-mode-line-all-windows (&rest args)
+  (let ((mru-window (osf-mru-window)))
+    (dolist (buffer (mapcar #'window-buffer (window-list)))
+      (osf-update-mru-window-mode-line buffer mru-window))))
+
+(osf-add-mru-window-mode-line)
+(add-hook 'window-selection-change-functions #'osf-update-mru-window-mode-line-all-windows)
 
 (defvar osf-act-on-window-posframes nil)
 (defvar osf-act-on-window-posframes-limit 10)
@@ -39,7 +77,7 @@
     ("Split window below" ,#'osf-act-on-window-action-split-below)))
 
 (defface osf-act-on-window-tag-face
-  '((t (:foreground "#d00000" :underline nil :height 2.0)))
+  '((t (:foreground "#D00000" :underline nil :height 2.0)))
   "Tag face for the posframes of `osf-act-on-window'.")
 
 (defun osf-act-on-window ()
@@ -265,5 +303,5 @@ Resize Step: _1_ _2_ _3_ _4_ _5_  current step: %`osf-default-resize-window-step
   "w x" #'evil-window-delete
   "w C-r" #'winner-redo
   "w M" #'osf-manage-window/body)
-                   
+
 (provide 'osf-window)
