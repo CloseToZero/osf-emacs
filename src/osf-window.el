@@ -36,13 +36,6 @@
   '((t (:foreground "#8A2BE2")))
   "Face for the mru window indicator shown in the mode-line.")
 
-(defun osf-mru-window-mode-line-string (mru-window)
-  ;; Emacs will switch window to refresh mode-lines and mru-window
-  ;; will changed, so we need the caller to pass recorded mru-window.
-  (if (eq mru-window (get-buffer-window))
-      (propertize " MRU " 'face 'osf-mru-window-mode-line-face)
-    ""))
-
 (defvar-local osf-mru-window-mode-line "")
 (defun osf-mru-window-mode-line ()
   (if (eq (window-parameter (selected-window) 'osf-mru-window) (get-buffer-window))
