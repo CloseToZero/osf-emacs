@@ -30,6 +30,14 @@
 
 (pdf-loader-install)
 
+(defun osf--dont-ask-if-pdf-file-too-large (fn size op-type filename &optional offer-raw)
+  (cond ((string-match-p (rx "." (regexp (osf-regexp-literal-any-case "pdf")) string-end) filename)
+         (let ((large-file-warning-threshold nil))
+           (funcall fn size op-type filename offer-raw)))
+        (t (funcall fn size op-type filename offer-raw))))
+
+(advice-add #'abort-if-file-too-large :around #'osf--dont-ask-if-pdf-file-too-large)
+
 (defun osf-pdf-view-kill-outline-buffer (&optional pdf-buffer)
   "Kill the outline buffer of PDF-BUFFER (defaulted to the current buffer)."
   (when-let ((buffer-name (pdf-outline-buffer-name pdf-buffer))
