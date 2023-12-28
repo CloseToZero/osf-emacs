@@ -44,11 +44,11 @@
 
 (defun osf-add-mru-window-mode-line ()
   (let ((mru-window-mode-line (list :eval '(osf-mru-window-mode-line))))
-    (setq global-mode-string (or global-mode-string '("")))
-    (setq global-mode-string (delete mru-window-mode-line global-mode-string))
-    (setq global-mode-string
-          (cons (car global-mode-string)
-                (cons mru-window-mode-line (cdr global-mode-string))))))
+    (setq-default mode-line-mule-info (or (default-value 'mode-line-mule-info) '("")))
+    (setq-default mode-line-mule-info (delete mru-window-mode-line mode-line-mule-info))
+    (setq-default mode-line-mule-info
+                  (cons (car mode-line-mule-info)
+                        (cons mru-window-mode-line (cdr mode-line-mule-info))))))
 
 (defun osf-update-mru-window-mode-line (window mru-window)
   (with-selected-window window
