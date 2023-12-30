@@ -214,9 +214,9 @@ buffer or a file, don't jump."
 (straight-use-package 'evil-numbers)
 
 (osf-leader-define-key 'global
-  "n +" #'evil-numbers/inc-at-pt
-  "n -" #'evil-numbers/dec-at-pt
-  "N +" #'evil-numbers/inc-at-pt-incremental
-  "N -" #'evil-numbers/dec-at-pt-incremental)
+  "n +" #'evil-numbers/inc-at-pt-incremental
+  "n -" #'evil-numbers/dec-at-pt-incremental
+  "N +" #'evil-numbers/inc-at-pt
+  "N -" #'evil-numbers/dec-at-pt)
 
 (provide 'osf-evil)
