@@ -95,4 +95,72 @@ Otherwise, we will lose the save-place history of pdf-view buffers."
   (advice-add #'pdf-tools-build-server
               :around #'osf--saveplace-pdf-view-restore-history-after-rebuilt))
 
+(defvar osf-pdf-view-registers nil)
+(defvar osf-pdf-view-delete-register-history nil)
+(osf-add-saved-vars 'osf-pdf-view-registers 'osf-pdf-view-delete-register-history)
+
+(with-eval-after-load 'pdf-tools
+  (defvar osf-pdf-view-registers-max-files 100)
+  (defvar osf-pdf-view-max-registers-per-file 20)
+
+  (defun osf-serialize-pdf-view-register-alist (register-alist)
+    (mapcar (lambda (register)
+              (let ((register-struct (cdr register)))
+                (cons (car register)
+                      (registerv-data register-struct))))
+            register-alist))
+
+  (defun osf-deserialize-pdf-view-register-alist (register-alist)
+    (mapcar (lambda (register)
+              (let ((register-data (cdr register)))
+                (cons (car register)
+                      (registerv-make
+                       register-data
+                       :print-func 'pdf-view-registerv-print-func
+                       :jump-func 'pdf-view-bookmark-jump
+                       :insert-func (lambda (bmk)
+                                      (insert (format "%S" bmk)))))))
+            register-alist))
+
+  (defun osf-pdf-view-save-registers (&rest _)
+    "Save/Remember the registers of each pdf-view-mode buffers.
+Using `buffer-file-name' as keys."
+    (setf (alist-get (buffer-file-name) osf-pdf-view-registers nil nil #'string=)
+          (osf-serialize-pdf-view-register-alist
+           ;; Truncation for each file.
+           (if (> (length pdf-view-register-alist) osf-pdf-view-max-registers-per-file)
+               (osf-truncate-list! osf-pdf-view-max-registers-per-file pdf-view-register-alist)
+             pdf-view-register-alist)))
+    ;; Truncation for each files.
+    (when (> (length osf-pdf-view-registers) osf-pdf-view-registers-max-files)
+      (osf-truncate-list! osf-pdf-view-registers-max-files osf-pdf-view-registers)))
+  (advice-add #'pdf-view-position-to-register :after #'osf-pdf-view-save-registers)
+
+  (defun osf--pdf-view-restore-saved-registers ()
+    (when-let (registers (alist-get (buffer-file-name)
+                                    osf-pdf-view-registers nil nil #'string=))
+      (setq pdf-view-register-alist (osf-deserialize-pdf-view-register-alist registers))))
+  (add-hook 'pdf-view-mode-hook #'osf--pdf-view-restore-saved-registers)
+
+  (defun osf-pdf-view-delete-register (register-name)
+    (interactive (list
+                  (let ((active-register-names
+                         (mapcar (lambda (x) (string (car x))) pdf-view-register-alist)))
+                    (completing-read "Delete register: "
+                                     active-register-names nil t nil
+                                     'osf-pdf-view-delete-register-history
+                                     active-register-names))))
+    (setf (alist-get (string-to-char register-name) pdf-view-register-alist nil 'remove) nil)
+    (osf-pdf-view-save-registers))
+
+  (defun osf-pdf-view-delete-all-registers ()
+    (interactive)
+    (setq pdf-view-register-alist nil)
+    (osf-pdf-view-save-registers))
+
+  (osf-evil-define-key 'normal pdf-view-mode-map
+    "r" nil
+    "r d" #'osf-pdf-view-delete-register
+    "r D" #'osf-pdf-view-delete-all-registers))
+
 (provide 'osf-pdf)
