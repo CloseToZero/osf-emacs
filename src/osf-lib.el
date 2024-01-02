@@ -1,6 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
-;; Copyright (c) 2023 Zhexuan Chen <2915234902@qq.com>
+;; Copyright (c) 2023-2024 Zhexuan Chen <2915234902@qq.com>
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
@@ -76,7 +76,7 @@ Example:
     (setq-local lexical-binding t)
     (insert ";;; -*- lexical-binding: t; -*-
 
-;; Copyright (c) 2023 Zhexuan Chen <2915234902@qq.com>
+;; Copyright (c) 2023-2024 Zhexuan Chen <2915234902@qq.com>
 
 ;; Author: Zhexuan Chen <2915234902@qq.com>
 ;; URL: https://github.com/CloseToZero/osf-emacs
