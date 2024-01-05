@@ -44,11 +44,15 @@
 
 (defun osf-add-mru-window-mode-line ()
   (let ((mru-window-mode-line (list :eval '(osf-mru-window-mode-line))))
-    (setq-default mode-line-mule-info (or (default-value 'mode-line-mule-info) '("")))
-    (setq-default mode-line-mule-info (delete mru-window-mode-line mode-line-mule-info))
-    (setq-default mode-line-mule-info
-                  (cons (car mode-line-mule-info)
-                        (cons mru-window-mode-line (cdr mode-line-mule-info))))))
+    (setq-default mode-line-front-space
+                  (let ((x (or (default-value 'mode-line-front-space) '(""))))
+                    (if (and (listp x) (stringp (car x)) (string= (car x) ""))
+                        x
+                      (list "" x))))
+    (setq-default mode-line-front-space (delete mru-window-mode-line mode-line-front-space))
+    (setq-default mode-line-front-space
+                  (cons (car mode-line-front-space)
+                        (cons mru-window-mode-line (cdr mode-line-front-space))))))
 
 (defun osf-update-mru-window-mode-line (window mru-window)
   (with-selected-window window
