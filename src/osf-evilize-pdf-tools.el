@@ -170,6 +170,12 @@
 
   "o" #'pdf-outline)
 
+(osf-evil-define-key 'visual pdf-view-mode-map
+  "j" #'pdf-view-next-line-or-next-page
+  "k" #'pdf-view-previous-line-or-previous-page
+
+  "C-d" #'pdf-view-scroll-up-or-next-page
+  "C-u" #'pdf-view-scroll-down-or-previous-page)
 
 (osf-evil-define-key 'visual pdf-view-mode-map
   "y" #'pdf-view-kill-ring-save
