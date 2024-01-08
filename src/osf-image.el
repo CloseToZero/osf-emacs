@@ -25,5 +25,6 @@
 ;;; Code:
 
 (add-hook 'image-mode-hook #'osf-hide-cursor)
+(add-hook 'image-mode-hook #'osf-evil-disable-evil-adjust-cursor)
 
 (provide 'osf-image)

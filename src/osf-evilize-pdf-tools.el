@@ -26,6 +26,8 @@
 
 (evil-set-initial-state 'pdf-view-mode 'normal)
 
+(add-hook 'pdf-view-mode-hook #'osf-evil-disable-evil-adjust-cursor)
+
 (defvar-local osf--evilize-pdf-view-isearch-highlight-matches nil)
 
 (defun osf-evilize-pdf-view-isearch-cleanup-highlight ()

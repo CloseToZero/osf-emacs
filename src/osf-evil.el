@@ -86,6 +86,20 @@ jump if called interactively."
   "g j" #'evil-next-line
   "g k" #'evil-previous-line)
 
+(defun osf-evil-disable-evil-adjust-cursor ()
+  "Disable `evil-adjust-cursor' in the current buffer,
+can cause some problems in image-mode buffers.
+Specifically, if you accidentally invoke `next-line'/`evil-next-line'
+in a image-mode buffer, then the window can't be scrolled anymore, it
+just stuck at the beginning of the buffer. This is because
+`evil-adjust-cursor' get invoked constantly in this case.
+As a workaround, we set `evil-move-beyond-eol' to t to disable `evil-adjust-cursor'
+in image-mode buffers, it's fine since we can't really move beyond the
+end of the line in image-mode buffers, but this workaround may cause problems
+if used in other situations since `evil-move-beyond-eol' may then get involved."
+  ;; TODO generalize this function, don't utilize `evil-move-beyond-eol'.
+  (setq-local evil-move-beyond-eol t))
+
 (require 'osf-evil-leader-key)
 (require 'osf-evilize)
 
