@@ -30,5 +30,8 @@
 (add-to-list 'auto-mode-alist '("\\.ml[iylp]?$" . caml-mode))
 (add-to-list 'interpreter-mode-alist '("ocamlrun" . caml-mode))
 (add-to-list 'interpreter-mode-alist '("ocaml" . caml-mode))
+(with-eval-after-load 'caml
+  (when (display-graphic-p)
+    (require 'caml-font)))
 
 (provide 'osf-ml)
