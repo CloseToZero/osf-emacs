@@ -26,7 +26,7 @@
 
 (straight-use-package 'sml-mode)
 
-(straight-use-package 'caml-mode)
+(straight-use-package 'caml)
 (add-to-list 'auto-mode-alist '("\\.ml[iylp]?$" . caml-mode))
 (add-to-list 'interpreter-mode-alist '("ocamlrun" . caml-mode))
 (add-to-list 'interpreter-mode-alist '("ocaml" . caml-mode))
