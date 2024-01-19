@@ -33,6 +33,7 @@
  ("hydra" . "317e1de33086637579a7aeb60f77ed0405bf359b")
  ("iedit" . "27c61866b1b9b8d77629ac702e5f48e67dfe0d3b")
  ("imenu-list" . "76f2335ee6f2f066d87fe4e4729219d70c9bc70d")
+ ("julia-emacs" . "7a8c868e0d3e51ba4a2c621ee22ca9599e0e4bbb")
  ("let-alist" . "0c968ff216a2c91080d79272e85132fef6f14988")
  ("lispy" . "fe44efd21573868638ca86fc8313241148fabbe3")
  ("lispyville" . "14ee8711d58b649aeac03581d22b10ab077f06bd")
