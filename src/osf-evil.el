@@ -233,4 +233,7 @@ buffer or a file, don't jump."
   "N +" #'evil-numbers/inc-at-pt
   "N -" #'evil-numbers/dec-at-pt)
 
+(straight-use-package 'evil-matchit)
+(global-evil-matchit-mode)
+
 (provide 'osf-evil)

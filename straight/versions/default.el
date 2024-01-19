@@ -23,6 +23,7 @@
  ("eshell-z" . "337cb241e17bd472bd3677ff166a0800f684213c")
  ("evil" . "ad80a0a185ba1b28d19813e55acabb9d38419657")
  ("evil-exchange" . "5f0a2d41434c17c6fb02e4f744043775de1c63a2")
+ ("evil-matchit" . "fe4cc5243a23ba7aa283803b200993f23b5dafef")
  ("evil-numbers" . "7a1b62afc12da2b582bf84d722e7b10ca8b97065")
  ("evil-snipe" . "b59159fdb5af7d2a7defaf9a48fdbc6b08aa2d7b")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
