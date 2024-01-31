@@ -80,6 +80,10 @@ jump if called interactively."
               evil-previous-line))
   (advice-add fn :before #'osf--evil-move-line-set-jump-ad))
 
+(dolist (cmd '(query-replace
+               query-replace-regexp))
+  (evil-set-command-property cmd :jump t))
+
 (osf-evil-define-key 'motion 'global
   "j" #'evil-next-visual-line
   "k" #'evil-previous-visual-line

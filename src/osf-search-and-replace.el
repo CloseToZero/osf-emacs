@@ -35,6 +35,11 @@
   "% p l" #'query-replace-parallel
   "% p r" #'query-replace-parallel-regexp)
 
+(with-eval-after-load 'query-replace-parallel
+  (dolist (cmd '(query-replace-parallel
+                 query-replace-parallel-regexp))
+    (evil-set-command-property cmd :jump t)))
+
 ;; Don't terminate the search if we just pressed a control character.
 (setq search-exit-option 'edit
       isearch-wrap-pause 'no
