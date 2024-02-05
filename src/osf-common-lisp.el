@@ -49,7 +49,9 @@
       (select-window window))
     (remove-hook
      'window-buffer-change-functions
-     #'osf--slime-auto-select-popup-buffer-change-function t)))
+     #'osf--slime-auto-select-popup-buffer-change-function t))
+
+  (evil-set-command-property #'slime-edit-definition :jump t))
 
 (straight-use-package 'slime-company)
 (setq slime-company-completion 'fuzzy)
