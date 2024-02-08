@@ -149,8 +149,9 @@ Most importantly, don't put visible buffers in the bottom of the list."
                 :around #'osf--consult-inhibit-save-place-to-alist-in-preview)))
 
 (with-eval-after-load 'slime-repl
-  (setf (alist-get 'slime-repl-mode consult-mode-histories)
-        '(slime-repl-input-history))
+  (with-eval-after-load 'consult
+    (setf (alist-get 'slime-repl-mode consult-mode-histories)
+          '(slime-repl-input-history)))
   (osf-evil-define-key 'insert slime-repl-mode-map
     "M-Y" #'consult-history))
 
