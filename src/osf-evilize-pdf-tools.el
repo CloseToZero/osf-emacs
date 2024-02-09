@@ -91,13 +91,15 @@
 (advice-add #'pdf-isearch-mode-cleanup
             :override #'osf--evilize-pdf-view-isearch-mode-cleanup)
 
-(defun osf--evilize-pdf-view-highlight-visual-state-in-mode-line (orig-fun &rest args)
-  (let ((tag (apply orig-fun args)))
-    (if (and (stringp tag) (derived-mode-p 'pdf-view-mode))
+(defun osf--evilize-pdf-view-highlight-states-in-mode-line (orig-fun &optional state)
+  (let ((tag (funcall orig-fun state)))
+    (if (and (stringp tag)
+             (derived-mode-p 'pdf-view-mode)
+             (memq state '(insert visual)))
         (propertize tag 'face 'evil-ex-lazy-highlight)
       tag)))
-(advice-add #'evil-visual-tag
-            :around #'osf--evilize-pdf-view-highlight-visual-state-in-mode-line)
+(advice-add #'evil-generate-mode-line-tag
+            :around #'osf--evilize-pdf-view-highlight-states-in-mode-line)
 
 (defun osf-evilize-pdf-view-goto-beginning ()
   (interactive)
