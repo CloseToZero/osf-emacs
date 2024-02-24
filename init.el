@@ -75,6 +75,7 @@
 (require 'osf-c-cpp)
 (require 'osf-rust)
 (require 'osf-julia)
+(require 'osf-tiger)
 (require 'osf-zig)
 (require 'osf-js-ts)
 (require 'osf-proof)
