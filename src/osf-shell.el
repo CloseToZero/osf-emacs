@@ -42,6 +42,9 @@
     "C-k" #'eshell-previous-prompt
     "RET" #'eshell-send-input)
 
+  (evil-declare-motion 'eshell-previous-prompt)
+  (evil-declare-motion 'eshell-next-prompt)
+
   ;; Taken from Doom Emacs
   (evil-define-operator osf-eshell-evil-delete (beg end type register yank-handler)
     "Like `evil-delete' but will not delete/copy the prompt."
