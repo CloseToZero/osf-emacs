@@ -45,6 +45,8 @@
   "q q" #'save-buffers-kill-terminal
 
   "% l" #'query-replace
-  "% r" #'query-replace-regexp)
+  "% r" #'query-replace-regexp
+
+  "y c" #'osf-copy-current-path)
 
 (provide 'osf-bind-keys)
