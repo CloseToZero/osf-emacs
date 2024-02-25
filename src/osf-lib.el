@@ -257,4 +257,11 @@ be a symbol.)"
 (defun osf-isearch-failed? ()
   (or (not isearch-success) isearch-error))
 
+(defun osf-native-path (path)
+  (pcase osf-system-type
+    ('windows
+     (string-replace "/" "\\" path))
+    (_
+     path)))
+
 (provide 'osf-lib)

@@ -47,7 +47,16 @@
     "RET" #'osf-embark-browser-git-repo-ssh-url)
 
   (add-to-list 'embark-keymap-alist
-               '(git-repo-ssh-url osf-embark-git-repo-ssh-url-map)))
+               '(git-repo-ssh-url osf-embark-git-repo-ssh-url-map))
+
+  (defun osf-embark-transform-path-to-native-path (beg end)
+    (interactive "r")
+    (let ((new-path (osf-native-path (buffer-substring beg end))))
+      (delete-region beg end)
+      (insert new-path)))
+
+  (osf-keymap-set embark-file-map
+    "/" #'osf-embark-transform-path-to-native-path))
 
 (osf-keymap-global-set
   "M-^" #'embark-act)
