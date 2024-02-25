@@ -65,7 +65,8 @@
 
   (osf-evil-define-key 'normal eshell-mode-map
     "d" #'osf-eshell-evil-delete
-    "D" #'osf-eshell-evil-delete-line))
+    "D" #'osf-eshell-evil-delete-line
+    "^" #'eshell-bol))
 
 (straight-use-package 'eshell-z)
 
