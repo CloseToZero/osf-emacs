@@ -47,32 +47,34 @@ for the regexp dollar operator."
 
 (defvar osf-orderless-affix-dispatch-alist
   `((?# . ,#'orderless-regexp)
-    (?! . ,#'orderless-without-literal)))
+    (?! . ,#'orderless-without-literal)
+    (?@ . ,#'orderless-annotation)))
 
 (defun osf-orderless-affix-dispatch (component _index _total)
-  (cond
-   ;; Ignore single without-literal dispatcher
-   ((and (= (length component) 1)
-         (equal (aref component 0)
-                (car (rassq #'orderless-without-literal
-                            osf-orderless-affix-dispatch-alist))))
-    '(orderless-literal . ""))
-   ;; Prefix
-   ((when-let ((style (alist-get (aref component 0)
-                                 osf-orderless-affix-dispatch-alist)))
-      (if (string-suffix-p "$" component)
-          (cons style
-                (concat (substring component 1 -1)
-                        (osf--orderless-consult-suffix-for-dollar)))
-        (cons style (substring component 1)))))
-   ;; Suffix
-   ((when-let ((style (alist-get (aref component (1- (length component)))
-                                 osf-orderless-affix-dispatch-alist)))
-      (if (and (>= (length component) 2)
-               (eq ?$ (aref component (- (length component) 2))))
-          (cons style (concat (substring component 0 -2)
-                              (osf--orderless-consult-suffix-for-dollar)))
-        (cons style (substring component 0 -1)))))))
+  (unless (string-empty-p component)
+    (cond
+     ;; Ignore single without-literal dispatcher
+     ((and (= (length component) 1)
+           (equal (aref component 0)
+                  (car (rassq #'orderless-without-literal
+                              osf-orderless-affix-dispatch-alist))))
+      '(orderless-literal . ""))
+     ;; Prefix
+     ((when-let ((style (alist-get (aref component 0)
+                                   osf-orderless-affix-dispatch-alist)))
+        (if (string-suffix-p "$" component)
+            (cons style
+                  (concat (substring component 1 -1)
+                          (osf--orderless-consult-suffix-for-dollar)))
+          (cons style (substring component 1)))))
+     ;; Suffix
+     ((when-let ((style (alist-get (aref component (1- (length component)))
+                                   osf-orderless-affix-dispatch-alist)))
+        (if (and (>= (length component) 2)
+                 (eq ?$ (aref component (- (length component) 2))))
+            (cons style (concat (substring component 0 -2)
+                                (osf--orderless-consult-suffix-for-dollar)))
+          (cons style (substring component 0 -1))))))))
 
 (setq completion-styles '(orderless basic partial-completion)
       orderless-matching-styles '(orderless-literal)
