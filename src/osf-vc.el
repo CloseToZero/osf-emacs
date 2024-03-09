@@ -44,4 +44,16 @@ otherwise in default state."
 (osf-leader-define-key 'global
   "g g" #'magit-status)
 
+(with-eval-after-load 'magit
+  (transient-define-suffix magit-submodule-update-all (args)
+    "Update all submodules"
+    :class 'magit--git-submodule-suffix
+    :description "Update all modules recursively"
+    (interactive (list (magit-submodule-arguments "--recursive")))
+    (magit-with-toplevel
+      (magit-run-git-async "submodule" "update" "--init" args)))
+
+  (transient-append-suffix 'magit-submodule '(2 -1)
+    '("U" magit-submodule-update-all)))
+
 (provide 'osf-vc)
