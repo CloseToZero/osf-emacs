@@ -21,7 +21,7 @@
  ("emacsmirror-mirror" . "d9b49c4648877dafab3efded1d19a0447ea82dbd")
  ("embark" . "c93abadc8220c0caa6fea805f7a736c346d47e7e")
  ("eshell-z" . "337cb241e17bd472bd3677ff166a0800f684213c")
- ("evil" . "a7ffa73bbdc523c0e473d79c0ded7c6457bcb65c")
+ ("evil" . "ad80a0a185ba1b28d19813e55acabb9d38419657")
  ("evil-exchange" . "5f0a2d41434c17c6fb02e4f744043775de1c63a2")
  ("evil-matchit" . "fe4cc5243a23ba7aa283803b200993f23b5dafef")
  ("evil-numbers" . "7a1b62afc12da2b582bf84d722e7b10ca8b97065")
