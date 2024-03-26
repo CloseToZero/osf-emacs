@@ -63,6 +63,13 @@ path\\to\\arg.exe"
     (modify-coding-system-alist
      'process (osf-process-regexp-for-program program)
      (cons 'utf-8 osf-w32-locale-coding-system)))
+  (with-eval-after-load 'magit
+    ;; We already change the encoding between the git executable and Emacs,
+    ;; so magit should not encode args anymore.
+    (defun osf//magit-process-git-arguments-dont-encode-args (args)
+      (setq args (append magit-git-global-arguments (flatten-tree args))))
+    (advice-add #'magit-process-git-arguments
+                :override #'osf//magit-process-git-arguments-dont-encode-args))
   (modify-coding-system-alist
    'process (osf-process-regexp-for-program "cmdproxy")
    (cons osf-w32-locale-coding-system osf-w32-locale-coding-system)))
