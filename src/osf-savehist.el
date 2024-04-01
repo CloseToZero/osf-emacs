@@ -33,7 +33,8 @@
 (defun osf--remove-kill-ring-text-properties-for-savehist ()
   (setq-local kill-ring
               (mapcar #'substring-no-properties
-                      (cl-remove-if-not #'stringp kill-ring))))
+                      (cl-remove-if-not #'stringp kill-ring)))
+  (osf-remove-long-contents-in-kill-ring t))
 (add-hook 'savehist-save-hook #'osf--remove-kill-ring-text-properties-for-savehist)
 (osf-add-saved-vars 'kill-ring)
 

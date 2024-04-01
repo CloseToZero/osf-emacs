@@ -264,4 +264,15 @@ be a symbol.)"
     (_
      path)))
 
+(defvar osf-kill-ring-long-contents-length 100000)
+(defun osf-remove-long-contents-in-kill-ring (set-value-directly)
+  (interactive (list t))
+  (let ((new-kill-ring (cl-remove-if
+                        (lambda (v)
+                          (> (length v) osf-kill-ring-long-contents-length))
+                        kill-ring)))
+    (when set-value-directly
+      (setq kill-ring new-kill-ring))
+    new-kill-ring))
+
 (provide 'osf-lib)
