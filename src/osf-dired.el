@@ -24,7 +24,8 @@
 
 ;;; Code:
 
-(setq dired-dwim-target t)
+(setq dired-dwim-target t
+      dired-listing-switches "-alh")
 
 (with-eval-after-load 'dired
   (defun osf-dired-copy-path ()
