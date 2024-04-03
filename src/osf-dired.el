@@ -52,4 +52,9 @@
       (setq image-dired-cmd-create-thumbnail-options
             (cons "convert" image-dired-cmd-create-thumbnail-options)))))
 
+(straight-use-package 'dired-hacks-utils)
+(with-eval-after-load 'dired
+  (require 'dired-hacks-utils)
+  (dired-utils-format-information-line-mode))
+
 (provide 'osf-dired)

@@ -15,6 +15,7 @@
  ("consult" . "42c2231bdb7f9b16fa45180cd689c25562b72a3a")
  ("dash.el" . "6db80c711ce947f6c6fa11e5c2257fff2c79d139")
  ("deadgrep" . "b36dc1b2e5d5e8cd53c1977eeea9b6469ad42381")
+ ("dired-hacks" . "a01c126c3b1068655509487c76971895f5459d09")
  ("double-trigger" . "473512c78c494d625b612e660cce277ffb6f0d39")
  ("el-get" . "e1a3e59d800984ed7ef10469232b59b60244ae90")
  ("emacs-reformatter" . "bfe3f1c6ece952d39921db16f601123bdd1748ab")
