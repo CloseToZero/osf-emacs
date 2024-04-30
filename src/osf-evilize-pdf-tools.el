@@ -161,6 +161,8 @@
 
   "g r" #'revert-buffer
 
+  "g /" #'pdf-occur
+
   "<C-down-mouse-1>" #'pdf-view-mouse-extend-region
   "<M-down-mouse-1>" #'pdf-view-mouse-set-region-rectangle
   "<down-mouse-1>" #'pdf-view-mouse-set-region
@@ -204,5 +206,13 @@
 
     "<tab>" #'outline-toggle-children
     "<backtab>" #'pdf-outline-toggle-subtree))
+
+(with-eval-after-load 'pdf-occur
+  (evil-set-initial-state 'pdf-occur-buffer-mode 'normal)
+
+  (osf-evil-define-key 'normal pdf-occur-buffer-mode-map
+    "q" #'quit-window
+    "RET" #'pdf-occur-goto-occurrence
+    "S-<return>" #'pdf-occur-view-occurrence))
 
 (provide 'osf-evilize-pdf-tools)
