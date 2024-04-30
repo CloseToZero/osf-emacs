@@ -118,6 +118,8 @@
       (image-set-window-hscroll hscroll))))
 
 (osf-evil-define-key 'normal pdf-view-mode-map
+  "q" nil
+
   "<remap> <evil-visual-char>" #'ignore
   "<remap> <evil-visual-block>" #'ignore
   "<remap> <evil-visual-line>" #'ignore
