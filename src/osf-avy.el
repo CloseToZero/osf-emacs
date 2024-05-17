@@ -28,6 +28,6 @@
 (setq avy-timeout-seconds nil
       avy-single-candidate-jump nil)
 (osf-evil-define-key 'normal 'global
-  "g '" #'avy-goto-char-timer)
+  "," #'avy-goto-char-timer)
 
 (provide 'osf-avy)
