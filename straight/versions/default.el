@@ -69,7 +69,7 @@
  ("tomelr" . "57cb24df521031a6d02f61091db82d292e4175df")
  ("transient" . "d056a6c013b9e7160a676365bcf29905bfe65093")
  ("vertico" . "b5fc355313f640fa288665c150157474569d964f")
- ("vundo" . "10d011fb05a9db0cc2f641e5b5bebe4b5fb81b6f")
+ ("vundo" . "a18d63a9a15d363c11e2405934e709723e472d86")
  ("with-editor" . "a4853781835346aabf083d2d9cb87f656d01ccac")
  ("yasnippet" . "5cbdbf0d2015540c59ed8ee0fcf4788effdf75b6")
  ("zig-mode" . "079149a19fc869343130e69d7b944afd3a1813cc")
