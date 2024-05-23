@@ -43,6 +43,7 @@
   "f o" #'osf-ff-find-other-file-ignore-include-line
 
   "q q" #'save-buffers-kill-terminal
+  "q r" #'restart-emacs
 
   "% l" #'query-replace
   "% r" #'query-replace-regexp
