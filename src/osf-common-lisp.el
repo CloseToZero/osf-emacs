@@ -38,6 +38,11 @@
     (add-to-list 'slime-lisp-implementations '(roswell ("ros" "run")))
     (setq slime-default-lisp 'roswell))
 
+  (let ((local-hyperspec-dir (expand-file-name "~/HyperSpec/")))
+    (when (file-directory-p local-hyperspec-dir)
+      (setq common-lisp-hyperspec-root
+            (concat "file:///" local-hyperspec-dir))))
+
   (defun osf--slime-auto-select-popup-buffer ()
     (add-hook
      'window-buffer-change-functions
