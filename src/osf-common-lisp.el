@@ -88,7 +88,9 @@
     "p s" #'slime-repl-set-package))
 
 (with-eval-after-load 'slime
-  (osf--slime-setup-leader-key-bindings slime-mode-map))
+  (osf--slime-setup-leader-key-bindings slime-mode-map)
+  (osf-evil-define-key '(insert normal) slime-mode-map
+    "M-e" #'slime-eval-last-expression-in-repl))
 
 (with-eval-after-load 'slime-repl
   (osf--slime-setup-leader-key-bindings slime-repl-mode-map)
