@@ -31,25 +31,6 @@
                 slime-xref-mode))
   (evil-set-initial-state mode 'normal))
 
-(defun osf--evilize-slime-eval-last-sexp-ad (fn &rest args)
-  (if (and (not evil-move-beyond-eol)
-           (or (evil-normal-state-p) (evil-motion-state-p)))
-      (save-excursion
-        (unless (or (eobp) (eolp)) (forward-char))
-        (apply fn args))
-    (apply fn args)))
-
-(unless evil-move-beyond-eol
-  (advice-add #'slime-eval-last-expression
-              :around #'osf--evilize-slime-eval-last-sexp-ad)
-  (advice-add #'slime-pprint-eval-last-expression
-              :around #'osf--evilize-slime-eval-last-sexp-ad)
-  (advice-add #'slime-eval-print-last-expression
-              :around #'osf--evilize-slime-eval-last-sexp-ad)
-  (with-eval-after-load 'slime-repl
-    (advice-add #'slime-eval-last-expression-in-repl
-                :around #'osf--evilize-slime-eval-last-sexp-ad)))
-
 (osf-evil-define-key 'normal slime-parent-map
   "g d" #'slime-edit-definition
   "C-t" #'slime-pop-find-definition-stack)

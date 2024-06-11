@@ -24,156 +24,57 @@
 
 ;;; Code:
 
-(straight-use-package 'lispy)
-
-(setq-default lispy-no-space t)
+(straight-use-package 'paredit)
 
 (dolist (hook '(emacs-lisp-mode-hook
                 lisp-interaction-mode-hook
-                inferior-emacs-lisp-mode-hook
                 lisp-mode-hook
-                slime-repl-mode-hook
                 lisp-data-mode-hook
                 scheme-mode-hook))
-  (add-hook hook #'lispy-mode))
+  (add-hook hook #'enable-paredit-mode))
 
-(defun osf--enable-lispy-for-eval-expression ()
+(with-eval-after-load 'paredit
+  (osf-evil-define-key 'normal paredit-mode-map
+    ">" #'paredit-forward-slurp-sexp
+    "<" #'paredit-forward-barf-sexp
+    "[" #'paredit-backward-slurp-sexp
+    "]" #'paredit-backward-barf-sexp
+    "M-r" #'paredit-raise-sexp
+    "M-s" #'paredit-splice-sexp
+    "M-S" #'paredit-split-sexp
+    "M-(" #'paredit-wrap-round
+    "M-q" #'paredit-reindent-defun
+    "D" #'paredit-kill)
+
+  (osf-evil-define-key 'insert paredit-mode-map
+    "(" #'paredit-open-round
+    ")" #'paredit-close-round
+    "[" #'paredit-open-square
+    "]" #'paredit-close-square
+    "\\" #'paredit-backslash
+    "\"" #'paredit-doublequote
+    "DEL" #'paredit-backward-delete
+    "C-d" #'paredit-forward-delete
+    "RET" #'paredit-RET)
+
+  (osf-evil-define-key '(normal insert) paredit-mode-map
+    "M-;" #'paredit-comment-dwim))
+
+(defun osf--enable-paredit-for-eval-expression ()
   (when (eq this-command 'eval-expression)
     ;; Use `lisp-indent-line' to fix the weird indentation.
     (setq-local indent-line-function #'lisp-indent-line)
-    ;; Start the code from the second line, so press "i" to indent
-    ;; the code won't trigger the error "Text is read-only".
-    (insert "\n")
-    (lispy-mode 1)))
-(add-hook 'minibuffer-setup-hook #'osf--enable-lispy-for-eval-expression)
+    (enable-paredit-mode)))
+(add-hook 'minibuffer-setup-hook #'osf--enable-paredit-for-eval-expression)
 
-(with-eval-after-load 'lispy
-  ;; Support the evaluation of `lisp-data-mode'.
-  (setq lispy-eval-alist
-        (mapcar (lambda (handler)
-                  (if (eq (cl-third handler) 'lispy--eval-elisp)
-                      (cons (cons 'lisp-data-mode (cl-first handler))
-                            (cl-rest handler))
-                    handler))
-                lispy-eval-alist))
+(defun osf--allow-paredit-eval-expression-at-end (fn &rest args)
+  (if (and (minibufferp)
+           (or (evil-normal-state-p)
+               (and (evil-insert-state-p)
+                    (= (point) (point-max)))))
+      (exit-minibuffer)
+    (apply fn args)))
 
-  (defvar osf-lispy-repl-eval
-    '((minibufferp . read--expression-try-read)
-      ((mode . slime-repl-mode) . osf-slime-smart-repl-return)
-      ((mode . sly-mrepl-mode) . osf-sly-mrepl-return)
-      ((mode . inferior-emacs-lisp-mode) . ielm-return))
-    "A alist to determine whether a buffer is a REPL buffer \
-and how to evaluate its expressions.
-Each element is of the form (MODE . EVAL-FUN).
-MODE can be a cons of the form (mode . MAJOR-MODE), the car is the
-symbol 'mode, the cdr specify the major-mode of a REPL buffer.
-MODE can also be a function, the function will be called with 0 argument
-in a buffer and it should return non-nil if the buffer is a repl buffer.
-EVAL-FUN should be a function, and it should try to eval the expression
-at/around the point.")
-
-  (defun osf--repl-buffer-eval-fun ()
-    "Return the REPL evaluation function of the current buffer.
-If current buffer is not a REPL buffer, return nil.
-See `osf-lispy-repl-eval'."
-    (cl-some (lambda (mode-eval)
-               (let ((mode (car mode-eval))
-                     (eval-fun (cdr mode-eval)))
-                 (cond ((and (consp mode)
-                             (eq (car mode) 'mode)
-                             (eq (cdr mode) major-mode))
-                        eval-fun)
-                       ((functionp mode)
-                        (when (funcall mode) eval-fun)))))
-             osf-lispy-repl-eval))
-
-  (defun osf-lispy-enhance-return-for-repl (orig-fun &rest args)
-    "Enhance RET for REPL buffers.
-
-Whenever press RET in REPL buffers,
-Try to evaluate the expression if any of the following conditions is true:
-1. In motion state.
-2. In normal state.
-3. In insert state and the point is at the end of buffer.
-Otherwise, call `newline-and-indent'.
-
-Whether a buffer is a REPL buffer and the corresponding evaluation function
-are controlled by `osf-lispy-repl-eval'."
-    (let ((eval-fun (osf--repl-buffer-eval-fun)))
-      (cond (eval-fun
-             (if (or (evil-motion-state-p) (evil-normal-state-p)
-                     (and (evil-insert-state-p) (= (point) (point-max))))
-                 (funcall eval-fun)
-               (newline-and-indent)))
-            (t (apply orig-fun args)))))
-
-  (advice-add #'lispy-newline-and-indent-plain :around #'osf-lispy-enhance-return-for-repl)
-
-  (defun osf--lispy-bind-return-in-repl ()
-    "Bind RET in motion and normal state to `lispy-newline-and-indent-plain' \
-in REPL buffers.
-
-Whether a buffer is a REPL buffer is controlled in `osf-lispy-repl-eval'."
-    (when (osf--repl-buffer-eval-fun)
-      (osf-evil-define-key '(motion normal insert) 'local
-        "RET" #'lispy-newline-and-indent-plain
-        "<return>" #'lispy-newline-and-indent-plain)))
-
-  (defun osf--lispy-cleanup-lispy-bindings-in-repl ()
-    (when (osf--repl-buffer-eval-fun)
-      (osf-evil-define-key '(motion normal insert) 'local
-        "RET" nil
-        "<return>" nil)))
-  (add-hook 'lispy-mode-hook #'osf--lispy-bind-return-in-repl)
-  ;; The minibuffer won't be recreated, thus the bindings setup by
-  ;; osf--lispy-bind-return-in-repl will be remained and we need to
-  ;; clear the bindings explicitly.
-  (add-hook 'minibuffer-exit-hook #'osf--lispy-cleanup-lispy-bindings-in-repl)
-
-  (with-eval-after-load 'slime-repl
-    (defun osf-slime-smart-repl-return ()
-      "If around a presentation, inspect the presentation,
-otherwise, fallback to `slime-repl-return'."
-      (interactive)
-      (call-interactively
-       (if (slime-presentation-around-or-before-point-p)
-           #'slime-inspect-presentation-at-point
-         #'slime-repl-return))))
-
-  (with-eval-after-load 'sly-mrepl
-    (defun osf-sly-mrepl-return (&optional end-of-input)
-      "Like `sly-mrepl-return', but go to the end of buffer after \
-eval the expression."
-      (interactive "P")
-      (let ((goto-end
-             (and (not sly-mrepl--read-mark)
-                  (or (sly-input-complete-p (sly-mrepl--mark) (point-max))
-                      end-of-input))))
-        (sly-mrepl-return end-of-input)
-        (when goto-end (goto-char (point-max))))))
-
-  (defun osf--lispy-mark-symbol-dont-include-tail-char (&rest _)
-    (when (and (eq this-command #'lispy-mark-symbol)
-               (or (evil-motion-state-p) (evil-normal-state-p)))
-      (backward-char)))
-
-  (advice-add #'lispy-mark-symbol
-              :after #'osf--lispy-mark-symbol-dont-include-tail-char)
-
-  (defun osf--lispy-ensure-message-buffer-in-normal-state ()
-    (when (string= (buffer-name) "*lispy-message*")
-      (evil-normal-state)))
-
-  (add-hook 'special-mode-hook #'osf--lispy-ensure-message-buffer-in-normal-state))
-
-(straight-use-package 'lispyville)
-
-(add-hook 'lispy-mode-hook #'lispyville-mode)
-
-(with-eval-after-load 'lispyville
-  (lispyville-set-key-theme
-   '(operators
-     c-w c-u prettify text-objects additional-movement
-     (commentary normal visual) additional slurp/barf-lispy)))
+(advice-add #'paredit-RET :around #'osf--allow-paredit-eval-expression-at-end)
 
 (provide 'osf-lisp)
