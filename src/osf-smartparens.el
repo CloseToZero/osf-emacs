@@ -115,4 +115,4 @@
     (osf-enable-smartparens-eval-expression-mode)))
 (add-hook 'minibuffer-setup-hook #'osf--enable-smartparens-for-eval-expression)
 
-(provide 'osf-pair)
+(provide 'osf-smartparens)
