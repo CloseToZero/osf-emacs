@@ -88,13 +88,21 @@
     "p s" #'slime-repl-set-package))
 
 (with-eval-after-load 'slime
-  (osf--slime-setup-leader-key-bindings slime-mode-map)
-  (osf-evil-define-key '(insert normal) slime-mode-map
-    "M-e" #'slime-eval-last-expression-in-repl))
+  (osf--slime-setup-leader-key-bindings slime-mode-map))
 
 (with-eval-after-load 'slime-repl
   (osf--slime-setup-leader-key-bindings slime-repl-mode-map)
   (osf--slime-repl-setup-leader-key-bindings slime-repl-mode-map))
+
+(with-eval-after-load 'slime
+  (defun osf-slime-eval-last-expression-in-repl (prefix)
+    "Like `slime-eval-last-expression-in-repl', but doesn't change selected window."
+    (interactive "P")
+    (let ((w (selected-window)))
+      (slime-eval-last-expression-in-repl prefix)
+      (select-window w)))
+  (osf-evil-define-key '(insert normal) slime-mode-map
+    "M-e" #'osf-slime-eval-last-expression-in-repl))
 
 (defun osf--common-lisp-hyperspec-read-symbol-name (&optional symbol-at-point)
   "Like `common-lisp-hyperspec-read-symbol-name',
