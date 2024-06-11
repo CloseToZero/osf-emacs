@@ -26,6 +26,8 @@
 
 (straight-use-package 'paredit)
 
+(setq paredit-space-for-delimiter-predicates (list #'ignore))
+
 (dolist (hook '(emacs-lisp-mode-hook
                 lisp-interaction-mode-hook
                 lisp-mode-hook
