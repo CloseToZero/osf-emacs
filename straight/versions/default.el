@@ -46,7 +46,6 @@
  ("orderless" . "7545dc7c07d1465e9661209ca5930ae3f1a870a3")
  ("org-appear" . "eb9f9db40aa529fe4b977235d86494b115281d17")
  ("ox-hugo" . "cb1b6cfd7b080e889352150416c1725f11ba937a")
- ("paredit" . "9a2c4b37fc8c1c7bdbb1f86fdec874c0d0652e64")
  ("pcre2el" . "018531ba0cf8e2b28d1108136a0e031b6a45f1c1")
  ("pdf-tools" . "c69e7656a4678fe25afbd29f3503dd19ee7f9896")
  ("perspective-el" . "17a4a1a6d34cef96c49c92ad3087e1a3bfc4ed7a")

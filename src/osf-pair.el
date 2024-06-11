@@ -51,4 +51,68 @@
 
 (smartparens-global-mode)
 
+(defvar osf-smartparens-lisp-mode-map (make-sparse-keymap))
+
+(osf-evil-define-key 'normal osf-smartparens-lisp-mode-map
+  ">" #'sp-forward-slurp-sexp
+  "<" #'sp-forward-barf-sexp
+  "[" #'sp-backward-slurp-sexp
+  "]" #'sp-backward-barf-sexp
+  "M-r" #'sp-raise-sexp
+  "M-s" #'sp-splice-sexp
+  "M-S" #'sp-split-sexp
+  "M-(" #'sp-wrap-round
+  "M-q" #'sp-indent-defun
+  "M-w" #'sp-clone-sexp)
+
+(defun osf-smartparens-eval-expression-ret ()
+  (interactive)
+  (if (or (evil-normal-state-p)
+          (and (evil-insert-state-p)
+               (= (point) (point-max))))
+      (read--expression-try-read)
+    (newline-and-indent)))
+
+(defvar osf-smartparens-eval-expression-mode-map (make-sparse-keymap))
+(set-keymap-parent osf-smartparens-eval-expression-mode-map osf-smartparens-lisp-mode-map)
+
+(osf-evil-define-key '(insert normal) osf-smartparens-eval-expression-mode-map
+  "RET" #'osf-smartparens-eval-expression-ret)
+
+(define-minor-mode osf-smartparens-lisp-mode
+  "Provide separate keymap for Lisp modes."
+  :init-value nil
+  :lighter nil
+  :group 'smartparens
+  :keymap osf-smartparens-lisp-mode-map)
+
+(define-minor-mode osf-smartparens-eval-expression-mode
+  "Provide separate keymap for `eval-expression'."
+  :init-value nil
+  :lighter nil
+  :group 'smartparens
+  :keymap osf-smartparens-eval-expression-mode-map)
+
+(defun osf-enable-smartparens-lisp-mode ()
+  (smartparens-mode 1)
+  (osf-smartparens-lisp-mode 1))
+
+(defun osf-enable-smartparens-eval-expression-mode ()
+  (smartparens-mode 1)
+  (osf-smartparens-eval-expression-mode 1))
+
+(dolist (hook '(emacs-lisp-mode-hook
+                lisp-interaction-mode-hook
+                lisp-mode-hook
+                lisp-data-mode-hook
+                scheme-mode-hook))
+  (add-hook hook #'osf-enable-smartparens-lisp-mode))
+
+(defun osf--enable-smartparens-for-eval-expression ()
+  (when (eq this-command 'eval-expression)
+    ;; Use `lisp-indent-line' to fix the weird indentation.
+    (setq-local indent-line-function #'lisp-indent-line)
+    (osf-enable-smartparens-eval-expression-mode)))
+(add-hook 'minibuffer-setup-hook #'osf--enable-smartparens-for-eval-expression)
+
 (provide 'osf-pair)
