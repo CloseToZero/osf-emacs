@@ -275,4 +275,15 @@ be a symbol.)"
       (setq kill-ring new-kill-ring))
     new-kill-ring))
 
+(defun osf-generate-chapters-list (begin-number end-number)
+  (interactive "nBegin number: \nnEnd number: ")
+  (let ((chapters
+         (string-join
+          (cl-loop for i from begin-number to end-number
+                   collect (format "ch%s" i))
+          "\n")))
+    (kill-new chapters)
+    (when (called-interactively-p 'interactive)
+      (message "Chapters list saved into the kill ring"))))
+
 (provide 'osf-lib)
