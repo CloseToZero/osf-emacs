@@ -58,6 +58,9 @@
   "<" #'sp-forward-barf-sexp
   "[" #'sp-backward-slurp-sexp
   "]" #'sp-backward-barf-sexp
+  "M-j" #'sp-forward-parallel-sexp
+  "M-k" #'sp-backward-parallel-sexp
+  "M-h" #'sp-backward-up-sexp
   "M-r" #'sp-raise-sexp
   "M-s" #'sp-splice-sexp
   "M-S" #'sp-split-sexp
@@ -69,7 +72,8 @@
   (interactive)
   (if (or (evil-normal-state-p)
           (and (evil-insert-state-p)
-               (= (point) (point-max))))
+               (or (= (point) (point-min))
+                   (= (point) (point-max)))))
       (read--expression-try-read)
     (newline-and-indent)))
 
