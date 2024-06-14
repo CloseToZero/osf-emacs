@@ -72,7 +72,7 @@
   (interactive)
   (if (or (evil-normal-state-p)
           (and (evil-insert-state-p)
-               (or (= (point) (point-min))
+               (or (= (point) (minibuffer-prompt-end))
                    (= (point) (point-max)))))
       (read--expression-try-read)
     (newline-and-indent)))
