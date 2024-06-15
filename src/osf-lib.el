@@ -284,6 +284,23 @@ be a symbol.)"
           "\n")))
     (kill-new chapters)
     (when (called-interactively-p 'interactive)
-      (message "Chapters list saved into the kill ring"))))
+      (message "Task list saved into the kill ring"))))
+
+(defun osf-generate-section-task-list
+    (base-title major-section-number begin-minor-section-number end-minor-section-number)
+  (interactive "sBase title: \
+\nnMajor section number: \
+\nnBegin minor section number: \
+\nnEnd minor section number: ")
+  (let ((chapters
+         (string-join
+          (cl-loop for i
+                   from begin-minor-section-number
+                   to end-minor-section-number
+                   collect (format "%s %d.%d" base-title major-section-number i))
+          "\n")))
+    (kill-new chapters)
+    (when (called-interactively-p 'interactive)
+      (message "Task list saved into the kill ring"))))
 
 (provide 'osf-lib)
