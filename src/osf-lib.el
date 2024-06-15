@@ -275,7 +275,7 @@ be a symbol.)"
       (setq kill-ring new-kill-ring))
     new-kill-ring))
 
-(defun osf-generate-chapters-list (begin-number end-number)
+(defun osf-generate-chapter-task-list (begin-number end-number)
   (interactive "nBegin number: \nnEnd number: ")
   (let ((chapters
          (string-join
