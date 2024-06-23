@@ -83,6 +83,7 @@
 (require 'osf-pdf)
 (when (eq osf-system-type 'windows)
   (require 'osf-total-commander))
+(require 'osf-daily)
 (require 'osf-enable-disabled-commands)
 (require 'osf-bind-keys)
 
