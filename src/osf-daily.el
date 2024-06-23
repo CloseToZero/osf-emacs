@@ -84,7 +84,7 @@
                                                              (nth 0 section-nums-begin) i))
                                     "\n")))
                        (if (widget-value w-summary)
-                           (concat (format "%s 总结\n" title)
+                           (concat (format "%s ch%s 前言\n" title (nth 0 section-nums-begin))
                                    result)
                          result))))
                (widget-value-set w-result chapters)
