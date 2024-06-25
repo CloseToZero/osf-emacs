@@ -67,22 +67,17 @@
            (lambda (&rest ignore)
              (let* ((title (widget-value w-title))
                     (section-nums-begin
-                     (mapcar (lambda (str)
-                               (string-to-number str 10))
-                             (split-string (widget-value w-section-begin-num) "\\.")))
+                     (split-string (widget-value w-section-begin-num) "\\."))
                     (section-nums-end
-                     (mapcar (lambda (str)
-                               (string-to-number str 10))
-                             (split-string (widget-value w-section-end-num) "\\.")))
+                     (split-string (widget-value w-section-end-num) "\\."))
                     (chapters
-                     (let ((result (string-join
-                                    (cl-loop for i
-                                             from (nth 1 section-nums-begin)
-                                             to (nth 1 section-nums-end)
-                                             collect (format "%s %d.%d"
-                                                             title
-                                                             (nth 0 section-nums-begin) i))
-                                    "\n")))
+                     (let* ((prefix (string-join (butlast section-nums-begin) "."))
+                            (result (string-join
+                                     (cl-loop for i
+                                              from (string-to-number (car (last section-nums-begin)) 10)
+                                              to (string-to-number (car (last section-nums-end)) 10)
+                                              collect (format "%s %s.%d" title prefix i))
+                                     "\n")))
                        (if (widget-value w-summary)
                            (concat (format "%s ch%s 前言\n" title (nth 0 section-nums-begin))
                                    result)
@@ -100,11 +95,11 @@
                          ""))
     (widget-insert "\n")
     (osf-evil-define-key '(insert normal) 'local
-        "<tab>" #'widget-forward
-        "<backtab>" #'widget-backward
-        "g RET" (lambda ()
-                  (interactive)
-                  (goto-char (osf-widget-button-start w-generate))))
+      "<tab>" #'widget-forward
+      "<backtab>" #'widget-backward
+      "g RET" (lambda ()
+                (interactive)
+                (goto-char (osf-widget-button-start w-generate))))
     (widget-setup)
     (goto-char (widget-field-start w-title))))
 
