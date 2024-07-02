@@ -33,11 +33,13 @@
   (when (executable-find "sbcl")
     (add-to-list 'slime-lisp-implementations '(sbcl ("sbcl")))
     (add-to-list 'slime-lisp-implementations '(sbcl-2g ("sbcl" "--dynamic-space-size" "2048")))
+    (add-to-list 'slime-lisp-implementations '(sbcl-4g ("sbcl" "--dynamic-space-size" "4096")))
     (setq slime-default-lisp 'sbcl))
 
   (when (executable-find "ros")
     (add-to-list 'slime-lisp-implementations '(roswell ("ros" "run")))
     (add-to-list 'slime-lisp-implementations '(roswell-2g ("ros" "dynamic-space-size=2048" "run")))
+    (add-to-list 'slime-lisp-implementations '(roswell-4g ("ros" "dynamic-space-size=4096" "run")))
     (setq slime-default-lisp 'roswell))
 
   (let ((local-hyperspec-dir (expand-file-name "~/HyperSpec/")))
