@@ -50,4 +50,8 @@
 
   "y c" #'osf-copy-current-path)
 
+(osf-keymap-global-set
+  "<wheel-left>" #'ignore
+  "<wheel-right>" #'ignore)
+
 (provide 'osf-bind-keys)
