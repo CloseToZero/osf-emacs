@@ -52,6 +52,8 @@
 
 (osf-keymap-global-set
   "<wheel-left>" #'ignore
-  "<wheel-right>" #'ignore)
+  "<wheel-right>" #'ignore
+
+  "M-&" #'osf-async-shell-command)
 
 (provide 'osf-bind-keys)

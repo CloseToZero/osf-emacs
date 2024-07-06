@@ -73,4 +73,42 @@
 (with-eval-after-load 'eshell
   (require 'eshell-z))
 
+(defvar osf--async-shell-buffers-regexp
+  (rx (* any) "*Async Shell Command" (* any)))
+
+(defun osf--setup-async-shell-buffer ()
+  "Setup the async shell buffer: bind q to `quit-window'."
+  (when (string-match osf--async-shell-buffers-regexp (buffer-name))
+    (osf-evil-define-key 'normal 'local
+      "q" #'quit-window)))
+
+(add-hook 'shell-mode-hook #'osf--setup-async-shell-buffer)
+
+;; Start async shell buffers in normal state
+(add-to-list 'evil-buffer-regexps (cons osf--async-shell-buffers-regexp 'normal))
+
+(defun osf-async-shell-command (command &optional output-buffer error-buffer)
+  "Like `async-shell-command', but will select the shell output buffer."
+  (interactive
+   (list
+    (read-shell-command
+     (if shell-command-prompt-show-cwd
+         (format-message "Async shell command in `%s': "
+                         (abbreviate-file-name
+                          default-directory))
+       "Async shell command: ")
+     nil nil
+     (let ((filename
+            (cond
+             (buffer-file-name)
+             ((eq major-mode 'dired-mode)
+              (dired-get-filename nil t)))))
+       (and filename (file-relative-name filename))))
+    nil
+    shell-command-default-error-buffer))
+  (async-shell-command command output-buffer error-buffer)
+  ;; Why I can't get buffer directly?
+  (when-let (buffer (get-buffer (or output-buffer shell-command-buffer-name-async)))
+    (pop-to-buffer buffer)))
+
 (provide 'osf-shell)
