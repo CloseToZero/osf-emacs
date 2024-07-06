@@ -73,6 +73,7 @@
 (require 'osf-ml)
 (require 'osf-c-cpp)
 (require 'osf-rust)
+(require 'osf-go)
 (require 'osf-julia)
 (require 'osf-tiger)
 (require 'osf-zig)

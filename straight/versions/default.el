@@ -29,6 +29,7 @@
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("glsl-mode" . "9b2e5f28e489a1f73c4aed734105618ac0dc0c43")
  ("gnu-elpa-mirror" . "b97c2f4f9fd0f451f2e32f3d14ebada0715dabf4")
+ ("go-mode.el" . "602d73e22646b1b98b2eb97927fd426c0d1d2f92")
  ("google-c-style" . "775126844062ab645cdf0acf907a2a03be939366")
  ("goto-chg" . "278cd3e6d5107693aa2bb33189ca503f22f227d0")
  ("hydra" . "317e1de33086637579a7aeb60f77ed0405bf359b")
