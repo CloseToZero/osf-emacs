@@ -37,6 +37,7 @@
            (treesit-language-available-p 'typescript))
   (require 'treesit)
   (when (treesit-ready-p 'typescript)
-    (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))))
+    (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))))
 
 (provide 'osf-js-ts)
