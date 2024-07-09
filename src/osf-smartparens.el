@@ -37,7 +37,9 @@
                  rust-mode
                  java-mode
                  glsl-mode
-                 zig-mode)
+                 zig-mode
+                 typescript-ts-mode
+                 tsx-ts-mode)
   (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
 
 (with-eval-after-load 'smartparens-org
