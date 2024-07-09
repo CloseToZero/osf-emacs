@@ -40,7 +40,9 @@
                  zig-mode
                  typescript-ts-mode
                  tsx-ts-mode)
-  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
+  (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+  (sp-local-pair "(" nil :post-handlers '(("||\n[i]" "RET"))))
+
 
 (with-eval-after-load 'smartparens-org
   (defun osf-sp-point-after-right-pair (id action _context)
