@@ -69,7 +69,7 @@ Quit:       _q_ quit hydra"
 
   ("Q" dape-quit :exit t)
   ("R" dape-restart)
-  ("D" dape-disconnect-quit)
+  ("D" dape-disconnect-quit :exit t)
   ("q" nil))
 
 (osf-leader-define-key 'global
