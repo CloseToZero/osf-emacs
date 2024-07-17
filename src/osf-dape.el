@@ -40,7 +40,7 @@ Expression: _w_ watch _x_ eval
 View:       _m_ memory _r_ repl _i_ info
 
 Session:    _Q_ quit _R_ restart _D_ detach
-Quit:       _RET_ quit hydra"
+Quit:       _q_ quit hydra"
   ("d" dape)
   ("j" dape-next)
   ("J" dape-step-in)
@@ -70,7 +70,7 @@ Quit:       _RET_ quit hydra"
   ("Q" dape-quit :exit t)
   ("R" dape-restart)
   ("D" dape-disconnect-quit)
-  ("RET" nil))
+  ("q" nil))
 
 (osf-leader-define-key 'global
   "d d" #'osf-hydra-dape/body)
