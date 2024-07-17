@@ -78,6 +78,7 @@
 (require 'osf-tiger)
 (require 'osf-zig)
 (require 'osf-js-ts)
+(require 'osf-dape)
 (require 'osf-proof)
 (require 'osf-opengl)
 (require 'osf-image)
