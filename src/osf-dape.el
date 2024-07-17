@@ -26,6 +26,9 @@
 
 (straight-use-package 'dape)
 
+(setq dape-breakpoints
+      (expand-file-name "dape-breakpoints" osf-cache-dir))
+
 (defhydra osf-hydra-dape (:color red :hint nil)
   "
 Start:      _d_ dape
