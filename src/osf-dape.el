@@ -75,4 +75,13 @@ Quit:       _RET_ quit hydra"
 (osf-leader-define-key 'global
   "d d" #'osf-hydra-dape/body)
 
+(with-eval-after-load 'dape
+  (osf-evil-define-key 'normal dape-info-scope-mode-map
+    "TAB" #'dape-info-scope-toggle)
+
+  (osf-local-leader-define-key dape-info-scope-mode-map
+    "w" #'dape-info-scope-watch-dwim
+    "b" #'dape-info-scope-data-breakpoint
+    "e" #'dape-info-variable-edit))
+
 (provide 'osf-dape)
