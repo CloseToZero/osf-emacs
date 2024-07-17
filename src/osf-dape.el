@@ -32,7 +32,7 @@
 (defhydra osf-hydra-dape (:color red :hint nil)
   "
 Start:      _d_ dape
-Control:    _j_ step across  _J_ step into  _K_ step out _c_ continue _P_ pause
+Control:    _n_ step across  _N_ step into  _O_ step out _c_ continue _P_ pause
 Stack:      _>_ down _<_ up _s_ select
 Brackpoint: _b_ toggle _e_ expression _B_ remove all _h_ hits _l_ log
 Thread:     _t_ select
@@ -42,9 +42,9 @@ View:       _m_ memory _r_ repl _i_ info
 Session:    _Q_ quit _R_ restart _D_ detach
 Quit:       _q_ quit hydra"
   ("d" dape)
-  ("j" dape-next)
-  ("J" dape-step-in)
-  ("K" dape-step-out)
+  ("n" dape-next)
+  ("N" dape-step-in)
+  ("O" dape-step-out)
   ("c" dape-continue)
   ("P" dape-pause)
 
