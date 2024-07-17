@@ -37,9 +37,9 @@ Stack:      _>_ down _<_ up _s_ select
 Brackpoint: _b_ toggle _e_ expression _B_ remove all _h_ hits _l_ log
 Thread:     _t_ select
 Expression: _w_ watch _x_ eval
-View:       _m_ memory _R_ repl _i_ info
+View:       _m_ memory _r_ repl _i_ info
 
-Session:    _q_ quit _r_ restart _D_ detach
+Session:    _Q_ quit _R_ restart _D_ detach
 Quit:       _RET_ quit hydra"
   ("d" dape)
   ("j" dape-next)
@@ -64,11 +64,11 @@ Quit:       _RET_ quit hydra"
   ("x" dape-evaluate-expression)
 
   ("m" dape-read-memory)
-  ("R" dape-repl)
+  ("r" dape-repl)
   ("i" dape-info)
 
-  ("q" dape-quit :exit t)
-  ("r" dape-restart)
+  ("Q" dape-quit :exit t)
+  ("R" dape-restart)
   ("D" dape-disconnect-quit)
   ("RET" nil))
 
