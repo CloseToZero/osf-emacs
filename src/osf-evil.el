@@ -129,61 +129,6 @@ if used in other situations since `evil-move-beyond-eol' may then get involved."
 
 (double-trigger-mode)
 
-(straight-use-package 'better-jumper)
-
-(setq better-jumper-ignored-file-patterns evil-jumps-ignored-file-patterns)
-
-(require 'better-jumper)
-
-(defun osf--better-jumper--jump (idx shift &optional context)
-  "Fix `better-jumper--jump'.
-Don't use `better-jumper--buffer-targets' to determine whether the
-place is a buffer or file, first check if the place is a buffer, then
-check if the place is a existing file, if the place it neither a
-buffer or a file, don't jump."
-  (let ((jump-list (better-jumper--get-jump-list context)))
-    (setq idx (+ idx shift))
-    (let* ((size (ring-length jump-list)))
-      (when (and (< idx size) (>= idx 0))
-        ;; actual jump
-        (run-hooks 'better-jumper-pre-jump-hook)
-        (let* ((marker-table (better-jumper--get-marker-table context))
-               (place (ring-ref jump-list idx))
-               (file-name (nth 0 place))
-               (pos (nth 1 place))
-               (marker-key (nth 2 place))
-               (marker (gethash marker-key marker-table)))
-          (setq better-jumper--jumping t)
-          (when better-jumper-use-evil-jump-advice
-            (setq evil--jumps-jumping-backward t))
-          (let ((switched nil))
-            (cond ((get-buffer file-name)
-                   (switch-to-buffer file-name)
-                   (setq switched t))
-                  ((file-exists-p file-name)
-                   (find-file file-name)
-                   (setq switched t)))
-            (when switched
-              (if (and marker (marker-position marker))
-                  (goto-char marker)
-                (goto-char pos)
-                (puthash marker-key (point-marker) marker-table))))
-          (setf (better-jumper-jump-list-struct-idx (better-jumper--get-struct context)) idx)
-          (setq better-jumper--jumping nil)
-          (run-hooks 'better-jumper-post-jump-hook))))))
-
-(advice-add #'better-jumper--jump :override #'osf--better-jumper--jump)
-
-;; Ensure `better-jumper--push' push position even when there is not
-;; buffer-file-name and don't use `better-jumper--buffer-targets'.
-(setq better-jumper--buffer-targets (rx (* anychar)))
-
-(better-jumper-mode)
-
-(osf-evil-define-key 'motion 'global
-  "C-o" #'better-jumper-jump-backward
-  "C-i" #'better-jumper-jump-forward)
-
 (straight-use-package 'evil-visualstar)
 (global-evil-visualstar-mode)
 

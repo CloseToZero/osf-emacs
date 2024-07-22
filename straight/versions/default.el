@@ -1,7 +1,6 @@
 (("Emacs-wgrep" . "208b9d01cfffa71037527e3a324684b3ce45ddc4")
  ("PG" . "eca47ea8afdfcd94b4c8d88ee640f6631cfe5c5d")
  ("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
- ("better-jumper" . "47622213783ece37d5337dc28d33b530540fc319")
  ("blackout" . "7707211370f03f03a2f74df15f42ac24a1e99300")
  ("buffer-move" . "e7800b3ab1bd76ee475ef35507ec51ecd5a3f065")
  ("caml-mode" . "47defafa2b08fb680e89bfee9cb9ce82bd9e3bcf")
