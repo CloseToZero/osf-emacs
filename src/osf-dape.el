@@ -72,8 +72,13 @@ Quit:       _q_ quit hydra"
   ("D" dape-disconnect-quit :exit t)
   ("q" nil))
 
+(defun osf-hydra-dape ()
+  (interactive)
+  (require 'dape)
+  (osf-hydra-dape/body))
+
 (osf-leader-define-key 'global
-  "d d" #'osf-hydra-dape/body)
+  "d d" #'osf-hydra-dape)
 
 (with-eval-after-load 'dape
   (osf-evil-define-key 'normal dape-info-scope-mode-map
