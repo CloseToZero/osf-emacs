@@ -73,4 +73,4 @@
     (add-to-list 'company-coq-disabled-features 'prettify-symbols)
     (add-to-list 'company-coq-disabled-features 'smart-subscripts)))
 
-(provide 'osf-proof)
+(provide 'osf-coq)
