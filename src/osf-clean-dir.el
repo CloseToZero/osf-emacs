@@ -77,4 +77,8 @@
 
 (setq eshell-z-freq-dir-hash-table-file-name (expand-file-name "eshell-z" osf-cache-dir))
 
+(setq lsp-server-install-dir (expand-file-name "lsp" (expand-file-name ".cache" osf-cache-dir))
+      lsp-session-file (expand-file-name ".lsp-session" osf-cache-dir)
+      lsp-eslint-library-choices-file (expand-file-name ".lsp-eslint-choices" osf-cache-dir))
+
 (provide 'osf-clean-dir)
