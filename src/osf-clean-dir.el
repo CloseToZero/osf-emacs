@@ -45,6 +45,9 @@
 
 (setq savehist-file (expand-file-name "saved-history" osf-cache-dir))
 
+(setq tramp-auto-save-directory (expand-file-name "tramp/auto-save/" osf-cache-dir)
+      tramp-persistency-file-name (expand-file-name "tramp/persistency.el" osf-cache-dir))
+
 (setq org-id-locations-file
       (expand-file-name ".org-id-locations" osf-cache-dir))
 (setq org-persist-directory
