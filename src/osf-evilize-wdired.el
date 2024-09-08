@@ -28,6 +28,8 @@
 ;; etc to change the file name.
 (evil-set-initial-state 'wdired-mode 'normal)
 
+(add-hook 'wdired-mode-hook #'evil-normalize-keymaps)
+
 (osf-evil-define-key nil wdired-mode-map
   "<remap> <evil-write>" #'wdired-finish-edit
   "<remap> <evil-quit>" #'wdired-abort-changes)
