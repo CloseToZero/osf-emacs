@@ -27,7 +27,34 @@
 (straight-use-package 'avy)
 (setq avy-timeout-seconds nil
       avy-single-candidate-jump nil)
+
+(defun osf-avy-goto-char-timer (&optional arg)
+  "Like `avy-goto-char-timer', but exit with empty input can resume previous session."
+  (interactive "P")
+  (require 'avy)
+  (let ((avy-all-windows (if arg
+                             (not avy-all-windows)
+                           avy-all-windows))
+        (resume nil))
+    (let ((backup-avy--old-cands avy--old-cands)
+          (backup-avy-resume (symbol-function 'avy-resume)))
+      (avy-with avy-goto-char-timer
+        (setq avy--old-cands (avy--read-candidates))
+        (cond ((string-empty-p avy-text)
+               (setq avy--old-cands backup-avy--old-cands)
+               (setf (symbol-function 'avy-resume) backup-avy-resume)
+               (setq resume t))
+              (t
+               (avy-process avy--old-cands))))
+      (cond (resume (avy-resume))
+            (t (setf (symbol-function 'avy-resume)
+                     (lambda ()
+                       (interactive)
+                       (avy-process avy--old-cands))))))))
+
+(evil-define-avy-motion osf-avy-goto-char-timer inclusive)
+
 (osf-evil-define-key 'normal 'global
-  "," #'avy-goto-char-timer)
+  "," #'evil-osf-avy-goto-char-timer)
 
 (provide 'osf-avy)
