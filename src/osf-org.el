@@ -207,8 +207,8 @@ command to generate a image file name"))
   (defun osf-blog-template ()
     "#+title: %(org-capture-get :osf-org-blog-name)\n\
 #+date: %(format-time-string \"%Y-%m-%d %H:%M\" \
-#+options: author:nil\n\
 (org-capture-get :osf-org-blog-time))\n\
+#+options: author:nil\n\
 #+hugo_locale: zh\n\
 #+filetags: tag1 tag2\n\
 #+hugo_draft: true%?\n
