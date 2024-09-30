@@ -1,5 +1,6 @@
 (("Emacs-wgrep" . "208b9d01cfffa71037527e3a324684b3ce45ddc4")
  ("PG" . "eca47ea8afdfcd94b4c8d88ee640f6631cfe5c5d")
+ ("ace-window" . "77115afc1b0b9f633084cf7479c767988106c196")
  ("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
  ("blackout" . "7707211370f03f03a2f74df15f42ac24a1e99300")
  ("buffer-move" . "e7800b3ab1bd76ee475ef35507ec51ecd5a3f065")
