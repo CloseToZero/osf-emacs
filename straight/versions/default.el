@@ -65,6 +65,7 @@
  ("rust-mode" . "d00d83d3a207a5b7c2994392b2781f627e3159ce")
  ("s.el" . "dda84d38fffdaf0c9b12837b504b402af910d01d")
  ("saveplace-pdf-view" . "ee95460cd934080338f03a16f95b549577425216")
+ ("seq" . "da86da9bf111f68fb81efd466d76d53af5aebc00")
  ("slime" . "eb30f9f7bae4f8eed27a060390ff8aadcf69174e")
  ("slime-company" . "f20ecc4104d4c35052696e7e760109fb02060e72")
  ("smartparens" . "c7519a1b69f196050a13e2230b7532893b077086")
