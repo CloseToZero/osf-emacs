@@ -53,6 +53,7 @@
  ("markdown-mode" . "8a7773f87733866a961ea4c518a4a2f283f21970")
  ("math-symbol-lists" . "ac3eb053d3b576fcdd192b0ac6ad5090ea3a7079")
  ("melpa" . "4963d8a23ffb1ed7222f3672e35239798ee1560d")
+ ("modus-themes" . "95be7968f3ff91740e2079c7736e5bfe8623e301")
  ("nongnu-elpa" . "f031337c6ee125455a98e2de899a563388e5de19")
  ("orderless" . "178b0c55f2cb49f27cd972f731ea45e5d3aea262")
  ("org-appear" . "32ee50f8fdfa449bbc235617549c1bccb503cb09")

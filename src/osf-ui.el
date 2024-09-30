@@ -42,4 +42,20 @@
   (add-hook hook #'display-line-numbers-mode))
 (add-hook 'osf-fundamental-mode-hook #'display-line-numbers-mode)
 
+(straight-use-package 'modus-themes)
+
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs t
+      modus-themes-slanted-constructs t
+      modus-themes-mixed-fonts t
+      modus-themes-variable-pitch-ui nil
+      modus-themes-completions '((t . (extrabold)))
+      modus-themes-prompts '(extrabold)
+      modus-themes-headings
+      '((agenda-structure . (variable-pitch light 2.2))
+        (agenda-date . (variable-pitch regular 1.3))
+        (t . (regular 1.15))))
+(setq modus-themes-common-palette-overrides nil)
+(load-theme 'modus-operandi t)
+
 (provide 'osf-ui)
