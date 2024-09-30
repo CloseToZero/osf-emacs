@@ -42,6 +42,7 @@
 (require 'osf-coding-system)
 (require 'osf-clean-dir)
 (require 'osf-package)
+(require 'osf-mac)
 (require 'osf-clean-mode-line)
 (require 'osf-savehist)
 (require 'osf-lib)
