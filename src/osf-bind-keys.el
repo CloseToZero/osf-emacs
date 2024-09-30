@@ -28,6 +28,8 @@
 (osf-keymap-set help-map "h" nil)
 
 (osf-leader-define-key 'global
+  "SPC" #'execute-extended-command
+
   "h" help-map
 
   "b x" #'kill-current-buffer

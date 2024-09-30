@@ -172,7 +172,6 @@ Most importantly, don't put visible buffers in the bottom of the list."
   "M-Y" #'consult-history)
 
 (osf-leader-define-key 'global
-  "SPC" #'execute-extended-command
   "b b" #'consult-buffer)
 
 (osf-evil-define-key 'insert 'global
