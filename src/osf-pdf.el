@@ -59,10 +59,15 @@
   (defun osf--saveplace-pdf-view-dont-save-if-no-built (fn &rest args)
     "Don't save the place of pdf-view buffers if pdf-tools haven't been installed.
 Otherwise, we will lose the save-place history of pdf-view buffers."
-    (cond ((derived-mode-p 'pdf-view-mode)
+    (cond ((or (derived-mode-p 'pdf-view-mode)
+               (and (buffer-file-name)
+                    (string-match-p
+                     (rx "." (regexp (osf-regexp-literal-any-case "pdf")) string-end)
+                     (buffer-file-name))))
            (when (ignore-errors (pdf-info-check-epdfinfo) t)
              (apply fn args)))
-          (t (apply fn args))))
+          (t
+           (apply fn args))))
   (advice-add #'saveplace-pdf-view-to-alist-advice :around
               #'osf--saveplace-pdf-view-dont-save-if-no-built)
 
