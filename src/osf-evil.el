@@ -34,6 +34,7 @@
       evil-want-C-u-delete t
       evil-want-abbrev-expand-on-insert-exit nil
       evil-jumps-ignored-file-patterns nil
+      evil--jumps-buffer-targets "" ; Allow any buffer to be a jump target
       evil-move-beyond-eol t)
 
 (require 'evil)
