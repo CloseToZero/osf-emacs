@@ -130,6 +130,73 @@ if used in other situations since `evil-move-beyond-eol' may then get involved."
 
 (double-trigger-mode)
 
+(straight-use-package 'better-jumper)
+
+(setq better-jumper-ignored-file-patterns evil-jumps-ignored-file-patterns
+      better-jumper--buffer-targets evil--jumps-buffer-targets)
+
+(require 'better-jumper)
+
+(el-patch-feature better-jumper)
+(with-eval-after-load 'better-jumper
+  (el-patch-defun better-jumper--jump (idx shift &optional context)
+    (el-patch-swap
+      "Jump from position IDX using SHIFT on CONTEXT.
+Uses current context if CONTEXT is nil."
+      "Jump from position IDX using SHIFT on CONTEXT.
+Uses current context if CONTEXT is nil.
+
+This function was patched: Fix `better-jumper--jump'.
+Don't use `better-jumper--buffer-targets' to determine whether the
+place is a buffer or file, first check if the place is a buffer, then
+check if the place is a existing file, if the place it neither a
+buffer or a file, don't jump.")
+    (let ((jump-list (better-jumper--get-jump-list context)))
+      (setq idx (+ idx shift))
+      (let* ((size (ring-length jump-list)))
+        (when (and (< idx size) (>= idx 0))
+          ;; actual jump
+          (run-hooks 'better-jumper-pre-jump-hook)
+          (let* ((marker-table (better-jumper--get-marker-table context))
+                 (place (ring-ref jump-list idx))
+                 (file-name (nth 0 place))
+                 (pos (nth 1 place))
+                 (marker-key (nth 2 place))
+                 (marker (gethash marker-key marker-table)))
+            (setq better-jumper--jumping t)
+            (when better-jumper-use-evil-jump-advice
+              (setq evil--jumps-jump-command t))
+            (el-patch-remove
+              (if (string-match-p better-jumper--buffer-targets file-name)
+                  (switch-to-buffer file-name)
+                (find-file file-name))
+              (if (and marker (marker-position marker))
+                  (goto-char marker)
+                (goto-char pos)
+                (puthash marker-key (point-marker) marker-table)))
+            (el-patch-add
+              (let ((switched nil))
+                (cond ((get-buffer file-name)
+                       (switch-to-buffer file-name)
+                       (setq switched t))
+                      ((file-exists-p file-name)
+                       (find-file file-name)
+                       (setq switched t)))
+                (when switched
+                  (if (and marker (marker-position marker))
+                      (goto-char marker)
+                    (goto-char pos)
+                    (puthash marker-key (point-marker) marker-table)))))
+            (setf (better-jumper-jump-list-struct-idx (better-jumper--get-struct context)) idx)
+            (setq better-jumper--jumping nil)
+            (run-hooks 'better-jumper-post-jump-hook)))))))
+
+(better-jumper-mode)
+
+(osf-evil-define-key 'motion 'global
+  "C-o" #'better-jumper-jump-backward
+  "C-i" #'better-jumper-jump-forward)
+
 (straight-use-package 'evil-visualstar)
 (global-evil-visualstar-mode)
 

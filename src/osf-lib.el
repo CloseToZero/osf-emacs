@@ -25,6 +25,9 @@
 (straight-use-package 'compat)
 (require 'compat)
 
+(straight-use-package 'el-patch)
+(require 'el-patch)
+
 (straight-use-package 'posframe)
 
 (defun osf-nthcdr (list n)
