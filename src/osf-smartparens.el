@@ -104,7 +104,8 @@
 
 (defun osf-enable-smartparens-lisp-mode ()
   (smartparens-mode 1)
-  (osf-smartparens-lisp-mode 1))
+  (osf-smartparens-lisp-mode 1)
+  (evil-normalize-keymaps))
 
 (defun osf-enable-smartparens-eval-expression-mode ()
   (smartparens-mode 1)
@@ -114,7 +115,8 @@
                 lisp-interaction-mode-hook
                 lisp-mode-hook
                 lisp-data-mode-hook
-                scheme-mode-hook))
+                scheme-mode-hook
+                slime-repl-mode-hook))
   (add-hook hook #'osf-enable-smartparens-lisp-mode))
 
 (defun osf--enable-smartparens-for-eval-expression ()
