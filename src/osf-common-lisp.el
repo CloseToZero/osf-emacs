@@ -96,7 +96,30 @@
 
 (with-eval-after-load 'slime-repl
   (osf--slime-setup-leader-key-bindings slime-repl-mode-map)
-  (osf--slime-repl-setup-leader-key-bindings slime-repl-mode-map))
+  (osf--slime-repl-setup-leader-key-bindings slime-repl-mode-map)
+
+  (defun osf-slime-repl-return-eval-at-end ()
+    "Like `slime-repl-return',
+but only eval the form if the current evil state is normal state or
+the current point is at the end of the repl buffer.
+Otherwise, just `newline-and-indent'."
+    (interactive)
+    (call-interactively (if (or (eq evil-state 'normal)
+                                (= (point) (point-max)))
+                            #'slime-repl-return
+                          #'newline-and-indent)))
+
+  (defun osf-slime-dwim-repl-return ()
+    "If around a presentation, inspect the presentation,
+otherwise, fallback to `osf-slime-repl-return-eval-at-end'."
+    (interactive)
+    (call-interactively
+     (if (slime-presentation-around-or-before-point-p)
+         #'slime-inspect-presentation-at-point
+       #'osf-slime-repl-return-eval-at-end)))
+
+  (osf-evil-define-key '(normal insert) slime-repl-mode-map
+    "RET" #'osf-slime-dwim-repl-return))
 
 (with-eval-after-load 'slime
   (defun osf-slime-eval-last-expression-in-repl (prefix)
