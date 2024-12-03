@@ -177,6 +177,10 @@ Resize Step: _1_ _2_ _3_ _4_ _5_  current step: %`osf-default-resize-window-step
          (when evil-auto-balance-windows (balance-windows (window-parent))))
         (t (evil-window-vsplit))))
 
+(straight-use-package 'zoom-window)
+(with-eval-after-load 'zoom-window
+  (custom-set-variables '(zoom-window-mode-line-color "LightBlue")))
+
 (osf-leader-define-key 'global
   "w" evil-window-map
   "w -" #'osf-evil-window-split-below-if-root
@@ -186,6 +190,7 @@ Resize Step: _1_ _2_ _3_ _4_ _5_  current step: %`osf-default-resize-window-step
   "w u" #'winner-undo
   "w x" #'evil-window-delete
   "w C-r" #'winner-redo
-  "w M" #'osf-manage-window/body)
+  "w M" #'osf-manage-window/body
+  "w z" #'zoom-window-zoom)
 
 (provide 'osf-window)

@@ -84,5 +84,6 @@
  ("vundo" . "5374125dc0aaf1769bb0965344befb90f809ccfc")
  ("with-editor" . "77cb2403158cfea9d8bfb8adad81b84d1d6d7c6a")
  ("yasnippet" . "eb5ba2664c3a68ae4a53bb38b85418dd131b208f")
- ("zig-mode" . "f55e42536a3f34b81198b856595dc3a61867aa3e"))
+ ("zig-mode" . "f55e42536a3f34b81198b856595dc3a61867aa3e")
+ ("zoom-window" . "fca88b971aea55e3d3944050213c3a1243178c8b"))
 :gamma
