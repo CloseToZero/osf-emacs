@@ -44,4 +44,7 @@
   (interactive "DDir: ")
   (call-process (osf-tc-executable) nil 0 nil "/S" "/O" "/T" (expand-file-name dir)))
 
+(osf-leader-define-key 'global
+  "f t" #'osf-tc-open-dir)
+
 (provide 'osf-total-commander)
