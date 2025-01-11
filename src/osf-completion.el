@@ -190,9 +190,30 @@ Most importantly, don't put visible buffers in the bottom of the list."
 
 (straight-use-package 'consult-dir)
 (setq consult-dir-jump-file-command #'consult-fd)
+(with-eval-after-load 'consult-dir
+  (defun osf-consult-dir-jump-file ()
+    "Like `consult-dir-jump-file',
+but use `default-directory' if not in minibuffer."
+    (interactive)
+    (let ((in-minibuffer (minibufferp))
+          (dir default-directory)
+          (search ""))
+      (when in-minibuffer
+        (let ((mc (substitute-in-file-name (minibuffer-contents))))
+          (setq dir (file-name-directory mc))
+          (setq search (file-name-nondirectory mc))))
+      (run-at-time 0 nil
+                   (lambda () (funcall #'consult-fd
+                                       dir
+                                       (concat search
+                                               (unless (string-empty-p search)
+                                                 (plist-get (consult--async-split-style)
+                                                            :initial))))))
+      (when in-minibuffer (abort-recursive-edit)))))
+(autoload #'osf-consult-dir-jump-file "consult-dir")
 (osf-leader-define-key 'global
   "f d" #'consult-dir
-  "f j" #'consult-dir-jump-file)
+  "f j" #'osf-consult-dir-jump-file)
 
 (straight-use-package 'company)
 
