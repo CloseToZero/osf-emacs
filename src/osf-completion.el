@@ -189,8 +189,10 @@ Most importantly, don't put visible buffers in the bottom of the list."
 (setq completion-in-region-function #'osf-completion-in-region-function)
 
 (straight-use-package 'consult-dir)
+(setq consult-dir-jump-file-command #'consult-fd)
 (osf-leader-define-key 'global
-  "f d" #'consult-dir)
+  "f d" #'consult-dir
+  "f j" #'consult-dir-jump-file)
 
 (straight-use-package 'company)
 
