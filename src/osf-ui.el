@@ -56,6 +56,10 @@
         (agenda-date . (variable-pitch regular 1.3))
         (t . (regular 1.15))))
 (setq modus-themes-common-palette-overrides nil)
-(load-theme 'modus-operandi t)
+;; We can choose a temporary theme inside early-custom.el
+(let ((theme (if (boundp 'osf-theme)
+                 osf-theme
+               'modus-operandi)))
+  (load-theme theme t))
 
 (provide 'osf-ui)
