@@ -13,6 +13,7 @@
  ("company-mode" . "9c273fc7c1a9dd69ccf508589211c4f8bd0e0765")
  ("compat" . "c1f94ac75d6ea7f93c8da51e3f78ab3f39dbc2a2")
  ("consult" . "5a02663b46f3ecc3d2f853c2c73923e35a288925")
+ ("consult-dir" . "26fd5516511747ecefe98ef8e4592e330d99e6ae")
  ("dape" . "621199cc19322eb10a2a22e94d27c131a366ec29")
  ("dash.el" . "1de9dcb83eacfb162b6d9a118a4770b1281bcd84")
  ("deadgrep" . "0bf2601ce1d52187b0c589657f7179de5a98dd75")

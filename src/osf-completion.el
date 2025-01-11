@@ -188,6 +188,10 @@ Most importantly, don't put visible buffers in the bottom of the list."
          args))
 (setq completion-in-region-function #'osf-completion-in-region-function)
 
+(straight-use-package 'consult-dir)
+(osf-leader-define-key 'global
+  "f d" #'consult-dir)
+
 (straight-use-package 'company)
 
 (setq company-idle-delay 0.1
