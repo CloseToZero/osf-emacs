@@ -38,6 +38,7 @@
         "w" #'evil-forward-word-begin))
     (keymap-set eww-link-keymap "y l" #'shr-maybe-probe-and-copy-url)
     (osf-evil-define-key 'normal eww-mode-map
-      "y l" #'eww-copy-page-url)))
+      "y l" #'eww-copy-page-url
+      "g r" #'eww-reload)))
 
 (provide 'osf-eww)
