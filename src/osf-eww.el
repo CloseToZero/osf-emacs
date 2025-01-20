@@ -27,11 +27,17 @@
 (with-eval-after-load 'eww
   (let ((maps (list eww-mode-map eww-link-keymap)))
     (dolist (map maps)
-      (keymap-set map "TAB" nil))
+      (dolist (binding '(("TAB" nil)
+                         ("w" nil)))
+        (keymap-set map (cl-first binding) (cl-second binding))))
     (dolist (map maps)
       (osf-evil-define-key 'normal map
         "C-o" #'eww-back-url
         "C-i" #'eww-forward-url
-        "<tab>" #'shr-next-link))))
+        "<tab>" #'shr-next-link
+        "w" #'evil-forward-word-begin))
+    (keymap-set eww-link-keymap "y l" #'shr-maybe-probe-and-copy-url)
+    (osf-evil-define-key 'normal eww-mode-map
+      "y l" #'eww-copy-page-url)))
 
 (provide 'osf-eww)
