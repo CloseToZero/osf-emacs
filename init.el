@@ -61,6 +61,7 @@
 (require 'osf-imenu)
 (require 'osf-save-place)
 (require 'osf-project)
+(require 'osf-eww)
 (require 'osf-scratch)
 (require 'osf-vc)
 (require 'osf-embark)
