@@ -48,6 +48,7 @@
 (require 'osf-lib)
 (require 'osf-evil)
 (require 'osf-ui)
+(require 'osf-helpful)
 (require 'osf-misc)
 (require 'osf-server)
 (require 'osf-undo)
