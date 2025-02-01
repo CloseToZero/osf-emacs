@@ -53,6 +53,7 @@
 (require 'osf-server)
 (require 'osf-undo)
 (require 'osf-completion)
+(require 'osf-todo)
 (require 'osf-recent-files)
 (require 'osf-smartparens)
 (require 'osf-search-and-replace)
