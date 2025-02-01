@@ -31,6 +31,7 @@
 (osf-leader-define-key 'global
   "t t j" #'hl-todo-next
   "t t k" #'hl-todo-previous
-  "t t i" #'hl-todo-insert)
+  "t t i" #'hl-todo-insert
+  "t t o" #'hl-todo-occur)
 
 (provide 'osf-todo)
