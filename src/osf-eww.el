@@ -35,7 +35,8 @@
         "C-o" #'eww-back-url
         "C-i" #'eww-forward-url
         "<tab>" #'shr-next-link
-        "w" #'evil-forward-word-begin))
+        "w" #'evil-forward-word-begin
+        "y y" #'osf-evil-yank-whole-line))
     (keymap-set eww-link-keymap "y l" #'shr-maybe-probe-and-copy-url)
     (osf-evil-define-key 'normal eww-mode-map
       "y l" #'eww-copy-page-url

@@ -24,15 +24,6 @@
 
 ;;; Code:
 
-(evil-define-operator osf-evilize-magit-evil-yank-line (beg end type register)
-  "Save whole lines into the kill-ring."
-  ;; We can't reuse evil-yank-line since its :motion property may
-  ;; changed with `evil-want-Y-yank-to-eol'.
-  :motion evil-line-or-visual-line
-  :move-point nil
-  (interactive "<R><x>")
-  (evil-yank beg end type register))
-
 (dolist (mode '(git-rebase-mode
                 magit-mode
                 magit-status-mode
@@ -84,7 +75,7 @@
    "V" evil-visual-line
    "C-w" evil-window-map
    "y" nil
-   "y y" osf-evilize-magit-evil-yank-line
+   "y y" osf-evil-yank-whole-line
    "y s" magit-copy-section-value
    "y b" magit-copy-buffer-revision
    "g '" magit-show-refs

@@ -66,6 +66,13 @@ NOTE: only clear search highlights when the `evil-search-module' is 'evil-search
     (evil-ex-nohighlight))
   (evil-normal-state))
 
+(evil-define-operator osf-evil-yank-whole-line (beg end type register)
+  "Save whole lines into the kill-ring."
+  :motion evil-line-or-visual-line
+  :move-point nil
+  (interactive "<R><x>")
+  (evil-yank beg end type register))
+
 (osf-evil-define-key 'normal 'global
   "<escape>" #'osf-evil-force-normal-state)
 
