@@ -28,7 +28,8 @@
   (let ((maps (list eww-mode-map eww-link-keymap)))
     (dolist (map maps)
       (dolist (binding '(("TAB" nil)
-                         ("w" nil)))
+                         ("w" nil)
+                         ("v" nil)))
         (keymap-set map (cl-first binding) (cl-second binding))))
     (dolist (map maps)
       (osf-evil-define-key 'normal map
@@ -38,7 +39,8 @@
         "C-i" #'better-jumper-jump-forward
         "<tab>" #'shr-next-link
         "w" #'evil-forward-word-begin
-        "y y" #'osf-evil-yank-whole-line))
+        "y y" #'osf-evil-yank-whole-line
+        "v" #'evil-visual-char))
     (keymap-set eww-link-keymap "y l" #'shr-maybe-probe-and-copy-url)
     (osf-evil-define-key 'normal eww-mode-map
       "y l" #'eww-copy-page-url
