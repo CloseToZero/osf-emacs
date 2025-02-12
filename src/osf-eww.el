@@ -32,8 +32,10 @@
         (keymap-set map (cl-first binding) (cl-second binding))))
     (dolist (map maps)
       (osf-evil-define-key 'normal map
-        "C-o" #'eww-back-url
-        "C-i" #'eww-forward-url
+        "M-h" #'eww-back-url
+        "M-l" #'eww-forward-url
+        "C-o" #'better-jumper-jump-backward
+        "C-i" #'better-jumper-jump-forward
         "<tab>" #'shr-next-link
         "w" #'evil-forward-word-begin
         "y y" #'osf-evil-yank-whole-line))
