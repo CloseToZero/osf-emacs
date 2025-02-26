@@ -40,7 +40,8 @@
       (osf-open-by-system-default-app cur-file-name)))
 
   (osf-evil-define-key 'normal dired-mode-map
-    "M-S-<return>" #'osf-dired-open-by-system-default-app)
+    "M-S-<return>" #'osf-dired-open-by-system-default-app
+    "w" #'evil-forward-word-begin)
 
   (osf-local-leader-define-key dired-mode-map
     "?" #'dired-summary))
