@@ -35,7 +35,7 @@
   "t" #'deadgrep-cycle-search-type
   "f" #'deadgrep-cycle-files
   "d" #'deadgrep-directory
-  "^" #'deadgrep-parent-directory
+  "g ^" #'deadgrep-parent-directory
   "g r" #'deadgrep-restart
   "c S" #'deadgrep-incremental
   "<tab>" #'deadgrep-toggle-file-results
