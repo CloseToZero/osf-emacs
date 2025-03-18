@@ -31,6 +31,12 @@
 
   "d" #'ibuffer-mark-for-delete
 
+  "U" #'ibuffer-unmark-all-marks
+  "m" #'ibuffer-mark-forward
+  "u" #'ibuffer-unmark-forward
+
+  "RET" #'ibuffer-visit-buffer
+
   "!" #'ibuffer-do-shell-command-file
 
   "x" #'ibuffer-do-kill-on-deletion-marks
