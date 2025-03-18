@@ -61,6 +61,7 @@
 (require 'osf-window)
 (require 'osf-workspace)
 (require 'osf-dired)
+(require 'osf-ibuffer)
 (require 'osf-imenu)
 (require 'osf-save-place)
 (require 'osf-project)
