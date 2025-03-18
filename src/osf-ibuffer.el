@@ -37,6 +37,8 @@
 
   "g r" #'ibuffer-update
 
+  "<remap> <evil-insert>" #'ignore
+
   "s a" #'ibuffer-do-sort-by-alphabetic
   "s f" #'ibuffer-do-sort-by-filename/process
   "s i" #'ibuffer-invert-sorting
