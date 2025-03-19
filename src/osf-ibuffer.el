@@ -24,93 +24,94 @@
 
 ;;; Code:
 
-(evil-set-initial-state 'ibuffer-mode 'normal)
 
-(osf-evil-define-key 'normal ibuffer-mode-map
-  "C-d" #'evil-scroll-down
+(with-eval-after-load 'ibuffer
+  (evil-set-initial-state 'ibuffer-mode 'normal)
+  (osf-evil-define-key 'normal ibuffer-mode-map
+    "C-d" #'evil-scroll-down
 
-  "d" #'ibuffer-mark-for-delete
+    "d" #'ibuffer-mark-for-delete
 
-  "U" #'ibuffer-unmark-all-marks
-  "m" #'ibuffer-mark-forward
-  "u" #'ibuffer-unmark-forward
+    "U" #'ibuffer-unmark-all-marks
+    "m" #'ibuffer-mark-forward
+    "u" #'ibuffer-unmark-forward
 
-  "RET" #'ibuffer-visit-buffer
+    "RET" #'ibuffer-visit-buffer
 
-  "!" #'ibuffer-do-shell-command-file
+    "!" #'ibuffer-do-shell-command-file
 
-  "x" #'ibuffer-do-kill-on-deletion-marks
+    "x" #'ibuffer-do-kill-on-deletion-marks
 
-  "g r" #'ibuffer-update
+    "g r" #'ibuffer-update
 
-  "<remap> <evil-insert>" #'ignore
+    "<remap> <evil-insert>" #'ignore
 
-  "s a" #'ibuffer-do-sort-by-alphabetic
-  "s f" #'ibuffer-do-sort-by-filename/process
-  "s i" #'ibuffer-invert-sorting
-  "s m" #'ibuffer-do-sort-by-major-mode
-  "s s" #'ibuffer-do-sort-by-size
-  "s v" #'ibuffer-do-sort-by-recency
+    "s a" #'ibuffer-do-sort-by-alphabetic
+    "s f" #'ibuffer-do-sort-by-filename/process
+    "s i" #'ibuffer-invert-sorting
+    "s m" #'ibuffer-do-sort-by-major-mode
+    "s s" #'ibuffer-do-sort-by-size
+    "s v" #'ibuffer-do-sort-by-recency
 
-  "| !" #'ibuffer-negate-filter
-  "| &" #'ibuffer-and-filter
-  "| *" #'ibuffer-filter-by-starred-name
-  "| ." #'ibuffer-filter-by-file-extension
-  "| /" #'ibuffer-filter-disable
-  "| <" #'ibuffer-filter-by-size-lt
-  "| <up>" #'ibuffer-pop-filter
-  "| >" #'ibuffer-filter-by-size-gt
-  "| D" #'ibuffer-decompose-filter-group
-  "| E" #'ibuffer-filter-by-process
-  "| F" #'ibuffer-filter-by-directory
-  "| M" #'ibuffer-filter-by-derived-mode
-  "| P" #'ibuffer-pop-filter-group
-  "| R" #'ibuffer-switch-to-saved-filter-groups
-  "| RET" #'ibuffer-filter-by-mode
-  "| S" #'ibuffer-save-filter-groups
-  "| S-<up>" #'ibuffer-pop-filter-group
-  "| SPC" #'ibuffer-filter-chosen-by-completion
-  "| TAB" #'ibuffer-exchange-filters
-  "| X" #'ibuffer-delete-saved-filter-groups
-  "| \\" #'ibuffer-clear-filter-groups
-  "| a" #'ibuffer-add-saved-filters
-  "| b" #'ibuffer-filter-by-basename
-  "| c" #'ibuffer-filter-by-content
-  "| d" #'ibuffer-decompose-filter
-  "| e" #'ibuffer-filter-by-predicate
-  "| f" #'ibuffer-filter-by-filename
-  "| g" #'ibuffer-filters-to-filter-group
-  "| i" #'ibuffer-filter-by-modified
-  "| m" #'ibuffer-filter-by-used-mode
-  "| n" #'ibuffer-filter-by-name
-  "| o" #'ibuffer-or-filter
-  "| p" #'ibuffer-pop-filter
-  "| r" #'ibuffer-switch-to-saved-filters
-  "| s" #'ibuffer-save-filters
-  "| t" #'ibuffer-exchange-filters
-  "| v" #'ibuffer-filter-by-visiting-file
-  "| x" #'ibuffer-delete-saved-filters
-  "| |" #'ibuffer-or-filter
+    "| !" #'ibuffer-negate-filter
+    "| &" #'ibuffer-and-filter
+    "| *" #'ibuffer-filter-by-starred-name
+    "| ." #'ibuffer-filter-by-file-extension
+    "| /" #'ibuffer-filter-disable
+    "| <" #'ibuffer-filter-by-size-lt
+    "| <up>" #'ibuffer-pop-filter
+    "| >" #'ibuffer-filter-by-size-gt
+    "| D" #'ibuffer-decompose-filter-group
+    "| E" #'ibuffer-filter-by-process
+    "| F" #'ibuffer-filter-by-directory
+    "| M" #'ibuffer-filter-by-derived-mode
+    "| P" #'ibuffer-pop-filter-group
+    "| R" #'ibuffer-switch-to-saved-filter-groups
+    "| RET" #'ibuffer-filter-by-mode
+    "| S" #'ibuffer-save-filter-groups
+    "| S-<up>" #'ibuffer-pop-filter-group
+    "| SPC" #'ibuffer-filter-chosen-by-completion
+    "| TAB" #'ibuffer-exchange-filters
+    "| X" #'ibuffer-delete-saved-filter-groups
+    "| \\" #'ibuffer-clear-filter-groups
+    "| a" #'ibuffer-add-saved-filters
+    "| b" #'ibuffer-filter-by-basename
+    "| c" #'ibuffer-filter-by-content
+    "| d" #'ibuffer-decompose-filter
+    "| e" #'ibuffer-filter-by-predicate
+    "| f" #'ibuffer-filter-by-filename
+    "| g" #'ibuffer-filters-to-filter-group
+    "| i" #'ibuffer-filter-by-modified
+    "| m" #'ibuffer-filter-by-used-mode
+    "| n" #'ibuffer-filter-by-name
+    "| o" #'ibuffer-or-filter
+    "| p" #'ibuffer-pop-filter
+    "| r" #'ibuffer-switch-to-saved-filters
+    "| s" #'ibuffer-save-filters
+    "| t" #'ibuffer-exchange-filters
+    "| v" #'ibuffer-filter-by-visiting-file
+    "| x" #'ibuffer-delete-saved-filters
+    "| |" #'ibuffer-or-filter
 
-  "% L" #'ibuffer-mark-by-locked
-  "% f" #'ibuffer-mark-by-file-name-regexp
-  "% g" #'ibuffer-mark-by-content-regexp
-  "% m" #'ibuffer-mark-by-mode-regexp
-  "% n" #'ibuffer-mark-by-name-regexp
-  "% *" #'ibuffer-unmark-all
-  "% /" #'ibuffer-mark-dired-buffers
-  "% M" #'ibuffer-mark-by-mode
-  "% c" #'ibuffer-change-marks
-  "% e" #'ibuffer-mark-dissociated-buffers
-  "% h" #'ibuffer-mark-help-buffers
-  "% m" #'ibuffer-mark-modified-buffers
-  "% r" #'ibuffer-mark-read-only-buffers
-  "% s" #'ibuffer-mark-special-buffers
-  "% u" #'ibuffer-mark-unsaved-buffers
-  "% z" #'ibuffer-mark-compressed-file-buffers
-  )
+    "% L" #'ibuffer-mark-by-locked
+    "% f" #'ibuffer-mark-by-file-name-regexp
+    "% g" #'ibuffer-mark-by-content-regexp
+    "% m" #'ibuffer-mark-by-mode-regexp
+    "% n" #'ibuffer-mark-by-name-regexp
+    "% *" #'ibuffer-unmark-all
+    "% /" #'ibuffer-mark-dired-buffers
+    "% M" #'ibuffer-mark-by-mode
+    "% c" #'ibuffer-change-marks
+    "% e" #'ibuffer-mark-dissociated-buffers
+    "% h" #'ibuffer-mark-help-buffers
+    "% m" #'ibuffer-mark-modified-buffers
+    "% r" #'ibuffer-mark-read-only-buffers
+    "% s" #'ibuffer-mark-special-buffers
+    "% u" #'ibuffer-mark-unsaved-buffers
+    "% z" #'ibuffer-mark-compressed-file-buffers
+    )
 
-;; Disable ibuffer-mode-map as overriding map
-(define-key ibuffer-mode-map [override-state] nil)
+  ;; Disable ibuffer-mode-map as overriding map
+  (define-key ibuffer-mode-map [override-state] nil))
 
 (provide 'osf-ibuffer)
