@@ -25,7 +25,8 @@
 ;;; Code:
 
 (setq dired-dwim-target t
-      dired-listing-switches "-alh")
+      dired-listing-switches "-alh"
+      dired-mouse-drag-files t)
 
 (with-eval-after-load 'dired
   (defun osf-dired-copy-path ()
