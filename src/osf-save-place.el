@@ -26,4 +26,14 @@
 
 (save-place-mode)
 
+(defun osf-auto-save-places ()
+  (when save-place-mode
+    (message "Auto save places...")
+    (save-place-kill-emacs-hook)
+    (message "Auto save places...done")))
+
+(defvar osf-auto-save-places-timer nil)
+(setq osf-auto-save-places-timer
+      (run-with-timer (* 5 60) t #'osf-auto-save-places))
+
 (provide 'osf-save-place)
