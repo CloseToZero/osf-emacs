@@ -37,6 +37,15 @@
 
 (add-hook 'kill-emacs-hook #'osf-query-persp-state-save)
 
+(defun osf-auto-save-persp ()
+  (message "Auto save perspective...")
+  (persp-state-save)
+  (message "Auto save perspective...done"))
+
+(defvar osf-auto-save-persp-timer nil)
+(setq osf-auto-save-persp-timer
+      (run-with-timer (* 5 60) t #'osf-auto-save-persp))
+
 (with-eval-after-load 'consult
   (consult-customize consult--source-buffer :hidden t :default nil)
   (defvar osf--persp-consult-source
