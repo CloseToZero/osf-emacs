@@ -44,7 +44,7 @@
 
 (defvar osf-auto-save-persp-timer nil)
 (setq osf-auto-save-persp-timer
-      (run-with-timer (* 5 60) t #'osf-auto-save-persp))
+      (run-with-timer (* 5 60) (* 5 60) #'osf-auto-save-persp))
 
 (with-eval-after-load 'consult
   (consult-customize consult--source-buffer :hidden t :default nil)

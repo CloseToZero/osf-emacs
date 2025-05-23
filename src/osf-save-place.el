@@ -34,6 +34,6 @@
 
 (defvar osf-auto-save-places-timer nil)
 (setq osf-auto-save-places-timer
-      (run-with-timer (* 5 60) t #'osf-auto-save-places))
+      (run-with-timer (* 5 60) (* 5 60) #'osf-auto-save-places))
 
 (provide 'osf-save-place)
