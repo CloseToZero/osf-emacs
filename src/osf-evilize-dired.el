@@ -75,7 +75,7 @@
    "!" dired-do-shell-command
    "&" dired-do-async-shell-command
    "D" dired-do-delete
-   "H" dired-do-hardlink
+   "H" dired-up-directory
    "L" dired-do-load
    "c M" dired-do-chmod
    "c O" dired-do-chown
@@ -93,6 +93,7 @@
    "g u" dired-tree-up
    "g d" dired-tree-down
    "$" evil-end-of-line
+   "^" evil-first-non-blank
    "TAB" dired-hide-subdir
    "<backtab>" dired-hide-all
    "g g" evil-goto-first-line
