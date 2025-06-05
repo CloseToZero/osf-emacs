@@ -25,5 +25,14 @@
 ;;; Code:
 
 (straight-use-package 'markdown-mode)
+(straight-use-package 'edit-indirect)
+
+(with-eval-after-load 'markdown-mode
+  (osf-local-leader-define-key markdown-mode-map
+    "e e" #'markdown-edit-code-block))
+
+(with-eval-after-load 'edit-indirect
+  (osf-local-leader-define-key edit-indirect-mode-map
+    "e e" #'edit-indirect-commit))
 
 (provide 'osf-markdown)

@@ -19,6 +19,7 @@
  ("deadgrep" . "0bf2601ce1d52187b0c589657f7179de5a98dd75")
  ("dired-hacks" . "e9e408e8571aee5574ca0a431ef15cac5a3585d4")
  ("double-trigger" . "c3a7bc87b29cbe022acb99e5b78fe1bcdf83f3ba")
+ ("edit-indirect" . "82a28d8a85277cfe453af464603ea330eae41c05")
  ("eglot" . "9c4eaa3d7e18d06fb4adb91bd9b5d88d5e65708b")
  ("el-get" . "847901f07bdf67763fa3a6c0fb057048cd58603b")
  ("el-patch" . "92803e7ea6e07cd56667ed7ea0dfacfc1f37f6d9")
