@@ -26,9 +26,8 @@
 
 (straight-use-package 'avy)
 (setq avy-timeout-seconds nil
-      avy-single-candidate-jump nil)
-
-(defvar avy-all-windows nil)
+      avy-single-candidate-jump nil
+      avy-all-windows t)
 
 (defun osf-avy-goto-char-timer (&optional arg)
   "Like `avy-goto-char-timer', but exit with empty input can resume previous session."
