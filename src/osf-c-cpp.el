@@ -35,6 +35,8 @@
 
 (straight-use-package '(cmake-mode :source emacsmirror-mirror))
 
+(setq cmake-tab-width 4)
+
 (with-eval-after-load 'cmake-mode
   (osf-local-leader-define-key cmake-mode-map
     "h h" #'cmake-help
