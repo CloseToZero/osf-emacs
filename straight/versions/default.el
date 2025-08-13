@@ -33,7 +33,6 @@
  ("evil-matchit" . "8a94e56bd2987c6d0c1a85fbf189f9a86e623cde")
  ("evil-numbers" . "f4bbb729eebeef26966fae17bd414a7b49f82275")
  ("evil-snipe" . "b59159fdb5af7d2a7defaf9a48fdbc6b08aa2d7b")
- ("evil-string-inflection" . "016938c2e05fbfd4a4738f7231151aadfcee0859")
  ("evil-visualstar" . "06c053d8f7381f91c53311b1234872ca96ced752")
  ("exec-path-from-shell" . "4896a797252fbfdac32fb77508500ac7d220f717")
  ("external-completion" . "c96acdcf0784215b0a7a5eaf94de3b7a855ed719")

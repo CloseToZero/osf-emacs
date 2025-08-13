@@ -30,6 +30,8 @@
 
 (straight-use-package 'posframe)
 
+(straight-use-package 'string-inflection)
+
 (defun osf-nthcdr (list n)
   (when (>= n 0)
     (cl-loop repeat n

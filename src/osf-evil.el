@@ -261,7 +261,14 @@ buffer or a file, don't jump.")
 (straight-use-package 'evil-matchit)
 (global-evil-matchit-mode)
 
-(straight-use-package 'evil-string-inflection)
-(require 'evil-string-inflection)
+(evil-define-operator osf-evil-operator-string-inflection (beg end _type)
+  :move-point nil
+  (interactive "<R>")
+  (let ((str (buffer-substring-no-properties beg end)))
+    (save-excursion
+      (delete-region beg end)
+      (insert (string-inflection-python-style-cycle str)))))
+
+(define-key evil-normal-state-map (kbd "g~") #'osf-evil-operator-string-inflection)
 
 (provide 'osf-evil)
