@@ -267,8 +267,9 @@ buffer or a file, don't jump.")
   (let ((str (buffer-substring-no-properties beg end)))
     (save-excursion
       (delete-region beg end)
-      (insert (string-inflection-python-style-cycle str)))))
+      (insert (string-inflection-ruby-style-cycle-function str)))))
 
-(define-key evil-normal-state-map (kbd "g~") #'osf-evil-operator-string-inflection)
+(osf-evil-define-key 'normal 'global
+  "g ~" #'osf-evil-operator-string-inflection)
 
 (provide 'osf-evil)
