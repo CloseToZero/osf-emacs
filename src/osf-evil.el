@@ -261,4 +261,7 @@ buffer or a file, don't jump.")
 (straight-use-package 'evil-matchit)
 (global-evil-matchit-mode)
 
+(straight-use-package 'evil-string-inflection)
+(require 'evil-string-inflection)
+
 (provide 'osf-evil)
