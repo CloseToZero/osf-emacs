@@ -220,7 +220,7 @@ command to generate a image file name"))
 
   (defun osf-org-capture-hack-local-variables-if-not-aborted ()
     (unless org-note-abort
-      (when-let ((buffer (org-capture-get :buffer)))
+      (when-let* ((buffer (org-capture-get :buffer)))
         (with-current-buffer buffer
           (hack-local-variables 'no-mode)))))
 

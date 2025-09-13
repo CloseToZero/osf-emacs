@@ -47,7 +47,7 @@ Example:
 (osf-truncate-list! '(1 2 3 4) 4) => '(1 2 3 4)
 (osf-truncate-list! '(1 2 3 4 5) 4) => '(1 2 3 4)"
   (cond ((zerop n) nil)
-        (t (when-let ((cons (osf-nthcdr list (- n 1))))
+        (t (when-let* ((cons (osf-nthcdr list (- n 1))))
              (setcdr cons nil))
            list)))
 
@@ -62,7 +62,7 @@ Example:
 (cl-defun osf-copy-current-path (&key copy-empty-string (show-message t))
   (interactive)
   (let ((path (expand-file-name default-directory)))
-    (when-let (file-name (buffer-file-name))
+    (when-let* ((file-name (buffer-file-name)))
       (setq path (expand-file-name file-name path)))
     (when (or (not (string-empty-p path)) copy-empty-string)
       (if (eq last-command 'kill-region)

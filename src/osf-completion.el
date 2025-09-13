@@ -60,7 +60,7 @@ for the regexp dollar operator."
                               osf-orderless-affix-dispatch-alist))))
       '(orderless-literal . ""))
      ;; Prefix
-     ((when-let ((style (alist-get (aref component 0)
+     ((when-let* ((style (alist-get (aref component 0)
                                    osf-orderless-affix-dispatch-alist)))
         (if (string-suffix-p "$" component)
             (cons style
@@ -68,7 +68,7 @@ for the regexp dollar operator."
                           (osf--orderless-consult-suffix-for-dollar)))
           (cons style (substring component 1)))))
      ;; Suffix
-     ((when-let ((style (alist-get (aref component (1- (length component)))
+     ((when-let* ((style (alist-get (aref component (1- (length component)))
                                    osf-orderless-affix-dispatch-alist)))
         (if (and (>= (length component) 2)
                  (eq ?$ (aref component (- (length component) 2))))
@@ -265,7 +265,7 @@ but use `default-directory' if not in minibuffer."
   "Complete current company candidates by `completing-read'."
   (interactive)
   (unless company-candidates (user-error "No company candidates avaiable"))
-  (when-let (cand (completing-read "Candidate: " company-candidates))
+  (when-let* ((cand (completing-read "Candidate: " company-candidates)))
     (company-finish cand)))
 
 (osf-keymap-set company-active-map
@@ -278,7 +278,7 @@ but use `default-directory' if not in minibuffer."
 (defun osf-switch-to-completions-or-scroll-down (&optional arg)
   (interactive "^P")
   (cond (arg (scroll-down-command arg))
-        (t (if-let ((window (get-buffer-window "*Completions*" 0)))
+        (t (if-let* ((window (get-buffer-window "*Completions*" 0)))
                (if (eq (selected-window) window)
                    (scroll-down-command)
                  (switch-to-completions))

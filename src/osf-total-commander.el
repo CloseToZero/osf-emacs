@@ -32,7 +32,7 @@
   (unless osf-tc-executable
     (setq osf-tc-executable
           (or (executable-find "TOTALCMD64")
-              (when-let ((path (getenv "COMMANDER_PATH")))
+              (when-let* ((path (getenv "COMMANDER_PATH")))
                 (expand-file-name "TOTALCMD64.exe" path))))
     (unless (file-executable-p osf-tc-executable)
       (setq osf-tc-executable nil))

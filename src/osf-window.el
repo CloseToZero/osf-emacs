@@ -29,7 +29,7 @@
 
 (defun osf-select-mru-window ()
   (interactive)
-  (when-let ((mru-window (osf-mru-window)))
+  (when-let* ((mru-window (osf-mru-window)))
     (select-window mru-window)))
 
 (defface osf-mru-window-mode-line-face

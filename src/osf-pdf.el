@@ -40,7 +40,7 @@
 
 (defun osf-pdf-view-kill-outline-buffer (&optional pdf-buffer)
   "Kill the outline buffer of PDF-BUFFER (defaulted to the current buffer)."
-  (when-let ((buffer-name (pdf-outline-buffer-name pdf-buffer))
+  (when-let* ((buffer-name (pdf-outline-buffer-name pdf-buffer))
              (buffer (get-buffer buffer-name)))
     (kill-buffer buffer)))
 
@@ -142,8 +142,8 @@ Using `buffer-file-name' as keys."
   (advice-add #'pdf-view-position-to-register :after #'osf-pdf-view-save-registers)
 
   (defun osf--pdf-view-restore-saved-registers ()
-    (when-let (registers (alist-get (buffer-file-name)
-                                    osf-pdf-view-registers nil nil #'string=))
+    (when-let* ((registers (alist-get (buffer-file-name)
+                                      osf-pdf-view-registers nil nil #'string=)))
       (setq pdf-view-register-alist (osf-deserialize-pdf-view-register-alist registers))))
   (add-hook 'pdf-view-mode-hook #'osf--pdf-view-restore-saved-registers)
 

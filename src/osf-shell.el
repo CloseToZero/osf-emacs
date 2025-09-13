@@ -108,7 +108,7 @@
     shell-command-default-error-buffer))
   (async-shell-command command output-buffer error-buffer)
   ;; Why I can't get buffer directly?
-  (when-let (buffer (get-buffer (or output-buffer shell-command-buffer-name-async)))
+  (when-let* ((buffer (get-buffer (or output-buffer shell-command-buffer-name-async))))
     (pop-to-buffer buffer)))
 
 (provide 'osf-shell)
