@@ -34,7 +34,6 @@
 
 (defun osf-ffmpeg-cut-video (src time dst)
   (interactive "fVideo file: \nsTime (like hh:mm:ss-hh:mm:ss): \nFDst video file: ")
-  (split-string "" "-")
   (let* ((time-pair (split-string time "-"))
          (from-time (cl-first time-pair))
          (to-time (cl-second time-pair)))
@@ -45,5 +44,14 @@
              (shell-quote-argument src)
              (shell-quote-argument dst))
      "osf-ffmpeg-cut-video")))
+
+(defun osf-ffmpeg-merge-video-audio (video audio dst)
+  (interactive "fVideo file: \nfAudio file: \nFDst video file: ")
+  (async-shell-command
+     (format "ffmpeg -i %s -i %s -c:v copy -c:a aac %s"
+             (shell-quote-argument video)
+             (shell-quote-argument audio)
+             (shell-quote-argument dst))
+     "osf-ffmpeg--merge-video-audio"))
 
 (provide 'osf-ffmpeg)
